@@ -1,0 +1,46 @@
+---
+title: Aspect Ratio
+description: Maintains a consistent width-to-height ratio for elements.
+component: true
+---
+
+## When To Use
+
+- When you need to display images, videos, or other media with a consistent aspect ratio
+- To prevent layout shifts as content loads
+- To create responsive UI elements that maintain their proportions across different screen sizes
+- When implementing image galleries or media carousels
+
+## Examples
+
+### Basic
+
+<Preview name="basic" src="aspect-ratio/__demo__/basic.tsx" />
+
+The basic implementation maintains a 16/9 aspect ratio for an image.
+
+### With Different Ratios
+
+<Preview name="ratios" src="aspect-ratio/__demo__/ratios.tsx" />
+
+You can customize the aspect ratio to suit different types of content.
+
+### For Video Content
+
+<Preview name="video" src="aspect-ratio/__demo__/video.tsx" />
+
+Aspect ratios can be applied to video elements to maintain consistent sizing.
+
+## Accessibility
+
+The Aspect Ratio component is a visual utility and doesn't introduce any specific accessibility considerations.
+
+However, for optimal accessibility:
+
+- Ensure that images within the Aspect Ratio container have appropriate `alt` text
+- For videos, provide captions and transcripts when needed
+- Maintain sufficient color contrast for any text overlaid on media within the container 
+
+## Props
+
+<AutoTypeTable component="AspectRatio" src="./components/ui/aspect-ratio.tsx" />

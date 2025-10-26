@@ -1,0 +1,70 @@
+---
+title: Popover
+description: Displays rich content in a portal, triggered by a button.
+component: true
+---
+
+<Preview name="popover/__demo__/basic" />
+
+## When To Use
+
+- When you need a temporary floating container to display additional context or interactive controls
+- For forms that don't require a full page or modal
+- To provide a lightweight interface for auxiliary information
+- When you want to display contextual information without disrupting the user's current context
+- As an alternative to tooltips when more interactive content is needed
+
+## Examples
+
+### Basic
+
+A basic popover with a trigger button and content.
+
+<Preview name="popover/__demo__/basic" />
+
+### With Form
+
+A popover containing a simple form.
+
+<Preview name="popover/__demo__/with-form" />
+
+### With Arrow
+
+A popover with a visual arrow pointing to the trigger.
+
+<Preview name="popover/__demo__/with-arrow" />
+
+### Custom Positioning
+
+A popover with custom positioning and alignment.
+
+<Preview name="popover/__demo__/positioning" />
+
+## Props
+
+### Popover
+
+<AutoTypeTable component="Popover" src="./components/ui/popover.tsx" />
+
+### PopoverTrigger
+
+<AutoTypeTable component="PopoverTrigger" src="./components/ui/popover.tsx" />
+
+### PopoverContent
+
+<AutoTypeTable component="PopoverContent" src="./components/ui/popover.tsx" />
+
+### PopoverAnchor
+
+<AutoTypeTable component="PopoverAnchor" src="./components/ui/popover.tsx" />
+
+## Accessibility
+
+The Popover component adheres to the [WAI-ARIA Dialog Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/).
+
+- The popover trigger has `aria-expanded` set to `true` or `false` depending on the popover state.
+- When open, the popover content has `aria-modal` set to `true`.
+- Focus is trapped within the popover when open for keyboard users.
+- Escape key dismisses the popover.
+- The popover has a close button for accessibility.
+- ARIA roles, states, and properties are appropriately applied to ensure screen reader compatibility. 

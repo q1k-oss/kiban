@@ -1,0 +1,79 @@
+[build]
+  publish = ".next"
+  command = "npm run www:build"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--production=false --no-package-lock"
+
+# Build settings for different deploy contexts
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "production"
+
+[context.branch-deploy.environment]
+  NODE_ENV = "production"
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    cache-control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+# Redirects for SPA routing and common paths
+#[[redirects]]
+#  from = "/docs"
+#  to = "/docs/getting-started"
+#  status = 302
+
+#[[redirects]]
+#  from = "/components"
+#  to = "/docs/components"
+#  status = 302
+
+# Handle Next.js dynamic routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {path = "!_next/*"}
+
+# Enable Next.js ISR (Incremental Static Regeneration)
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# Plugin for Next.js runtime
+[[plugins]]
+  package = "@netlify/plugin-nextjs" 

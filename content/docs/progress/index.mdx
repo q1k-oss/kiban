@@ -1,0 +1,54 @@
+---
+title: Progress
+description: Displays an indicator showing the completion progress of a task.
+---
+
+### When To Use
+
+Use the Progress component when you need to:
+
+- Show the progress of a task or operation
+- Indicate loading state with determinate progress
+- Visualize the completion percentage of a multi-step process
+- Provide visual feedback for file uploads, form submissions, or data processing
+- Display progress toward a goal or target
+
+Progress indicators help users understand how much of a task has been completed and how much remains.
+
+### Examples
+<Preview
+  lang="jsx"
+  file="/progress/__demo__/basic"
+  title="Basic"
+/>
+
+<Preview
+  lang="jsx"
+  file="/progress/__demo__/indeterminate"
+  title="Indeterminate"
+/>
+
+<Preview
+  lang="jsx"
+  file="/progress/__demo__/with-value"
+  title="With Value"
+/>
+
+<Preview
+  lang="jsx"
+  file="/progress/__demo__/custom"
+  title="Custom"
+/>
+
+### Props
+<AutoTypeTable path="./components/ui/progress.tsx" name="Progress" />
+
+### Accessibility
+
+The Progress component follows accessibility best practices:
+
+- Uses appropriate ARIA attributes (role="progressbar")
+- Communicates current value and range to assistive technologies
+- Provides visual indication of progress for users who can see
+- Can be styled to meet color contrast requirements
+- Works with keyboard navigation and screen readers 

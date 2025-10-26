@@ -1,0 +1,60 @@
+---
+title: Radio Group
+description: A set of checkable buttons where only one can be checked at a time.
+component: true
+---
+
+<Preview name="radio-group/__demo__/basic" />
+
+## When To Use
+
+- When a user needs to select a single option from a list of mutually exclusive choices
+- When the number of available options can comfortably fit in the available space
+- When immediate feedback or visibility of all options is needed without requiring a dropdown
+- When form design clarity benefits from a vertical or horizontal list of visible options
+
+## Examples
+
+### Basic
+
+A basic radio group with default styling.
+
+<Preview name="radio-group/__demo__/basic" />
+
+### With Label
+
+Radio group with form labels for better accessibility.
+
+<Preview name="radio-group/__demo__/with-label" />
+
+### Disabled
+
+Disabled radio group and individual radio items.
+
+<Preview name="radio-group/__demo__/disabled" />
+
+### Custom
+
+Radio group with custom styling and layout.
+
+<Preview name="radio-group/__demo__/custom" />
+
+## Props
+
+### RadioGroup
+
+<AutoTypeTable component="RadioGroup" src="./components/ui/radio-group.tsx" />
+
+### RadioGroupItem
+
+<AutoTypeTable component="RadioGroupItem" src="./components/ui/radio-group.tsx" />
+
+## Accessibility
+
+The Radio Group component adheres to the [WAI-ARIA Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/).
+
+- The RadioGroup uses `role="radiogroup"` and each RadioGroupItem has `role="radio"`.
+- When a RadioGroupItem is checked, `aria-checked` is set to `true`.
+- Radio items are properly labeled using either `aria-label` or associated form labels.
+- Keyboard users can navigate between options using arrow keys and select options with Space.
+- Focus management follows logical tab order and highlights the active option. 

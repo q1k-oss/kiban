@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/preset.css";
+@import "fumadocs-ui/css/neutral.css";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* font-feature-settings: "rlig" 1, "calt" 1; */
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  pre.highlight {
+    background-color: hsl(var(--card) / var(--tw-bg-opacity)) !important;
+  }
+
+  .dark pre.highlight {
+    background-color: hsl(var(--card) / var(--tw-bg-opacity)) !important;
+  }
+}
+
+.dark {
+  .highlight,
+  .highlight span {
+    color: var(--shiki-dark) !important;
+    background-color: hsl(var(--card) / var(--tw-bg-opacity)) !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  } 
+}
+
+@layer base {
+  .main-container {
+    background: linear-gradient(180deg, var(--color-main-top) 0%, var(--color-main-bottom) 100%);
+    color: var(--color-main-foreground);
+  }
+  
+  .glassy {
+    @apply bg-black/5 dark:bg-white/5 backdrop-filter backdrop-blur-xl border dark:border-white/10 border-black/10;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .glassy {
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-ethereal-purple via-ethereal-teal to-ethereal-blue text-transparent bg-clip-text animate-shimmer;
+    background-size: 300% 100%;
+  }
+  
+  .code-block {
+    @apply bg-white/60 dark:bg-gray-900/80 p-4 rounded-xl text-ethereal-light text-sm overflow-x-auto border border-zinc-300 dark:border-gray-800;
+    box-shadow: inset 0 0 20px rgba(121, 40, 202, 0.1);
+  }
+  
+  .neon-glow {
+    filter: drop-shadow(0 0 10px rgba(121, 40, 202, 0.5));
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(121, 40, 202, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(121, 40, 202, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+/* Custom Keyframes */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(121, 40, 202, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 201, 167, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(121, 40, 202, 0.3);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom Animation Utilities */
+@utility animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+@utility animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+@utility animate-glow {
+  animation: glow 3s infinite;
+}
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@utility animate-shimmer {
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+/* Custom Background Image Utilities */
+@utility bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+@utility bg-gradient-conic {
+  background-image: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+}
+
+@utility bg-shimmer-gradient {
+  background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+}
+
+:base {
+  --main-top: #F5F5F5;
+  --main-bottom: #FFFFFF;
+}
+
+.dark{
+  --main-top: #121212;
+  --main-bottom: #000000;
+}
+
+@theme inline {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-glow: glow 3s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 8s ease-in-out infinite;
+  --color-ethereal-purple: #7928CA;
+  --color-ethereal-teal: #00C9A7;
+  --color-ethereal-blue: #2196F3;
+  --color-ethereal-pink: #FF4081;
+  --color-ethereal-dark: #121212;
+  --color-ethereal-light: #FFFFFF;
+  --color-main-top: var(--main-top);
+  --color-main-bottom: var(--main-bottom);
+}

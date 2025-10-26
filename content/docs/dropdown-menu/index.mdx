@@ -1,0 +1,98 @@
+---
+title: Dropdown Menu
+description: A vertically stacked menu that appears when triggered by a button.
+---
+
+A vertically stacked menu that appears when triggered by a button.
+
+## When To Use
+
+- When you need to display a list of actions or options that would otherwise clutter the UI
+- For providing contextual actions for elements on the page
+- When you want to create nested hierarchical menus
+- As an alternative to traditional navigation patterns in space-constrained interfaces
+
+## Examples
+
+<Preview src="dropdown-menu/__demo__/basic.tsx" />
+
+A basic Dropdown Menu with simple items.
+
+<Preview src="dropdown-menu/__demo__/checkboxes.tsx" />
+
+A Dropdown Menu with checkbox items for multiple selection.
+
+<Preview src="dropdown-menu/__demo__/radio-group.tsx" />
+
+A Dropdown Menu with radio items for single selection.
+
+<Preview src="dropdown-menu/__demo__/submenu.tsx" />
+
+A Dropdown Menu with nested submenus.
+
+## Props
+
+### DropdownMenu
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenu" />
+
+### DropdownMenuTrigger
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuTrigger" />
+
+### DropdownMenuContent
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuContent" />
+
+### DropdownMenuItem
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuItem" />
+
+### DropdownMenuCheckboxItem
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuCheckboxItem" />
+
+### DropdownMenuRadioItem
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuRadioItem" />
+
+### DropdownMenuLabel
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuLabel" />
+
+### DropdownMenuSeparator
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSeparator" />
+
+### DropdownMenuGroup
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuGroup" />
+
+### DropdownMenuSub
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSub" />
+
+### DropdownMenuSubTrigger
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSubTrigger" />
+
+### DropdownMenuSubContent
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSubContent" />
+
+### DropdownMenuRadioGroup
+
+<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuRadioGroup" />
+
+## Accessibility
+
+The Dropdown Menu component follows WAI-ARIA guidelines for menus:
+
+- Uses `role="menu"` for the dropdown content
+- Uses `role="menuitem"` for menu items
+- Uses `role="menuitemcheckbox"` for checkbox items
+- Uses `role="menuitemradio"` for radio items
+- Supports keyboard navigation (arrow keys, Enter, Space)
+- Automatically focuses the first item when opened
+- The `Escape` key closes the dropdown
+- Supports proper ARIA attributes for describing relationships between elements 

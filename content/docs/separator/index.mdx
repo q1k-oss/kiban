@@ -1,0 +1,54 @@
+---
+title: Separator
+description: A visual divider between content or menu items.
+---
+
+### When To Use
+
+Use the Separator component when you need to:
+
+- Create a visual divider between sections of content
+- Separate items in a list or menu
+- Establish visual hierarchy and organization
+- Divide groups of related items
+- Create subtle visual breaks in dense interfaces
+
+Separators improve the readability and scanability of content by visually grouping and segmenting related elements.
+
+### Examples
+<Preview
+  lang="jsx"
+  file="/separator/__demo__/basic"
+  title="Basic"
+/>
+
+<Preview
+  lang="jsx"
+  file="/separator/__demo__/orientation"
+  title="Orientation"
+/>
+
+<Preview
+  lang="jsx"
+  file="/separator/__demo__/with-text"
+  title="With Text"
+/>
+
+<Preview
+  lang="jsx"
+  file="/separator/__demo__/custom"
+  title="Custom"
+/>
+
+### Props
+<AutoTypeTable path="./components/ui/separator.tsx" name="Separator" />
+
+### Accessibility
+
+The Separator component follows accessibility best practices:
+
+- Properly uses the `role="separator"` attribute when not decorative
+- Can be set as `decorative={false}` when it's semantically meaningful
+- Maintains proper color contrast for better visibility
+- Works with screen readers to indicate sections of content
+- Can be visually styled while maintaining accessibility 

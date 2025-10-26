@@ -1,0 +1,62 @@
+---
+title: Button
+description: An interactive element that triggers an action or event when clicked.
+---
+
+### When To Use
+
+Use the Button component when you need to:
+
+- Trigger an action or submit a form
+- Navigate to another page or section
+- Provide interactive controls that respond to user clicks
+- Create call-to-action elements
+- Group related actions together
+
+Buttons are fundamental interactive elements that allow users to take actions and make choices with a single tap or click.
+
+### Examples
+<Preview
+  lang="jsx"
+  file="/button/__demo__/basic"
+  title="Basic"
+/>
+
+<Preview
+  lang="jsx"
+  file="/button/__demo__/variants"
+  title="Variants"
+/>
+
+<Preview
+  lang="jsx"
+  file="/button/__demo__/sizes"
+  title="Sizes"
+/>
+
+<Preview
+  lang="jsx"
+  file="/button/__demo__/with-icon"
+  title="With Icon"
+/>
+
+<Preview
+  lang="jsx"
+  file="/button/__demo__/loading"
+  title="Loading State"
+/>
+
+### Props
+<AutoTypeTable path="./components/ui/button.tsx" name="Button" />
+
+### Accessibility
+
+The Button component adheres to the following accessibility best practices:
+
+- Uses native `<button>` elements which are accessible by default
+- Maintains proper focus states for keyboard navigation
+- Supports keyboard activation (Enter and Space)
+- Provides appropriate ARIA attributes
+- Disabled states are properly communicated to assistive technologies
+- Focus is visible for keyboard users through focus ring styling
+- Loading states prevent multiple submissions and provide visual feedback
