@@ -1,5 +1,5 @@
 {
-  "name": "ethereal-ui",
+  "name": "@happect/ethereal-ui",
   "description": "Ethereal Garden - A React UI Component Library",
   "version": "0.0.8",
   "files": [
@@ -20,6 +20,9 @@
     "./styles": "./styles/ethereal.css",
     "./styles/ethereal.css": "./styles/ethereal.css",
     "./ethereal.css": "./styles/ethereal.css"
+  },
+  "publishConfig": {
+    "registry": "https://npm.chives.io/"
   },
   "sideEffects": false,
   "repository": {
