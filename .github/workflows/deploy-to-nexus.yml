@@ -1,0 +1,62 @@
+name: Deploy to Nexus NPM Registry
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.chives.io/'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Validate version for tags
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          TAG_WITH_V=${GITHUB_REF#refs/tags/}
+          TAG_WITHOUT_V=${TAG_WITH_V#v}
+          echo "Package version: $PACKAGE_VERSION"
+          echo "Tag with v: $TAG_WITH_V"
+          echo "Tag without v: $TAG_WITHOUT_V"
+          if [ "$PACKAGE_VERSION" = "$TAG_WITH_V" ] || [ "$PACKAGE_VERSION" = "$TAG_WITHOUT_V" ]; then
+            echo "Version validation passed!"
+          else
+            echo "Error: Package version ($PACKAGE_VERSION) does not match tag version ($TAG_WITH_V or $TAG_WITHOUT_V)"
+            exit 1
+          fi
+        
+      - name: Test build
+        run: npm run build:compile
+        
+      - name: Build package
+        run: npm run build:package
+        
+      - name: Configure npm for Nexus registry
+        run: |
+          npm config set registry https://npm.chives.io/
+          npm config set //npm.chives.io/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
+          
+      - name: Publish to Nexus NPM Registry
+        run: npm publish --registry=https://npm.chives.io/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NEXUS_NPM_TOKEN }}
+          
+      - name: Verify publication
+        run: |
+          echo "Package published successfully!"
+          echo "Package: @happect/ethereal-ui"
+          echo "Registry: https://npm.chives.io/"
