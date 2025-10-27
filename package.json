@@ -1,5 +1,5 @@
 {
-  "name": "@happect/ethereal-ui",
+  "name": "ethereal-ui",
   "description": "Ethereal Garden - A React UI Component Library",
   "version": "0.0.8",
   "files": [
@@ -41,6 +41,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "build:compile": "gulp compile",
+    "build:watch": "gulp watch",
     "build:package": "shx rm -rf dist && npm run build:compile",
     "publish:dry": "npm publish --dry-run"
   },
@@ -118,7 +119,7 @@
     "fumadocs-typescript": "4.0.5",
     "fumadocs-ui": "15.3.4",
     "globals": "16.1.0",
-    "gulp": "5.0.0",
+    "gulp": "^5.0.0",
     "gulp-typescript": "6.0.0-alpha.1",
     "gulp-webpack": "1.5.0",
     "hast-util-to-jsx-runtime": "2.3.6",

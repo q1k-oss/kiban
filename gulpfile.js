@@ -245,3 +245,8 @@ gulp.task(
     ),
   ),
 );
+
+// Watch task: rebuild on changes in components
+gulp.task('watch', () => {
+  gulp.watch(['components/**/*.{ts,tsx,js,jsx}'], gulp.series('compile'));
+});
