@@ -24,9 +24,9 @@ jobs:
           # Set default registry to public npm
           npm config set registry https://registry.npmjs.org/
           # Set @happect scope to use private Nexus registry
-          npm config set @happect:registry https://npm.chives.io/
+          npm config set @happect:registry https://npm.chives.io/repository/npm/
           # Configure authentication for @happect scope
-          npm config set //npm.chives.io/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
+          npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
           
       - name: Install dependencies
         run: npm ci
@@ -56,11 +56,11 @@ jobs:
       - name: Configure npm for publishing
         run: |
           # Ensure @happect scope uses Nexus for publishing
-          npm config set @happect:registry https://npm.chives.io/
-          npm config set //npm.chives.io/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
+          npm config set @happect:registry https://npm.chives.io/repository/npm/
+          npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
           
       - name: Publish to Nexus NPM Registry
-        run: npm publish --registry=https://npm.chives.io/
+        run: npm publish --registry=https://npm.chives.io/repository/npm/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NEXUS_NPM_TOKEN }}
           
