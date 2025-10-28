@@ -10,7 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <Breadcrumb>

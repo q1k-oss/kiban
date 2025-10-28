@@ -14,7 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Sample data
 const actions = [

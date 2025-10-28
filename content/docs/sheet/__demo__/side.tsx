@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => {
   const [side, setSide] = useState<"top" | "right" | "bottom" | "left">("right");

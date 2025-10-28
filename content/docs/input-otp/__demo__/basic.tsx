@@ -7,7 +7,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function InputOTPBasicDemo() {
   const [value, setValue] = useState('');

@@ -13,7 +13,7 @@ import {
   SheetFooter,
   Button,
   Separator,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Sample cart items
 const initialItems = [

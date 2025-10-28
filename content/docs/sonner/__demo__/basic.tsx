@@ -1,7 +1,7 @@
 "use client"
 import { toast } from 'sonner';
 
-import { Button } from 'ethereal-ui';
+import { Button } from '@happect/ethereal-ui';
 
 export default function SonnerBasicDemo() {
   return (

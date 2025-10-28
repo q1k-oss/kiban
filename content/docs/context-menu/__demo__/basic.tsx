@@ -5,7 +5,7 @@ import {
   ContextMenuSeparator,
   ContextMenuShortcut,
   ContextMenuTrigger,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <ContextMenu>

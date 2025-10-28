@@ -1,4 +1,4 @@
-import { Switch } from 'ethereal-ui';
+import { Switch } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="flex flex-col gap-4">

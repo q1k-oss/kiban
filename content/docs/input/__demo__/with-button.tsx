@@ -1,6 +1,6 @@
 import { Search, Send } from 'lucide-react';
 
-import { Input, Button } from 'ethereal-ui';
+import { Input, Button } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="flex flex-col gap-4">

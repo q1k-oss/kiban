@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Textarea } from 'ethereal-ui';
+import { Textarea } from '@happect/ethereal-ui';
 
 export default () => {
   const [value, setValue] = useState('');

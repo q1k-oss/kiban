@@ -12,10 +12,10 @@ const webpackStream = require('webpack-stream');
 function addJsExtensions() {
   return through2.obj(function (file, _, next) {
     const filePath = file.path;
-    
+
     if (filePath.endsWith('.js') && (filePath.includes('dist/esm') || filePath.includes('esm') || filePath.includes('components'))) {
       let content = file.contents.toString();
-      
+
       // Match export * from './path' patterns and add .js extensions
       content = content.replace(/export \* from ['"]\.\/([^'"]+)['"]/g, (match, path) => {
         // Only add .js if it doesn't already have an extension
@@ -24,7 +24,7 @@ function addJsExtensions() {
         }
         return match;
       });
-      
+
       file.contents = Buffer.from(content);
     }
     this.push(file);
@@ -72,7 +72,7 @@ function buildCommonJS() {
       ],
       alias: {
         [pkg.name]: process.cwd(),
-        ["ethereal-ui"]: path.resolve(__dirname, 'components'),
+        ["@happect/ethereal-ui"]: path.resolve(__dirname, 'components'),
         ["@/utils"]: path.resolve(__dirname, 'utils'),
       },
       fallback: [
@@ -206,10 +206,10 @@ function buildESModule() {
       module: 'esnext',
       baseUrl: './',
       resolveJsonModule: true,
-      lib: [ 'dom', 'es2017' ],
+      lib: ['dom', 'es2017'],
       paths: {
-        'ethereal-ui': ['.'],
-        'ethereal-ui/*': ['./*'],
+        '@happect/ethereal-ui': ['.'],
+        '@happect/ethereal-ui/*': ['./*'],
       },
       allowJs: true
     }));

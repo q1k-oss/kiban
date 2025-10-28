@@ -9,7 +9,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <Command className="rounded-lg border shadow-md">

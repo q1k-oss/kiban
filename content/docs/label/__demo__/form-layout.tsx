@@ -1,4 +1,4 @@
-import { Label } from 'ethereal-ui';
+import { Label } from '@happect/ethereal-ui';
 
 export default () => (
   <form className="w-full max-w-md space-y-6">

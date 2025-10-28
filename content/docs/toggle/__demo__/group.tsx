@@ -12,7 +12,7 @@ import {
   ListTodo,
 } from 'lucide-react';
 
-import { ToggleGroup, ToggleGroupItem } from 'ethereal-ui';
+import { ToggleGroup, ToggleGroupItem } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="flex flex-col gap-8">

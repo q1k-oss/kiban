@@ -8,7 +8,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => {
   const [isOpen1, setIsOpen1] = useState(false);

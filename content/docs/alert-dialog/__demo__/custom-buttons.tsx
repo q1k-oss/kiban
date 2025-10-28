@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <AlertDialog>

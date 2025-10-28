@@ -1,4 +1,4 @@
-import { ScrollArea } from 'ethereal-ui';
+import { ScrollArea } from '@happect/ethereal-ui';
 
 // Sample image data
 const images = [

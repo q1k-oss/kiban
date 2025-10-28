@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Basic breadcrumb demo created at timestamp: 20230525
 

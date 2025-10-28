@@ -3,7 +3,7 @@
 import { ThumbsUp, Bell, ShoppingCart, ArrowRight, X } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { Button, Avatar, AvatarImage, AvatarFallback } from 'ethereal-ui';
+import { Button, Avatar, AvatarImage, AvatarFallback } from '@happect/ethereal-ui';
 
 export default function SonnerCustomDemo() {
   const showCustomToast = () => {

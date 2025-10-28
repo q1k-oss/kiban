@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <div className="flex items-center gap-4">

@@ -1,4 +1,4 @@
-import { ScrollArea } from 'ethereal-ui';
+import { ScrollArea } from '@happect/ethereal-ui';
 
 export default () => (
   <ScrollArea className="h-72 w-full rounded-md border p-4">

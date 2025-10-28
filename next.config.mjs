@@ -13,7 +13,7 @@ const config = {
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "ethereal-ui": path.resolve(__dirname, "components/*"),
+      "@happect/ethereal-ui": path.resolve(__dirname, "components/*"),
     };
     if (!isServer) {
       config.resolve.fallback = {

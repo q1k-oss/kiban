@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => {
   const [position, setPosition] = useState('bottom');

@@ -1,4 +1,4 @@
-import { Input } from 'ethereal-ui';
+import { Input } from '@happect/ethereal-ui';
 
 export default function InputBasicDemo() {
   return (

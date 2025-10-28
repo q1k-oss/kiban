@@ -1,4 +1,4 @@
-import { Checkbox } from 'ethereal-ui';
+import { Checkbox } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="space-y-4">

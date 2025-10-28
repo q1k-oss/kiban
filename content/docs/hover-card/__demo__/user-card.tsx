@@ -8,7 +8,7 @@ import {
   AvatarFallback,
   AvatarImage,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <HoverCard>

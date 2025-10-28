@@ -1,6 +1,6 @@
 import { Check, X, AlertCircle, Bell } from 'lucide-react';
 
-import { Badge } from 'ethereal-ui';
+import { Badge } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="flex flex-col gap-4">

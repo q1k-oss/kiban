@@ -7,7 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <Breadcrumb>

@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Sample data
 const invoices = [

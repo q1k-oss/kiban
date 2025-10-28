@@ -1,4 +1,4 @@
-import { ScrollArea, ScrollBar } from 'ethereal-ui';
+import { ScrollArea, ScrollBar } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="space-y-8">

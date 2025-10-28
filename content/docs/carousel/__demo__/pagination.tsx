@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
   CarouselIndicators,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function CarouselPaginationDemo() {
   const [api, setApi] = useState<any>();

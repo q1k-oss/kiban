@@ -49,8 +49,8 @@ npm install ethereal-ui
 Here is an example of how to use the Tabs component from the library:
 
 ```jsx
-import * as React from 'react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from 'ethereal-ui';
+import * as React from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@happect/ethereal-ui";
 
 const MyComponent = () => (
   <Tabs defaultValue="preview">
@@ -58,12 +58,8 @@ const MyComponent = () => (
       <TabsTrigger value="preview">Preview</TabsTrigger>
       <TabsTrigger value="code">Code</TabsTrigger>
     </TabsList>
-    <TabsContent value="preview">
-      Preview Content
-    </TabsContent>
-    <TabsContent value="code">
-      Code Content
-    </TabsContent>
+    <TabsContent value="preview">Preview Content</TabsContent>
+    <TabsContent value="code">Code Content</TabsContent>
   </Tabs>
 );
 
@@ -77,7 +73,7 @@ export default MyComponent;
 To include the styles, import the `ethereal-ui/styles/ethereal.css` file in your main styles file or App.ts:
 
 ```css
-@import 'ethereal-ui/styles/ethereal.css';
+@import "ethereal-ui/styles/ethereal.css";
 @source '../node_modules/ethereal-ui';
 ```
 
@@ -107,15 +103,15 @@ Contributions are welcome! Please follow these steps to contribute:
 
 2. **Clone the repository**: Clone your forked repository to your local machine using the following command:
 
-  ```sh
-  git clone https://github.com/Invier/ethereal-garden.git
-  ```
+```sh
+git clone https://github.com/Invier/ethereal-garden.git
+```
 
 3. **Create a new branch**: Create a new branch for your feature or bug fix:
 
-  ```sh
-  git checkout -b my-feature-branch
-  ```
+```sh
+git checkout -b my-feature-branch
+```
 
 4. **Install dependencies**: Install the project dependencies:
 
@@ -125,15 +121,15 @@ Contributions are welcome! Please follow these steps to contribute:
 
 7. **Commit your changes**: Commit your changes with a descriptive commit message:
 
-  ```sh
-  git commit -m "Add new feature"
-  ```
+```sh
+git commit -m "Add new feature"
+```
 
 8. **Push your changes**: Push your changes to your forked repository:
 
-  ```sh
-  git push origin my-feature-branch
-  ```
+```sh
+git push origin my-feature-branch
+```
 
 9. **Create a pull request**: Go to the original repository and create a pull request from your forked repository. Provide a clear and descriptive title and description for your pull request.
 

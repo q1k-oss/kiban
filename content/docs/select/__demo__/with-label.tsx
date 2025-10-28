@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <div className="grid w-full max-w-sm items-center gap-1.5">

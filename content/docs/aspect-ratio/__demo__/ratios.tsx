@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { AspectRatio } from 'ethereal-ui';
+import { AspectRatio } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

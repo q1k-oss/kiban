@@ -1,4 +1,4 @@
-import { Separator } from 'ethereal-ui';
+import { Separator } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="space-y-6">

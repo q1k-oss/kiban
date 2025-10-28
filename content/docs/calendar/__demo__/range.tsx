@@ -4,7 +4,7 @@ import { addDays } from 'date-fns';
 import { useState } from 'react';
 import { DateRange } from 'react-day-picker';
 
-import { Calendar } from 'ethereal-ui';
+import { Calendar } from '@happect/ethereal-ui';
 
 export default () => {
   const [dateRange, setDateRange] = useState<DateRange | undefined>({

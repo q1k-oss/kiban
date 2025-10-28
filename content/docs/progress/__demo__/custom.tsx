@@ -1,4 +1,4 @@
-import { Progress } from 'ethereal-ui';
+import { Progress } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="space-y-6">

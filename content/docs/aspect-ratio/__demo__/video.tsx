@@ -1,4 +1,4 @@
-import { AspectRatio } from 'ethereal-ui';
+import { AspectRatio } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="max-w-[600px]">

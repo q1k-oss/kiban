@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
   Badge,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Sample product data
 const products = [

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-import { Progress } from 'ethereal-ui';
+import { Progress } from '@happect/ethereal-ui';
 
 export default () => {
   const [progress, setProgress] = useState<number | null>(null);

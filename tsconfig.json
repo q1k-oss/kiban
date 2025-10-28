@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "ESNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,9 +20,15 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "ethereal-ui": ["components/index.ts"],
-      "ethereal-ui/*": ["./components/*"],
-      "@/*": ["./*"],
+      "@happect/ethereal-ui": [
+        "components/index.ts"
+      ],
+      "@happect/ethereal-ui/*": [
+        "./components/*"
+      ],
+      "@/*": [
+        "./*"
+      ],
     },
     "plugins": [
       {
@@ -26,6 +36,13 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

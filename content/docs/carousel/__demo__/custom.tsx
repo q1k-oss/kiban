@@ -15,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function CarouselCustomDemo() {
   const products = [

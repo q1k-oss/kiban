@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { AspectRatio } from 'ethereal-ui';
+import { AspectRatio } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="max-w-[400px]">

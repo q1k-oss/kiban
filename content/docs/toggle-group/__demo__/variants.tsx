@@ -1,6 +1,6 @@
 import { Sun, Moon, Laptop } from 'lucide-react';
 
-import { ToggleGroup, ToggleGroupItem } from 'ethereal-ui';
+import { ToggleGroup, ToggleGroupItem } from '@happect/ethereal-ui';
 
 export default function ToggleGroupVariantsDemo() {
   return (

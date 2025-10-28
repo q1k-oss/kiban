@@ -3,7 +3,7 @@
 import { AlignLeft, AlignCenter, AlignRight, AlignJustify } from 'lucide-react';
 import { useState } from 'react';
 
-import { ToggleGroup, ToggleGroupItem } from 'ethereal-ui';
+import { ToggleGroup, ToggleGroupItem } from '@happect/ethereal-ui';
 
 export default function ToggleGroupBasicDemo() {
   const [alignment, setAlignment] = useState('center');

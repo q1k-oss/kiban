@@ -1,4 +1,4 @@
-import { Badge } from 'ethereal-ui';
+import { Badge } from '@happect/ethereal-ui';
 
 export default () => (
   <div className="flex flex-wrap gap-2">

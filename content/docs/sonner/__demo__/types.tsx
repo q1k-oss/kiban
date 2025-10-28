@@ -3,7 +3,7 @@
 import { CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { Button } from 'ethereal-ui';
+import { Button } from '@happect/ethereal-ui';
 
 export default function SonnerTypesDemo() {
   return (

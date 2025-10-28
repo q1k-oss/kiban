@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuShortcut,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <DropdownMenu>

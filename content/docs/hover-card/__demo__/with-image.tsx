@@ -6,7 +6,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <HoverCard>

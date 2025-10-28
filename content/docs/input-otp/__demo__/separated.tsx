@@ -8,7 +8,7 @@ import {
   InputOTPSlot,
   InputOTPSeparator,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function InputOTPSeparatedDemo() {
   const [value, setValue] = useState('');

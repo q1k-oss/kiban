@@ -12,7 +12,7 @@ import {
   DialogTrigger,
   DialogFooter,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => {
   const [open, setOpen] = useState(false);

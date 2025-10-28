@@ -4,7 +4,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function CarouselBasicDemo() {
   return (

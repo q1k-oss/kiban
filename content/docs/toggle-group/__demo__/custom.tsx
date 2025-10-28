@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { ToggleGroup, ToggleGroupItem } from 'ethereal-ui';
+import { ToggleGroup, ToggleGroupItem } from '@happect/ethereal-ui';
 
 export default function ToggleGroupCustomDemo() {
   const [selectedColor, setSelectedColor] = useState('indigo');

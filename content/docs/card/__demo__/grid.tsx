@@ -9,7 +9,7 @@ import {
   CardTitle,
   Button,
   Badge,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Sample data for the cards
 const courses = [

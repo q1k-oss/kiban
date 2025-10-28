@@ -21,7 +21,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Define form schema
 const formSchema = z.object({

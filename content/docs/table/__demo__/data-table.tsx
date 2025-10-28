@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Sample data
 const initialData = [

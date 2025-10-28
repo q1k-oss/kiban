@@ -3,7 +3,7 @@
 import { addDays, isBefore, isAfter, isSameDay } from 'date-fns';
 import { useState } from 'react';
 
-import { Calendar } from 'ethereal-ui';
+import { Calendar } from '@happect/ethereal-ui';
 
 export default () => {
   const [date, setDate] = useState<Date | undefined>(new Date());

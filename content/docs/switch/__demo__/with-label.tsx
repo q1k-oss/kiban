@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Switch } from 'ethereal-ui';
+import { Switch } from '@happect/ethereal-ui';
 
 export default () => {
   const [notifications, setNotifications] = useState(true);

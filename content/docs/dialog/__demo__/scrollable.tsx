@@ -7,7 +7,7 @@ import {
   DialogTrigger,
   DialogFooter,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 // Generate fake terms and conditions
 const generateTerms = () => {
