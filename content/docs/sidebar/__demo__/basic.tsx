@@ -16,7 +16,7 @@ import {
   SidebarMenuItem,
   SidebarFooter,
   SidebarProvider,
-} from "ethereal-ui";
+} from "@happect/ethereal-ui";
 
 export default function SidebarBasicDemo() {
   return (

@@ -25,7 +25,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
   SidebarProvider,
-} from "ethereal-ui";
+} from "@happect/ethereal-ui";
 
 export default function SidebarCollapsibleDemo() {
   const [collapsed, setCollapsed] = useState(false);

@@ -35,7 +35,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuItem,
   SidebarProvider,
-} from "ethereal-ui";
+} from "@happect/ethereal-ui";
 
 export default function SidebarCustomDemo() {
   const [activeItem, setActiveItem] = useState("dashboard");

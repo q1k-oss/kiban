@@ -29,7 +29,7 @@ import {
   SheetContent,
   SheetClose,
   SidebarProvider,
-} from "ethereal-ui";
+} from "@happect/ethereal-ui";
 
 export default function SidebarMobileDemo() {
   const [isMobile, setIsMobile] = useState(false);

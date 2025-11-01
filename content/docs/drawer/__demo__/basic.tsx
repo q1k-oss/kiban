@@ -8,7 +8,7 @@ import {
   DrawerFooter,
   DrawerClose,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function DrawerBasicDemo() {
   return (

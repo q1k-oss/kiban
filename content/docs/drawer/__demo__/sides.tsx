@@ -17,7 +17,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function DrawerSidesDemo() {
   const [side, setSide] = useState<'top' | 'right' | 'bottom' | 'left'>('bottom');

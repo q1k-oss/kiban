@@ -2,7 +2,7 @@ import { ArrowRight, Code2, Zap } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-import { Button, ScrollArea } from 'ethereal-ui';
+import { Button, ScrollArea } from '@happect/ethereal-ui';
 
 import CodeBlock from '../codeblock';
 
@@ -70,7 +70,7 @@ export const Hero = () => {
                   <CodeBlock
                     code={`
 import React from 'react'
-import { Button, Card, Badge } from 'ethereal-ui'
+import { Button, Card, Badge } from '@happect/ethereal-ui'
 
 export default function CyberInterface() {
   return (

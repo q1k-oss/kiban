@@ -20,7 +20,7 @@ import {
   DialogFooter,
   DialogClose,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function DrawerResponsiveDemo() {
   const [isMobile, setIsMobile] = useState(false);
