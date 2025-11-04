@@ -135,6 +135,8 @@
   --icon-color-default: oklch(from #5C5C5C l c h);
   --agent-card-fill: oklch(from #FFFFFF l c h);
   --agent-card-border: oklch(from #E0E0E0 l c h);
+  --background-black: oklch(from #0F0F0F l c h);
+  
 }
 
 .dark {
@@ -199,6 +201,7 @@
   --icon-color-default: oklch(from #A2A2A2 l c h);
   --agent-card-fill: oklch(from #171717 l c h);
   --agent-card-border: oklch(from #5C5C5C l c h);
+  --background-black: oklch(from #0F0F0F l c h);
 }
 
 @layer base {
