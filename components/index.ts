@@ -45,3 +45,4 @@ export * from './ui/toggle-group';
 export * from './ui/toggle';
 export * from './ui/tooltip';
 export * from './utils/index';
+export * from './icons/TokenIcon'
