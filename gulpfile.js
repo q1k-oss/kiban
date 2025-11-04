@@ -186,7 +186,7 @@ function buildCommonJS() {
 
 function buildESModule() {
   const tsResult = gulp
-    .src(['components/index.tsx', 'components/**/*.{ts,tsx}'])
+    .src(['components/index.ts', 'components/**/*.{ts,tsx}'])
     .pipe(insertUseClient())
     .pipe(ts({
       noUnusedParameters: false,
