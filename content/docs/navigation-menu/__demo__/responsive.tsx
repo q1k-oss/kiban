@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
   Button,
-} from "ethereal-ui";
+} from "@happect/ethereal-ui";
 
 export default function NavigationMenuResponsiveDemo() {
   const [isMobile, setIsMobile] = useState(false);

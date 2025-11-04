@@ -10,7 +10,7 @@ import {
   TabsTrigger,
   TabsContent,
   Skeleton,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 import { CopyToClipboard } from '../copy-to-clipboard';
 

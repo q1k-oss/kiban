@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
   Button,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <Tabs defaultValue="dashboard" className="w-full">

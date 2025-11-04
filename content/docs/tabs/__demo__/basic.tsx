@@ -3,7 +3,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <Tabs defaultValue="account" className="w-full">

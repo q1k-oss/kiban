@@ -6,7 +6,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "ethereal-ui"
+} from "@happect/ethereal-ui"
 
 export default function NavigationMenuDropdownDemo() {
   return (

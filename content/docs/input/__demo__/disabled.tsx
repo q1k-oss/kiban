@@ -1,4 +1,4 @@
-import { Input, Label } from "ethereal-ui";
+import { Input, Label } from "@happect/ethereal-ui";
 
 export default function InputDisabledDemo() {
   return (

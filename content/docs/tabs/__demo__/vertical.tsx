@@ -3,7 +3,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default () => (
   <div className="flex flex-col sm:flex-row gap-4 w-full">

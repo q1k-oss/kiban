@@ -18,7 +18,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ethereal-ui';
+} from '@happect/ethereal-ui';
 
 export default function DrawerFormDemo() {
   return (

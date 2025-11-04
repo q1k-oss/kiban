@@ -1,4 +1,4 @@
-import { Button } from "ethereal-ui";
+import { Button } from "@happect/ethereal-ui";
 
 export default function ButtonVariantsDemo() {
   return (
