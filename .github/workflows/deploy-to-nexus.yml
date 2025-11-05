@@ -70,8 +70,34 @@ jobs:
           echo "Package: @happect/ethereal-ui"
           echo "Registry: https://npm.chives.io/"
 
+      # Gather metadata for Discord notifications
+      - name: Get package version
+        id: package
+        if: always()
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+
+      - name: Get commit message
+        id: commit
+        if: always()
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B | head -n 1)
+          COMMIT_SHORT=$(echo "${{ github.sha }}" | cut -c1-7)
+          echo "message=$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "short=$COMMIT_SHORT" >> $GITHUB_OUTPUT
+
+      - name: Calculate duration
+        id: duration
+        if: always()
+        run: |
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - ${{ steps.start.outputs.start }}))
+          echo "duration=${DURATION}s" >> $GITHUB_OUTPUT
+
       # ✅ Fancy embed Success
-      - name: Notify Discord (success)
+      - name: Notify Discord on success
         if: success()
         uses: Ilshidur/action-discord@master
         with:
@@ -80,24 +106,23 @@ jobs:
               "embeds": [
                 {
                   "title": "✅ Deployment Successful",
+                  "description": "Package **@happect/ethereal-ui** has been successfully published to Nexus NPM Registry",
                   "color": 3329330,
                   "fields": [
-                    { "name": "Workflow", "value": "${{ github.workflow }}", "inline": true },
-                    { "name": "Status", "value": "Success ✅", "inline": true },
-                    { "name": "Actor", "value": "${{ github.actor }}", "inline": true },
-                    { "name": "Released Version", "value": "$(node -p \"require('./package.json').version\")", "inline": true },
-                    { "name": "Git Tag", "value": "${{ github.ref_name }}", "inline": true },
-                    { "name": "OS / Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true },
-                    { "name": "Duration", "value": "$(($(( $(date +%s) - ${{ steps.start.outputs.start }} ))))s", "inline": true },
-                    { "name": "Commit", "value": "`${{ github.sha }}`", "inline": false },
-                    { "name": "Message", "value": "$(git log -1 --pretty=%B)" },
-                    { "name": "Package", "value": "@happect/ethereal-ui" },
-                    { "name": "Registry", "value": "https://npm.chives.io/repository/npm/" },
-                    { "name": "Run URL", "value": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" },
-                    { "name": "Comparison", "value": "${{ github.server_url }}/${{ github.repository }}/compare/${{ github.sha }}~1...${{ github.sha }}" }
+                    { "name": "📦 Package", "value": "${{ steps.package.outputs.name }}", "inline": true },
+                    { "name": "🏷️ Version", "value": "${{ steps.package.outputs.version }}", "inline": true },
+                    { "name": "✅ Status", "value": "Success", "inline": true },
+                    { "name": "👤 Actor", "value": "${{ github.actor }}", "inline": true },
+                    { "name": "🌿 Branch", "value": "${{ github.ref_name }}", "inline": true },
+                    { "name": "⚡ Duration", "value": "${{ steps.duration.outputs.duration }}", "inline": true },
+                    { "name": "🔗 Commit", "value": "[`${{ steps.commit.outputs.short }}`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})", "inline": false },
+                    { "name": "💬 Commit Message", "value": "${{ steps.commit.outputs.message }}", "inline": false },
+                    { "name": "📦 Registry", "value": "[npm.chives.io](https://npm.chives.io/repository/npm/)", "inline": true },
+                    { "name": "🔍 Workflow Run", "value": "[View Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})", "inline": true },
+                    { "name": "🖥️ Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true }
                   ],
                   "footer": {
-                    "text": "Nexus Release System"
+                    "text": "Nexus Release System • ${{ github.repository }}"
                   },
                   "timestamp": "${{ github.event.head_commit.timestamp }}"
                 }
@@ -116,21 +141,22 @@ jobs:
               "embeds": [
                 {
                   "title": "❌ Deployment Failed",
+                  "description": "Failed to publish **@happect/ethereal-ui** to Nexus NPM Registry",
                   "color": 15548997,
                   "fields": [
-                    { "name": "Workflow", "value": "${{ github.workflow }}", "inline": true },
-                    { "name": "Status", "value": "Failed ❌", "inline": true },
-                    { "name": "Actor", "value": "${{ github.actor }}", "inline": true },
-                    { "name": "Attempted Version", "value": "$(node -p \"require('./package.json').version\")", "inline": true },
-                    { "name": "Git Ref", "value": "${{ github.ref_name }}", "inline": true },
-                    { "name": "OS / Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true },
-                    { "name": "Duration", "value": "$(($(( $(date +%s) - ${{ steps.start.outputs.start }} ))))s", "inline": true },
-                    { "name": "Commit", "value": "`${{ github.sha }}`" },
-                    { "name": "Message", "value": "$(git log -1 --pretty=%B)" },
-                    { "name": "Run URL", "value": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }
+                    { "name": "📦 Package", "value": "${{ steps.package.outputs.name }}", "inline": true },
+                    { "name": "🏷️ Attempted Version", "value": "${{ steps.package.outputs.version }}", "inline": true },
+                    { "name": "❌ Status", "value": "Failed", "inline": true },
+                    { "name": "👤 Actor", "value": "${{ github.actor }}", "inline": true },
+                    { "name": "🌿 Branch", "value": "${{ github.ref_name }}", "inline": true },
+                    { "name": "⚡ Duration", "value": "${{ steps.duration.outputs.duration }}", "inline": true },
+                    { "name": "🔗 Commit", "value": "[`${{ steps.commit.outputs.short }}`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})", "inline": false },
+                    { "name": "💬 Commit Message", "value": "${{ steps.commit.outputs.message }}", "inline": false },
+                    { "name": "🔍 Workflow Run", "value": "[View Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})", "inline": true },
+                    { "name": "🖥️ Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true }
                   ],
                   "footer": {
-                    "text": "Nexus Release System"
+                    "text": "Nexus Release System • ${{ github.repository }}"
                   },
                   "timestamp": "${{ github.event.head_commit.timestamp }}"
                 }
