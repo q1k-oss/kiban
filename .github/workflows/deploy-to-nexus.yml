@@ -11,26 +11,27 @@ jobs:
     runs-on: self-hosted
     
     steps:
+      - name: Record start time
+        id: start
+        run: echo "start=$(date +%s)" >> $GITHUB_OUTPUT
+
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
+
       - name: Configure npm registries
         run: |
-          # Set default registry to public npm
           npm config set registry https://registry.npmjs.org/
-          # Set @happect scope to use private Nexus registry
           npm config set @happect:registry https://npm.chives.io/repository/npm/
-          # Configure authentication for @happect scope
           npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Validate version for tags
         if: startsWith(github.ref, 'refs/tags/')
         run: |
@@ -46,51 +47,95 @@ jobs:
             echo "Error: Package version ($PACKAGE_VERSION) does not match tag version ($TAG_WITH_V or $TAG_WITHOUT_V)"
             exit 1
           fi
-        
+
       - name: Test build
         run: npm run build:compile
-        
+
       - name: Build package
         run: npm run build:package
-        
+
       - name: Configure npm for publishing
         run: |
-          # Ensure @happect scope uses Nexus for publishing
           npm config set @happect:registry https://npm.chives.io/repository/npm/
           npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
-          
+
       - name: Publish to Nexus NPM Registry
         run: npm publish --registry=https://npm.chives.io/repository/npm/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NEXUS_NPM_TOKEN }}
-          
+
       - name: Verify publication
         run: |
           echo "Package published successfully!"
           echo "Package: @happect/ethereal-ui"
           echo "Registry: https://npm.chives.io/"
-      - name: Notify Discord
+
+      # ✅ Fancy embed Success
+      - name: Notify Discord (success)
         if: success()
         uses: Ilshidur/action-discord@master
         with:
           args: |
-            🚀 Action ${{ EVENT_PAYLOAD.workflow_run.name }} is **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
-            Name - **${{ EVENT_PAYLOAD.workflow_run.display_title }}**
-            URL - **${{ EVENT_PAYLOAD.workflow_run.html_url }}**
-            Conclusion - **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
-            Trigger Action - **${{ EVENT_PAYLOAD.workflow_run.event }}**
+            {
+              "embeds": [
+                {
+                  "title": "✅ Deployment Successful",
+                  "color": 3329330,
+                  "fields": [
+                    { "name": "Workflow", "value": "${{ github.workflow }}", "inline": true },
+                    { "name": "Status", "value": "Success ✅", "inline": true },
+                    { "name": "Actor", "value": "${{ github.actor }}", "inline": true },
+                    { "name": "Released Version", "value": "$(node -p \"require('./package.json').version\")", "inline": true },
+                    { "name": "Git Tag", "value": "${{ github.ref_name }}", "inline": true },
+                    { "name": "OS / Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true },
+                    { "name": "Duration", "value": "$(($(( $(date +%s) - ${{ steps.start.outputs.start }} ))))s", "inline": true },
+                    { "name": "Commit", "value": "`${{ github.sha }}`", "inline": false },
+                    { "name": "Message", "value": "$(git log -1 --pretty=%B)" },
+                    { "name": "Package", "value": "@happect/ethereal-ui" },
+                    { "name": "Registry", "value": "https://npm.chives.io/repository/npm/" },
+                    { "name": "Run URL", "value": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" },
+                    { "name": "Comparison", "value": "${{ github.server_url }}/${{ github.repository }}/compare/${{ github.sha }}~1...${{ github.sha }}" }
+                  ],
+                  "footer": {
+                    "text": "Nexus Release System"
+                  },
+                  "timestamp": "${{ github.event.head_commit.timestamp }}"
+                }
+              ]
+            }
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      
+
+      # ❌ Fancy embed Failure
       - name: Notify Discord on failure
         if: failure()
         uses: Ilshidur/action-discord@master
         with:
           args: |
-            � Action ${{ EVENT_PAYLOAD.workflow_run.name }} is **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
-            Name - **${{ EVENT_PAYLOAD.workflow_run.display_title }}**
-            URL - **${{ EVENT_PAYLOAD.workflow_run.html_url }}**
-            Conclusion - **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
-            Trigger Action - **${{ EVENT_PAYLOAD.workflow_run.event }}**
+            {
+              "embeds": [
+                {
+                  "title": "❌ Deployment Failed",
+                  "color": 15548997,
+                  "fields": [
+                    { "name": "Workflow", "value": "${{ github.workflow }}", "inline": true },
+                    { "name": "Status", "value": "Failed ❌", "inline": true },
+                    { "name": "Actor", "value": "${{ github.actor }}", "inline": true },
+                    { "name": "Attempted Version", "value": "$(node -p \"require('./package.json').version\")", "inline": true },
+                    { "name": "Git Ref", "value": "${{ github.ref_name }}", "inline": true },
+                    { "name": "OS / Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true },
+                    { "name": "Duration", "value": "$(($(( $(date +%s) - ${{ steps.start.outputs.start }} ))))s", "inline": true },
+                    { "name": "Commit", "value": "`${{ github.sha }}`" },
+                    { "name": "Message", "value": "$(git log -1 --pretty=%B)" },
+                    { "name": "Run URL", "value": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }
+                  ],
+                  "footer": {
+                    "text": "Nexus Release System"
+                  },
+                  "timestamp": "${{ github.event.head_commit.timestamp }}"
+                }
+              ]
+            }
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
