@@ -1,1 +1,5 @@
 export * from './TokenIcon'
+export * from './ArrowUpIcon'
+export * from './CheckIcon'
+export * from './PaperClipIcon'
+export * from './SquareIcon'
