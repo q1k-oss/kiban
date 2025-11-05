@@ -69,3 +69,28 @@ jobs:
           echo "Package published successfully!"
           echo "Package: @happect/ethereal-ui"
           echo "Registry: https://npm.chives.io/"
+      - name: Notify Discord
+        if: success()
+        uses: Ilshidur/action-discord@master
+        with:
+          args: |
+            🚀 Action ${{ EVENT_PAYLOAD.workflow_run.name }} is **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
+            Name - **${{ EVENT_PAYLOAD.workflow_run.display_title }}**
+            URL - **${{ EVENT_PAYLOAD.workflow_run.html_url }}**
+            Conclusion - **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
+            Trigger Action - **${{ EVENT_PAYLOAD.workflow_run.event }}**
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      
+      - name: Notify Discord on failure
+        if: failure()
+        uses: Ilshidur/action-discord@master
+        with:
+          args: |
+            � Action ${{ EVENT_PAYLOAD.workflow_run.name }} is **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
+            Name - **${{ EVENT_PAYLOAD.workflow_run.display_title }}**
+            URL - **${{ EVENT_PAYLOAD.workflow_run.html_url }}**
+            Conclusion - **${{ EVENT_PAYLOAD.workflow_run.conclusion }}**
+            Trigger Action - **${{ EVENT_PAYLOAD.workflow_run.event }}**
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
