@@ -99,10 +99,9 @@ jobs:
       # ✅ Fancy embed Success
       - name: Notify Discord on success
         if: success()
-        uses: Ilshidur/action-discord@master
-        with:
-          args: |
-            {
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{
               "embeds": [
                 {
                   "title": "✅ Deployment Successful",
@@ -127,17 +126,15 @@ jobs:
                   "timestamp": "${{ github.event.head_commit.timestamp }}"
                 }
               ]
-            }
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+            }' \
+            "${{ secrets.DISCORD_WEBHOOK }}"
 
       # ❌ Fancy embed Failure
       - name: Notify Discord on failure
         if: failure()
-        uses: Ilshidur/action-discord@master
-        with:
-          args: |
-            {
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{
               "embeds": [
                 {
                   "title": "❌ Deployment Failed",
@@ -161,7 +158,6 @@ jobs:
                   "timestamp": "${{ github.event.head_commit.timestamp }}"
                 }
               ]
-            }
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+            }' \
+            "${{ secrets.DISCORD_WEBHOOK }}"
 
