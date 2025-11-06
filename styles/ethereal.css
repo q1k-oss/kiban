@@ -70,7 +70,8 @@
   --color-agent-card-fill: var(--agent-card-fill);
   --color-agent-card-border: var(--agent-card-border);
   --color-background-black: var(--background-black);
-  --color--button-border2: var(--button-border2);
+  --color-button-border2: var(--button-border2);
+  --color-button-default-fill: var(--button-default-fill);
 }
 
 :root {
@@ -139,6 +140,7 @@
   --agent-card-border: oklch(from #e0e0e0 l c h);
   --background-black: oklch(from #0f0f0f l c h);
   --button-border2: oklch(from #a2a2a2 l c h);
+  --button-default-fill: oklch(from #5c5c5c l c h);
 }
 
 .dark {
@@ -205,6 +207,7 @@
   --agent-card-border: oklch(from #5c5c5c l c h);
   --background-black: oklch(from #0f0f0f l c h);
   --button-border2: oklch(from #a2a2a2 l c h);
+  --button-default-fill: oklch(from #5c5c5c l c h);
 }
 
 @layer base {
