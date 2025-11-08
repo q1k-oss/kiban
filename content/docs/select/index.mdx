@@ -1,7 +1,12 @@
 ---
 title: Select
 description: Displays a list of options for the user to select from, with a dropdown trigger button.
+tags: ["select", "dropdown", "form", "input"]
 ---
+
+<Links links={[
+  { title: "Radix UI Select", url: "https://www.radix-ui.com/primitives/docs/components/select" },
+]} />
 
 ### When To Use
 
@@ -41,13 +46,53 @@ Select is best used when there's a predefined list of options and users need to 
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/select.tsx" name="Select" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectTrigger" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectValue" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectContent" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectItem" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectGroup" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectLabel" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectSeparator" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectScrollUpButton" />
-<AutoTypeTable path="./components/ui/select.tsx" name="SelectScrollDownButton" /> 
+#### Select
+<AutoTypeTable type={`import { type SelectProps } from "@radix-ui/react-select";
+  export type SelectProps = Omit<SelectProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="SelectProps"
+/>
+#### SelectTrigger
+<AutoTypeTable type={`import { type SelectTriggerProps } from "@radix-ui/react-select";
+  export type SelectTriggerProps = Omit<SelectTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="SelectTriggerProps"
+/>
+#### SelectValue
+<AutoTypeTable type={`import { type SelectValueProps } from "@radix-ui/react-select";
+  export type SelectValueProps = Omit<SelectValueProps, keyof React.HTMLAttributes<HTMLSpanElement>>`}
+  name="SelectValueProps"
+/>
+#### SelectContent
+<AutoTypeTable type={`import { type SelectContentProps } from "@radix-ui/react-select";
+  export type SelectContentProps = Omit<SelectContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="SelectContentProps"
+/>
+#### SelectItem
+<AutoTypeTable type={`import { type SelectItemProps } from "@radix-ui/react-select";
+  export type SelectItemProps = Omit<SelectItemProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="SelectItemProps"
+/>
+#### SelectGroup
+<AutoTypeTable type={`import { type SelectGroupProps } from "@radix-ui/react-select";
+  export type SelectGroupProps = Omit<SelectGroupProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="SelectGroupProps"
+/>
+#### SelectLabel
+<AutoTypeTable type={`import { type SelectLabelProps } from "@radix-ui/react-select";
+  export type SelectLabelProps = Omit<SelectLabelProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="SelectLabelProps"
+/>
+#### SelectSeparator
+<AutoTypeTable type={`import { type SelectSeparatorProps } from "@radix-ui/react-select";
+  export type SelectSeparatorProps = Omit<SelectSeparatorProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="SelectSeparatorProps"
+/>
+#### SelectScrollUpButton
+<AutoTypeTable type={`import { type SelectScrollUpButtonProps } from "@radix-ui/react-select";
+  export type SelectScrollUpButtonProps = Omit<SelectScrollUpButtonProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="SelectScrollUpButtonProps"
+/>
+#### SelectScrollDownButton
+<AutoTypeTable type={`import { type SelectScrollDownButtonProps } from "@radix-ui/react-select";
+  export type SelectScrollDownButtonProps = Omit<SelectScrollDownButtonProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="SelectScrollDownButtonProps"
+/>  

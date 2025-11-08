@@ -4,12 +4,33 @@ import { transformerRemoveNotationEscape } from '@shikijs/transformers';
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
 import { Fragment, useEffect, useState } from 'react';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { createHighlighter } from 'shiki';
+import { createHighlighter, type Highlighter } from 'shiki';
+
+// Singleton highlighter instance
+let highlighterInstance: Highlighter | null = null;
+let highlighterPromise: Promise<Highlighter> | null = null;
+
+const getHighlighter = async (): Promise<Highlighter> => {
+  if (highlighterInstance) {
+    return highlighterInstance;
+  }
+  
+  if (highlighterPromise) {
+    return highlighterPromise;
+  }
+  
+  highlighterPromise = createHighlighter({
+    themes: ['one-light', 'ayu-dark'],
+    langs: ['tsx', 'javascript', 'typescript', 'json', 'css', 'html', 'jsx', 'ts'],
+  });
+  
+  highlighterInstance = await highlighterPromise;
+  return highlighterInstance;
+};
 
 export default function CodeBlockClient(props: any) {
   const {
     code,
-    getText,
     lang = 'tsx',
   } = props ?? {};
   
@@ -21,10 +42,7 @@ export default function CodeBlockClient(props: any) {
 
     const highlightCode = async () => {
       try {
-        const highlighter = await createHighlighter({
-          themes: ['one-light', 'ayu-dark'],
-          langs: [lang, 'tsx', 'javascript', 'typescript', 'json', 'css', 'html'],
-        });
+        const highlighter = await getHighlighter();
 
         const out = highlighter.codeToHast(code, {
           lang,

@@ -1,7 +1,12 @@
 ---
 title: Dialog
 description: A window overlaid on the primary window that interrupts the user with important content.
+tags: ["dialog", "modal", "overlay", "popup"]
 ---
+
+<Links links={[
+  { title: "Radix UI Dialog", url: "https://www.radix-ui.com/primitives/docs/components/dialog" },
+]} />
 
 ### When To Use
 
@@ -42,11 +47,51 @@ Dialogs help focus the user's attention on a specific task while maintaining con
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/dialog.tsx" name="Dialog" />
-<AutoTypeTable path="./components/ui/dialog.tsx" name="DialogTrigger" />
-<AutoTypeTable path="./components/ui/dialog.tsx" name="DialogContent" />
-<AutoTypeTable path="./components/ui/dialog.tsx" name="DialogHeader" />
-<AutoTypeTable path="./components/ui/dialog.tsx" name="DialogFooter" />
-<AutoTypeTable path="./components/ui/dialog.tsx" name="DialogTitle" />
-<AutoTypeTable path="./components/ui/dialog.tsx" name="DialogDescription" />
-<AutoTypeTable path="./components/ui/dialog.tsx" name="DialogClose" /> 
+#### Dialog
+<AutoTypeTable
+  type={`import { type DialogProps } from "@radix-ui/react-dialog";
+  export type DialogProps = Omit<DialogProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DialogProps"
+/>
+#### DialogTrigger
+<AutoTypeTable
+  type={`import { type DialogTriggerProps } from "@radix-ui/react-dialog";
+  export type DialogTriggerProps = Omit<DialogTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="DialogTriggerProps"
+/>
+#### DialogContent
+<AutoTypeTable
+  type={`import { type DialogContentProps } from "@radix-ui/react-dialog";
+  export type DialogContentProps = Omit<DialogContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DialogContentProps"
+/>
+#### DialogHeader
+<AutoTypeTable
+  type={`import { type DialogHeaderProps } from "@radix-ui/react-dialog";
+  export type DialogHeaderProps = Omit<DialogHeaderProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DialogHeaderProps"
+/>
+#### DialogFooter
+<AutoTypeTable
+  type={`import { type DialogFooterProps } from "@radix-ui/react-dialog";
+  export type DialogFooterProps = Omit<DialogFooterProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DialogFooterProps"
+/>
+#### DialogTitle
+<AutoTypeTable
+  type={`import { type DialogTitleProps } from "@radix-ui/react-dialog";
+  export type DialogTitleProps = Omit<DialogTitleProps, keyof React.HTMLAttributes<HTMLHeadingElement>>`}
+  name="DialogTitleProps"
+/>
+#### DialogDescription
+<AutoTypeTable
+  type={`import { type DialogDescriptionProps } from "@radix-ui/react-dialog";
+  export type DialogDescriptionProps = Omit<DialogDescriptionProps, keyof React.HTMLAttributes<HTMLParagraphElement>>`}
+  name="DialogDescriptionProps"
+/>
+#### DialogClose
+<AutoTypeTable
+  type={`import { type DialogCloseProps } from "@radix-ui/react-dialog";
+  export type DialogCloseProps = Omit<DialogCloseProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="DialogCloseProps"
+/>

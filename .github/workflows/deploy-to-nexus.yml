@@ -11,26 +11,27 @@ jobs:
     runs-on: self-hosted
     
     steps:
+      - name: Record start time
+        id: start
+        run: echo "start=$(date +%s)" >> $GITHUB_OUTPUT
+
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
+
       - name: Configure npm registries
         run: |
-          # Set default registry to public npm
           npm config set registry https://registry.npmjs.org/
-          # Set @happect scope to use private Nexus registry
           npm config set @happect:registry https://npm.chives.io/repository/npm/
-          # Configure authentication for @happect scope
           npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Validate version for tags
         if: startsWith(github.ref, 'refs/tags/')
         run: |
@@ -46,26 +47,117 @@ jobs:
             echo "Error: Package version ($PACKAGE_VERSION) does not match tag version ($TAG_WITH_V or $TAG_WITHOUT_V)"
             exit 1
           fi
-        
+
       - name: Test build
         run: npm run build:compile
-        
+
       - name: Build package
         run: npm run build:package
-        
+
       - name: Configure npm for publishing
         run: |
-          # Ensure @happect scope uses Nexus for publishing
           npm config set @happect:registry https://npm.chives.io/repository/npm/
           npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
-          
+
       - name: Publish to Nexus NPM Registry
         run: npm publish --registry=https://npm.chives.io/repository/npm/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NEXUS_NPM_TOKEN }}
-          
+
       - name: Verify publication
         run: |
           echo "Package published successfully!"
           echo "Package: @happect/ethereal-ui"
           echo "Registry: https://npm.chives.io/"
+
+      # Gather metadata for Discord notifications
+      - name: Get package version
+        id: package
+        if: always()
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+
+      - name: Get commit message
+        id: commit
+        if: always()
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B | head -n 1)
+          COMMIT_SHORT=$(echo "${{ github.sha }}" | cut -c1-7)
+          echo "message=$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "short=$COMMIT_SHORT" >> $GITHUB_OUTPUT
+
+      - name: Calculate duration
+        id: duration
+        if: always()
+        run: |
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - ${{ steps.start.outputs.start }}))
+          echo "duration=${DURATION}s" >> $GITHUB_OUTPUT
+
+      # ✅ Fancy embed Success
+      - name: Notify Discord on success
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{
+              "embeds": [
+                {
+                  "title": "✅ Deployment Successful",
+                  "description": "Package **@happect/ethereal-ui** has been successfully published to Nexus NPM Registry",
+                  "color": 3329330,
+                  "fields": [
+                    { "name": "📦 Package", "value": "${{ steps.package.outputs.name }}", "inline": true },
+                    { "name": "🏷️ Version", "value": "${{ steps.package.outputs.version }}", "inline": true },
+                    { "name": "✅ Status", "value": "Success", "inline": true },
+                    { "name": "👤 Actor", "value": "${{ github.actor }}", "inline": true },
+                    { "name": "🌿 Branch", "value": "${{ github.ref_name }}", "inline": true },
+                    { "name": "⚡ Duration", "value": "${{ steps.duration.outputs.duration }}", "inline": true },
+                    { "name": "🔗 Commit", "value": "[`${{ steps.commit.outputs.short }}`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})", "inline": false },
+                    { "name": "💬 Commit Message", "value": "${{ steps.commit.outputs.message }}", "inline": false },
+                    { "name": "📦 Registry", "value": "[npm.chives.io](https://npm.chives.io/repository/npm/)", "inline": true },
+                    { "name": "🔍 Workflow Run", "value": "[View Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})", "inline": true },
+                    { "name": "🖥️ Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true }
+                  ],
+                  "footer": {
+                    "text": "Nexus Release System • ${{ github.repository }}"
+                  },
+                  "timestamp": "${{ github.event.head_commit.timestamp }}"
+                }
+              ]
+            }' \
+            "${{ secrets.DISCORD_WEBHOOK }}"
+
+      # ❌ Fancy embed Failure
+      - name: Notify Discord on failure
+        if: failure()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{
+              "embeds": [
+                {
+                  "title": "❌ Deployment Failed",
+                  "description": "Failed to publish **@happect/ethereal-ui** to Nexus NPM Registry",
+                  "color": 15548997,
+                  "fields": [
+                    { "name": "📦 Package", "value": "${{ steps.package.outputs.name }}", "inline": true },
+                    { "name": "🏷️ Attempted Version", "value": "${{ steps.package.outputs.version }}", "inline": true },
+                    { "name": "❌ Status", "value": "Failed", "inline": true },
+                    { "name": "👤 Actor", "value": "${{ github.actor }}", "inline": true },
+                    { "name": "🌿 Branch", "value": "${{ github.ref_name }}", "inline": true },
+                    { "name": "⚡ Duration", "value": "${{ steps.duration.outputs.duration }}", "inline": true },
+                    { "name": "🔗 Commit", "value": "[`${{ steps.commit.outputs.short }}`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})", "inline": false },
+                    { "name": "💬 Commit Message", "value": "${{ steps.commit.outputs.message }}", "inline": false },
+                    { "name": "🔍 Workflow Run", "value": "[View Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})", "inline": true },
+                    { "name": "🖥️ Runner", "value": "${{ runner.os }} (self-hosted)", "inline": true }
+                  ],
+                  "footer": {
+                    "text": "Nexus Release System • ${{ github.repository }}"
+                  },
+                  "timestamp": "${{ github.event.head_commit.timestamp }}"
+                }
+              ]
+            }' \
+            "${{ secrets.DISCORD_WEBHOOK }}"
+

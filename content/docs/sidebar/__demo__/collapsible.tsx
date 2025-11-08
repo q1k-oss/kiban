@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import {
   Home,
@@ -8,146 +8,107 @@ import {
   BarChart,
   HelpCircle,
   LogOut,
-  ChevronsLeft,
-  ChevronsRight,
 } from "lucide-react";
-import React, { useState } from "react";
 
 import {
   Sidebar,
+  SidebarContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
+  SidebarMenuButton,
   SidebarFooter,
-  Button,
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
   SidebarProvider,
+  SidebarInset,
+  SidebarTrigger,
 } from "@happect/ethereal-ui";
 
 export default function SidebarCollapsibleDemo() {
-  const [collapsed, setCollapsed] = useState(false);
-  
-  const toggleSidebar = () => {
-    setCollapsed(!collapsed);
-  };
-  
   return (
-    <div className="flex min-h-[500px] border rounded-md overflow-hidden">
-      <SidebarProvider>
-        <Sidebar className={`${collapsed ? 'w-16' : 'w-64'} border-r bg-muted/20 transition-all duration-300`}>
-          <SidebarHeader className={`p-4 border-b flex ${collapsed ? 'justify-center' : 'justify-between'} items-center`}>
-            {!collapsed && <h2 className="text-xl font-semibold">App Name</h2>}
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={toggleSidebar} 
-              className="h-8 w-8"
-            >
-              {collapsed ? <ChevronsRight className="h-4 w-4" /> : <ChevronsLeft className="h-4 w-4" />}
-            </Button>
+    <div className="min-h-[500px] border rounded-md overflow-hidden relative">
+      <SidebarProvider defaultOpen={true} className="flex h-[500px]">
+        <Sidebar collapsible="icon">
+          <SidebarHeader>
+            <div className="flex items-center gap-2 px-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <span className="text-sm font-semibold">A</span>
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">App Name</span>
+                <span className="truncate text-xs text-muted-foreground">Navigation</span>
+              </div>
+            </div>
           </SidebarHeader>
           
-          <SidebarMenu className="p-2">
-            <TooltipProvider>
-              {/* Dashboard */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <SidebarMenuItem className={`flex items-center py-2 px-3 rounded-md bg-accent text-accent-foreground ${collapsed ? 'justify-center' : ''}`}>
-                    <Home className="h-4 w-4 mr-2" />
-                    {!collapsed && <span>Dashboard</span>}
-                  </SidebarMenuItem>
-                </TooltipTrigger>
-                {collapsed && <TooltipContent side="right">Dashboard</TooltipContent>}
-              </Tooltip>
-              
-              {/* Documents */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <SidebarMenuItem className={`flex items-center py-2 px-3 rounded-md hover:bg-accent/50 ${collapsed ? 'justify-center' : ''}`}>
-                    <FileText className="h-4 w-4 mr-2" />
-                    {!collapsed && <span>Documents</span>}
-                  </SidebarMenuItem>
-                </TooltipTrigger>
-                {collapsed && <TooltipContent side="right">Documents</TooltipContent>}
-              </Tooltip>
-              
-              {/* Analytics */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <SidebarMenuItem className={`flex items-center py-2 px-3 rounded-md hover:bg-accent/50 ${collapsed ? 'justify-center' : ''}`}>
-                    <BarChart className="h-4 w-4 mr-2" />
-                    {!collapsed && <span>Analytics</span>}
-                  </SidebarMenuItem>
-                </TooltipTrigger>
-                {collapsed && <TooltipContent side="right">Analytics</TooltipContent>}
-              </Tooltip>
-              
-              {/* Profile */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <SidebarMenuItem className={`flex items-center py-2 px-3 rounded-md hover:bg-accent/50 ${collapsed ? 'justify-center' : ''}`}>
-                    <User className="h-4 w-4 mr-2" />
-                    {!collapsed && <span>Profile</span>}
-                  </SidebarMenuItem>
-                </TooltipTrigger>
-                {collapsed && <TooltipContent side="right">Profile</TooltipContent>}
-              </Tooltip>
-              
-              {/* Settings */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <SidebarMenuItem className={`flex items-center py-2 px-3 rounded-md hover:bg-accent/50 ${collapsed ? 'justify-center' : ''}`}>
-                    <Settings className="h-4 w-4 mr-2" />
-                    {!collapsed && <span>Settings</span>}
-                  </SidebarMenuItem>
-                </TooltipTrigger>
-                {collapsed && <TooltipContent side="right">Settings</TooltipContent>}
-              </Tooltip>
-            </TooltipProvider>
-          </SidebarMenu>
-          
-          <SidebarFooter className="p-2 mt-auto border-t">
+          <SidebarContent>
             <SidebarMenu>
-              <TooltipProvider>
-                {/* Help */}
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <SidebarMenuItem className={`flex items-center py-2 px-3 rounded-md hover:bg-accent/50 ${collapsed ? 'justify-center' : ''}`}>
-                      <HelpCircle className="h-4 w-4 mr-2" />
-                      {!collapsed && <span>Help & Support</span>}
-                    </SidebarMenuItem>
-                  </TooltipTrigger>
-                  {collapsed && <TooltipContent side="right">Help & Support</TooltipContent>}
-                </Tooltip>
-                
-                {/* Logout */}
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <SidebarMenuItem className={`flex items-center py-2 px-3 rounded-md hover:bg-accent/50 ${collapsed ? 'justify-center' : ''}`}>
-                      <LogOut className="h-4 w-4 mr-2" />
-                      {!collapsed && <span>Log Out</span>}
-                    </SidebarMenuItem>
-                  </TooltipTrigger>
-                  {collapsed && <TooltipContent side="right">Log Out</TooltipContent>}
-                </Tooltip>
-              </TooltipProvider>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive tooltip="Dashboard">
+                  <Home />
+                  <span>Dashboard</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Documents">
+                  <FileText />
+                  <span>Documents</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Analytics">
+                  <BarChart />
+                  <span>Analytics</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Profile">
+                  <User />
+                  <span>Profile</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Settings">
+                  <Settings />
+                  <span>Settings</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+          
+          <SidebarFooter>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Help & Support">
+                  <HelpCircle />
+                  <span>Help & Support</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Log Out">
+                  <LogOut />
+                  <span>Log Out</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
+        
+        <SidebarInset>
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+            <SidebarTrigger className="-ml-1" />
+            <div className="flex-1" />
+          </header>
+          <div className="flex-1 p-6">
+            <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+            <p className="text-muted-foreground mb-4">
+              This demo shows a collapsible sidebar. Click the toggle button in the header to collapse or expand it.
+            </p>
+            <p className="text-muted-foreground">
+              When collapsed, tooltips appear on hover to show the menu item labels.
+            </p>
+          </div>
+        </SidebarInset>
       </SidebarProvider>
-      
-      <div className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-        <p className="text-muted-foreground mb-4">
-          This demo shows a collapsible sidebar. Click the toggle button in the sidebar header to collapse or expand it.
-        </p>
-        <p className="text-muted-foreground">
-          When collapsed, tooltips appear on hover to show the menu item labels.
-        </p>
-      </div>
     </div>
   );
 } 

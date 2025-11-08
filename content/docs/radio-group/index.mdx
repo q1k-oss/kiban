@@ -1,10 +1,12 @@
 ---
 title: Radio Group
 description: A set of checkable buttons where only one can be checked at a time.
-component: true
+tags: ["radio-group", "radio", "selection", "input"]
 ---
 
-<Preview name="radio-group/__demo__/basic" />
+<Links links={[
+  { title: "Radix UI Radio Group", url: "https://www.radix-ui.com/primitives/docs/components/radio-group" },
+]} />
 
 ## When To Use
 
@@ -19,35 +21,41 @@ component: true
 
 A basic radio group with default styling.
 
-<Preview name="radio-group/__demo__/basic" />
+<Preview lang="jsx" file="/radio-group/__demo__/basic" title="Basic" />
 
 ### With Label
 
 Radio group with form labels for better accessibility.
 
-<Preview name="radio-group/__demo__/with-label" />
+<Preview lang="jsx" file="/radio-group/__demo__/with-label" title="With Label" />
 
 ### Disabled
 
 Disabled radio group and individual radio items.
 
-<Preview name="radio-group/__demo__/disabled" />
+<Preview lang="jsx" file="/radio-group/__demo__/disabled" title="Disabled" />
 
 ### Custom
 
 Radio group with custom styling and layout.
 
-<Preview name="radio-group/__demo__/custom" />
+<Preview lang="jsx" file="/radio-group/__demo__/custom" title="Custom" />
 
 ## Props
 
 ### RadioGroup
 
-<AutoTypeTable component="RadioGroup" src="./components/ui/radio-group.tsx" />
+<AutoTypeTable type={`import { type RadioGroupProps } from "@radix-ui/react-radio-group";
+  export type RadioGroupProps = Omit<RadioGroupProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="RadioGroupProps"
+/>
 
 ### RadioGroupItem
 
-<AutoTypeTable component="RadioGroupItem" src="./components/ui/radio-group.tsx" />
+<AutoTypeTable type={`import { type RadioGroupItemProps } from "@radix-ui/react-radio-group";
+  export type RadioGroupItemProps = Omit<RadioGroupItemProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="RadioGroupItemProps"
+/>
 
 ## Accessibility
 

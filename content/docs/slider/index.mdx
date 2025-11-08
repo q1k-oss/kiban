@@ -1,7 +1,12 @@
 ---
 title: Slider
 description: An input that allows users to select a value from a range.
+tags: ["slider", "input", "range", "control"]
 ---
+
+<Links links={[
+  { title: "Radix UI Slider", url: "https://www.radix-ui.com/primitives/docs/components/slider" },
+]} />
 
 ### When To Use
 
@@ -41,4 +46,31 @@ Sliders are useful when the precise value is not as important as the relative po
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/slider.tsx" name="Slider" /> 
+#### Slider
+<AutoTypeTable type={`
+  import { type SliderProps } from "@radix-ui/react-slider";
+  export type SliderProps = Omit<SliderProps, keyof React.HTMLAttributes<HTMLSpanElement>>
+`}
+  name="SliderProps"
+/> 
+#### SliderRange
+<AutoTypeTable type={`
+  import { type SliderRangeProps } from "@radix-ui/react-slider";
+  export type SliderRangeProps = Omit<SliderRangeProps, keyof React.HTMLAttributes<HTMLSpanElement>>
+`}
+  name="SliderRangeProps"
+/> 
+#### SliderTrack
+<AutoTypeTable type={`
+  import { type SliderTrackProps } from "@radix-ui/react-slider";
+  export type SliderTrackProps = Omit<SliderTrackProps, keyof React.HTMLAttributes<HTMLSpanElement>>
+`}
+  name="SliderTrackProps"
+/> 
+#### SliderThumb
+<AutoTypeTable type={`
+  import { type SliderThumbProps } from "@radix-ui/react-slider";
+  export type SliderThumbProps = Omit<SliderThumbProps, keyof React.HTMLAttributes<HTMLSpanElement>>
+`}
+  name="SliderThumbProps"
+/> 

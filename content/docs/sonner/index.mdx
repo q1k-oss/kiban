@@ -1,7 +1,12 @@
 ---
 title: Sonner
 description: A toast notification component that provides unobtrusive feedback.
+tags: ["sonner", "toast", "notification", "feedback"]
 ---
+
+<Links links={[
+  { title: "Sonner", url: "https://sonner.emilkowal.ski/" },
+]} />
 
 ### When To Use
 
@@ -43,4 +48,31 @@ Sonner notifications are temporary and disappear automatically, making them idea
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/sonner.tsx" name="Toaster" />
+#### ExternalToast
+<AutoTypeTable type={`
+  import { type ExternalToast } from "sonner";
+  export type ExternalToast = ExternalToast
+`}
+  name="ExternalToast"
+/> 
+#### ToastClassnames
+<AutoTypeTable type={`
+  import { type ToastClassnames } from "sonner";
+  export type ToastClassnames = ToastClassnames
+`}
+  name="ToastClassnames"
+/> 
+#### ToastT
+<AutoTypeTable type={`
+  import { type ToastT } from "sonner";
+  export type ToastT = ToastT
+`}
+  name="ToastT"
+/> 
+#### ToastToDismiss
+<AutoTypeTable type={`
+  import { type ToastToDismiss } from "sonner";
+  export type ToastToDismiss = ToastToDismiss
+`}
+  name="ToastToDismiss"
+/> 

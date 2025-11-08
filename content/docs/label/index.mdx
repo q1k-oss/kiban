@@ -1,10 +1,12 @@
 ---
 title: Label
 description: A form control label used to associate descriptive text with form inputs.
-component: true
+tags: ["label", "form", "input", "accessibility"]
 ---
 
-<Preview name="basic" />
+<Links links={[
+  { title: "Radix UI Label", url: "https://www.radix-ui.com/primitives/docs/components/label" },
+]} />
 
 ## When To Use
 
@@ -17,25 +19,41 @@ component: true
 
 ### Basic
 
-<Preview name="basic" />
+<Preview
+  lang="jsx"
+  file="/label/__demo__/basic"
+  title="Basic"
+/>
 
 The basic implementation of a label component associated with an input.
 
 ### With Required Indicator
 
-<Preview name="required" />
+<Preview
+  lang="jsx"
+  file="/label/__demo__/required"
+  title="With Required Indicator"
+/>
 
 A label with a required field indicator.
 
 ### Form Layout
 
-<Preview name="form-layout" />
+<Preview
+  lang="jsx"
+  file="/label/__demo__/form-layout"
+  title="Form Layout"
+/>
 
 Labels in a complete form layout with various input types.
 
 ## Props
 
-<AutoTypeTable component="Label" src="./components/ui/label.tsx" />
+<AutoTypeTable
+  type={`import { type LabelProps } from "@radix-ui/react-label";
+  export type LabelProps = Omit<LabelProps, keyof React.HTMLAttributes<HTMLLabelElement>>`}
+  name="LabelProps"
+/>
 
 ## Accessibility
 

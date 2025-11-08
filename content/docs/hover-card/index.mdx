@@ -1,7 +1,12 @@
 ---
 title: Hover Card
 description: A card that appears when hovering over a trigger element, providing additional information or context.
+tags: ["hover-card", "tooltip", "popup", "context-menu"]
 ---
+
+<Links links={[
+  { title: "Radix UI Hover Card", url: "https://www.radix-ui.com/primitives/docs/components/hover-card" },
+]} />
 
 ### When To Use
 
@@ -41,6 +46,21 @@ Hover Cards are especially useful for user interfaces where users benefit from s
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/hover-card.tsx" name="HoverCard" />
-<AutoTypeTable path="./components/ui/hover-card.tsx" name="HoverCardTrigger" />
-<AutoTypeTable path="./components/ui/hover-card.tsx" name="HoverCardContent" /> 
+#### HoverCard
+<AutoTypeTable
+  type={`import { type HoverCardProps } from "@radix-ui/react-hover-card";
+  export type HoverCardProps = Omit<HoverCardProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="HoverCardProps"
+/>
+#### HoverCardTrigger
+<AutoTypeTable
+  type={`import { type HoverCardTriggerProps } from "@radix-ui/react-hover-card";
+  export type HoverCardTriggerProps = Omit<HoverCardTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="HoverCardTriggerProps"
+/>
+#### HoverCardContent
+<AutoTypeTable
+  type={`import { type HoverCardContentProps } from "@radix-ui/react-hover-card";
+  export type HoverCardContentProps = Omit<HoverCardContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="HoverCardContentProps"  
+/>

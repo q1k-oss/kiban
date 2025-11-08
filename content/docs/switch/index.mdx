@@ -1,7 +1,12 @@
 ---
 title: Switch
 description: A control that allows the user to toggle between checked and unchecked states.
+tags: ["switch", "toggle", "input", "control"]
 ---
+
+<Links links={[
+  { title: "Radix UI Switch", url: "https://www.radix-ui.com/primitives/docs/components/switch" },
+]} />
 
 ### When To Use
 
@@ -41,4 +46,16 @@ Switches are ideal for settings pages, feature toggles, and anywhere you need to
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/switch.tsx" name="Switch" /> 
+<AutoTypeTable type={`
+  import { type SwitchProps } from "@radix-ui/react-switch";
+  export type SwitchProps = Omit<SwitchProps, keyof React.HTMLAttributes<HTMLSpanElement>>
+`}
+  name="SwitchProps"
+/> 
+#### SwitchThumb
+<AutoTypeTable type={`
+  import { type SwitchThumbProps } from "@radix-ui/react-switch";
+  export type SwitchThumbProps = Omit<SwitchThumbProps, keyof React.HTMLAttributes<HTMLSpanElement>>
+`}
+  name="SwitchThumbProps"
+/> 

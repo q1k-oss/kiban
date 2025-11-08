@@ -5,8 +5,8 @@ import type { MDXComponents } from 'mdx/types';
 
 import { Toaster } from '@happect/ethereal-ui';
 
+import { ExternalLinks } from '../external-links';
 import { CodePreview } from '../preview';
-
 
 const generator = createGenerator();
 
@@ -20,6 +20,11 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Preview: (props: any) => {
       return (
         <CodePreview {...props} />
+      )
+    },
+    Links: (props: any) => {
+      return (
+        <ExternalLinks {...props} />
       )
     },
     Toaster: () => (

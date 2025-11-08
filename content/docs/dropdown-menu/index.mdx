@@ -1,7 +1,12 @@
 ---
 title: Dropdown Menu
 description: A vertically stacked menu that appears when triggered by a button.
+tags: ["dropdown-menu", "menu", "dropdown", "context-menu"]
 ---
+
+<Links links={[
+  { title: "Radix UI Dropdown Menu", url: "https://www.radix-ui.com/primitives/docs/components/dropdown-menu" },
+]} />
 
 A vertically stacked menu that appears when triggered by a button.
 
@@ -14,19 +19,35 @@ A vertically stacked menu that appears when triggered by a button.
 
 ## Examples
 
-<Preview src="dropdown-menu/__demo__/basic.tsx" />
+<Preview
+  lang="jsx"
+  file="/dropdown-menu/__demo__/basic"
+  title="Basic"
+/>
 
 A basic Dropdown Menu with simple items.
 
-<Preview src="dropdown-menu/__demo__/checkboxes.tsx" />
+<Preview
+  lang="jsx"
+  file="/dropdown-menu/__demo__/checkboxes"
+  title="Checkboxes"
+/>
 
 A Dropdown Menu with checkbox items for multiple selection.
 
-<Preview src="dropdown-menu/__demo__/radio-group.tsx" />
+<Preview
+  lang="jsx"
+  file="/dropdown-menu/__demo__/radio-group"
+  title="Radio Group"
+/>
 
 A Dropdown Menu with radio items for single selection.
 
-<Preview src="dropdown-menu/__demo__/submenu.tsx" />
+<Preview
+  lang="jsx"
+  file="/dropdown-menu/__demo__/submenu"
+  title="Submenu"
+/>
 
 A Dropdown Menu with nested submenus.
 
@@ -34,55 +55,107 @@ A Dropdown Menu with nested submenus.
 
 ### DropdownMenu
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenu" />
+<AutoTypeTable
+  type={`import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenu = Omit<DropdownMenuProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenu"
+/>
 
 ### DropdownMenuTrigger
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuTrigger" />
+<AutoTypeTable
+  type={`import { type DropdownMenuTrigger as DropdownMenuTriggerPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuTriggerProps = Omit<React.ComponentProps<typeof DropdownMenuTriggerPrimitive>, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="DropdownMenuTriggerProps"
+/>
 
 ### DropdownMenuContent
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuContent" />
+<AutoTypeTable
+  type={`import { type DropdownMenuContent as DropdownMenuContentPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuContentProps = Omit<React.ComponentProps<typeof DropdownMenuContentPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuContentProps"
+/>
 
 ### DropdownMenuItem
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuItem" />
+<AutoTypeTable
+  type={`import { type DropdownMenuItem as DropdownMenuItemPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuItemProps = Omit<React.ComponentProps<typeof DropdownMenuItemPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuItemProps"
+/>
 
 ### DropdownMenuCheckboxItem
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuCheckboxItem" />
+<AutoTypeTable
+  type={`import { type DropdownMenuCheckboxItem as DropdownMenuCheckboxItemPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuCheckboxItemProps = Omit<React.ComponentProps<typeof DropdownMenuCheckboxItemPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuCheckboxItemProps"
+/>
 
 ### DropdownMenuRadioItem
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuRadioItem" />
+<AutoTypeTable
+  type={`import { type DropdownMenuRadioItem as DropdownMenuRadioItemPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuRadioItemProps = Omit<React.ComponentProps<typeof DropdownMenuRadioItemPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuRadioItemProps"
+/>
 
 ### DropdownMenuLabel
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuLabel" />
+<AutoTypeTable
+  type={`import { type DropdownMenuLabel as DropdownMenuLabelPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuLabelProps = Omit<React.ComponentProps<typeof DropdownMenuLabelPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuLabelProps"
+/>
 
 ### DropdownMenuSeparator
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSeparator" />
+<AutoTypeTable
+  type={`import { type DropdownMenuSeparator as DropdownMenuSeparatorPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuSeparatorProps = Omit<React.ComponentProps<typeof DropdownMenuSeparatorPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuSeparatorProps"
+/>
 
 ### DropdownMenuGroup
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuGroup" />
+<AutoTypeTable
+  type={`import { type DropdownMenuGroup as DropdownMenuGroupPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuGroupProps = Omit<React.ComponentProps<typeof DropdownMenuGroupPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuGroupProps"
+/>
 
 ### DropdownMenuSub
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSub" />
+<AutoTypeTable
+  type={`import { type DropdownMenuSub as DropdownMenuSubPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuSubProps = Omit<React.ComponentProps<typeof DropdownMenuSubPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuSubProps"
+/>
 
 ### DropdownMenuSubTrigger
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSubTrigger" />
+<AutoTypeTable
+  type={`import { type DropdownMenuSubTrigger as DropdownMenuSubTriggerPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuSubTriggerProps = Omit<React.ComponentProps<typeof DropdownMenuSubTriggerPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuSubTriggerProps"
+/>
 
 ### DropdownMenuSubContent
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuSubContent" />
+<AutoTypeTable
+  type={`import { type DropdownMenuSubContent as DropdownMenuSubContentPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuSubContentProps = Omit<React.ComponentProps<typeof DropdownMenuSubContentPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuSubContentProps"
+/>
 
 ### DropdownMenuRadioGroup
 
-<AutoTypeTable path="./components/ui/dropdown-menu.tsx" name="DropdownMenuRadioGroup" />
+<AutoTypeTable
+  type={`import { type DropdownMenuRadioGroup as DropdownMenuRadioGroupPrimitive } from "@radix-ui/react-dropdown-menu";
+  export type DropdownMenuRadioGroupProps = Omit<React.ComponentProps<typeof DropdownMenuRadioGroupPrimitive>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DropdownMenuRadioGroupProps"
+/>
 
 ## Accessibility
 

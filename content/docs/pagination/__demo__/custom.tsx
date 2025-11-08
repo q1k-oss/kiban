@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { useState } from 'react';
 
+import { cn } from '@/components/utils';
 import {
   Pagination,
   PaginationContent,
@@ -100,7 +101,7 @@ export default function PaginationCustomDemo() {
       {/* Gradient style pagination */}
       <div className="py-4">
         <Pagination>
-          <PaginationContent className="flex flex-wrap">
+          <PaginationContent className="flex flex-wrap items-center gap-2">
             <PaginationItem>
               <PaginationLink
                 href="#"
@@ -108,11 +109,12 @@ export default function PaginationCustomDemo() {
                   e.preventDefault();
                   handlePageChange(currentPage - 1);
                 }}
-                className={`flex h-9 items-center gap-1 rounded-md border border-transparent px-2 ${
+                className={cn(
+                  "flex h-9 items-center gap-1 rounded-md border border-transparent px-3 transition-colors",
                   currentPage === 1 
-                    ? "pointer-events-none text-muted-foreground" 
-                    : "hover:border-border"
-                }`}
+                    ? "pointer-events-none cursor-not-allowed opacity-50 text-muted-foreground" 
+                    : "hover:border-border hover:bg-accent"
+                )}
                 aria-disabled={currentPage === 1}
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -120,11 +122,11 @@ export default function PaginationCustomDemo() {
               </PaginationLink>
             </PaginationItem>
             
-            <div className="flex items-center px-2">
-              <span className="text-sm font-medium">
+            <PaginationItem className="flex items-center px-3">
+              <span className="text-sm font-medium whitespace-nowrap">
                 Page {currentPage} of {totalPages}
               </span>
-            </div>
+            </PaginationItem>
             
             <PaginationItem>
               <PaginationLink
@@ -133,11 +135,12 @@ export default function PaginationCustomDemo() {
                   e.preventDefault();
                   handlePageChange(currentPage + 1);
                 }}
-                className={`flex h-9 items-center gap-1 rounded-md border border-transparent px-2 ${
+                className={cn(
+                  "flex h-9 items-center gap-1 rounded-md border border-transparent px-3 transition-colors",
                   currentPage === totalPages 
-                    ? "pointer-events-none text-muted-foreground" 
-                    : "hover:border-border"
-                }`}
+                    ? "pointer-events-none cursor-not-allowed opacity-50 text-muted-foreground" 
+                    : "hover:border-border hover:bg-accent"
+                )}
                 aria-disabled={currentPage === totalPages}
               >
                 <span>Next</span>
@@ -149,7 +152,7 @@ export default function PaginationCustomDemo() {
       </div>
       
       {/* Colored, separated pagination */}
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg">
+      <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 p-4 rounded-lg">
         <Pagination>
           <PaginationContent className="justify-center gap-1">
             {[...Array(totalPages)].map((_, i) => {
@@ -162,11 +165,13 @@ export default function PaginationCustomDemo() {
                       e.preventDefault();
                       handlePageChange(page);
                     }}
-                    className={`h-8 w-8 rounded-md ${
+                    className={cn(
+                      "h-8 w-8 rounded-md flex items-center justify-center transition-all",
                       currentPage === page
-                        ? "bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600"
-                        : "hover:bg-muted"
-                    }`}
+                        ? "bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-md hover:from-purple-600 hover:to-blue-600"
+                        : "hover:bg-muted text-foreground"
+                    )}
+                    isActive={currentPage === page}
                   >
                     {page}
                   </PaginationLink>

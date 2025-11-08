@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Home,
   Settings,
@@ -7,71 +9,98 @@ import {
   HelpCircle,
   LogOut,
 } from "lucide-react";
-import React from "react";
 
 import {
   Sidebar,
+  SidebarContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
+  SidebarMenuButton,
   SidebarFooter,
   SidebarProvider,
+  SidebarInset,
 } from "@happect/ethereal-ui";
 
 export default function SidebarBasicDemo() {
   return (
-    <div className="flex min-h-[500px] border rounded-md overflow-hidden">
-      <SidebarProvider>
-        <Sidebar className="w-64 border-r bg-muted/20">
-          <SidebarHeader className="p-4 border-b">
-            <h2 className="text-xl font-semibold">App Name</h2>
-            <p className="text-sm text-muted-foreground">Navigation</p>
+    <div className="min-h-[500px] border rounded-md overflow-hidden">
+      <SidebarProvider defaultOpen={true} className="flex h-[500px]">
+        <Sidebar collapsible="none">
+          <SidebarHeader>
+            <div className="flex items-center gap-2 px-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <span className="text-sm font-semibold">A</span>
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">App Name</span>
+                <span className="truncate text-xs text-muted-foreground">Navigation</span>
+              </div>
+            </div>
           </SidebarHeader>
           
-          <SidebarMenu className="p-2">
-            <SidebarMenuItem className="flex items-center py-2 px-3 rounded-md bg-accent text-accent-foreground">
-              <Home className="h-4 w-4 mr-2" />
-              <span>Dashboard</span>
-            </SidebarMenuItem>
-            <SidebarMenuItem className="flex items-center py-2 px-3 rounded-md hover:bg-accent/50">
-              <FileText className="h-4 w-4 mr-2" />
-              <span>Documents</span>
-            </SidebarMenuItem>
-            <SidebarMenuItem className="flex items-center py-2 px-3 rounded-md hover:bg-accent/50">
-              <BarChart className="h-4 w-4 mr-2" />
-              <span>Analytics</span>
-            </SidebarMenuItem>
-            <SidebarMenuItem className="flex items-center py-2 px-3 rounded-md hover:bg-accent/50">
-              <User className="h-4 w-4 mr-2" />
-              <span>Profile</span>
-            </SidebarMenuItem>
-            <SidebarMenuItem className="flex items-center py-2 px-3 rounded-md hover:bg-accent/50">
-              <Settings className="h-4 w-4 mr-2" />
-              <span>Settings</span>
-            </SidebarMenuItem>
-          </SidebarMenu>
-          
-          <SidebarFooter className="p-2 mt-auto border-t">
+          <SidebarContent>
             <SidebarMenu>
-              <SidebarMenuItem className="flex items-center py-2 px-3 rounded-md hover:bg-accent/50">
-                <HelpCircle className="h-4 w-4 mr-2" />
-                <span>Help & Support</span>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive>
+                  <Home />
+                  <span>Dashboard</span>
+                </SidebarMenuButton>
               </SidebarMenuItem>
-              <SidebarMenuItem className="flex items-center py-2 px-3 rounded-md hover:bg-accent/50">
-                <LogOut className="h-4 w-4 mr-2" />
-                <span>Log Out</span>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <FileText />
+                  <span>Documents</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <BarChart />
+                  <span>Analytics</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <User />
+                  <span>Profile</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <Settings />
+                  <span>Settings</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+          
+          <SidebarFooter>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <HelpCircle />
+                  <span>Help & Support</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <LogOut />
+                  <span>Log Out</span>
+                </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
+        
+        <SidebarInset>
+          <div className="flex-1 p-6">
+            <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+            <p className="text-muted-foreground">
+              This is the main content area that would contain your application's primary information.
+            </p>
+          </div>
+        </SidebarInset>
       </SidebarProvider>
-      
-      <div className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-        <p className="text-muted-foreground">
-          This is the main content area that would contain your application's primary information.
-        </p>
-      </div>
     </div>
   );
 } 
