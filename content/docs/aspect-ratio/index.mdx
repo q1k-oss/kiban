@@ -2,7 +2,12 @@
 title: Aspect Ratio
 description: Maintains a consistent width-to-height ratio for elements.
 component: true
+tags: ["aspect-ratio", "media", "responsive", "layout"]
 ---
+
+<Links links={[
+  { title: "Radix UI Aspect Ratio", url: "https://www.radix-ui.com/primitives/docs/components/aspect-ratio" },
+]} />
 
 ## When To Use
 
@@ -15,19 +20,19 @@ component: true
 
 ### Basic
 
-<Preview name="basic" src="aspect-ratio/__demo__/basic.tsx" />
+<Preview lang="jsx" file="/aspect-ratio/__demo__/basic" />
 
 The basic implementation maintains a 16/9 aspect ratio for an image.
 
 ### With Different Ratios
 
-<Preview name="ratios" src="aspect-ratio/__demo__/ratios.tsx" />
+<Preview lang="jsx" file="/aspect-ratio/__demo__/ratios" />
 
 You can customize the aspect ratio to suit different types of content.
 
 ### For Video Content
 
-<Preview name="video" src="aspect-ratio/__demo__/video.tsx" />
+<Preview lang="jsx" file="/aspect-ratio/__demo__/video" />
 
 Aspect ratios can be applied to video elements to maintain consistent sizing.
 
@@ -43,4 +48,8 @@ However, for optimal accessibility:
 
 ## Props
 
-<AutoTypeTable component="AspectRatio" src="./components/ui/aspect-ratio.tsx" />
+<AutoTypeTable
+  type={`import { AspectRatioProps } from "@radix-ui/react-aspect-ratio"
+  export type AspectRatio = Omit<AspectRatioProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="AspectRatio"
+/>

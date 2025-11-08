@@ -1,6 +1,7 @@
 ---
 title: Alert
 description: Displays a callout for user attention.
+tags: ["alert", "callout", "notification", "message"]
 ---
 
 ### When To Use
@@ -33,6 +34,10 @@ Use alerts to highlight important information that requires the user's attention
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/alert.tsx" name="Alert" />
-<AutoTypeTable path="./components/ui/alert.tsx" name="AlertTitle" />
-<AutoTypeTable path="./components/ui/alert.tsx" name="AlertDescription" /> 
+<AutoTypeTable
+  type={`import { AlertVariants } from "ethereal-ui";
+    import { type VariantProps } from "class-variance-authority";
+    export type AlertVariants = VariantProps<typeof AlertVariants>
+  `}
+  name="AlertVariants"
+/>

@@ -1,7 +1,12 @@
 ---
 title: Carousel
 description: A slideshow component for cycling through elements—images or slides of text.
+tags: ["carousel", "slideshow", "image", "content"]
 ---
+
+<Links links={[
+  { title: "Embla Carousel", url: "https://embla-carousel.com/" },
+]} />
 
 ### When To Use
 
@@ -41,9 +46,9 @@ Carousels help save space while allowing users to cycle through a series of cont
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/carousel.tsx" name="Carousel" />
-<AutoTypeTable path="./components/ui/carousel.tsx" name="CarouselContent" />
-<AutoTypeTable path="./components/ui/carousel.tsx" name="CarouselItem" />
-<AutoTypeTable path="./components/ui/carousel.tsx" name="CarouselPrevious" />
-<AutoTypeTable path="./components/ui/carousel.tsx" name="CarouselNext" />
-<AutoTypeTable path="./components/ui/carousel.tsx" name="CarouselIndicators" /> 
+#### Carousel
+<AutoTypeTable
+  type={`import { type CarouselProps } from "ethereal-ui";
+  export type CarouselProps = Omit<CarouselProps, keyof React.ComponentProps<"div">>`}
+  name="CarouselProps"
+/>

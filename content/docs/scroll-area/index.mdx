@@ -1,7 +1,12 @@
 ---
 title: Scroll Area
 description: A scrollable container with a custom scrollbar that is consistent across browsers.
+tags: ["scroll-area", "scroll", "scrollbar", "container"]
 ---
+
+<Links links={[
+  { title: "Radix UI Scroll Area", url: "https://www.radix-ui.com/primitives/docs/components/scroll-area" },
+]} />
 
 ### When To Use
 
@@ -41,5 +46,13 @@ Scroll Areas are especially useful for creating contained scrollable sections wi
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/scroll-area.tsx" name="ScrollArea" />
-<AutoTypeTable path="./components/ui/scroll-area.tsx" name="ScrollBar" /> 
+#### ScrollArea
+<AutoTypeTable type={`import { type ScrollAreaProps } from "@radix-ui/react-scroll-area";
+  export type ScrollAreaProps = Omit<ScrollAreaProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ScrollAreaProps"
+/>
+#### ScrollBar
+<AutoTypeTable type={`import { type ScrollAreaScrollbarProps } from "@radix-ui/react-scroll-area";
+  export type ScrollBarProps = Omit<ScrollAreaScrollbarProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ScrollBarProps"
+/>

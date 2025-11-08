@@ -1,7 +1,12 @@
 ---
 title: Collapsible
 description: An interactive component that expands/collapses a panel.
+tags: ["collapsible", "expandable", "toggle", "panel"]
 ---
+
+<Links links={[
+  { title: "Radix UI Collapsible", url: "https://www.radix-ui.com/primitives/docs/components/collapsible" },
+]} />
 
 ### When To Use
 
@@ -35,6 +40,21 @@ Collapsible elements help simplify interfaces by hiding content until it's neede
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/collapsible.tsx" name="Collapsible" />
-<AutoTypeTable path="./components/ui/collapsible.tsx" name="CollapsibleTrigger" />
-<AutoTypeTable path="./components/ui/collapsible.tsx" name="CollapsibleContent" /> 
+#### Collapsible
+<AutoTypeTable
+  type={`import { type CollapsibleProps } from "@radix-ui/react-collapsible";
+  export type CollapsibleProps = Omit<CollapsibleProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="CollapsibleProps"
+/>
+#### CollapsibleTrigger
+<AutoTypeTable
+  type={`import { type CollapsibleTriggerProps } from "@radix-ui/react-collapsible";
+  export type CollapsibleTriggerProps = Omit<CollapsibleTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="CollapsibleTriggerProps"
+/>
+#### CollapsibleContent
+<AutoTypeTable
+  type={`import { type CollapsibleContentProps } from "@radix-ui/react-collapsible";
+  export type CollapsibleContentProps = Omit<CollapsibleContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="CollapsibleContentProps"
+/>

@@ -1,6 +1,7 @@
 ---
 title: Button
 description: An interactive element that triggers an action or event when clicked.
+tags: ["button", "interactive", "action", "control"]
 ---
 
 ### When To Use
@@ -47,7 +48,11 @@ Buttons are fundamental interactive elements that allow users to take actions an
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/button.tsx" name="Button" />
+<AutoTypeTable
+  type={`import { ButtonProps } from "ethereal-ui";
+  export type Button = Omit<ButtonProps, keyof React.ButtonHTMLAttributes<HTMLButtonElement>>`}
+  name="Button"
+/>
 
 ### Accessibility
 

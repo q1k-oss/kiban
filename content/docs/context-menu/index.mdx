@@ -1,7 +1,12 @@
 ---
 title: Context Menu
 description: A right-click menu that displays a list of actions or options.
+tags: ["context-menu", "menu", "right-click", "shortcut"]
 ---
+
+<Links links={[
+  { title: "Radix UI Context Menu", url: "https://www.radix-ui.com/primitives/docs/components/context-menu" },
+]} />
 
 ### When To Use
 
@@ -41,16 +46,57 @@ Context menus provide efficient access to actions that are relevant to the speci
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenu" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuTrigger" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuContent" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuItem" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuCheckboxItem" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuRadioItem" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuLabel" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuSeparator" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuShortcut" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuSub" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuSubContent" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuSubTrigger" />
-<AutoTypeTable path="./components/ui/context-menu.tsx" name="ContextMenuRadioGroup" /> 
+#### ContextMenu
+<AutoTypeTable
+  type={`import { type ContextMenuProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuProps = Omit<ContextMenuProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuProps"
+/>
+#### ContextMenuTrigger
+<AutoTypeTable
+  type={`import { type ContextMenuTriggerProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuTriggerProps = Omit<ContextMenuTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="ContextMenuTriggerProps"
+/>
+#### ContextMenuContent
+<AutoTypeTable
+  type={`import { type ContextMenuContentProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuContentProps = Omit<ContextMenuContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuContentProps"
+/>
+#### ContextMenuItem
+<AutoTypeTable
+  type={`import { type ContextMenuItemProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuItemProps = Omit<ContextMenuItemProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuItemProps"
+/>
+#### ContextMenuCheckboxItem
+<AutoTypeTable
+  type={`import { type ContextMenuCheckboxItemProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuCheckboxItemProps = Omit<ContextMenuCheckboxItemProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuCheckboxItemProps"
+/>
+#### ContextMenuRadioItem
+<AutoTypeTable
+  type={`import { type ContextMenuRadioItemProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuRadioItemProps = Omit<ContextMenuRadioItemProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuRadioItemProps"
+/>
+#### ContextMenuLabel
+<AutoTypeTable
+  type={`import { type ContextMenuLabelProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuLabelProps = Omit<ContextMenuLabelProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuLabelProps"
+/>
+#### ContextMenuSeparator
+<AutoTypeTable
+  type={`import { type ContextMenuSeparatorProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuSeparatorProps = Omit<ContextMenuSeparatorProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuSeparatorProps"
+/>
+#### ContextMenuShortcut
+<AutoTypeTable
+  type={`import { type ContextMenuShortcutProps } from "@radix-ui/react-context-menu";
+  export type ContextMenuShortcutProps = Omit<ContextMenuShortcutProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ContextMenuShortcutProps"
+/>

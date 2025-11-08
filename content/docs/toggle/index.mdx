@@ -41,4 +41,11 @@ The Toggle component is ideal for binary state controls that need to be visually
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/toggle.tsx" name="Toggle" /> 
+#### Toggle
+<AutoTypeTable type={`
+  import { toggleVariants } from "ethereal-ui";
+  import { type VariantProps } from "class-variance-authority";
+  export type toggleVariants = VariantProps<typeof toggleVariants>
+`}
+  name="toggleVariants"
+/> 

@@ -1,7 +1,12 @@
 ---
 title: Toggle Group
 description: A set of two-state buttons that can be toggled on or off, with either single or multiple selection.
+tags: ["toggle-group", "toggle", "selection", "input"]
 ---
+
+<Links links={[
+  { title: "Radix UI Toggle Group", url: "https://www.radix-ui.com/primitives/docs/components/toggle-group" },
+]} />
 
 ### When To Use
 
@@ -41,5 +46,21 @@ Toggle Groups are particularly useful for presenting a set of related choices wh
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/toggle-group.tsx" name="ToggleGroup" />
-<AutoTypeTable path="./components/ui/toggle-group.tsx" name="ToggleGroupItem" /> 
+#### ToggleGroup
+<AutoTypeTable type={`
+  import { type ToggleGroupSingleProps, type ToggleGroupMultipleProps } from "@radix-ui/react-toggle-group";
+  import { type VariantProps } from "class-variance-authority";
+  import { toggleVariants } from "ethereal-ui";
+  type ToggleGroupTypeProps = ToggleGroupSingleProps | ToggleGroupMultipleProps
+  type CombinedProps = ToggleGroupTypeProps & VariantProps<typeof toggleVariants>
+  export type ToggleGroupProps = Omit<CombinedProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="ToggleGroupProps"
+/>
+#### ToggleGroupItem
+<AutoTypeTable type={`
+  import { type ToggleGroupItemProps } from "@radix-ui/react-toggle-group";
+  export type ToggleGroupItemProps = Omit<ToggleGroupItemProps, keyof React.HTMLAttributes<HTMLButtonElement>>
+`}
+  name="ToggleGroupItemProps"
+/> 

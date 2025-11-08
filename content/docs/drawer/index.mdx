@@ -1,7 +1,12 @@
 ---
 title: Drawer
 description: A panel that slides in from the edge of the screen.
+tags: ["drawer", "panel", "overlay", "popup"]
 ---
+
+<Links links={[
+  { title: "Vaul Drawer", url: "https://vaul.emilkowal.ski/getting-started" },
+]} />
 
 ### When To Use
 
@@ -41,11 +46,9 @@ Drawers are particularly useful for mobile interfaces or when you need to preser
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/drawer.tsx" name="Drawer" />
-<AutoTypeTable path="./components/ui/drawer.tsx" name="DrawerTrigger" />
-<AutoTypeTable path="./components/ui/drawer.tsx" name="DrawerContent" />
-<AutoTypeTable path="./components/ui/drawer.tsx" name="DrawerHeader" />
-<AutoTypeTable path="./components/ui/drawer.tsx" name="DrawerFooter" />
-<AutoTypeTable path="./components/ui/drawer.tsx" name="DrawerTitle" />
-<AutoTypeTable path="./components/ui/drawer.tsx" name="DrawerDescription" />
-<AutoTypeTable path="./components/ui/drawer.tsx" name="DrawerClose" /> 
+#### Drawer
+<AutoTypeTable
+  type={`import { type Drawer as DrawerPrimitive } from "vaul";
+  export type DrawerProps = Omit<React.ComponentProps<typeof DrawerPrimitive.Root>, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="DrawerProps"
+/>

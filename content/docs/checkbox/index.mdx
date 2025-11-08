@@ -1,7 +1,12 @@
 ---
 title: Checkbox
 description: A control that allows the user to toggle between checked and unchecked states.
+tags: ["checkbox", "toggle", "selection", "input"]
 ---
+
+<Links links={[
+  { title: "Radix UI Checkbox", url: "https://www.radix-ui.com/primitives/docs/components/checkbox" },
+]} />
 
 ### When To Use
 
@@ -41,4 +46,15 @@ Checkboxes are useful for binary choices or multiple selections, as they allow u
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/checkbox.tsx" name="Checkbox" /> 
+#### Checkbox
+<AutoTypeTable
+  type={`import { type CheckboxProps } from "@radix-ui/react-checkbox";
+  export type CheckboxProps =Omit<CheckboxProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="CheckboxProps"
+/>
+#### Checkbox Indicator
+<AutoTypeTable
+  type={`import { type CheckboxIndicatorProps } from "@radix-ui/react-checkbox";
+  export type CheckboxIndicatorProps = Omit<CheckboxIndicatorProps, keyof React.HTMLAttributes<HTMLSpanElement>>`}
+  name="CheckboxIndicatorProps"
+/>

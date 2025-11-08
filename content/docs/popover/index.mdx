@@ -1,10 +1,12 @@
 ---
 title: Popover
 description: Displays rich content in a portal, triggered by a button.
-component: true
+tags: ["popover", "tooltip", "popup", "context-menu"]
 ---
 
-<Preview name="popover/__demo__/basic" />
+<Links links={[
+  { title: "Radix UI Popover", url: "https://www.radix-ui.com/primitives/docs/components/popover" },
+]} />
 
 ## When To Use
 
@@ -20,43 +22,55 @@ component: true
 
 A basic popover with a trigger button and content.
 
-<Preview name="popover/__demo__/basic" />
+<Preview lang="jsx" file="/popover/__demo__/basic" title="Basic" />
 
 ### With Form
 
 A popover containing a simple form.
 
-<Preview name="popover/__demo__/with-form" />
+<Preview lang="jsx" file="/popover/__demo__/with-form" title="With Form" />
 
 ### With Arrow
 
 A popover with a visual arrow pointing to the trigger.
 
-<Preview name="popover/__demo__/with-arrow" />
+<Preview lang="jsx" file="/popover/__demo__/with-arrow" title="With Arrow" />
 
 ### Custom Positioning
 
 A popover with custom positioning and alignment.
 
-<Preview name="popover/__demo__/positioning" />
+<Preview lang="jsx" file="/popover/__demo__/positioning" title="Custom Positioning" />
 
 ## Props
 
 ### Popover
 
-<AutoTypeTable component="Popover" src="./components/ui/popover.tsx" />
+<AutoTypeTable type={`import { type PopoverProps } from "@radix-ui/react-popover";
+  export type PopoverProps = Omit<PopoverProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="PopoverProps"
+/>
 
 ### PopoverTrigger
 
-<AutoTypeTable component="PopoverTrigger" src="./components/ui/popover.tsx" />
+<AutoTypeTable type={`import { type PopoverTriggerProps } from "@radix-ui/react-popover";
+  export type PopoverTriggerProps = Omit<PopoverTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="PopoverTriggerProps"
+/>
 
 ### PopoverContent
 
-<AutoTypeTable component="PopoverContent" src="./components/ui/popover.tsx" />
+<AutoTypeTable type={`import { type PopoverContentProps } from "@radix-ui/react-popover";
+  export type PopoverContentProps = Omit<PopoverContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="PopoverContentProps"
+/>
 
 ### PopoverAnchor
 
-<AutoTypeTable component="PopoverAnchor" src="./components/ui/popover.tsx" />
+<AutoTypeTable type={`import { type PopoverAnchorProps } from "@radix-ui/react-popover";
+  export type PopoverAnchorProps = Omit<PopoverAnchorProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="PopoverAnchorProps"
+/>
 
 ## Accessibility
 

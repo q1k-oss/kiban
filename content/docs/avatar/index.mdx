@@ -1,7 +1,12 @@
 ---
 title: Avatar
 description: An image element with a fallback for representing the user.
+tags: ["avatar", "user", "profile", "image"]
 ---
+
+<Links links={[
+  { title: "Radix UI Avatar", url: "https://www.radix-ui.com/primitives/docs/components/avatar" },
+]} />
 
 ### When To Use
 
@@ -42,6 +47,21 @@ Avatars provide a visual representation of users and can help make interfaces mo
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/avatar.tsx" name="Avatar" />
-<AutoTypeTable path="./components/ui/avatar.tsx" name="AvatarImage" />
-<AutoTypeTable path="./components/ui/avatar.tsx" name="AvatarFallback" /> 
+#### Avatar
+<AutoTypeTable
+  type={`import { AvatarProps } from "@radix-ui/react-avatar"
+  export type Avatar = Omit<AvatarProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="Avatar"
+/>
+#### AvatarImage
+<AutoTypeTable
+  type={`import { AvatarImageProps } from "@radix-ui/react-avatar"
+  export type AvatarImage = Omit<AvatarImageProps, keyof React.HTMLAttributes<HTMLImageElement>>`}
+  name="AvatarImage"
+/>
+#### AvatarFallback
+<AutoTypeTable
+  type={`import { AvatarFallbackProps } from "@radix-ui/react-avatar"
+  export type AvatarFallback = Omit<AvatarFallbackProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="AvatarFallback"
+/>

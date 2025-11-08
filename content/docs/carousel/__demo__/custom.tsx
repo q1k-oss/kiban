@@ -1,20 +1,19 @@
 'use client'
 
 import { Heart, ExternalLink } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  Button,
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-  Button,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from '@happect/ethereal-ui';
 
 export default function CarouselCustomDemo() {
@@ -81,7 +80,7 @@ export default function CarouselCustomDemo() {
         <CarouselContent className="-ml-4">
           {products.map((product) => (
             <CarouselItem key={product.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <Card>
+              <Card className="w-full">
                 <div className="relative">
                   <img 
                     src={product.image} 

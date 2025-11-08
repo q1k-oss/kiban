@@ -1,6 +1,7 @@
 ---
 title: Sidebar
 description: A navigation component for displaying menu items and links in a vertical layout.
+tags: ["sidebar", "navigation", "menu", "layout"]
 ---
 
 ### When To Use
@@ -42,7 +43,10 @@ Sidebars help users navigate and understand the structure of your application, p
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/sidebar.tsx" name="Sidebar" />
-<AutoTypeTable path="./components/ui/sidebar.tsx" name="SidebarHeader" />
-<AutoTypeTable path="./components/ui/sidebar.tsx" name="SidebarFooter" />
-<AutoTypeTable path="./components/ui/sidebar.tsx" name="SidebarTrigger" /> 
+#### Sidebar
+<AutoTypeTable type={`
+  import { type SidebarProviderProps } from "ethereal-ui";
+  export type SidebarProps = Omit<SidebarProviderProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="SidebarProps"
+/>

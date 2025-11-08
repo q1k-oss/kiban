@@ -1,7 +1,12 @@
 ---
 title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
+tags: ["accordion", "collapsible", "expandable", "toggle"]
 ---
+
+<Links links={[
+  { title: "Radix UI Accordion", url: "https://www.radix-ui.com/primitives/docs/components/accordion" },
+]} />
 
 ### When To Use
 
@@ -32,7 +37,30 @@ Use accordions to vertically stack sections of content that can be expanded or c
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/accordion.tsx" name="Accordion" />
-<AutoTypeTable path="./components/ui/accordion.tsx" name="AccordionItem" />
-<AutoTypeTable path="./components/ui/accordion.tsx" name="AccordionTrigger" />
-<AutoTypeTable path="./components/ui/accordion.tsx" name="AccordionContent" /> 
+#### Accordion
+<AutoTypeTable
+  type={`import { AccordionSingleProps, AccordionMultipleProps } from "@radix-ui/react-accordion"
+  export type AccordionRoot = Omit<AccordionSingleProps | AccordionMultipleProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="AccordionRoot"
+/>
+
+#### AccordionItem
+<AutoTypeTable
+  type={`import { AccordionItemProps } from "@radix-ui/react-accordion"
+  export type AccordionItem = Omit<AccordionItemProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="AccordionItem"
+/>
+
+#### AccordionTrigger
+<AutoTypeTable
+  type={`import { AccordionTriggerProps } from "@radix-ui/react-accordion"
+  export type AccordionTrigger = Omit<AccordionTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="AccordionTrigger"
+/>
+
+#### AccordionContent
+<AutoTypeTable
+  type={`import { AccordionContentProps } from "@radix-ui/react-accordion"
+  export type AccordionContent = Omit<AccordionContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="AccordionContent"
+/>

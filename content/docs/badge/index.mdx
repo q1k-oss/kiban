@@ -1,6 +1,7 @@
 ---
 title: Badge
 description: Small status descriptor for UI elements.
+tags: ["badge", "status", "label", "tag"]
 ---
 
 ### When To Use
@@ -35,4 +36,9 @@ Badges help users quickly identify status information and can improve the scanna
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/badge.tsx" name="Badge" /> 
+<AutoTypeTable
+  type={`import { badgeVariants } from "ethereal-ui";
+  import { type VariantProps } from "class-variance-authority";
+  export type badgeVariants = VariantProps<typeof badgeVariants>`}
+  name="badgeVariants"
+/>

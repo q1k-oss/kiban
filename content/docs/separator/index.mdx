@@ -1,7 +1,12 @@
 ---
 title: Separator
 description: A visual divider between content or menu items.
+tags: ["separator", "divider", "divider", "separator"]
 ---
+
+<Links links={[
+  { title: "Radix UI Separator", url: "https://www.radix-ui.com/primitives/docs/components/separator" },
+]} />
 
 ### When To Use
 
@@ -41,7 +46,10 @@ Separators improve the readability and scanability of content by visually groupi
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/separator.tsx" name="Separator" />
+<AutoTypeTable type={`import { type SeparatorProps } from "@radix-ui/react-separator";
+  export type SeparatorProps = Omit<SeparatorProps, keyof React.HTMLAttributes<HTMLHRElement>>`}
+  name="SeparatorProps"
+/>
 
 ### Accessibility
 

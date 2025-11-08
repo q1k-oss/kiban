@@ -1,7 +1,12 @@
 ---
 title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+tags: ["tooltip", "popup", "information", "context-menu"]
 ---
+
+<Links links={[
+  { title: "Radix UI Tooltip", url: "https://www.radix-ui.com/primitives/docs/components/tooltip" },
+]} />
 
 ### When To Use
 
@@ -35,7 +40,31 @@ Tooltips are especially useful for icons or buttons that may not be self-explana
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/tooltip.tsx" name="Tooltip" />
-<AutoTypeTable path="./components/ui/tooltip.tsx" name="TooltipTrigger" />
-<AutoTypeTable path="./components/ui/tooltip.tsx" name="TooltipContent" />
-<AutoTypeTable path="./components/ui/tooltip.tsx" name="TooltipProvider" />
+#### Tooltip
+<AutoTypeTable type={`
+  import { type TooltipProps } from "@radix-ui/react-tooltip";
+  export type TooltipProps = Omit<TooltipProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="TooltipProps"
+/>
+#### TooltipTrigger
+<AutoTypeTable type={`
+  import { type TooltipTriggerProps } from "@radix-ui/react-tooltip";
+  export type TooltipTriggerProps = Omit<TooltipTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>
+`}
+  name="TooltipTriggerProps"
+/>
+#### TooltipContent
+<AutoTypeTable type={`
+  import { type TooltipContentProps } from "@radix-ui/react-tooltip";
+  export type TooltipContentProps = Omit<TooltipContentProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="TooltipContentProps"
+/>
+#### TooltipProvider
+<AutoTypeTable type={`
+  import { type TooltipProviderProps } from "@radix-ui/react-tooltip";
+  export type TooltipProviderProps = Omit<TooltipProviderProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="TooltipProviderProps"
+/>

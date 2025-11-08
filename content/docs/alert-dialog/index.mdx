@@ -1,7 +1,12 @@
 ---
 title: Alert Dialog
 description: A modal dialog that interrupts the user with important content and expects a response.
+tags: ["alert-dialog", "modal", "dialog", "confirmation"]
 ---
+
+<Links links={[
+  { title: "Radix UI Alert Dialog", url: "https://www.radix-ui.com/primitives/docs/components/alert-dialog" },
+]} />
 
 ### When To Use
 
@@ -35,12 +40,44 @@ Unlike regular dialogs, alert dialogs are more disruptive and should be used spa
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialog" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogTrigger" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogContent" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogHeader" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogFooter" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogTitle" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogDescription" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogAction" />
-<AutoTypeTable path="./components/ui/alert-dialog.tsx" name="AlertDialogCancel" /> 
+#### AlertDialogRoot
+<AutoTypeTable
+  type={`import { AlertDialogProps } from "@radix-ui/react-alert-dialog"
+  export type AlertDialogRoot = Omit<AlertDialogProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="AlertDialogRoot"
+/>
+#### AlertDialogTrigger
+<AutoTypeTable
+  type={`import { AlertDialogTriggerProps } from "@radix-ui/react-alert-dialog"
+  export type AlertDialogTrigger = Omit<AlertDialogTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="AlertDialogTrigger"
+/>
+#### AlertDialogContent
+<AutoTypeTable
+  type={`import { AlertDialogContentProps } from "@radix-ui/react-alert-dialog"
+  export type AlertDialogContent = Omit<AlertDialogContentProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="AlertDialogContent"
+/>
+<AutoTypeTable
+  type={`import { AlertDialogTitleProps } from "@radix-ui/react-alert-dialog"
+  export type AlertDialogTitle = Omit<AlertDialogTitleProps, keyof React.HTMLAttributes<HTMLHeadingElement>>`}
+  name="AlertDialogTitle"
+/>
+#### AlertDialogDescription
+<AutoTypeTable
+  type={`import { AlertDialogDescriptionProps } from "@radix-ui/react-alert-dialog"
+  export type AlertDialogDescription = Omit<AlertDialogDescriptionProps, keyof React.HTMLAttributes<HTMLParagraphElement>>`}
+  name="AlertDialogDescription"
+/>
+#### AlertDialogAction
+<AutoTypeTable
+  type={`import { AlertDialogActionProps } from "@radix-ui/react-alert-dialog"
+  export type AlertDialogAction = Omit<AlertDialogActionProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="AlertDialogAction"
+/>
+#### AlertDialogCancel
+<AutoTypeTable
+  type={`import { AlertDialogCancelProps } from "@radix-ui/react-alert-dialog"
+  export type AlertDialogCancel = Omit<AlertDialogCancelProps, keyof React.HTMLAttributes<HTMLButtonElement>>`}
+  name="AlertDialogCancel"
+/> 

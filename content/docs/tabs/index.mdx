@@ -1,7 +1,12 @@
 ---
 title: Tabs
 description: A set of layered sections of content, known as tab panels, that display one panel of content at a time.
+tags: ["tabs", "tab", "panel", "content"]
 ---
+
+<Links links={[
+  { title: "Radix UI Tabs", url: "https://www.radix-ui.com/primitives/docs/components/tabs" },
+]} />
 
 ### When To Use
 
@@ -35,7 +40,31 @@ Tabs are especially useful for forms, settings pages, dashboards, and any interf
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/tabs.tsx" name="Tabs" />
-<AutoTypeTable path="./components/ui/tabs.tsx" name="TabsList" />
-<AutoTypeTable path="./components/ui/tabs.tsx" name="TabsTrigger" />
-<AutoTypeTable path="./components/ui/tabs.tsx" name="TabsContent" /> 
+#### Tabs
+<AutoTypeTable type={`
+  import { type TabsProps } from "@radix-ui/react-tabs";
+  export type TabsProps = Omit<TabsProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="TabsProps"
+/>
+#### TabsList
+<AutoTypeTable type={`
+  import { type TabsListProps } from "@radix-ui/react-tabs";
+  export type TabsListProps = Omit<TabsListProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="TabsListProps"
+/>
+#### TabsTrigger
+<AutoTypeTable type={`
+  import { type TabsTriggerProps } from "@radix-ui/react-tabs";
+  export type TabsTriggerProps = Omit<TabsTriggerProps, keyof React.HTMLAttributes<HTMLButtonElement>>
+`}
+  name="TabsTriggerProps"
+/>
+#### TabsContent
+<AutoTypeTable type={`
+  import { type TabsContentProps } from "@radix-ui/react-tabs";
+  export type TabsContentProps = Omit<TabsContentProps, keyof React.HTMLAttributes<HTMLDivElement>>
+`}
+  name="TabsContentProps"
+/>

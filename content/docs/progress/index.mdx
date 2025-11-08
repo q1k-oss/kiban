@@ -1,7 +1,12 @@
 ---
 title: Progress
 description: Displays an indicator showing the completion progress of a task.
+tags: ["progress", "loading", "completion", "percentage"]
 ---
+
+<Links links={[
+  { title: "Radix UI Progress", url: "https://www.radix-ui.com/primitives/docs/components/progress" },
+]} />
 
 ### When To Use
 
@@ -41,7 +46,10 @@ Progress indicators help users understand how much of a task has been completed 
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/progress.tsx" name="Progress" />
+<AutoTypeTable type={`import { type ProgressProps } from "@radix-ui/react-progress";
+  export type ProgressProps = Omit<ProgressProps, keyof React.HTMLAttributes<HTMLDivElement>>`}
+  name="ProgressProps"
+/>
 
 ### Accessibility
 

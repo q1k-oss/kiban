@@ -1,7 +1,12 @@
 ---
 title: Input OTP
 description: An input component for one-time password authentication codes.
+tags: ["input-otp", "authentication", "verification", "code"]
 ---
+
+<Links links={[
+  { title: "Input OTP", url: "https://github.com/guilhermerodz/input-otp" },
+]} />
 
 ### When To Use
 
@@ -42,7 +47,15 @@ The Input OTP component provides a specialized interface for entering authentica
 />
 
 ### Props
-<AutoTypeTable path="./components/ui/input-otp.tsx" name="InputOTP" />
-<AutoTypeTable path="./components/ui/input-otp.tsx" name="InputOTPGroup" />
-<AutoTypeTable path="./components/ui/input-otp.tsx" name="InputOTPSlot" />
-<AutoTypeTable path="./components/ui/input-otp.tsx" name="InputOTPSeparator" /> 
+#### InputOTP
+<AutoTypeTable
+  type={`import { type OTPInputProps } from "input-otp";
+  export type OTPInputProps = Omit<OTPInputProps, keyof React.InputHTMLAttributes<HTMLInputElement>>`}
+  name="OTPInputProps"
+/>
+#### InputOTPSlot
+<AutoTypeTable
+  type={`import { type SlotProps } from "input-otp";
+  export type OTPInputSlotProps = Omit<SlotProps, keyof React.ComponentProps<"div">>`}
+  name="OTPInputSlotProps"
+/>
