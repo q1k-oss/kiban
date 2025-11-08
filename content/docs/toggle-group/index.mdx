@@ -50,7 +50,7 @@ Toggle Groups are particularly useful for presenting a set of related choices wh
 <AutoTypeTable type={`
   import { type ToggleGroupSingleProps, type ToggleGroupMultipleProps } from "@radix-ui/react-toggle-group";
   import { type VariantProps } from "class-variance-authority";
-  import { toggleVariants } from "ethereal-ui";
+  import { toggleVariants } from "@happect/ethereal-ui";
   type ToggleGroupTypeProps = ToggleGroupSingleProps | ToggleGroupMultipleProps
   type CombinedProps = ToggleGroupTypeProps & VariantProps<typeof toggleVariants>
   export type ToggleGroupProps = Omit<CombinedProps, keyof React.HTMLAttributes<HTMLDivElement>>

@@ -1,6 +1,7 @@
 'use server';
 
 import dynamic from 'next/dynamic';
+import React from 'react';
 
 import { sanitizeUrl } from '@/internal/utils/common';
 import { getFileContent } from '@/internal/utils/file-parser';
@@ -14,7 +15,6 @@ import {
 
 import { CopyToClipboard } from '../copy-to-clipboard';
 
-
 const CodeBlock = dynamic(() => import('../codeblock'), {
   loading: () => <Skeleton className='w-full h-[480px]' />,
 });
@@ -22,24 +22,28 @@ const CodeBlock = dynamic(() => import('../codeblock'), {
 export const CodePreview = async ({
   children,
   file,
-  lang,
+  lang = 'tsx',
   title = 'Default',
   description,
-}: any) => {
+  caption,
+}: {
+  children: React.ReactNode;
+  file: string;
+  lang?: string;
+  title: string;
+  description?: string;
+  caption?: string;
+}): Promise<React.ReactNode> => {
   let internalLang = lang ?? file?.split('.').pop() ?? null;
 
-  if (
-    file
-    && typeof file === 'string'
-    && internalLang != null
-  ) {
+  if (file && typeof file === 'string' && internalLang != null) {
     let Component = null;
     let fileContents = '';
-    
+
     try {
       Component = dynamic(() => import(`../../../content/docs${file}`), {
         loading: () => <Skeleton className='w-full h-[480px]' />,
-      });      
+      });
     } catch (error) {
       console.error(`Error loading component: ${file}`, error);
     }
@@ -49,51 +53,60 @@ export const CodePreview = async ({
     } catch (error) {
       console.error(`Error loading file contents: ${file}`, error);
     }
-    
+
     if (!Component) {
       return children;
     }
 
     return (
-      <div className='not-prose w-full md:pl-4 relative'>
+      <div className='not-prose w-full relative'>
         <Tabs defaultValue='preview'>
           <div className='flex flex-col gap-2'>
-            <div className='flex flex-row justify-between items-center flex-wrap'>
-              <h4 id={title} className='font-bold'>
-                <a href={`#${sanitizeUrl(title)}`} className='group flex flex-row gap-1'>
-                  {title}
-                  <span className='hidden group-hover:block text-blue-500'>
-                    #
-                  </span>
-                </a>
-              </h4>
-              <div className='flex flex-row gap-2 items-center'>
-                <TabsList>
-                  <TabsTrigger value='preview'>Preview</TabsTrigger>
-                  <TabsTrigger value='code'>Code</TabsTrigger>
-                </TabsList>
-                <CopyToClipboard text={fileContents} />
+            <div className='flex flex-col gap-2 items-center'>
+              <div className='flex flex-row justify-between items-center flex-wrap w-full'>
+                <h4 id={title} className='font-bold'>
+                  <a
+                    href={`#${sanitizeUrl(title)}`}
+                    className='group flex flex-row gap-1'>
+                    {title}
+                    <span className='hidden group-hover:block text-blue-500'>
+                      #
+                    </span>
+                  </a>
+                </h4>
+                <div className='flex flex-row gap-2 items-center'>
+                  <TabsList>
+                    <TabsTrigger value='preview'>Preview</TabsTrigger>
+                    <TabsTrigger value='code'>Code</TabsTrigger>
+                  </TabsList>
+                  <CopyToClipboard text={fileContents} />
+                </div>
               </div>
+              {description ? (
+                <p className='text-sm text-fd-muted-foreground'>
+                  {description}
+                </p>
+              ) : null}
             </div>
-          </div>          
+          </div>
           <div className='border rounded-lg my-4'>
             <TabsContent value='preview' className='!mt-0 p-4 relative'>
               <Component />
             </TabsContent>
-            <TabsContent value='code' className='!mt-0 h-fit max-h-[320px] overflow-y-auto overflow-x-auto p-4'>
+            <TabsContent
+              value='code'
+              className='!mt-0 h-fit max-h-[320px] overflow-y-auto overflow-x-auto p-4'>
               <CodeBlock code={fileContents} lang={internalLang} />
             </TabsContent>
-            {
-              description ? (
-                <div className='text-sm text-fd-muted-foreground border border-t p-4'>
-                  {description}
-                </div>
-              ) : null
-            }
+            {caption ? (
+              <div className='text-sm text-fd-muted-foreground border border-t p-4'>
+                {caption}
+              </div>
+            ) : null}
           </div>
         </Tabs>
       </div>
-    )
+    );
   }
 
   return children;
