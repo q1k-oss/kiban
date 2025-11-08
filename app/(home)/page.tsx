@@ -1,14 +1,13 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
-import { ComponentShowcase } from '@/internal/components/component-showcase';
-import { CallToAction } from '@/internal/components/cta';
-import { Features } from '@/internal/components/features';
-import { Footer } from '@/internal/components/footer';
-import { Hero } from '@/internal/components/hero';
-
+import { ComponentShowcase } from "@/internal/components/component-showcase";
+import { CallToAction } from "@/internal/components/cta";
+import { Features } from "@/internal/components/features";
+import { Footer } from "@/internal/components/footer";
+import { Hero } from "@/internal/components/hero";
 export const metadata: Metadata = {
-  title: 'Ethereal Garden',
-  description: 'A React component library with cyberpunk aesthetics',
+  title: "Ethereal Garden",
+  description: "A React component library with cyberpunk aesthetics",
 };
 
 export default function HomePage() {
