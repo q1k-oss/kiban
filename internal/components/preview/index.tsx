@@ -62,7 +62,7 @@ export const CodePreview = async ({
       <div className='not-prose w-full relative'>
         <Tabs defaultValue='preview'>
           <div className='flex flex-col gap-2'>
-            <div className='flex flex-col gap-2 items-center'>
+            <div className='flex flex-col gap-2'>
               <div className='flex flex-row justify-between items-center flex-wrap w-full'>
                 <h4 id={title} className='font-bold'>
                   <a
@@ -83,7 +83,7 @@ export const CodePreview = async ({
                 </div>
               </div>
               {description ? (
-                <p className='text-sm text-fd-muted-foreground'>
+                <p className='text-xs text-fd-muted-foreground'>
                   {description}
                 </p>
               ) : null}
