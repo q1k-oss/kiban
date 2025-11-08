@@ -5,6 +5,7 @@ component: true
 ---
 
 ## When To Use
+
 - When you need to collect a phone number from a user
 - When you need to validate a phone number
 - When you need to format a phone number
@@ -23,7 +24,48 @@ A basic phone input with a trigger button and content.
 
 <Preview lang="jsx" file="/phone-input/__demo__/basic" />
 
+## Variants
+
+<Preview
+  lang="jsx"
+  file="/phone-input/__demo__/summary"
+  title="Default"
+  description="The phone input component can be used with a country select dropdown."
+/>
+<Preview
+  lang="jsx"
+  file="/phone-input/__demo__/defaultCountry"
+  title="Setting default country"
+  description="Demonstrates how to set a specific default country when initializing the phone input.  
+"
+/>
+<Preview
+  lang="jsx"
+  file="/phone-input/__demo__/internationalization"
+  title="Internationalization"
+  description="Shows how to enable internationalization support for different locales."
+/>
+<Preview
+  lang="jsx"
+  file="/phone-input/__demo__/forceInternationalFormat"
+  title="Force international format"
+  description="Forces the phone input to always display numbers in international format."
+/>
+<Preview
+  lang="jsx"
+  file="/phone-input/__demo__/forceNationalFormat"
+  title="Force national format"
+  description="Forces the phone input to always display numbers in national (local) format."
+/>
+<Preview
+  lang="jsx"
+  file="/phone-input/__demo__/initialValueFormat"
+  title="Initial Value Format"
+  description="Shows how to define and display an initial value with a specific number format."
+/>
+
 ## Accessibility
+
 - The phone input has a required attribute for accessibility
 - The phone input has a country selector for accessibility
 - The phone input has a phone number format for accessibility

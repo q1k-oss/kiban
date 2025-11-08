@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -34,9 +34,11 @@ export default () => {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast.success("You submitted the following values:", {
-      description: <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-      </pre>
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
     });
   }
 
@@ -71,4 +73,4 @@ export default () => {
       </form>
     </Form>
   );
-}
+};

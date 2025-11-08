@@ -1,11 +1,10 @@
-import { ArrowRight, Code2, Zap } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+import { ArrowRight, Code2, Zap } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
-import { Button, ScrollArea } from '@happect/ethereal-ui';
+import { Button, ScrollArea } from "@happect/ethereal-ui";
 
-import CodeBlock from '../codeblock';
-
+import CodeBlock from "../codeblock";
 
 export const Hero = () => {
   return (
@@ -21,7 +20,9 @@ export const Hero = () => {
           <div className="space-y-6">
             <div className="inline-flex items-center space-x-2 bg-amber-50/30 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-800 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
               <Zap className="w-4 h-4 text-ethereal-purple" />
-              <span className="text-zinc-700 dark:text-gray-300">Next-generation UI components</span>
+              <span className="text-zinc-700 dark:text-gray-300">
+                Next-generation UI components
+              </span>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter max-w-4xl gradient-text leading-tight">
@@ -31,8 +32,9 @@ export const Hero = () => {
               Beautiful React Components for the Future
             </h2>
             <p className="text-zinc-600 dark:text-gray-400 text-lg md:text-xl max-w-[42rem] mx-auto leading-relaxed">
-              A professionally crafted React component library with cyberpunk aesthetics.
-              Build stunning interfaces that push the boundaries of design.
+              A professionally crafted React component library with cyberpunk
+              aesthetics. Build stunning interfaces that push the boundaries of
+              design.
             </p>
           </div>
 
@@ -42,8 +44,8 @@ export const Hero = () => {
                 size="lg"
                 className="bg-gradient-to-r from-ethereal-purple to-ethereal-teal hover:opacity-90 transition-all duration-300 shadow-lg shadow-ethereal-purple/25 neon-glow text-lg px-8 py-4 h-auto cursor-pointer"
               >
-                  Initialize System
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                Initialize System
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
             <Link href="/docs" className="cursor-pointer">
