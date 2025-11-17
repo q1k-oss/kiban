@@ -56,7 +56,7 @@
   --color-success-fill: var(--success-fill);
   --color-error: var(--error);
   --color-error-fill: var(--error-fill);
-  --color-error-border: var(--error-border);
+  --color-error-border-2: var(--error-border-2);
   --color-text-field-border: var(--text-field-border);
   --color-textbox-hover-fill: var(--textbox-hover-fill);
   --color-stroke: var(--stroke);
@@ -72,6 +72,9 @@
   --color-background-black: var(--background-black);
   --color-button-border2: var(--button-border2);
   --color-button-default-fill: var(--button-default-fill);
+  --color-status-text-paused: var(--status-text-paused);
+  --color-status-text-inprogress: var(--status-text-inprogress);
+  --color-toast-information: var(--toast-information);
 }
 
 :root {
@@ -124,8 +127,8 @@
   --success: oklch(from #0f8a1c l c h);
   --success-fill: oklch(from #eaf6ea l c h);
   --error: oklch(from #d32f2f l c h);
-  --error-fill: oklch(from #fdecec l c h);
-  --error-border: oklch(from #f2d4d4 l c h);
+  --error-fill: oklch(from #1D1919 l c h);
+  --error-border-2: oklch(from #B00020 l c h);
   --text-field-border: oklch(from #8e8e8e l c h);
   --textbox-hover-fill: oklch(from #f0f0f0 l c h);
   --stroke: oklch(from #b0b0b0 l c h);
@@ -141,6 +144,10 @@
   --background-black: oklch(from #0f0f0f l c h);
   --button-border2: oklch(from #a2a2a2 l c h);
   --button-default-fill: oklch(from #5c5c5c l c h);
+  --status-text-paused: oklch(from #FA9E3A l c h);
+  --status-text-inprogress: oklch(from #84D0FF l c h);
+  --toast-information: oklch(from #3B82F6 l c h);
+  
 }
 
 .dark {
@@ -191,8 +198,8 @@
   --success: oklch(from #024b0c l c h);
   --success-fill: oklch(from #1e2b1e l c h);
   --error: oklch(from #b00020 l c h);
-  --error-fill: oklch(from #1d1919 l c h);
-  --error-border: oklch(from #232020 l c h);
+  --error-fill: oklch(from #1D1919 l c h);
+  --error-border-2: oklch(from #B00020 l c h);
   --text-field-border: oklch(from #bababa l c h);
   --textbox-hover-fill: oklch(from #222222 l c h);
   --stroke: oklch(from #747474 l c h);
@@ -208,6 +215,9 @@
   --background-black: oklch(from #0f0f0f l c h);
   --button-border2: oklch(from #a2a2a2 l c h);
   --button-default-fill: oklch(from #5c5c5c l c h);
+  --status-text-paused: oklch(from #FA9E3A l c h);
+  --status-text-inprogress: oklch(from #84D0FF l c h);
+  --toast-information: oklch(from #3B82F6 l c h);
 }
 
 @layer base {
