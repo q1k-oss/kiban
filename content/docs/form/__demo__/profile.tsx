@@ -84,6 +84,9 @@ export default function FormProfileDemo() {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
+                   <FormDescription>
+                    This is your verified email address.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
