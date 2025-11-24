@@ -4,9 +4,7 @@ description: A toast notification component that provides unobtrusive feedback.
 tags: ["sonner", "toast", "notification", "feedback"]
 ---
 
-<Links links={[
-  { title: "Sonner", url: "https://sonner.emilkowal.ski/" },
-]} />
+<Links links={[{ title: "Sonner", url: "https://sonner.emilkowal.ski/" }]} />
 
 ### When To Use
 
@@ -23,56 +21,73 @@ Sonner notifications are temporary and disappear automatically, making them idea
 <Toaster />
 
 ### Examples
+
 <Preview
   lang="jsx"
   file="/sonner/__demo__/basic"
   title="Basic"
+  description="Learn how to show a simple toast notification using the toast() function."
+
 />
 
 <Preview
   lang="jsx"
   file="/sonner/__demo__/types"
   title="Types"
+  description="See examples of different toast types like success, error, info and warning."
+
 />
+
+
 
 <Preview
   lang="jsx"
   file="/sonner/__demo__/custom"
   title="Custom"
+  description="Create your own toast design with custom styles, icons, and actions."
+
 />
 
 <Preview
   lang="jsx"
   file="/sonner/__demo__/promise"
   title="Promise"
+ description="Handle async operations easily with toast.promise() for loading, success, and error states."
+
 />
 
 ### Props
+
 #### ExternalToast
-<AutoTypeTable type={`
+
+<AutoTypeTable
+  type={`
   import { type ExternalToast } from "sonner";
   export type ExternalToast = ExternalToast
 `}
   name="ExternalToast"
-/> 
+/>
 #### ToastClassnames
-<AutoTypeTable type={`
+<AutoTypeTable
+  type={`
   import { type ToastClassnames } from "sonner";
   export type ToastClassnames = ToastClassnames
 `}
   name="ToastClassnames"
-/> 
+/>
 #### ToastT
-<AutoTypeTable type={`
+<AutoTypeTable
+  type={`
   import { type ToastT } from "sonner";
   export type ToastT = ToastT
 `}
   name="ToastT"
-/> 
+/>
 #### ToastToDismiss
-<AutoTypeTable type={`
+<AutoTypeTable
+  type={`
   import { type ToastToDismiss } from "sonner";
   export type ToastToDismiss = ToastToDismiss
 `}
   name="ToastToDismiss"
-/> 
+/>{" "}

@@ -10,10 +10,12 @@ export default function SonnerTypesDemo() {
     <div className="flex flex-col gap-2 items-center">
       <div className="flex gap-2">
         <Button
-          variant="default"
+        variant='outline'
+          className="border-success text-success hover:bg-success"
           onClick={() => 
             toast.success('Success notification', {
-              description: 'Your action has been completed successfully.'
+              description: 'Your action has been completed successfully.',
+              
             })
           }
         >
@@ -22,7 +24,8 @@ export default function SonnerTypesDemo() {
         </Button>
         
         <Button
-          variant="destructive"
+          variant="outline"
+          className="border-error-border-2 text-error-border-2 hover:bg-error-border-2"
           onClick={() => 
             toast.error('Error notification', {
               description: 'There was a problem with your request.'
@@ -37,7 +40,7 @@ export default function SonnerTypesDemo() {
       <div className="flex gap-2 mt-2">
         <Button
           variant="outline"
-          className="border-blue-500 text-blue-600 hover:bg-blue-50"
+          className="border-toast-information text-toast-information hover:bg-toast-information"
           onClick={() => 
             toast.info('Information notification', {
               description: 'Here is some information you might find useful.'
@@ -50,7 +53,7 @@ export default function SonnerTypesDemo() {
         
         <Button
           variant="outline"
-          className="border-amber-500 text-amber-600 hover:bg-amber-50"
+          className="border-status-text-paused text-status-text-paused hover:bg-status-text-paused"
           onClick={() => 
             toast.warning('Warning notification', {
               description: 'Please be aware of this important warning.'
