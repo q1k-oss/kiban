@@ -109,9 +109,9 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
 
-  const { control } = useFormContext();
+  const { getValues } = useFormContext();
 
-  const totalFields = Object.keys(control._fields).length;
+  const totalFields = Object.keys(getValues()).length;
 
   return (
     <Slot

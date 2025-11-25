@@ -1,13 +1,14 @@
 "use client";
 
+import { cva } from "class-variance-authority";
 import { OTPInput, OTPInputContext, OTPInputProps } from "input-otp";
 import { Minus } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "../utils";
-const OTPVariantContext = React.createContext<{ variant: string }>({
-  variant: "default",
-});
+const OTPVariantContext = React.createContext<{ variant: "default" | "separate" }>(
+  { variant: "default" }
+);
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
   Omit<React.ComponentPropsWithoutRef<typeof OTPInput>, "render"> & {
@@ -57,22 +58,33 @@ const InputOTPSlot = React.forwardRef<
   const { char, hasFakeCaret, isActive } =
     inputOTPContext?.slots?.[index] ?? {};
 
-  const defaultClasses =
-    "relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md";
-
-  const separateClasses =
-    "relative flex h-10 w-10 items-center justify-center border border-input rounded-lg shadow-sm transition-all mx-2";
+  const slotClasses = cva(
+    "relative flex items-center justify-center shadow-sm transition-all",
+    {
+      variants: {
+        variant: {
+          default:
+            "h-9 w-9 border-y border-r border-input text-sm first:rounded-l-md first:border-l last:rounded-r-md",
+          separate:
+            "h-10 w-10 border border-input rounded-lg mx-2",
+        },
+      },
+      defaultVariants: {
+        variant: "default",
+      },
+    }
+  );
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        variant === "separate" ? separateClasses : defaultClasses,
-        isActive && "z-10 ring-1 ring-ring",
-        className
-      )}
-      {...props}
-    >
+      <div
+        ref={ref}
+        className={cn(
+          slotClasses({ variant }),
+          isActive && "z-10 ring-1 ring-ring",
+          className
+        )}
+        {...props}
+      >
       {char}
 
       {hasFakeCaret && (
