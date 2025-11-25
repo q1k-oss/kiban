@@ -75,6 +75,7 @@
   --color-status-text-paused: var(--status-text-paused);
   --color-status-text-inprogress: var(--status-text-inprogress);
   --color-toast-information: var(--toast-information);
+  --color-status-text-published: var(--status-text-published)
 }
 
 :root {
@@ -147,6 +148,7 @@
   --status-text-paused: oklch(from #FA9E3A l c h);
   --status-text-inprogress: oklch(from #84D0FF l c h);
   --toast-information: oklch(from #3B82F6 l c h);
+  --status-text-published: oklch(from #95FFB5 l c h);
   
 }
 
@@ -218,6 +220,7 @@
   --status-text-paused: oklch(from #FA9E3A l c h);
   --status-text-inprogress: oklch(from #84D0FF l c h);
   --toast-information: oklch(from #3B82F6 l c h);
+  --status-text-published: oklch(from #95FFB5 l c h);
 }
 
 @layer base {
