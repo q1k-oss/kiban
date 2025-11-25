@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 import {
   Form,
@@ -15,15 +15,15 @@ import {
   FormMessage,
   Input,
   Button,
-} from '@happect/ethereal-ui';
+} from "@happect/ethereal-ui";
 
 // Define form schema with zod
 const formSchema = z.object({
   username: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+    message: "Username must be at least 2 characters.",
   }),
   email: z.string().email({
-    message: 'Please enter a valid email address.',
+    message: "Please enter a valid email address.",
   }),
 });
 
@@ -32,8 +32,8 @@ export default function FormBasicDemo() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: '',
-      email: '',
+      username: "",
+      email: "",
     },
   });
 
@@ -51,7 +51,7 @@ export default function FormBasicDemo() {
       {isSubmitted ? (
         <div className="rounded-md bg-green-50 p-4 text-sm text-green-600">
           <p>Form submitted successfully!</p>
-          <Button 
+          <Button
             onClick={() => {
               form.reset();
               setIsSubmitted(false);
@@ -67,33 +67,21 @@ export default function FormBasicDemo() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="johndoe" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="john.doe@example.com" type="email" {...field} />
+                    <Input
+                      placeholder="john.doe@example.com"
+                      type="email"
+                      {...field}
+                    />
                   </FormControl>
+                  <FormMessage />
                   <FormDescription>
                     We'll never share your email with anyone else.
                   </FormDescription>
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -103,4 +91,4 @@ export default function FormBasicDemo() {
       )}
     </div>
   );
-} 
+}
