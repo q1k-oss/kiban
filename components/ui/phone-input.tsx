@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckIcon, ChevronsUpDown } from "lucide-react";
+import { CheckIcon, ChevronDown } from "lucide-react";
 import * as React from "react";
 import RPNInput, {
   type Props as RPNInputProps,
@@ -32,43 +32,63 @@ type PhoneInputProps = Omit<
 > &
   Omit<RPNInputProps<React.ComponentProps<"input">>, "onChange"> & {
     onChange?: (value: Value) => void;
+    inputClassName?: string;
+    icon?: React.ReactNode;
   };
 
 const PhoneInput = React.forwardRef<
   React.ElementRef<typeof RPNInput>,
   PhoneInputProps
->(({ className, onChange, value, ...props }, ref) => {
+>(({ className, inputClassName, icon, onChange, value, ...props }, ref) => {
   return (
-    <RPNInput
-      ref={ref}
-      className={cn("flex", className)}
-      flagComponent={FlagComponent}
-      countrySelectComponent={CountrySelect}
-      inputComponent={InputComponent}
-      smartCaret={false}
-      value={value || undefined}
-      /**
-       * Handles the onChange event.
-       *
-       * react-phone-number-input might trigger the onChange event as undefined
-       * when a valid phone number is not entered. To prevent this,
-       * the value is coerced to an empty string.
-       *
-       * @param {E164Number | undefined} value - The entered value
-       */
-      onChange={(value) => onChange?.(value || ("" as Value))}
-      {...props}
-    />
+    <div
+      className={cn(
+        "flex w-full items-stretch   rounded-md border border-input bg-transparent shadow-sm transition-colors overflow-hidden p-2",
+
+        "focus-within:outline-none focus-within:ring-1 focus-within:ring-ring"
+      )}
+    >
+      <RPNInput
+        ref={ref}
+        className={cn("flex  items-center w-full", className)}
+        flagComponent={FlagComponent}
+        countrySelectComponent={CountrySelect}
+        inputComponent={(inputProps) => (
+          <InputComponent
+            {...inputProps}
+            className={inputClassName}
+            icon={icon}
+          />
+        )}
+        smartCaret={false}
+        value={value || undefined}
+        /**
+         * Handles the onChange event.
+         *
+         * react-phone-number-input might trigger the onChange event as undefined
+         * when a valid phone number is not entered. To prevent this,
+         * the value is coerced to an empty string.
+         *
+         * @param {E164Number | undefined} value - The entered value
+         */
+        onChange={(value) => onChange?.(value || ("" as Value))}
+        {...props}
+      />
+    </div>
   );
 });
 PhoneInput.displayName = "PhoneInput";
 
 const InputComponent = React.forwardRef<
   HTMLInputElement,
-  React.ComponentProps<"input">
->(({ className, ...props }, ref) => (
+  React.ComponentProps<"input"> & { icon?: React.ReactNode }
+>(({ className, icon, ...props }, ref) => (
   <Input
-    className={cn("rounded-e-lg rounded-s-none", className)}
+    className={cn(
+      " rounded-none border-0 border-l focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:outline-none h-fit py-0 shadow-none flex-1",
+      className
+    )}
+    icon={icon}
     {...props}
     ref={ref}
   />
@@ -109,16 +129,16 @@ const CountrySelect = ({
         <Button
           type="button"
           variant="outline"
-          className="flex gap-1 rounded-e-none rounded-s-lg border-r-0 px-3 focus:z-10"
+          className="flex h-auto gap-1 rounded-lg  border-0 px-3 focus:z-10 shadow-none"
           disabled={disabled}
         >
           <FlagComponent
             country={selectedCountry}
             countryName={selectedCountry}
           />
-          <ChevronsUpDown
+          <ChevronDown
             className={cn(
-              "-mr-2 size-4 opacity-50",
+              "-mr-2 size-4 opacity-50 text-text-field-border",
               disabled ? "hidden" : "opacity-100"
             )}
           />
