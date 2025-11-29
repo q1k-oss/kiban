@@ -75,7 +75,8 @@
   --color-status-text-paused: var(--status-text-paused);
   --color-status-text-inprogress: var(--status-text-inprogress);
   --color-toast-information: var(--toast-information);
-  --color-status-text-published: var(--status-text-published)
+  --color-status-text-published: var(--status-text-published);
+  --color-button-disabled-text: var(--button-disabled-text)
 }
 
 :root {
@@ -128,8 +129,8 @@
   --success: oklch(from #0f8a1c l c h);
   --success-fill: oklch(from #eaf6ea l c h);
   --error: oklch(from #d32f2f l c h);
-  --error-fill: oklch(from #1D1919 l c h);
-  --error-border-2: oklch(from #B00020 l c h);
+  --error-fill: oklch(from #1d1919 l c h);
+  --error-border-2: oklch(from #b00020 l c h);
   --text-field-border: oklch(from #8e8e8e l c h);
   --textbox-hover-fill: oklch(from #f0f0f0 l c h);
   --stroke: oklch(from #b0b0b0 l c h);
@@ -145,11 +146,11 @@
   --background-black: oklch(from #0f0f0f l c h);
   --button-border2: oklch(from #a2a2a2 l c h);
   --button-default-fill: oklch(from #5c5c5c l c h);
-  --status-text-paused: oklch(from #FA9E3A l c h);
-  --status-text-inprogress: oklch(from #84D0FF l c h);
-  --toast-information: oklch(from #3B82F6 l c h);
-  --status-text-published: oklch(from #95FFB5 l c h);
-  
+  --status-text-paused: oklch(from #fa9e3a l c h);
+  --status-text-inprogress: oklch(from #84d0ff l c h);
+  --toast-information: oklch(from #3b82f6 l c h);
+  --status-text-published: oklch(from #95ffb5 l c h);
+  --button-disabled-text: oklch(from #7a7a7a l c h);
 }
 
 .dark {
@@ -200,8 +201,8 @@
   --success: oklch(from #024b0c l c h);
   --success-fill: oklch(from #1e2b1e l c h);
   --error: oklch(from #b00020 l c h);
-  --error-fill: oklch(from #1D1919 l c h);
-  --error-border-2: oklch(from #B00020 l c h);
+  --error-fill: oklch(from #1d1919 l c h);
+  --error-border-2: oklch(from #b00020 l c h);
   --text-field-border: oklch(from #bababa l c h);
   --textbox-hover-fill: oklch(from #222222 l c h);
   --stroke: oklch(from #747474 l c h);
@@ -217,10 +218,11 @@
   --background-black: oklch(from #0f0f0f l c h);
   --button-border2: oklch(from #a2a2a2 l c h);
   --button-default-fill: oklch(from #5c5c5c l c h);
-  --status-text-paused: oklch(from #FA9E3A l c h);
-  --status-text-inprogress: oklch(from #84D0FF l c h);
-  --toast-information: oklch(from #3B82F6 l c h);
-  --status-text-published: oklch(from #95FFB5 l c h);
+  --status-text-paused: oklch(from #fa9e3a l c h);
+  --status-text-inprogress: oklch(from #84d0ff l c h);
+  --toast-information: oklch(from #3b82f6 l c h);
+  --status-text-published: oklch(from #95ffb5 l c h);
+  --button-disabled-text: oklch(from #7a7a7a l c h);
 }
 
 @layer base {
