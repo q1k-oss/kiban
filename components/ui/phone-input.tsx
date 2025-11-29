@@ -41,40 +41,36 @@ const PhoneInput = React.forwardRef<
   PhoneInputProps
 >(({ className, inputClassName, icon, onChange, value, ...props }, ref) => {
   return (
-    <div
+    <RPNInput
+      ref={ref}
       className={cn(
-        "flex w-full items-stretch   rounded-md border border-input bg-transparent shadow-sm transition-colors overflow-hidden",
-
-        "focus-within:outline-none focus-within:ring-1 focus-within:ring-ring"
+        "flex justify-between items-center w-full p-2 rounded-md border border-input bg-transparent shadow-sm transition-colors overflow-hidden",
+        "focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
+        className
       )}
-    >
-      <RPNInput
-        ref={ref}
-        className={cn("flex  items-center w-full p-2", className)}
-        flagComponent={FlagComponent}
-        countrySelectComponent={CountrySelect}
-        inputComponent={(inputProps) => (
-          <InputComponent
-            {...inputProps}
-            className={inputClassName}
-            icon={icon}
-          />
-        )}
-        smartCaret={false}
-        value={value || undefined}
-        /**
-         * Handles the onChange event.
-         *
-         * react-phone-number-input might trigger the onChange event as undefined
-         * when a valid phone number is not entered. To prevent this,
-         * the value is coerced to an empty string.
-         *
-         * @param {E164Number | undefined} value - The entered value
-         */
-        onChange={(value) => onChange?.(value || ("" as Value))}
-        {...props}
-      />
-    </div>
+      flagComponent={FlagComponent}
+      countrySelectComponent={CountrySelect}
+      inputComponent={(inputProps) => (
+        <InputComponent
+          {...inputProps}
+          className={inputClassName}
+          icon={icon}
+        />
+      )}
+      smartCaret={false}
+      value={value || undefined}
+      /**
+       * Handles the onChange event.
+       *
+       * react-phone-number-input might trigger the onChange event as undefined
+       * when a valid phone number is not entered. To prevent this,
+       * the value is coerced to an empty string.
+       *
+       * @param {E164Number | undefined} value - The entered value
+       */
+      onChange={(value) => onChange?.(value || ("" as Value))}
+      {...props}
+    />
   );
 });
 PhoneInput.displayName = "PhoneInput";
@@ -85,7 +81,7 @@ const InputComponent = React.forwardRef<
 >(({ className, icon, ...props }, ref) => (
   <Input
     className={cn(
-      " rounded-none border-0 border-l focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:outline-none h-fit py-0 shadow-none flex-1",
+      " rounded-none border-0 border-l border-input focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:outline-none h-fit py-0 pr-0 shadow-none flex-1",
       className
     )}
     icon={icon}
