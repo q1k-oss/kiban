@@ -43,14 +43,14 @@ const PhoneInput = React.forwardRef<
   return (
     <div
       className={cn(
-        "flex w-full items-stretch   rounded-md border border-input bg-transparent shadow-sm transition-colors overflow-hidden p-2",
+        "flex w-full items-stretch   rounded-md border border-input bg-transparent shadow-sm transition-colors overflow-hidden",
 
         "focus-within:outline-none focus-within:ring-1 focus-within:ring-ring"
       )}
     >
       <RPNInput
         ref={ref}
-        className={cn("flex  items-center w-full", className)}
+        className={cn("flex  items-center w-full p-2", className)}
         flagComponent={FlagComponent}
         countrySelectComponent={CountrySelect}
         inputComponent={(inputProps) => (
@@ -129,7 +129,7 @@ const CountrySelect = ({
         <Button
           type="button"
           variant="outline"
-          className="flex h-auto gap-1 rounded-lg  border-0 px-3 focus:z-10 shadow-none"
+          className="flex h-auto gap-1 rounded-lg  border-0 px-3 focus:z-10 shadow-none bg-transparent"
           disabled={disabled}
         >
           <FlagComponent
