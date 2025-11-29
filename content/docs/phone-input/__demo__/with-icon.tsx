@@ -15,7 +15,7 @@ export default () => {
   return (
     <div className="flex justify-center">
       <div className="p-10 w-lg ">
-        <PhoneInput placeholder="Enter a phone number" icon={UnVerifiedBadge} className=""/>
+        <PhoneInput placeholder="Enter a phone number" icon={UnVerifiedBadge} className="px-0"/>
       </div>
     </div>
   );
