@@ -31,15 +31,19 @@
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
-  } 
+  }
 }
 
 @layer base {
   .main-container {
-    background: linear-gradient(180deg, var(--color-main-top) 0%, var(--color-main-bottom) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--color-main-top) 0%,
+      var(--color-main-bottom) 100%
+    );
     color: var(--color-main-foreground);
   }
-  
+
   .glassy {
     @apply bg-black/5 dark:bg-white/5 backdrop-filter backdrop-blur-xl border dark:border-white/10 border-black/10;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -48,34 +52,37 @@
   .dark .glassy {
     box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
   }
-  
+
   .gradient-text {
     @apply bg-gradient-to-r from-ethereal-purple via-ethereal-teal to-ethereal-blue text-transparent bg-clip-text animate-shimmer;
     background-size: 300% 100%;
   }
-  
+
   .code-block {
     @apply bg-white/60 dark:bg-gray-900/80 p-4 rounded-xl text-ethereal-light text-sm overflow-x-auto border border-zinc-300 dark:border-gray-800;
     box-shadow: inset 0 0 20px rgba(121, 40, 202, 0.1);
   }
-  
+
   .neon-glow {
     filter: drop-shadow(0 0 10px rgba(121, 40, 202, 0.5));
   }
-  
+
   .cyber-grid {
-    background-image: 
-      linear-gradient(rgba(121, 40, 202, 0.1) 1px, transparent 1px),
+    background-image: linear-gradient(
+        rgba(121, 40, 202, 0.1) 1px,
+        transparent 1px
+      ),
       linear-gradient(90deg, rgba(121, 40, 202, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
-  .shaky-effect{
+  .shaky-effect {
     animation: shake 0.5s;
   }
+  .animate-ringGlow {
+    animation: ringGlow 1.6s ease-in-out infinite alternate-reverse;
+  }
 }
-
-
 
 @keyframes accordion-down {
   from {
@@ -129,17 +136,50 @@
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0); /* Move slightly left */
   }
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);  /* Move slightly right */
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0); /* Move slightly right */
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0); /* Move further left */
   }
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);  /* Move further right */
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0); /* Move further right */
+  }
+}
+
+@keyframes ringGlow {
+  0% {
+    transform: scale(0);
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  25% {
+    transform: scale(0.5);
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+  75% {
+    transform: scale(0.5);
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0.4;
+    filter: blur(2px);
   }
 }
 
@@ -170,19 +210,27 @@
 }
 
 @utility bg-gradient-conic {
-  background-image: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+  background-image: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
 }
 
 @utility bg-shimmer-gradient {
-  background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 :base {
-  --main-top: #F5F5F5;
-  --main-bottom: #FFFFFF;
+  --main-top: #f5f5f5;
+  --main-bottom: #ffffff;
 }
 
-.dark{
+.dark {
   --main-top: #121212;
   --main-bottom: #000000;
 }
@@ -193,12 +241,12 @@
   --animate-glow: glow 3s infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-shimmer: shimmer 8s ease-in-out infinite;
-  --color-ethereal-purple: #7928CA;
-  --color-ethereal-teal: #00C9A7;
-  --color-ethereal-blue: #2196F3;
-  --color-ethereal-pink: #FF4081;
+  --color-ethereal-purple: #7928ca;
+  --color-ethereal-teal: #00c9a7;
+  --color-ethereal-blue: #2196f3;
+  --color-ethereal-pink: #ff4081;
   --color-ethereal-dark: #121212;
-  --color-ethereal-light: #FFFFFF;
+  --color-ethereal-light: #ffffff;
   --color-main-top: var(--main-top);
   --color-main-bottom: var(--main-bottom);
 }
