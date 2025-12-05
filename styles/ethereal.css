@@ -76,7 +76,8 @@
   --color-status-text-inprogress: var(--status-text-inprogress);
   --color-toast-information: var(--toast-information);
   --color-status-text-published: var(--status-text-published);
-  --color-button-disabled-text: var(--button-disabled-text)
+  --color-button-disabled-text: var(--button-disabled-text);
+  --color-sheet-filetype-color: var(--sheet-filetype-color);
 }
 
 :root {
@@ -151,6 +152,7 @@
   --toast-information: oklch(from #3b82f6 l c h);
   --status-text-published: oklch(from #95ffb5 l c h);
   --button-disabled-text: oklch(from #7a7a7a l c h);
+  --sheet-filetype-color: oklch(from #188038 l c h);
 }
 
 .dark {
@@ -223,6 +225,7 @@
   --toast-information: oklch(from #3b82f6 l c h);
   --status-text-published: oklch(from #95ffb5 l c h);
   --button-disabled-text: oklch(from #7a7a7a l c h);
+  --sheet-filetype-color: oklch(from #188038 l c h);
 }
 
 @layer base {

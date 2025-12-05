@@ -1,7 +1,7 @@
 {
   "name": "@happect/ethereal-ui",
   "description": "Ethereal Garden - A React UI Component Library",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "files": [
     "dist",
     "styles/ethereal.css"

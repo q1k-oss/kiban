@@ -6,9 +6,9 @@ import { Minus } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "../utils";
-const OTPVariantContext = React.createContext<{ variant: "default" | "separate" }>(
-  { variant: "default" }
-);
+const OTPVariantContext = React.createContext<{
+  variant: "default" | "separate";
+}>({ variant: "default" });
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
   Omit<React.ComponentPropsWithoutRef<typeof OTPInput>, "render"> & {
@@ -28,6 +28,11 @@ const InputOTP = React.forwardRef<
           variantClasses[variant],
           containerClassName
         )}
+        onBeforeInput={(e) => {
+          if (!/^[0-9]$/.test(e.data)) e.preventDefault();
+        }}
+        inputMode="numeric"
+        pattern="[0-9]*"
         className={cn(
           "disabled:cursor-not-allowed",
 
@@ -65,8 +70,7 @@ const InputOTPSlot = React.forwardRef<
         variant: {
           default:
             "h-9 w-9 border-y border-r border-input text-sm first:rounded-l-md first:border-l last:rounded-r-md",
-          separate:
-            "h-10 w-10 border border-input rounded-lg mx-2",
+          separate: "h-10 w-10 border border-input rounded-lg mx-2",
         },
       },
       defaultVariants: {
@@ -76,15 +80,15 @@ const InputOTPSlot = React.forwardRef<
   );
 
   return (
-      <div
-        ref={ref}
-        className={cn(
-          slotClasses({ variant }),
-          isActive && "z-10 ring-1 ring-ring",
-          className
-        )}
-        {...props}
-      >
+    <div
+      ref={ref}
+      className={cn(
+        slotClasses({ variant }),
+        isActive && "z-10 ring-1 ring-ring",
+        className
+      )}
+      {...props}
+    >
       {char}
 
       {hasFakeCaret && (
