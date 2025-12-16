@@ -31,8 +31,8 @@ const config = {
       // Configure webpack to watch node_modules
       config.watchOptions = {
         ...config.watchOptions,
-        poll: 1000, // Check for changes every second
-        aggregateTimeout: 300, // Delay rebuild by 300ms
+        // poll: 1000, // Check for changes every second
+        // aggregateTimeout: 300, // Delay rebuild by 300ms
         ignored: [
           '**/node_modules/**',
         ],
