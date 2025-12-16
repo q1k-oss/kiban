@@ -1,7 +1,7 @@
 import React from "react";
 interface CreateAgentIconProps {
   className?: string;
-  size?: number; // controls width, height scales automatically
+  size?: number; 
 }
 
 export const CreateAgentIcon = ({
