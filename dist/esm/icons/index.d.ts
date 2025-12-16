@@ -3,3 +3,4 @@ export * from './ArrowUpIcon';
 export * from './CheckIcon';
 export * from './PaperClipIcon';
 export * from './SquareIcon';
+export * from './FilterIcon';
