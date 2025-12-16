@@ -81,6 +81,7 @@
   --color-status-fill-published: var(--status-fill-published);
   --color-status-fill-inprogress: var(--status-fill-inprogress);
   --color-status-fill-paused: var(--status-fill-paused);
+  --color-dropdown-fill: var(--dropdown-fill);
 }
 
 :root {
@@ -159,6 +160,7 @@
   --status-fill-published: oklch(from #044317 l c h);
   --status-fill-inprogress: oklch(from #003a6d l c h);
   --status-fill-paused: oklch(from #d97000 l c h);
+  --dropdown-fill: oklch(from #d0d0d0 l c h);
 }
 
 .dark {
@@ -235,6 +237,7 @@
   --status-fill-published: oklch(from #044317 l c h);
   --status-fill-inprogress: oklch(from #003a6d l c h);
   --status-fill-paused: oklch(from #d97000 l c h);
+  --dropdown-fill: oklch(from #363636 l c h);
 }
 
 @layer base {
