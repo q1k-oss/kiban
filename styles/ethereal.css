@@ -78,6 +78,9 @@
   --color-status-text-published: var(--status-text-published);
   --color-button-disabled-text: var(--button-disabled-text);
   --color-sheet-filetype-color: var(--sheet-filetype-color);
+  --color-status-fill-published: var(--status-fill-published);
+  --color-status-fill-inprogress: var(--status-fill-inprogress);
+  --color-status-fill-paused: var(--status-fill-paused);
 }
 
 :root {
@@ -153,6 +156,9 @@
   --status-text-published: oklch(from #95ffb5 l c h);
   --button-disabled-text: oklch(from #7a7a7a l c h);
   --sheet-filetype-color: oklch(from #188038 l c h);
+  --status-fill-published: oklch(from #044317 l c h);
+  --status-fill-inprogress: oklch(from #003a6d l c h);
+  --status-fill-paused: oklch(from #d97000 l c h);
 }
 
 .dark {
@@ -226,6 +232,9 @@
   --status-text-published: oklch(from #95ffb5 l c h);
   --button-disabled-text: oklch(from #7a7a7a l c h);
   --sheet-filetype-color: oklch(from #188038 l c h);
+  --status-fill-published: oklch(from #044317 l c h);
+  --status-fill-inprogress: oklch(from #003a6d l c h);
+  --status-fill-paused: oklch(from #d97000 l c h);
 }
 
 @layer base {
