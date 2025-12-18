@@ -5,3 +5,4 @@ export * from './PaperClipIcon';
 export * from './SquareIcon';
 export * from './FilterIcon';
 export * from './CreateAgentIcon';
+export * from './FolderQ1kIcon';
