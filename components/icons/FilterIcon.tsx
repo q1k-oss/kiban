@@ -1,9 +1,14 @@
 interface FilterIconProps {
   className?: string;
   size?: number;
+  strokeWidth?: number;
 }
 
-export const FilterIcon = ({ className, size = 20 }: FilterIconProps) => {
+export const FilterIcon = ({
+  className,
+  strokeWidth = 1.5,
+  size = 20,
+}: FilterIconProps) => {
   return (
     <svg
       width={size}
@@ -16,7 +21,7 @@ export const FilterIcon = ({ className, size = 20 }: FilterIconProps) => {
       <path
         d="M0.850098 0.851562H18.8501M4.4501 7.35156H15.2501M7.1501 13.8516H12.5501"
         stroke="currentColor"
-        strokeWidth="1.7"
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
