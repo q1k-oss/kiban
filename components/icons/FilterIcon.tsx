@@ -1,4 +1,4 @@
-interface FilterIconProps {
+export interface FilterIconProps {
   className?: string;
   size?: number;
   strokeWidth?: number;

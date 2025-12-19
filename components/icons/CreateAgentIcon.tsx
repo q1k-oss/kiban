@@ -1,5 +1,5 @@
 import React from "react";
-interface CreateAgentIconProps {
+export interface CreateAgentIconProps {
   className?: string;
   size?: number; 
 }
