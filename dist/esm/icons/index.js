@@ -1,8 +1,18 @@
-export * from './TokenIcon.js';
-export * from './ArrowUpIcon.js';
-export * from './CheckIcon.js';
-export * from './PaperClipIcon.js';
-export * from './SquareIcon.js';
-export * from './FilterIcon.js';
-export * from './CreateAgentIcon.js';
-export * from './FolderQ1kIcon.js';
+import { ArrowUpIcon } from "./ArrowUpIcon";
+import { CheckIcon } from "./CheckIcon";
+import { CreateAgentIcon } from "./CreateAgentIcon";
+import { FilterIcon } from "./FilterIcon";
+import { FolderQ1kIcon } from "./FolderQ1kIcon";
+import { PaperClipIcon } from "./PaperClipIcon";
+import { SquareIcon } from "./SquareIcon";
+import { TokenIcon } from "./TokenIcon";
+export const CustomIcons = {
+    ArrowUpIcon,
+    CheckIcon,
+    CreateAgentIcon,
+    FilterIcon,
+    FolderQ1kIcon,
+    PaperClipIcon,
+    SquareIcon,
+    TokenIcon,
+};
