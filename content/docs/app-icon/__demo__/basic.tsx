@@ -2,7 +2,7 @@ import React from "react";
 
 import { AppIcon } from "@happect/ethereal-ui/ui/app-icon";
 
-export default function basic() {
+export default () => {
   return (
     <div className="flex items-center justify-between gap-2 w-full">
       <AppIcon
@@ -28,4 +28,4 @@ export default function basic() {
       <AppIcon iconName={"bot"} size={40} className="text-muted-foreground" />
     </div>
   );
-}
+};
