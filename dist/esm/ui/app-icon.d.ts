@@ -8,7 +8,6 @@ interface AppIconProps {
     size?: number;
     strokeWidth?: number;
     className?: string;
-    fallbackIcon?: IconName;
 }
 export declare const AppIcon: React.FC<AppIconProps>;
 export {};
