@@ -1,8 +1,7 @@
 import React from "react";
-interface TokenIconProps {
+export interface TokenIconProps {
     size?: number;
     className?: string;
     strokeWidth?: number;
 }
 export declare const TokenIcon: React.FC<TokenIconProps>;
-export {};

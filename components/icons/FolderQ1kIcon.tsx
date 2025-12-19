@@ -1,6 +1,6 @@
 import React from "react";
 
-interface FolderQ1kIconProps {
+export interface FolderQ1kIconProps {
   size?: number;
   className?: string;
   strokeWidth?: number;
@@ -48,9 +48,9 @@ export const FolderQ1kIcon: React.FC<FolderQ1kIconProps> = ({
       <svg
         x="9"
         y="8"
-        width="7"
-        height="7"
-        viewBox="0 0 7 8"
+        width="9"
+        height="9"
+        viewBox="0 0 9 10"
         fill="currentColor"
         strokeWidth={strokeWidth / 2}
       >

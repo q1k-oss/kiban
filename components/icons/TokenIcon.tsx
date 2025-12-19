@@ -1,5 +1,5 @@
 import React from "react";
-interface TokenIconProps {
+export interface TokenIconProps {
   size?: number;
   className?: string;
   strokeWidth?: number;

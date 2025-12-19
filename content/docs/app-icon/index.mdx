@@ -1,0 +1,35 @@
+---
+title: App Icon
+description: A utility component to dynamically render icons by name, supporting both Lucide icons and custom icons with safe fallbacks.
+tags: ["icon", "lucide", "ui", "dynamic", "custom-icons"]
+---
+
+<Links links={[{ title: "Lucide Icons", url: "https://lucide.dev/icons/" }]} />
+
+### When To Use
+
+Use **AppIcon** when you need to:
+
+- Render icons dynamically using a string value
+- Support icons coming from backend APIs or configurations
+- Combine **Lucide icons** with **custom SVG icons**
+- Avoid runtime crashes when an icon is missing
+- Enable autocomplete and type safety for icon names
+- Future-proof your UI when icons may increase or change
+
+`AppIcon` provides a single, scalable solution for resolving icons from multiple sources while maintaining clean and maintainable code.
+
+---
+
+### Features
+
+- Autocomplete support for icon names (Lucide + Custom)
+- Backend-safe string handling
+- Fallback icon for missing entries
+- Centralized icon resolution logic
+
+---
+
+### Examples
+
+<Preview lang="jsx" file="/app-icon/__demo__/basic" title="Basic Usage" />
