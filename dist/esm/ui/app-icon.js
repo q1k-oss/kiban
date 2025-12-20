@@ -1,3 +1,4 @@
+"use client";
 import { jsx as _jsx } from "react/jsx-runtime";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { CustomIcons } from "../icons";

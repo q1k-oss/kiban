@@ -1,13 +1,20 @@
-const path = require('path');
+import { Buffer } from 'buffer';
+import console from 'console';
+import { createRequire } from 'module';
+import path from 'path';
+import process from 'process';
+import { fileURLToPath } from 'url';
 
-const gulp = require('gulp');
-const ts = require('gulp-typescript');
-const merge = require('merge2');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const through2 = require('through2');
-const webpack = require('webpack');
-const webpackStream = require('webpack-stream');
+import gulp from 'gulp';
+import ts from 'gulp-typescript';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import through2 from 'through2';
+import webpack from 'webpack';
+import webpackStream from 'webpack-stream';
+
+const require = createRequire(import.meta.url);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function addJsExtensions() {
   return through2.obj(function (file, _, next) {
@@ -74,6 +81,7 @@ function buildCommonJS() {
         [pkg.name]: process.cwd(),
         ["@happect/ethereal-ui"]: path.resolve(__dirname, 'components'),
         ["@/utils"]: path.resolve(__dirname, 'utils'),
+        "lucide-react/dynamic": path.resolve(__dirname, 'node_modules/lucide-react/dynamic.mjs'),
       },
       fallback: [
         'child_process',
@@ -159,6 +167,7 @@ function buildCommonJS() {
     },
     optimization: {
       usedExports: true,
+      splitChunks: false,
       minimizer: [
         new TerserPlugin({
           parallel: true,
@@ -168,10 +177,16 @@ function buildCommonJS() {
         }),
       ],
     },
+    performance: {
+      hints: false,
+    },
     stats: {
       errorDetails: true,
     },
     plugins: [
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1,
+      }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
       }),
@@ -214,16 +229,19 @@ function buildESModule() {
       allowJs: true
     }));
 
-  return merge([
-    tsResult.dts.pipe(gulp.dest('dist/esm').on('error', function (error) {
-      console.error('TypeScript dts compilation error:', error);
-      this.emit('done');
-    })),
-    tsResult.js.pipe(addJsExtensions()).pipe(gulp.dest('dist/esm').on('error', function (error) {
-      console.error('TypeScript js compilation error:', error);
-      this.emit('done');
-    })),
-  ]);
+  return new Promise((resolve, reject) => {
+    const dtsStream = tsResult.dts.pipe(gulp.dest('dist/esm'));
+    const jsStream = tsResult.js.pipe(addJsExtensions()).pipe(gulp.dest('dist/esm'));
+
+    let completed = 0;
+    const done = () => {
+      completed++;
+      if (completed === 2) resolve();
+    };
+
+    dtsStream.on('end', done).on('error', reject);
+    jsStream.on('end', done).on('error', reject);
+  });
 }
 
 gulp.task('compile-es', () => {

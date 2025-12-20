@@ -1,3 +1,5 @@
+"use client";
+
 import { DynamicIcon, type IconName } from "lucide-react/dynamic";
 import React from "react";
 
@@ -11,7 +13,7 @@ interface AppIconProps {
   size?: number;
   strokeWidth?: number;
   className?: string;
-  
+
 }
 
 export const AppIcon: React.FC<AppIconProps> = ({
