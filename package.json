@@ -7,7 +7,6 @@
     "styles/ethereal.css"
   ],
   "license": "MIT",
-  "homepage": "https://ethereal.garden",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -84,7 +83,7 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.511.0",
+    "lucide-react": "^0.562.0",
     "next-themes": "^0.4.6",
     "react-day-picker": "^9.7.0",
     "react-hook-form": "^7.56.4",
@@ -92,6 +91,10 @@
     "react-resizable-panels": "^3.0.2",
     "sonner": "^2.0.3",
     "vaul": "^1.1.2"
+  },
+  "overrides": {
+    "glob": "^10.0.0",
+    "inflight": "npm:lru-cache@^10.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "7.27.2",
@@ -125,13 +128,12 @@
     "globals": "16.1.0",
     "gulp": "^5.0.0",
     "gulp-typescript": "6.0.0-alpha.1",
-    "gulp-webpack": "1.5.0",
     "hast-util-to-jsx-runtime": "2.3.6",
     "lightningcss": "1.30.1",
     "merge2": "1.4.1",
     "mini-css-extract-plugin": "2.9.2",
     "motion": "12.12.2",
-    "next": "15.3.2",
+    "next": "^15.4.7",
     "postcss": "8.5.3",
     "react": "19.1.0",
     "react-docgen": "8.0.0",

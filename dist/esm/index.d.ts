@@ -48,3 +48,4 @@ export * from './ui/phone-input';
 export * from './utils/index';
 export * from './icons/index';
 export * from './ui/stepper';
+export * from './ui/app-icon';

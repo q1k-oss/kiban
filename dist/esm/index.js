@@ -1,3 +1,4 @@
+"use client";
 export * from './ui/accordion.js';
 export * from './ui/alert-dialog.js';
 export * from './ui/alert.js';
@@ -48,3 +49,4 @@ export * from './ui/phone-input.js';
 export * from './utils/index.js';
 export * from './icons/index.js';
 export * from './ui/stepper.js';
+export * from './ui/app-icon.js';
