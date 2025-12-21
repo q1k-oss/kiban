@@ -9,23 +9,32 @@ export default () => {
         iconName={"layout-dashboard"}
         size={40}
         className="text-muted-foreground"
+        source="LUCIDE"
       />
       <AppIcon
         iconName={"FolderQ1kIcon"}
         size={40}
         className="text-muted-foreground"
+        source="CUSTOM"
       />
       <AppIcon
         iconName="TokenIcon"
         size={40}
         className="text-muted-foreground"
+        source="CUSTOM"
       />
       <AppIcon
         iconName={"rocket"}
         size={40}
         className="text-muted-foreground"
+        source="LUCIDE"
       />
-      <AppIcon iconName={"bot"} size={40} className="text-muted-foreground" />
+      <AppIcon
+        iconName={"bot"}
+        size={40}
+        className="text-muted-foreground"
+        source="LUCIDE"
+      />
     </div>
   );
 };
