@@ -6,7 +6,7 @@ import { FolderQ1kIcon } from "./FolderQ1kIcon";
 import { PaperClipIcon } from "./PaperClipIcon";
 import { SquareIcon } from "./SquareIcon";
 import { TokenIcon } from "./TokenIcon";
-export const CustomIcons = {
+const CustomIcons = {
     ArrowUpIcon,
     CheckIcon,
     CreateAgentIcon,
@@ -16,3 +16,4 @@ export const CustomIcons = {
     SquareIcon,
     TokenIcon,
 };
+export { CustomIcons };

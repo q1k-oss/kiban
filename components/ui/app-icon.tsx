@@ -16,7 +16,7 @@ interface AppIconProps {
 
 }
 
-export const AppIcon: React.FC<AppIconProps> = ({
+const AppIcon: React.FC<AppIconProps> = ({
   iconName,
   size = 20,
   strokeWidth = 1.5,
@@ -38,3 +38,6 @@ export const AppIcon: React.FC<AppIconProps> = ({
     />
   );
 };
+
+export { AppIcon }
+

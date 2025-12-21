@@ -9,5 +9,5 @@ interface AppIconProps {
     strokeWidth?: number;
     className?: string;
 }
-export declare const AppIcon: React.FC<AppIconProps>;
-export {};
+declare const AppIcon: React.FC<AppIconProps>;
+export { AppIcon };

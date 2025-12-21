@@ -16,7 +16,7 @@ export default () => {
         className="text-muted-foreground"
       />
       <AppIcon
-        iconName={"TokenIcon"}
+        iconName="TokenIcon"
         size={40}
         className="text-muted-foreground"
       />
