@@ -30,10 +30,28 @@ export default () => {
         source="LUCIDE"
       />
       <AppIcon
-        iconName={"bot"}
+        iconName={"GoogleDriveIcon"}
         size={40}
         className="text-muted-foreground"
-        source="LUCIDE"
+        source="CUSTOM"
+      />
+      <AppIcon
+        iconName={"FileCSVIcon"}
+        size={40}
+        className="text-red-700"
+        source="CUSTOM"
+      />
+      <AppIcon
+        iconName={"FilePDFIcon"}
+        size={40}
+        className="text-green-700"
+        source="CUSTOM"
+      />
+      <AppIcon
+        iconName={"FileDOCIcon"}
+        size={40}
+        className="text-orange-700"
+        source="CUSTOM"
       />
     </div>
   );
