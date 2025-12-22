@@ -1,34 +1,30 @@
 import { ArrowUpIcon } from "./ArrowUpIcon";
 import { CheckIcon } from "./CheckIcon";
 import { CreateAgentIcon } from "./CreateAgentIcon";
+import { FileCSVIcon } from "./FileCSVIcon";
+import { FileDOCIcon } from "./FileDOCIcon";
+import { FilePDFIcon } from "./FilePDFIcon";
 import { FilterIcon } from "./FilterIcon";
 import { FolderQ1kIcon } from "./FolderQ1kIcon";
+import { GoogleDriveIcon } from "./GoogleDriveIcon";
 import { PaperClipIcon } from "./PaperClipIcon";
 import { SquareIcon } from "./SquareIcon";
 import { TokenIcon } from "./TokenIcon";
 
 const CustomIcons = {
-  ArrowUpIcon,
-  CheckIcon,
-  CreateAgentIcon,
-  FilterIcon,
-  FolderQ1kIcon,
-  PaperClipIcon,
-  SquareIcon,
-  TokenIcon,
+  "ArrowUpIcon":ArrowUpIcon,
+  "CheckIcon":CheckIcon,
+  "CreateAgentIcon":CreateAgentIcon,
+  "FilterIcon":FilterIcon,
+  "FolderQ1kIcon":FolderQ1kIcon,
+  "PaperClipIcon":PaperClipIcon,
+  "SquareIcon":SquareIcon,
+  "TokenIcon":TokenIcon,
+  "GoogleDriveIcon":GoogleDriveIcon,
+  "FileCSVIcon":FileCSVIcon,
+  "FilePDFIcon":FilePDFIcon,
+  "FileDOCIcon":FileDOCIcon
 };
-
-
-// const CustomIconDict = {
-//   "q1k-ArrowUpIcon": ArrowUpIcon,
-//   "q1k-CheckIcon": CheckIcon,
-//   "q1k-CreateAgentIcon": CreateAgentIcon,
-//   "q1k-FilterIcon": FilterIcon,
-//   "q1k-FolderQ1kIcon": FolderQ1kIcon,
-//   "q1k-PaperClipIcon": PaperClipIcon,
-//   "q1k-SquareIcon": SquareIcon,
-//   "q1k-TokenIcon": TokenIcon,
-// }
 
 export type CustomIconName = keyof typeof CustomIcons;
 
