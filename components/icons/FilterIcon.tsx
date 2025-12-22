@@ -1,14 +1,16 @@
+import React from "react";
+
 export interface FilterIconProps {
   className?: string;
   size?: number;
   strokeWidth?: number;
 }
 
-export const FilterIcon = ({
+export const FilterIcon: React.FC<FilterIconProps> = ({
   className,
   strokeWidth = 1.5,
   size = 20,
-}: FilterIconProps) => {
+}) => {
   return (
     <svg
       width={size}
