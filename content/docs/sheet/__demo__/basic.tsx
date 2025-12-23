@@ -7,14 +7,14 @@ import {
   SheetTrigger,
   SheetFooter,
   Button,
-} from '@happect/ethereal-ui';
+} from "@happect/ethereal-ui";
 
 export default () => (
   <Sheet>
     <SheetTrigger asChild>
       <Button variant="outline">Open Sheet</Button>
     </SheetTrigger>
-    <SheetContent>
+    <SheetContent className="border border-r-0 border-stroke">
       <SheetHeader>
         <SheetTitle>Project Details</SheetTitle>
         <SheetDescription>
@@ -25,13 +25,15 @@ export default () => (
         <div className="space-y-4">
           <div className="space-y-2">
             <h4 className="text-sm font-medium">Project Name</h4>
-            <p className="text-sm text-muted-foreground">Ethereal Garden Dashboard</p>
+            <p className="text-sm text-muted-foreground">
+              Ethereal Garden Dashboard
+            </p>
           </div>
           <div className="space-y-2">
             <h4 className="text-sm font-medium">Description</h4>
             <p className="text-sm text-muted-foreground">
-              A modern dashboard for the Ethereal Garden platform, providing analytics, 
-              user management, and content moderation tools.
+              A modern dashboard for the Ethereal Garden platform, providing
+              analytics, user management, and content moderation tools.
             </p>
           </div>
           <div className="space-y-2">
@@ -50,4 +52,4 @@ export default () => (
       </SheetFooter>
     </SheetContent>
   </Sheet>
-) 
+);
