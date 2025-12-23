@@ -6,6 +6,7 @@ import { FileDOCIcon } from "./FileDOCIcon";
 import { FilePDFIcon } from "./FilePDFIcon";
 import { FilterIcon } from "./FilterIcon";
 import { FolderQ1kIcon } from "./FolderQ1kIcon";
+import { FullPreviewPlay } from "./FullPreviewPlay";
 import { GoogleDriveIcon } from "./GoogleDriveIcon";
 import { PaperClipIcon } from "./PaperClipIcon";
 import { SquareIcon } from "./SquareIcon";
@@ -23,7 +24,8 @@ const CustomIcons = {
   "GoogleDriveIcon":GoogleDriveIcon,
   "FileCSVIcon":FileCSVIcon,
   "FilePDFIcon":FilePDFIcon,
-  "FileDOCIcon":FileDOCIcon
+  "FileDOCIcon":FileDOCIcon,
+  "FullPreviewPlay":FullPreviewPlay
 };
 
 export type CustomIconName = keyof typeof CustomIcons;

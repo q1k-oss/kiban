@@ -11,6 +11,7 @@ declare const CustomIcons: {
     FileCSVIcon: import("react").FC<import("./FileCSVIcon").FileCSVIconProps>;
     FilePDFIcon: import("react").FC<import("./FilePDFIcon").FilePDFIconProp>;
     FileDOCIcon: import("react").FC<import("./FileDOCIcon").FileDOCIconProps>;
+    FullPreviewPlay: import("react").FC<import("./FullPreviewPlay").FullPreviewPlayProps>;
 };
 export type CustomIconName = keyof typeof CustomIcons;
 export { CustomIcons };
