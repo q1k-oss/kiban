@@ -49,3 +49,4 @@ export * from './utils/index';
 export * from './icons/index';
 export * from './ui/stepper';
 export * from './ui/app-icon';
+export * from './ui/workflow-canvas';
