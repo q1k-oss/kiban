@@ -1,13 +1,13 @@
 import React from "react";
 export interface CreateAgentIconProps {
   className?: string;
-  size?: number; 
+  size?: number;
 }
 
-export const CreateAgentIcon = ({
+export const CreateAgentIcon: React.FC<CreateAgentIconProps> = ({
   className,
   size = 135,
-}: CreateAgentIconProps) => {
+}) => {
   return (
     <svg
       width={size}

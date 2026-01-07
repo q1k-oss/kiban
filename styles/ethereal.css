@@ -82,6 +82,9 @@
   --color-status-fill-inprogress: var(--status-fill-inprogress);
   --color-status-fill-paused: var(--status-fill-paused);
   --color-dropdown-fill: var(--dropdown-fill);
+  --color-node-field-fill: var(--node-field-fill);
+  --color-border-3: var(--border-3);
+  --color-button-fill-3: var(--button-fill-3);
 }
 
 :root {
@@ -161,6 +164,9 @@
   --status-fill-inprogress: oklch(from #003a6d l c h);
   --status-fill-paused: oklch(from #d97000 l c h);
   --dropdown-fill: oklch(from #d0d0d0 l c h);
+  --node-field-fill: oklch(from #4c4a4a l c h);
+  --border-3: oklch(from #434343 l c h);
+  --button-fill-3: oklch(from #272727 l c h);
 }
 
 .dark {
@@ -238,6 +244,9 @@
   --status-fill-inprogress: oklch(from #003a6d l c h);
   --status-fill-paused: oklch(from #d97000 l c h);
   --dropdown-fill: oklch(from #363636 l c h);
+  --node-field-fill: oklch(from #4c4a4a l c h);
+  --border-3: oklch(from #434343 l c h);
+  --button-fill-3: oklch(from #272727 l c h);
 }
 
 @layer base {

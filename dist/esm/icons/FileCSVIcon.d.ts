@@ -1,7 +1,7 @@
 import React from "react";
-export interface FilterIconProps {
+export interface FileCSVIconProps {
     className?: string;
     size?: number;
     strokeWidth?: number;
 }
-export declare const FilterIcon: React.FC<FilterIconProps>;
+export declare const FileCSVIcon: React.FC<FileCSVIconProps>;

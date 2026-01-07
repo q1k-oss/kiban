@@ -64,6 +64,19 @@ function buildCommonJS() {
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'commonjs2',
     },
+     externals: [
+      {
+        react: 'react',
+        'react-dom': 'react-dom',
+        'lucide-react': 'lucide-react',
+        'lucide-react/dynamic': 'lucide-react/dynamic',
+      },
+      /^@radix-ui\/.+$/,
+      /^next-themes$/,
+      /^class-variance-authority$/,
+      /^clsx$/,
+      /^tailwind-merge$/,
+    ],
     resolve: {
       modules: ['node_modules', path.join(__dirname, '../node_modules'), path.join(__dirname), path.join(__dirname, 'utils')],
       extensions: [

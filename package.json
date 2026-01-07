@@ -12,9 +12,9 @@
   "types": "dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/esm/index.js",
-      "types": "./dist/esm/index.d.ts"
+      "require": "./dist/esm/index.js"
     },
     "./styles": "./styles/ethereal.css",
     "./styles/ethereal.css": "./styles/ethereal.css",
