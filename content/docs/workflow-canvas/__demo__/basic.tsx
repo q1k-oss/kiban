@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 
 import {
   AppIcon,
-  WorflowCanvas,
+  WorkflowCanvas,
   WorflowCanvasNodeHandle,
-  WorflowCanvasNodePosition
+  WorflowCanvasNodePosition,
+  cn,
 } from "@happect/ethereal-ui";
 // ================= TYPES =================
 interface CustomCardProps {
@@ -15,7 +16,55 @@ interface CustomCardProps {
     subtitle?: string;
   };
 }
+interface ToolTipProp {
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+}
+// TOOL-TIP
+const ToolTip: React.FC<ToolTipProp> = ({ onZoomIn, onZoomOut }) => {
+  const TOOL_TIP_ITEMS = [
+    {
+      label: "Zoom in",
+      icon: "zoom-in",
+      action: onZoomIn,
+    },
+    {
+      label: "Zoom out",
+      icon: "zoom-out",
+      action: onZoomOut,
+    },
+    { label: "Undo", icon: "undo" },
+    { label: "Redo", icon: "redo" },
+    { label: "Chat mode", icon: "messages-square" },
+    { label: "Dev mode", icon: "code-xml" },
+  ];
 
+  return (
+    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-background-black border border-stroke rounded-md w-fit py-1 px-2">
+      {TOOL_TIP_ITEMS.map((item, idx) => {
+        const hasSeparator = idx !== TOOL_TIP_ITEMS.length - 1 && idx % 2 !== 0;
+        return (
+          <React.Fragment key={idx}>
+            <div className="relative group">
+              <div
+                onClick={item.action}
+                className={cn(
+                  "p-1 text-icon-color-default hover:bg-copilot-background rounded-md cursor-pointer transition-all duration-100"
+                )}
+              >
+                <AppIcon iconName={item.icon} />
+              </div>
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-agent-card-fill border border-button-border2 text-xs font-light whitespace-nowrap rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none">
+                {item.label}
+              </div>
+            </div>
+            {hasSeparator && <div className="h-6 w-[1px] bg-icon-border"></div>}
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+};
 const CustomComponent: React.FC<CustomCardProps> = ({ data }) => (
   <div className="bg-agent-card-fill border border-button-border2 rounded-lg p-4 w-[280px] shadow-lg flex flex-col items-center gap-4">
     {/* Input CanvasNodeHandle */}
@@ -136,13 +185,24 @@ const initialEdges = [
 ];
 
 export default () => {
+  const canvasRef = useRef(null);
+  const handleZoomIn = () => {
+    canvasRef.current?.zoomIn({ duration: 200 });
+  };
+
+  const handleZoomOut = () => {
+    canvasRef.current?.zoomOut({ duration: 200 });
+  };
   return (
     <div className="relative h-[600px]">
-      <WorflowCanvas
+      <WorkflowCanvas
+        ref={canvasRef}
         workFlowEdges={initialEdges}
         workFlowNodes={initialNodes}
         nodeTypes={nodeTypes}
-      />
+      >
+        <ToolTip onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
+      </WorkflowCanvas>
     </div>
   );
 };
