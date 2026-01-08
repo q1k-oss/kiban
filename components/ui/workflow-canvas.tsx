@@ -66,7 +66,7 @@ const WorkflowCanvasInner = forwardRef<any, WorkflowCanvasProp>(
       >
         <MiniMap
           nodeColor="var(--button-border2)"
-          maskColor="var(--minimap)"
+          maskColor="rgba(0,0,0,0.5)"
           className="bg-minimap! overflow-hidden! rounded-md! border! border-button-border2!"
           style={{ width: 150, height: 120 }}
           zoomStep={0.5}
