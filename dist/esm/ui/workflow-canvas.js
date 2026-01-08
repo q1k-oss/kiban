@@ -16,7 +16,7 @@ const WorkflowCanvasInner = forwardRef(({ workFlowEdges, workFlowNodes, nodeType
     const onNodesChange = useCallback((changes) => setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)), []);
     const onEdgesChange = useCallback((changes) => setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)), []);
     const onConnect = useCallback((params) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)), []);
-    return (_jsxs(ReactFlow, { nodes: nodes, edges: edges, onNodesChange: onNodesChange, onEdgesChange: onEdgesChange, onConnect: onConnect, nodeTypes: nodeTypes, proOptions: { hideAttribution: true }, fitView: true, children: [_jsx(MiniMap, { nodeColor: "var(--button-border2)", maskColor: "var(--minimap)", className: "bg-minimap! overflow-hidden! rounded-md! border! border-button-border2!", style: { width: 150, height: 120 }, zoomStep: 0.5 }), _jsx(Background, {}), children] }));
+    return (_jsxs(ReactFlow, { nodes: nodes, edges: edges, onNodesChange: onNodesChange, onEdgesChange: onEdgesChange, onConnect: onConnect, nodeTypes: nodeTypes, proOptions: { hideAttribution: true }, fitView: true, children: [_jsx(MiniMap, { nodeColor: "var(--button-border2)", maskColor: "rgba(0,0,0,0.5)", className: "bg-minimap! overflow-hidden! rounded-md! border! border-button-border2!", style: { width: 150, height: 120 }, zoomStep: 0.5 }), _jsx(Background, {}), children] }));
 });
 WorkflowCanvasInner.displayName = "WorkflowCanvasInner";
 // Wrapper with ReactFlowProvider
