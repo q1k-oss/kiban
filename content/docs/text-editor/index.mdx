@@ -1,0 +1,49 @@
+---
+title: Text Editor
+description: A rich text editor component built with Tiptap, featuring Notion-like slash commands, inline formatting, and support for images, links, and custom styling.
+tags: ["editor", "tiptap", "rich-text", "notion", "wysiwyg"]
+---
+
+<Links links={[
+  { title: "Tiptap", url: "https://tiptap.dev/" },
+  { title: "Tiptap Extensions", url: "https://tiptap.dev/docs/editor/extensions" }
+]} />
+
+### When To Use
+
+Use **TextEditor** when you need to:
+
+- Provide a rich text editing experience similar to Notion or Google Docs
+- Allow users to format text with bold, italic, underline, and other styles
+- Support structured content like headings, lists, quotes, and code blocks
+- Allow image uploads from local devices or URLs
+- Customize text appearance with colors and font sizes
+- Create documents with links and highlights
+
+---
+
+## Features
+
+- **Inline Formatting** - Bold, italic, underline, strikethrough, code, links, and highlights
+- **Font Customization** - Adjust text size and color
+- **Image Support** - Upload from device or embed via URL
+- **Rich Content Blocks** - Headings, quotes, code blocks, dividers
+- **Modern UI** - Floating menus and bubble toolbars
+
+---
+
+### Examples
+
+<Preview lang="jsx" file="/text-editor/__demo__/basic" title="Basic Usage" />
+
+### API Reference
+
+#### TextEditor Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `initialContent` | `string` | `'<h1>Untitled Document</h1><p></p>'` | Initial HTML content for the editor |
+| `placeholder` | `string` | `"Type '/' for commands..."` | Placeholder text for empty paragraphs |
+| `onChange` | `(content: string) => void` | - | Callback fired when content changes |
+| `editable` | `boolean` | `true` | Whether the editor is editable |
+| `className` | `string` | - | Additional CSS classes for the container |
