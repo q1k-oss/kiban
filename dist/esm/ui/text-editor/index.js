@@ -11,10 +11,10 @@ import TextStyle from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
 import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { editorStyles } from "./editorStyles";
-import { FontSize } from './FontSize';
-import { InlineFormatMenu } from "./InlineFormatMenu";
-import { SlashCommandMenu } from "./SlashCommandMenu";
+import { editorStyles } from "./editor-styles";
+import { FontSize } from './font-size';
+import { InlineFormatMenu } from "./inline-format-menu";
+import { SlashCommandMenu } from "./slash-command-menu";
 const TextEditor = () => {
     const editor = useEditor({
         extensions: [

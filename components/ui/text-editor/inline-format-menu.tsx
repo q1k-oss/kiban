@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { AppIcon } from "../app-icon";
 
-import { FontSizePicker } from "./FontSizePicker";
+import { FontSizePicker } from "./font-size-picker";
 
 interface InlineFormatMenuProps {
   editor: Editor;

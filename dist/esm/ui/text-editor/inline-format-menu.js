@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from "react";
 import { AppIcon } from "../app-icon";
-import { FontSizePicker } from "./FontSizePicker";
+import { FontSizePicker } from "./font-size-picker";
 export const InlineFormatMenu = ({ editor }) => {
     const [showFontSizePicker, setShowFontSizePicker] = useState(false);
     const formats = [
