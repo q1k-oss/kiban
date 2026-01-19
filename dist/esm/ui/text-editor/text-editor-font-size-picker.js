@@ -7,7 +7,7 @@ const FONT_SIZES = [
     { label: "Extra Large", value: "32px" },
     { label: "Huge", value: "48px" },
 ];
-export const FontSizePicker = ({ editor, onClose }) => {
+export const TextEditorFontSizePicker = ({ editor, onClose }) => {
     return (_jsxs("div", { className: "absolute top-full w-full mt-2 bg-agent-card-fill border border-border-3 rounded-lg shadow-xl p-2 z-50 min-w-[160px]", children: [_jsx("div", { className: "text-sm font-medium text-primary-text mb-2 px-2", children: "Font Size" }), _jsxs("div", { className: "space-y-1", children: [FONT_SIZES.map((size) => (_jsxs("button", { onClick: () => {
                             editor.chain().focus().setMark("textStyle", { fontSize: size.value }).run();
                             onClose();

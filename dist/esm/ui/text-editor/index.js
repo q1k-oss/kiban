@@ -9,13 +9,13 @@ import Placeholder from "@tiptap/extension-placeholder";
 import TextAlign from "@tiptap/extension-text-align";
 import TextStyle from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
-import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from "@tiptap/react";
+import { useEditor, EditorContent, FloatingMenu, BubbleMenu, } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { editorStyles } from "./editor-styles";
-import { FontSize } from './font-size';
+import { FontSize } from "./font-size";
 import { InlineFormatMenu } from "./inline-format-menu";
 import { SlashCommandMenu } from "./slash-command-menu";
-const TextEditor = () => {
+const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className = "", editorClassName = "", }) => {
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
@@ -53,17 +53,24 @@ const TextEditor = () => {
                 allowBase64: true,
             }),
         ],
-        content: "<h1>Untitled Document</h1><p></p>",
+        content: value,
         editorProps: {
             attributes: {
-                class: "prose prose-lg max-w-none focus:outline-none",
+                class: `prose prose-lg max-w-none focus:outline-none ${editorClassName}`,
             },
+        },
+        onUpdate({ editor }) {
+            onChange === null || onChange === void 0 ? void 0 : onChange({
+                html: editor.getHTML(),
+                json: editor.getJSON(),
+                text: editor.getText(),
+            });
         },
         immediatelyRender: false,
     });
     if (!editor)
         return null;
-    return (_jsx("div", { className: "min-h-1/2 bg-transparent", children: _jsxs("div", { className: "max-w-4xl mx-auto px-4 py-4", children: [_jsx("style", { children: editorStyles }), _jsx(FloatingMenu, { editor: editor, tippyOptions: {
+    return (_jsx("div", { className: `bg-transparent ${className}`, children: _jsxs("div", { className: "max-w-4xl mx-auto px-4 py-4", children: [_jsx("style", { children: editorStyles }), _jsx(FloatingMenu, { editor: editor, tippyOptions: {
                         duration: 100,
                         placement: "bottom-start",
                         offset: [0, 8],

@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from "react";
 import { AppIcon } from "../app-icon";
-import { FontSizePicker } from "./font-size-picker";
+import { TextEditorFontSizePicker } from "./text-editor-font-size-picker";
 export const InlineFormatMenu = ({ editor }) => {
     const [showFontSizePicker, setShowFontSizePicker] = useState(false);
     const formats = [
@@ -59,5 +59,5 @@ export const InlineFormatMenu = ({ editor }) => {
                             setShowFontSizePicker(!showFontSizePicker);
                         }, title: "Font Size", className: `p-2 rounded transition-colors flex items-center gap-1 text-tertiary-text cursor-pointer ${showFontSizePicker
                             ? "bg-primary-foreground/10 text-primary-text"
-                            : "hover:text-primary-text hover:bg-primary-foreground/10"}`, children: [_jsx(AppIcon, { iconName: "type", size: 16 }), _jsx(AppIcon, { iconName: "chevron-down", size: 12 })] })] }), showFontSizePicker && (_jsx(FontSizePicker, { editor: editor, onClose: () => setShowFontSizePicker(false) }))] }));
+                            : "hover:text-primary-text hover:bg-primary-foreground/10"}`, children: [_jsx(AppIcon, { iconName: "type", size: 16 }), _jsx(AppIcon, { iconName: "chevron-down", size: 12 })] })] }), showFontSizePicker && (_jsx(TextEditorFontSizePicker, { editor: editor, onClose: () => setShowFontSizePicker(false) }))] }));
 };
