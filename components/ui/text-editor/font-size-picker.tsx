@@ -14,7 +14,7 @@ const FONT_SIZES = [
   { label: "Huge", value: "48px" },
 ];
 
-export const FontSizePicker = ({ editor, onClose }: FontSizePickerProps) => {
+export const TextEditorFontSizePicker = ({ editor, onClose }: FontSizePickerProps) => {
   return (
     <div className="absolute top-full w-full mt-2 bg-agent-card-fill border border-border-3 rounded-lg shadow-xl p-2 z-50 min-w-[160px]">
       <div className="text-sm font-medium text-primary-text mb-2 px-2">

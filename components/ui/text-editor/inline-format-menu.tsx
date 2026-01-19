@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { AppIcon } from "../app-icon";
 
-import { FontSizePicker } from "./font-size-picker";
+import { TextEditorFontSizePicker } from "./text-editor-font-size-picker";
 
 interface InlineFormatMenuProps {
   editor: Editor;
@@ -97,7 +97,7 @@ export const InlineFormatMenu = ({ editor }: InlineFormatMenuProps) => {
       </div>
 
       {showFontSizePicker && (
-        <FontSizePicker
+        <TextEditorFontSizePicker
           editor={editor}
           onClose={() => setShowFontSizePicker(false)}
         />
