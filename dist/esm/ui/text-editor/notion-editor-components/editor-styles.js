@@ -1,6 +1,6 @@
 export const editorStyles = `
   .ProseMirror {
-    min-height: 400px;
+    min-height: 200px;
   }
   
   .ProseMirror > * + * {
@@ -72,7 +72,7 @@ export const editorStyles = `
     padding: 0.2em 0.4em;
     border-radius: 0.25rem;
     font-size: 0.875em;
-    font-family: 'Monaco', 'Courier New', monospace;
+    
   }
 
   .ProseMirror pre {
@@ -81,7 +81,7 @@ export const editorStyles = `
     padding: 1rem;
     border-radius: 0.5rem;
     overflow-x: auto;
-    font-family: 'Monaco', 'Courier New', monospace;
+    
     font-size: 0.875rem;
     line-height: 1.5;
     margin: 1.5em 0;
@@ -144,4 +144,15 @@ export const editorStyles = `
   .ProseMirror a:hover {
     color: #2563eb;
   }
-`;
+    
+.prose h1 a,
+.prose h2 a,
+.prose h3 a,
+.prose h4 a,
+.prose h5 a,
+.prose h6 a {
+  color: inherit !important;
+  text-decoration: none !important;
+  font-weight: inherit !important;
+}
+  `;

@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { Editor } from "@tiptap/core";
 interface FontSizePickerProps {
     editor: Editor;
     onClose: () => void;

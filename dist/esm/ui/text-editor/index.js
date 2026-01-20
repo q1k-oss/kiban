@@ -11,38 +11,41 @@ import TextStyle from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
 import { useEditor, EditorContent, FloatingMenu, BubbleMenu, } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { editorStyles } from "./editor-styles";
-import { FontSize } from "./font-size";
-import { InlineFormatMenu } from "./inline-format-menu";
-import { SlashCommandMenu } from "./slash-command-menu";
-const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className = "", editorClassName = "", }) => {
+import { TopToolbar } from "./agent-editor-components/top-toolbar";
+import { TextEditorConfigProvider } from "./context/editor-config-context";
+import { HeadingWithAnchor } from "./extensions/heading-with-anchor";
+import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu";
+import { editorStyles } from "./notion-editor-components/editor-styles";
+import { FloatingCommandMenu } from "./notion-editor-components/floating-command-menu";
+import { FontSize } from "./notion-editor-components/font-size";
+const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className = "", editorClassName = "", headingLevels = [1, 2, 3], placeholder = "start typing...", linkClassName = "text-blue-500 underline hover:text-blue-600", highlightMulticolor = false, textAlignTypes = ["heading", "paragraph"], variant = "AGENT_EDITOR", topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors = false, anchorLinkClassName = "heading-anchor", }) => {
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
                 heading: false,
             }),
-            Heading.configure({
-                levels: [1, 2, 3],
-            }),
+            enableHeadingAnchors
+                ? HeadingWithAnchor.configure({
+                    levels: headingLevels,
+                    anchorLinkClassName: anchorLinkClassName,
+                })
+                : Heading.configure({
+                    levels: headingLevels,
+                }),
             Placeholder.configure({
-                placeholder: ({ node }) => {
-                    if (node.type.name === "heading") {
-                        return "Heading";
-                    }
-                    return "Start With Heading";
-                },
+                placeholder: placeholder,
             }),
             Link.configure({
                 openOnClick: false,
                 HTMLAttributes: {
-                    class: "text-blue-500 underline hover:text-blue-600",
+                    class: linkClassName,
                 },
             }),
             Highlight.configure({
-                multicolor: false,
+                multicolor: highlightMulticolor,
             }),
             TextAlign.configure({
-                types: ["heading", "paragraph"],
+                types: textAlignTypes,
             }),
             Underline,
             TextStyle,
@@ -70,13 +73,14 @@ const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className 
     });
     if (!editor)
         return null;
-    return (_jsx("div", { className: `bg-transparent ${className}`, children: _jsxs("div", { className: "max-w-4xl mx-auto px-4 py-4", children: [_jsx("style", { children: editorStyles }), _jsx(FloatingMenu, { editor: editor, tippyOptions: {
-                        duration: 100,
-                        placement: "bottom-start",
-                        offset: [0, 8],
-                    }, children: _jsx(SlashCommandMenu, { editor: editor }) }), _jsx(BubbleMenu, { editor: editor, tippyOptions: {
-                        duration: 100,
-                        placement: "top",
-                    }, children: _jsx(InlineFormatMenu, { editor: editor }) }), _jsx(EditorContent, { editor: editor })] }) }));
+    const editorConfig = {
+        fontSizes,
+        colors,
+        highlightColors,
+    };
+    if (variant === "AGENT_EDITOR") {
+        return (_jsx(TextEditorConfigProvider, { config: editorConfig, children: _jsxs("div", { className: `bg-transparent ${className}`, children: [_jsx("style", { children: editorStyles }), topToolbar ? topToolbar(editor) : _jsx(TopToolbar, { editor: editor }), _jsx(EditorContent, { editor: editor })] }) }));
+    }
+    return (_jsx(TextEditorConfigProvider, { config: editorConfig, children: _jsxs("div", { className: `bg-transparent ${className}`, children: [_jsx("style", { children: editorStyles }), _jsx(FloatingMenu, { editor: editor, tippyOptions: Object.assign({ duration: 100, placement: "bottom-start", offset: [0, 8] }, floatingMenuOptions), children: floatingMenu ? (floatingMenu(editor)) : (_jsx(FloatingCommandMenu, { editor: editor })) }), _jsx(BubbleMenu, { editor: editor, tippyOptions: Object.assign({ duration: 100, placement: "top" }, bubbleMenuOptions), children: bubbleMenu ? (bubbleMenu(editor)) : (_jsx(BubbleFormatMenu, { editor: editor })) }), _jsx(EditorContent, { editor: editor })] }) }));
 };
 export { TextEditor };
