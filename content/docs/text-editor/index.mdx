@@ -1,7 +1,7 @@
 ---
 title: Text Editor
-description: A rich text editor component built with Tiptap, featuring Notion-like slash commands, inline formatting, and support for images, links, and custom styling.
-tags: ["editor", "tiptap", "rich-text", "notion", "wysiwyg"]
+description: A powerful rich text editor component built with Tiptap, featuring customizable toolbars, inline formatting, Notion-style interactions, and extensible document editing capabilities.
+tags: ["editor", "tiptap", "rich-text", "wysiwyg", "notion-style"]
 ---
 
 <Links links={[
@@ -13,37 +13,79 @@ tags: ["editor", "tiptap", "rich-text", "notion", "wysiwyg"]
 
 Use **TextEditor** when you need to:
 
-- Provide a rich text editing experience similar to Notion or Google Docs
-- Allow users to format text with bold, italic, underline, and other styles
-- Support structured content like headings, lists, quotes, and code blocks
-- Allow image uploads from local devices or URLs
-- Customize text appearance with colors and font sizes
-- Create documents with links and highlights
+- Provide a modern rich text editing experience similar to Notion or Google Docs  
+- Allow users to format text with bold, italic, underline, strikethrough, and code  
+- Support structured content like headings, lists, quotes, and code blocks  
+- Enable image embedding via URLs or local uploads  
+- Customize text appearance with colors, highlights, and font sizes  
+- Build document-style editors with floating menus and toolbars  
 
 ---
 
 ## Features
 
-- **Inline Formatting** - Bold, italic, underline, strikethrough, code, links, and highlights
-- **Font Customization** - Adjust text size and color
-- **Image Support** - Upload from device or embed via URL
-- **Rich Content Blocks** - Headings, quotes, code blocks, dividers
-- **Modern UI** - Floating menus and bubble toolbars
+- **Two Editor Variants** – Agent Editor (fixed toolbar) and Notion Editor (floating & bubble menus)  
+- **Inline Formatting** – Bold, italic, underline, strikethrough, code, links, highlights  
+- **Font Customization** – Custom font sizes, text colors, and highlight palettes  
+- **Rich Content Blocks** – Headings (H1–H6), lists, blockquotes, code blocks, dividers  
+- **Image Support** – Insert images from URLs or local device uploads  
+- **Interactive Links** – Add and style hyperlinks  
+- **Text Alignment** – Left, center, and right alignment  
+- **Undo / Redo** – Full history support  
+- **Custom Toolbars** – Replace default menus with your own components  
+- **Heading Anchors** – Auto-generated IDs and anchor links for headings  
 
 ---
 
 ### Examples
 
-<Preview lang="jsx" file="/text-editor/__demo__/basic" title="Basic Usage" />
+<Preview lang="jsx" file="/text-editor/__demo__/basic" title="Agent Editor – Fixed Toolbar" />
 
-### API Reference
+<Preview lang="jsx" file="/text-editor/__demo__/notionEditor" title="Notion Editor – Floating Menus" />
 
-#### TextEditor Props
+<Preview lang="jsx" file="/text-editor/__demo__/customEntries" title="Custom Configuration" />
+
+---
+
+## API Reference
+
+### TextEditor Props
 
 | Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `initialContent` | `string` | `'<h1>Untitled Document</h1><p></p>'` | Initial HTML content for the editor |
-| `placeholder` | `string` | `"Type '/' for commands..."` | Placeholder text for empty paragraphs |
-| `onChange` | `(content: string) => void` | - | Callback fired when content changes |
-| `editable` | `boolean` | `true` | Whether the editor is editable |
-| `className` | `string` | - | Additional CSS classes for the container |
+|-----|------|---------|-------------|
+| `initialContent` | `string` | `'<h1>Untitled Document</h1>'` | Initial HTML content |
+| `onChange` | `(content: EditorContent) => void` | — | Fired on content change (html, json, text) |
+| `variant` | `'AGENT_EDITOR' \| 'NOTION_EDITOR'` | `'AGENT_EDITOR'` | Editor UI variant |
+| `placeholder` | `string` | `"start typing..."` | Placeholder text |
+| `editable` | `boolean` | `true` | Enable or disable editing |
+| `className` | `string` | — | Wrapper container classes |
+| `editorClassName` | `string` | — | Editor content classes |
+| `headingLevels` | `number[]` | `[1,2,3]` | Supported heading levels |
+| `enableHeadingAnchors` | `boolean` | `false` | Auto-generate heading IDs |
+| `fontSizes` | `FontSizeOption[]` | Default sizes | Custom font sizes |
+| `colors` | `string[]` | Default palette | Text color options |
+| `highlightColors` | `HighlightColor[]` | Default highlights | Highlight color options |
+| `topToolbar` | `(editor) => ReactNode` | — | Custom top toolbar (Agent Editor) |
+| `bubbleMenu` | `(editor) => ReactNode` | — | Custom bubble menu (Notion Editor) |
+| `floatingMenu` | `(editor) => ReactNode` | — | Custom floating menu (Notion Editor) |
+
+---
+
+### Type Definitions
+
+```ts
+interface EditorContent {
+  html: string;
+  json: JSONContent;
+  text: string;
+}
+
+interface FontSizeOption {
+  value: string;
+  label: string;
+}
+
+interface HighlightColor {
+  color: string;
+  label: string;
+}
