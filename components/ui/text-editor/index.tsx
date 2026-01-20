@@ -16,51 +16,64 @@ import {
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-import { editorStyles } from "./editor-styles";
-import { FontSize } from "./font-size";
-import { InlineFormatMenu } from "./inline-format-menu";
-import { SlashCommandMenu } from "./slash-command-menu";
-
-interface TextEditorProps {
-  value?: string;
-  onChange?: (content: { html: string; json: unknown; text: string }) => void;
-  className?: string;
-  editorClassName?: string;
-}
+import { TopToolbar } from "./agent-editor-components/top-toolbar";
+import { TextEditorConfigProvider } from "./context/editor-config-context";
+import { HeadingWithAnchor } from "./extensions/heading-with-anchor";
+import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu";
+import { editorStyles } from "./notion-editor-components/editor-styles";
+import { FloatingCommandMenu } from "./notion-editor-components/floating-command-menu";
+import { FontSize } from "./notion-editor-components/font-size";
+import { ITextEditorProps } from "./types/type";
 
 const TextEditor = ({
   value = "<h1>Untitled Document</h1>",
   onChange,
   className = "",
   editorClassName = "",
-}: TextEditorProps) => {
+  headingLevels = [1, 2, 3],
+  placeholder = "start typing...",
+  linkClassName = "text-blue-500 underline hover:text-blue-600",
+  highlightMulticolor = false,
+  textAlignTypes = ["heading", "paragraph"],
+  variant = "AGENT_EDITOR",
+  topToolbar,
+  bubbleMenu,
+  floatingMenu,
+  bubbleMenuOptions,
+  floatingMenuOptions,
+  fontSizes,
+  colors,
+  highlightColors,
+  enableHeadingAnchors = false,
+  anchorLinkClassName = "heading-anchor",
+}: ITextEditorProps) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
         heading: false,
       }),
-      Heading.configure({
-        levels: [1, 2, 3],
-      }),
+      enableHeadingAnchors
+        ? HeadingWithAnchor.configure({
+            levels: headingLevels,
+            anchorLinkClassName: anchorLinkClassName,
+          })
+        : Heading.configure({
+            levels: headingLevels,
+          }),
       Placeholder.configure({
-        placeholder: ({ node }) => {
-          if (node.type.name === "heading") {
-            return "Heading";
-          }
-          return "Start With Heading";
-        },
+        placeholder: placeholder,
       }),
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: "text-blue-500 underline hover:text-blue-600",
+          class: linkClassName,
         },
       }),
       Highlight.configure({
-        multicolor: false,
+        multicolor: highlightMulticolor,
       }),
       TextAlign.configure({
-        types: ["heading", "paragraph"],
+        types: textAlignTypes,
       }),
       Underline,
       TextStyle,
@@ -90,9 +103,28 @@ const TextEditor = ({
 
   if (!editor) return null;
 
+  const editorConfig = {
+    fontSizes,
+    colors,
+    highlightColors,
+  };
+
+  if (variant === "AGENT_EDITOR") {
+    return (
+      <TextEditorConfigProvider config={editorConfig}>
+        <div className={`bg-transparent ${className}`}>
+          <style>{editorStyles}</style>
+          {topToolbar ? topToolbar(editor) : <TopToolbar editor={editor} />}
+
+          <EditorContent editor={editor} />
+        </div>
+      </TextEditorConfigProvider>
+    );
+  }
+
   return (
-    <div className={`bg-transparent ${className}`}>
-      <div className="max-w-4xl mx-auto px-4 py-4">
+    <TextEditorConfigProvider config={editorConfig}>
+      <div className={`bg-transparent ${className}`}>
         <style>{editorStyles}</style>
 
         <FloatingMenu
@@ -101,9 +133,14 @@ const TextEditor = ({
             duration: 100,
             placement: "bottom-start",
             offset: [0, 8],
+            ...floatingMenuOptions,
           }}
         >
-          <SlashCommandMenu editor={editor} />
+          {floatingMenu ? (
+            floatingMenu(editor)
+          ) : (
+            <FloatingCommandMenu editor={editor} />
+          )}
         </FloatingMenu>
 
         <BubbleMenu
@@ -111,14 +148,19 @@ const TextEditor = ({
           tippyOptions={{
             duration: 100,
             placement: "top",
+            ...bubbleMenuOptions,
           }}
         >
-          <InlineFormatMenu editor={editor} />
+          {bubbleMenu ? (
+            bubbleMenu(editor)
+          ) : (
+            <BubbleFormatMenu editor={editor} />
+          )}
         </BubbleMenu>
 
         <EditorContent editor={editor} />
       </div>
-    </div>
+    </TextEditorConfigProvider>
   );
 };
 
