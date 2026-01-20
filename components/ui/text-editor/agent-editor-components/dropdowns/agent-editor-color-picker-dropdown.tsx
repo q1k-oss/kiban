@@ -2,8 +2,6 @@
 import { Editor } from "@tiptap/core";
 import React from "react";
 
-import { cn } from "@happect/ethereal-ui/utils";
-
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
 import { useTextEditorConfig } from "../../context/editor-config-context";
@@ -27,7 +25,7 @@ export const ColorPickerDropdown = ({
     <div className="relative">
       <Button
         onClick={onToggle}
-        className={cn(baseButtonClass, isOpen ? activeButtonClass : hoverButtonClass,)}
+        className={`${baseButtonClass}, ${isOpen ? activeButtonClass : hoverButtonClass}`}
         title="Text Color"
         aria-label="Text Color"
         aria-expanded={isOpen}

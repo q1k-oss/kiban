@@ -2,7 +2,7 @@
 import { Editor } from "@tiptap/core";
 import React from "react";
 
-import { cn } from "@happect/ethereal-ui/utils";
+
 
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
@@ -28,7 +28,7 @@ export const FontSizeDropdown = ({
     <div className="relative">
       <Button
         onClick={onToggle}
-        className={cn(baseButtonClass, isOpen ? activeButtonClass : hoverButtonClass,)}
+        className={`${baseButtonClass}, ${isOpen ? activeButtonClass : hoverButtonClass}`}
         title="Font Size"
         aria-label="Font Size"
         aria-expanded={isOpen}

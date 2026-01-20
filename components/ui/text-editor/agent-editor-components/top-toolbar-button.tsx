@@ -2,7 +2,6 @@
 import { Editor } from "@tiptap/core";
 import React from "react";
 
-import { cn } from "@happect/ethereal-ui/utils";
 
 import { AppIcon } from "../../app-icon";
 import { Button } from "../../button";
@@ -24,10 +23,7 @@ export const ToolbarButton = ({ item, editor, onClick }: ToolbarButtonProps) => 
     <Button
       onClick={() => (onClick ? onClick() : item.action(editor))}
       disabled={isDisabled}
-      className={cn(
-        baseButtonClass,
-        isActive ? activeButtonClass : hoverButtonClass
-      )}
+      className={`${baseButtonClass}, ${isActive ? activeButtonClass : hoverButtonClass}`}
       title={item.title}
       aria-label={item.title}
       aria-pressed={isActive}

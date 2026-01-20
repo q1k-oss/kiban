@@ -2,7 +2,7 @@
 import { Editor } from "@tiptap/core";
 import React, { useState } from "react";
 
-import { cn } from "@happect/ethereal-ui/utils";
+
 
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
@@ -36,10 +36,7 @@ export const LinkDropdown = ({ editor, isOpen, onToggle }: LinkDropdownProps) =>
     <div className="relative">
       <Button
         onClick={isLinkActive ? handleRemoveLink : onToggle}
-        className={cn(
-          baseButtonClass,
-          isOpen ? activeButtonClass : hoverButtonClass,
-        )}
+       className={`${baseButtonClass}, ${isOpen ? activeButtonClass : hoverButtonClass}`}
         title={isLinkActive ? "Remove Link" : "Add Link"}
         aria-label={isLinkActive ? "Remove Link" : "Add Link"}
         aria-pressed={isLinkActive}

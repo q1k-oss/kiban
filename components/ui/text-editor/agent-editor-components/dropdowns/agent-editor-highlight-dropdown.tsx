@@ -2,7 +2,7 @@
 import { Editor } from "@tiptap/core";
 import React from "react";
 
-import { cn } from "@happect/ethereal-ui/utils";
+
 
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
@@ -28,10 +28,7 @@ export const HighlightDropdown = ({
     <div className="relative">
       <Button
         onClick={onToggle}
-        className={cn(
-          baseButtonClass,
-          isOpen ? activeButtonClass : hoverButtonClass,
-        )}
+        className={`${baseButtonClass}, ${isOpen ? activeButtonClass : hoverButtonClass}`}
         title="Highlight"
         aria-label="Highlight"
         aria-expanded={isOpen}

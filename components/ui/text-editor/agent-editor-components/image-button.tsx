@@ -2,7 +2,7 @@
 import { Editor } from "@tiptap/core";
 import React from "react";
 
-import { cn } from "@happect/ethereal-ui/utils";
+
 
 import { AppIcon } from "../../app-icon";
 import { Button } from "../../button";
@@ -24,7 +24,7 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
   return (
     <Button
       onClick={handleAddImage}
-      className={cn(baseButtonClass, hoverButtonClass)}
+      className={`${baseButtonClass} ${hoverButtonClass}`}
       title="Insert Image"
       aria-label="Insert Image"
     >
