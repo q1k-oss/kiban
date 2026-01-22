@@ -257,4 +257,35 @@
   body {
     @apply bg-background text-foreground overscroll-none;
   }
+
+  .border-moving-wrapper {
+    position: relative;
+    z-index: 0;
+    width: fit-content;
+    height: fit-content;
+
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-repeat: no-repeat;
+
+      background: var(--border-moving-wrapper-gradient);
+      animation: rotate var(--border-moving-wrapper-animation-duration) linear infinite;
+      opacity: var(--border-moving-wrapper-opacity);
+      transition: opacity var(--border-moving-wrapper-transition-duration) ease;
+    }
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
 }
