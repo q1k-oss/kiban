@@ -1,0 +1,59 @@
+---
+title: Border Moving Wrapper
+description: A reusable wrapper component that adds an animated, glowing, moving border effect around any child content.
+tags: ["border", "animation", "glow", "ui", "wrapper"]
+---
+
+### When To Use
+
+Use the Border-Moving component when you need to:
+
+- Highlight important UI elements like cards, buttons, or feature sections
+- Draw user attention using subtle motion and glowing effects
+- Add a modern visual accent without modifying inner components
+- Create interactive hover or focus states
+- Emphasize calls-to-action or premium content
+
+Border-Moving is especially useful for **feature cards, CTAs, pricing sections, dashboards, and landing pages**.
+
+## Features
+
+- Animated **conic-gradient moving border**
+- Multi-color support with smooth color blending
+- Fully customizable animation speed, border width, and radius
+- Wraps any React node without affecting its layout
+- Automatically adapts to child size
+- Optional **hover-only animation mode**
+- Adjustable hover transition timing
+- CSS-variable driven for performance and flexibility
+
+### Examples
+<Preview
+  lang="jsx"
+  file="/border-moving-wrapper/__demo__/basic"
+  title="Basic"
+/>
+<Preview
+  lang="jsx"
+  file="/border-moving-wrapper/__demo__/onHover"
+  title="On Hover Version"
+/>
+ 
+## Props
+
+| Prop | Type | Default | Description |
+|-----|-----|--------|-------------|
+| `children` | `React.ReactNode` | — | Content wrapped by the animated border |
+| `colors` | `string[]` | `["#399953","#fbb300","#d53e33","#377af5"]` | Colors used to generate the conic-gradient border |
+| `animationDuration` | `number` | `4` | Duration (in seconds) for one full border rotation |
+| `borderWidth` | `number` | `4` | Thickness of the animated border (px) |
+| `borderRadius` | `number` | `0` | Border radius applied to the wrapper (px) |
+| `className` | `string` | `""` | Additional class names for custom styling |
+| `blendPercentage` | `number` | `10` | Percentage used to blend between adjacent colors |
+| `hoverOnly` | `boolean` | `false` | Enables border animation only on hover |
+| `hoverOnlyTransition` | `number` | `0.3` | Transition duration (in seconds) for hover effects |
+
+> **Notes**
+> - All numeric values are interpreted as **pixels** unless stated otherwise  
+> - `blendPercentage` controls how smoothly colors transition inside the conic gradient  
+> - When `hoverOnly` is enabled, opacity and padding animate based on hover state
