@@ -9,6 +9,7 @@ interface BorderMovingWrapperProps {
     blendPercentage?: number;
     hoverOnly?: boolean;
     hoverOnlyTransition?: number;
+    animationDirection?: 'CLOCKWISE' | 'ANTI-CLOCKWISE';
 }
-declare const BorderMovingWrapper: ({ children, colors, animationDuration, borderWidth, borderRadius, className, blendPercentage, hoverOnly, hoverOnlyTransition, }: BorderMovingWrapperProps) => import("react/jsx-runtime").JSX.Element;
+declare const BorderMovingWrapper: ({ children, colors, animationDuration, borderWidth, borderRadius, className, blendPercentage, hoverOnly, hoverOnlyTransition, animationDirection }: BorderMovingWrapperProps) => import("react/jsx-runtime").JSX.Element;
 export { BorderMovingWrapper };
