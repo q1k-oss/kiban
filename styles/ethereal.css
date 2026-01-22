@@ -280,6 +280,7 @@
       animation: rotate var(--border-moving-wrapper-animation-duration) linear infinite;
       opacity: var(--border-moving-wrapper-opacity);
       transition: opacity var(--border-moving-wrapper-transition-duration) ease;
+      animation-direction: var(--border-moving-wrapper-animation-direction);
     }
   }
 

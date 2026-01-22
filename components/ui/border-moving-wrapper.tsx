@@ -11,6 +11,7 @@ interface BorderMovingWrapperProps {
   blendPercentage?: number;
   hoverOnly?: boolean;
   hoverOnlyTransition?: number;
+  animationDirection?: 'CLOCKWISE'|'ANTI-CLOCKWISE';
 }
 
 const BorderMovingWrapper = ({
@@ -23,6 +24,7 @@ const BorderMovingWrapper = ({
   blendPercentage = 10,
   hoverOnly = false,
   hoverOnlyTransition = 0.3,
+  animationDirection = 'CLOCKWISE'
 }: BorderMovingWrapperProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -62,6 +64,7 @@ const BorderMovingWrapper = ({
           "--border-moving-wrapper-animation-duration": `${animationDuration}s`,
           "--border-moving-wrapper-opacity": shouldShow ? "1" : "0",
           "--border-moving-wrapper-transition-duration": `${hoverOnlyTransition}s`,
+          '--border-moving-wrapper-animation-direction': animationDirection==='CLOCKWISE' ? 'normal' : 'reverse'
         } as React.CSSProperties
       }
       onMouseEnter={() => hoverOnly && setIsHovered(true)}
