@@ -1,3 +1,4 @@
+"use client";
 import { Editor } from "@tiptap/core";
 import { useState } from "react";
 
@@ -18,12 +19,14 @@ export const BubbleFormatMenu = ({ editor }: BubbleFormatMenuProps) => {
     <div className="relative">
       <div className="flex items-center gap-1 bg-agent-card-fill rounded-lg p-1.5 shadow-2xl border border-border-3">
         {NOTION_BUBBLE_FORMAT_MENU_TOOLBAR_CONFIG.map((format, idx) => {
-          const isActive = format.active?.(editor)
+          const isActive = format.active?.(editor);
           return (
             <Button
               key={idx}
               onClick={() => format.action(editor)}
               title={format.label}
+              aria-label={format.label}
+              aria-pressed={isActive}
               className={`p-2 rounded transition-colors text-tertiary-text cursor-pointer bg-transparent ${
                 isActive
                   ? "bg-primary-foreground/10 text-primary-text"
@@ -36,10 +39,10 @@ export const BubbleFormatMenu = ({ editor }: BubbleFormatMenuProps) => {
         })}
 
         <Button
-          onClick={() => {
-            setShowFontSizePicker(!showFontSizePicker);
-          }}
+          onClick={() => setShowFontSizePicker(!showFontSizePicker)}
           title="Font Size"
+          aria-label="Font Size"
+          aria-expanded={showFontSizePicker}
           className={`p-2 rounded transition-colors flex items-center gap-1 text-tertiary-text cursor-pointer bg-transparent ${
             showFontSizePicker
               ? "bg-primary-foreground/10 text-primary-text"

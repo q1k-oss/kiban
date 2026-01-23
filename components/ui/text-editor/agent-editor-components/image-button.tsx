@@ -1,8 +1,5 @@
 "use client";
 import { Editor } from "@tiptap/core";
-import React from "react";
-
-
 
 import { AppIcon } from "../../app-icon";
 import { Button } from "../../button";

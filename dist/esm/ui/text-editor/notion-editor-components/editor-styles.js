@@ -67,12 +67,10 @@ export const editorStyles = `
   }
 
   .ProseMirror code {
-    color: var(--color-secondary-text);
     color: #ef4444;
     padding: 0.2em 0.4em;
     border-radius: 0.25rem;
     font-size: 0.875em;
-    
   }
 
   .ProseMirror pre {

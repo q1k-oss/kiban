@@ -20,10 +20,19 @@ import { TopToolbar } from "./agent-editor-components/top-toolbar";
 import { TextEditorConfigProvider } from "./context/editor-config-context";
 import { HeadingWithAnchor } from "./extensions/heading-with-anchor";
 import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu";
-import { editorStyles } from "./notion-editor-components/editor-styles";
+import { editorStyles as defaultEditorStyles } from "./notion-editor-components/editor-styles";
 import { FloatingCommandMenu } from "./notion-editor-components/floating-command-menu";
 import { FontSize } from "./notion-editor-components/font-size";
-import { ITextEditorProps } from "./types/type";
+import type {
+  IBubbleMenu,
+  IDropdownButton,
+  IFloatMenu,
+  IFontSizeOption,
+  ITextEditorProps,
+  ITextEditorVariant,
+  IToolbarButton,
+  ITopToolbarItem,
+} from "./types/type";
 
 const TextEditor = ({
   value = "<h1>Untitled Document</h1>",
@@ -46,7 +55,9 @@ const TextEditor = ({
   highlightColors,
   enableHeadingAnchors = false,
   anchorLinkClassName = "heading-anchor",
+  editorStyles,
 }: ITextEditorProps) => {
+  const styles = editorStyles ?? defaultEditorStyles;
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -113,7 +124,7 @@ const TextEditor = ({
     return (
       <TextEditorConfigProvider config={editorConfig}>
         <div className={`bg-transparent ${className}`}>
-          <style>{editorStyles}</style>
+          <style>{styles}</style>
           {topToolbar ? topToolbar(editor) : <TopToolbar editor={editor} />}
 
           <EditorContent editor={editor} />
@@ -125,7 +136,7 @@ const TextEditor = ({
   return (
     <TextEditorConfigProvider config={editorConfig}>
       <div className={`bg-transparent ${className}`}>
-        <style>{editorStyles}</style>
+        <style>{styles}</style>
 
         <FloatingMenu
           editor={editor}
@@ -165,3 +176,13 @@ const TextEditor = ({
 };
 
 export { TextEditor };
+export type {
+  IBubbleMenu,
+  IDropdownButton,
+  IFloatMenu,
+  IFontSizeOption,
+  ITextEditorProps,
+  ITextEditorVariant,
+  IToolbarButton,
+  ITopToolbarItem,
+};

@@ -25,8 +25,9 @@ export interface ITextEditorProps {
   fontSizes?: IFontSizeOption[];
   colors?: string[];
   highlightColors?: { color: string; label: string }[];
-   enableHeadingAnchors?: boolean;
+  enableHeadingAnchors?: boolean;
   anchorLinkClassName?: string;
+  editorStyles?: string;
 }
 
 export interface IToolbarButton {

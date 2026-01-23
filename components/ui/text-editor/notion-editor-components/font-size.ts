@@ -1,13 +1,22 @@
 import TextStyle from "@tiptap/extension-text-style";
 
+declare module "@tiptap/core" {
+  interface Commands<ReturnType> {
+    fontSize: {
+      setFontSize: (fontSize: string) => ReturnType;
+      unsetFontSize: () => ReturnType;
+    };
+  }
+}
+
 export const FontSize = TextStyle.extend({
   addAttributes() {
     return {
       ...this.parent?.(),
       fontSize: {
         default: null,
-        parseHTML: (element) => element.style.fontSize,
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.style.fontSize || null,
+        renderHTML: (attributes: { fontSize?: string | null }) => {
           if (!attributes.fontSize) {
             return {};
           }
@@ -18,11 +27,12 @@ export const FontSize = TextStyle.extend({
       },
     };
   },
+
   addCommands() {
     return {
       ...this.parent?.(),
       setFontSize:
-        (fontSize) =>
+        (fontSize: string) =>
         ({ commands }) => {
           return commands.setMark("textStyle", { fontSize });
         },

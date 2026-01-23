@@ -1,6 +1,6 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import React, { useState } from "react";
+import { Fragment, useState } from "react";
 import { AGENT_TOOLBAR_CONFIG } from "../constants";
 import { ColorPickerDropdown } from "./dropdowns/agent-editor-color-picker-dropdown";
 import { FontSizeDropdown } from "./dropdowns/agent-editor-font-size-dropdown";
@@ -10,7 +10,6 @@ import { ImageButton } from "./image-button";
 import { ToolbarButton } from "./top-toolbar-button";
 import { ToolbarDivider } from "./top-toolbar-divider";
 import { isDropdown } from "./utils";
-// Main Component
 export const TopToolbar = ({ editor }) => {
     const [activeDropdown, setActiveDropdown] = useState(null);
     if (!editor)
@@ -36,5 +35,5 @@ export const TopToolbar = ({ editor }) => {
                 return _jsx(ImageButton, { editor: editor }, idx);
         }
     };
-    return (_jsx("div", { className: "border border-border-3 rounded-md bg-agent-card-fill p-2 flex flex-wrap gap-1 gap-y-3 items-center z-10", children: AGENT_TOOLBAR_CONFIG.map((group, groupIdx) => (_jsxs(React.Fragment, { children: [_jsx("div", { className: "flex gap-1 items-center", children: group.map((item, itemIdx) => renderItem(item, itemIdx)) }), groupIdx < AGENT_TOOLBAR_CONFIG.length - 1 && _jsx(ToolbarDivider, {})] }, groupIdx))) }));
+    return (_jsx("div", { className: "border border-border-3 rounded-md bg-agent-card-fill p-2 flex flex-wrap gap-1 gap-y-3 items-center z-10", children: AGENT_TOOLBAR_CONFIG.map((group, groupIdx) => (_jsxs(Fragment, { children: [_jsx("div", { className: "flex gap-1 items-center", children: group.map((item, itemIdx) => renderItem(item, itemIdx)) }), groupIdx < AGENT_TOOLBAR_CONFIG.length - 1 && _jsx(ToolbarDivider, {})] }, groupIdx))) }));
 };

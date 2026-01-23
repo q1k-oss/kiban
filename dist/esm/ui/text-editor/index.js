@@ -15,10 +15,11 @@ import { TopToolbar } from "./agent-editor-components/top-toolbar";
 import { TextEditorConfigProvider } from "./context/editor-config-context";
 import { HeadingWithAnchor } from "./extensions/heading-with-anchor";
 import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu";
-import { editorStyles } from "./notion-editor-components/editor-styles";
+import { editorStyles as defaultEditorStyles } from "./notion-editor-components/editor-styles";
 import { FloatingCommandMenu } from "./notion-editor-components/floating-command-menu";
 import { FontSize } from "./notion-editor-components/font-size";
-const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className = "", editorClassName = "", headingLevels = [1, 2, 3], placeholder = "start typing...", linkClassName = "text-blue-500 underline hover:text-blue-600", highlightMulticolor = false, textAlignTypes = ["heading", "paragraph"], variant = "AGENT_EDITOR", topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors = false, anchorLinkClassName = "heading-anchor", }) => {
+const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className = "", editorClassName = "", headingLevels = [1, 2, 3], placeholder = "start typing...", linkClassName = "text-blue-500 underline hover:text-blue-600", highlightMulticolor = false, textAlignTypes = ["heading", "paragraph"], variant = "AGENT_EDITOR", topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors = false, anchorLinkClassName = "heading-anchor", editorStyles, }) => {
+    const styles = editorStyles !== null && editorStyles !== void 0 ? editorStyles : defaultEditorStyles;
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
@@ -79,8 +80,8 @@ const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className 
         highlightColors,
     };
     if (variant === "AGENT_EDITOR") {
-        return (_jsx(TextEditorConfigProvider, { config: editorConfig, children: _jsxs("div", { className: `bg-transparent ${className}`, children: [_jsx("style", { children: editorStyles }), topToolbar ? topToolbar(editor) : _jsx(TopToolbar, { editor: editor }), _jsx(EditorContent, { editor: editor })] }) }));
+        return (_jsx(TextEditorConfigProvider, { config: editorConfig, children: _jsxs("div", { className: `bg-transparent ${className}`, children: [_jsx("style", { children: styles }), topToolbar ? topToolbar(editor) : _jsx(TopToolbar, { editor: editor }), _jsx(EditorContent, { editor: editor })] }) }));
     }
-    return (_jsx(TextEditorConfigProvider, { config: editorConfig, children: _jsxs("div", { className: `bg-transparent ${className}`, children: [_jsx("style", { children: editorStyles }), _jsx(FloatingMenu, { editor: editor, tippyOptions: Object.assign({ duration: 100, placement: "bottom-start", offset: [0, 8] }, floatingMenuOptions), children: floatingMenu ? (floatingMenu(editor)) : (_jsx(FloatingCommandMenu, { editor: editor })) }), _jsx(BubbleMenu, { editor: editor, tippyOptions: Object.assign({ duration: 100, placement: "top" }, bubbleMenuOptions), children: bubbleMenu ? (bubbleMenu(editor)) : (_jsx(BubbleFormatMenu, { editor: editor })) }), _jsx(EditorContent, { editor: editor })] }) }));
+    return (_jsx(TextEditorConfigProvider, { config: editorConfig, children: _jsxs("div", { className: `bg-transparent ${className}`, children: [_jsx("style", { children: styles }), _jsx(FloatingMenu, { editor: editor, tippyOptions: Object.assign({ duration: 100, placement: "bottom-start", offset: [0, 8] }, floatingMenuOptions), children: floatingMenu ? (floatingMenu(editor)) : (_jsx(FloatingCommandMenu, { editor: editor })) }), _jsx(BubbleMenu, { editor: editor, tippyOptions: Object.assign({ duration: 100, placement: "top" }, bubbleMenuOptions), children: bubbleMenu ? (bubbleMenu(editor)) : (_jsx(BubbleFormatMenu, { editor: editor })) }), _jsx(EditorContent, { editor: editor })] }) }));
 };
 export { TextEditor };

@@ -1,13 +1,11 @@
 "use client";
 import { Editor } from "@tiptap/core";
-import React from "react";
-
 
 import { AppIcon } from "../../app-icon";
 import { Button } from "../../button";
 import { IToolbarButton as ToolbarButtonType } from "../types/type";
 
-import { baseButtonClass, activeButtonClass, hoverButtonClass } from "./utils";
+import { activeButtonClass, baseButtonClass, hoverButtonClass } from "./utils";
 
 interface ToolbarButtonProps {
   item: ToolbarButtonType;
@@ -16,14 +14,14 @@ interface ToolbarButtonProps {
 }
 
 export const ToolbarButton = ({ item, editor, onClick }: ToolbarButtonProps) => {
-  const isActive = item.isActive?.(editor) || false;
-  const isDisabled = item.disabled?.(editor) || false;
+  const isActive = item.isActive?.(editor) ?? false;
+  const isDisabled = item.disabled?.(editor) ?? false;
 
   return (
     <Button
       onClick={() => (onClick ? onClick() : item.action(editor))}
       disabled={isDisabled}
-      className={`${baseButtonClass}, ${isActive ? activeButtonClass : hoverButtonClass}`}
+      className={`${baseButtonClass} ${isActive ? activeButtonClass : hoverButtonClass}`}
       title={item.title}
       aria-label={item.title}
       aria-pressed={isActive}

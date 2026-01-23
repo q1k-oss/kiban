@@ -32,6 +32,7 @@ export interface ITextEditorProps {
     }[];
     enableHeadingAnchors?: boolean;
     anchorLinkClassName?: string;
+    editorStyles?: string;
 }
 export interface IToolbarButton {
     icon: string;

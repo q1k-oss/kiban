@@ -4,7 +4,7 @@ export const FontSize = TextStyle.extend({
         var _a;
         return Object.assign(Object.assign({}, (_a = this.parent) === null || _a === void 0 ? void 0 : _a.call(this)), { fontSize: {
                 default: null,
-                parseHTML: (element) => element.style.fontSize,
+                parseHTML: (element) => element.style.fontSize || null,
                 renderHTML: (attributes) => {
                     if (!attributes.fontSize) {
                         return {};

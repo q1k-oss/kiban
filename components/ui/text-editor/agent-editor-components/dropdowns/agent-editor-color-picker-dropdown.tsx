@@ -1,6 +1,5 @@
 "use client";
 import { Editor } from "@tiptap/core";
-import React from "react";
 
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
@@ -18,14 +17,13 @@ export const ColorPickerDropdown = ({
   isOpen,
   onToggle,
 }: ColorPickerDropdownProps) => {
-  // Get custom colors from context
   const { colors } = useTextEditorConfig();
 
   return (
     <div className="relative">
       <Button
         onClick={onToggle}
-        className={`${baseButtonClass}, ${isOpen ? activeButtonClass : hoverButtonClass}`}
+        className={`${baseButtonClass} ${isOpen ? activeButtonClass : hoverButtonClass}`}
         title="Text Color"
         aria-label="Text Color"
         aria-expanded={isOpen}
@@ -41,7 +39,7 @@ export const ColorPickerDropdown = ({
                 editor.chain().focus().setColor(color).run();
                 onToggle();
               }}
-              className="w-4 h-6 rounded-full border border-border-3 hover:scale-110 transition-transform bg-transparent"
+              className="w-6 h-6 rounded-full border border-border-3 hover:scale-110 transition-transform bg-transparent"
               style={{ backgroundColor: color }}
               title={color}
               aria-label={`Set color to ${color}`}

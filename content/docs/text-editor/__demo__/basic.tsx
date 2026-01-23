@@ -1,22 +1,15 @@
 "use client";
-import React from "react";
 
 import { TextEditor } from "@happect/ethereal-ui";
 
-export default () => {
+export default function TextEditorBasicDemo() {
   return (
-    <div>
+    <div className="w-full min-h-[400px] border rounded-lg p-4">
       <TextEditor
-        onChange={({ html, json, text }) => {
-          console.log("HTML -> ", html);
-          console.log("JSON -> ", json);
-          console.log("TEXT -> ", text);
-        }}
-        value="<h1>Try Out Agent Text-Editor </h1>"
+        value="<h1>Welcome to the Editor</h1><p>Start typing to see the rich text editor in action.</p>"
+        onChange={(content) => console.log(content)}
         variant="AGENT_EDITOR"
-        editorClassName=" h-[300px]! overflow-y-auto! p-4!"
-        enableHeadingAnchors={true}
       />
     </div>
   );
-};
+}

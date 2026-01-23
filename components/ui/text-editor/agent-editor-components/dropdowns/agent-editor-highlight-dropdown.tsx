@@ -1,13 +1,10 @@
 "use client";
 import { Editor } from "@tiptap/core";
-import React from "react";
-
-
 
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
 import { useTextEditorConfig } from "../../context/editor-config-context";
-import { baseButtonClass, activeButtonClass, hoverButtonClass } from "../utils";
+import { activeButtonClass, baseButtonClass, hoverButtonClass } from "../utils";
 
 interface HighlightDropdownProps {
   editor: Editor;
@@ -20,7 +17,6 @@ export const HighlightDropdown = ({
   isOpen,
   onToggle,
 }: HighlightDropdownProps) => {
-  // Get custom highlight colors from context
   const { highlightColors } = useTextEditorConfig();
   const isActive = editor.isActive("highlight");
 
@@ -28,7 +24,7 @@ export const HighlightDropdown = ({
     <div className="relative">
       <Button
         onClick={onToggle}
-        className={`${baseButtonClass}, ${isOpen ? activeButtonClass : hoverButtonClass}`}
+        className={`${baseButtonClass} ${isOpen ? activeButtonClass : hoverButtonClass}`}
         title="Highlight"
         aria-label="Highlight"
         aria-expanded={isOpen}

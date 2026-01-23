@@ -1,6 +1,6 @@
 "use client";
 import { Editor } from "@tiptap/core";
-import React, { useState } from "react";
+import { Fragment, useState } from "react";
 
 import { AGENT_TOOLBAR_CONFIG } from "../constants";
 import { ITopToolbarItem } from "../types/type";
@@ -14,7 +14,6 @@ import { ToolbarButton } from "./top-toolbar-button";
 import { ToolbarDivider } from "./top-toolbar-divider";
 import { isDropdown } from "./utils";
 
-// Main Component
 export const TopToolbar = ({ editor }: { editor: Editor }) => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
@@ -75,12 +74,12 @@ export const TopToolbar = ({ editor }: { editor: Editor }) => {
   return (
     <div className="border border-border-3 rounded-md bg-agent-card-fill p-2 flex flex-wrap gap-1 gap-y-3 items-center z-10">
       {AGENT_TOOLBAR_CONFIG.map((group, groupIdx) => (
-        <React.Fragment key={groupIdx}>
+        <Fragment key={groupIdx}>
           <div className="flex gap-1 items-center">
             {group.map((item, itemIdx) => renderItem(item, itemIdx))}
           </div>
           {groupIdx < AGENT_TOOLBAR_CONFIG.length - 1 && <ToolbarDivider />}
-        </React.Fragment>
+        </Fragment>
       ))}
     </div>
   );
