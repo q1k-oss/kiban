@@ -49,4 +49,4 @@ export * from './utils/index.js';
 export * from './icons/index.js';
 export * from './ui/stepper.js';
 export * from './ui/app-icon.js';
-export * from './ui/workflow-canvas.js';
+export * from './ui/workflow-canvas/index.js';

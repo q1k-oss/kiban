@@ -3,9 +3,11 @@ import React, { useRef } from "react";
 
 import {
   AppIcon,
+  IWorkflowCanvasRefProp,
   WorkflowCanvas,
-  WorflowCanvasNodeHandle,
-  WorflowCanvasNodePosition,
+  WorkflowCanvasBackgroundVariant,
+  WorkflowCanvasNodeHandle,
+  WorkflowCanvasNodePosition,
   cn,
 } from "@happect/ethereal-ui";
 // ================= TYPES =================
@@ -49,7 +51,7 @@ const ToolTip: React.FC<ToolTipProp> = ({ onZoomIn, onZoomOut }) => {
               <div
                 onClick={item.action}
                 className={cn(
-                  "p-1 text-icon-color-default hover:bg-copilot-background rounded-md cursor-pointer transition-all duration-100"
+                  "p-1 text-icon-color-default hover:bg-copilot-background rounded-md cursor-pointer transition-all duration-100",
                 )}
               >
                 <AppIcon iconName={item.icon} />
@@ -68,9 +70,9 @@ const ToolTip: React.FC<ToolTipProp> = ({ onZoomIn, onZoomOut }) => {
 const CustomComponent: React.FC<CustomCardProps> = ({ data }) => (
   <div className="bg-agent-card-fill border border-button-border2 rounded-lg p-4 w-[280px] shadow-lg flex flex-col items-center gap-4">
     {/* Input CanvasNodeHandle */}
-    <WorflowCanvasNodeHandle
+    <WorkflowCanvasNodeHandle
       type="target"
-      position={WorflowCanvasNodePosition.Top}
+      position={WorkflowCanvasNodePosition?.Top}
       style={{ background: "#555", width: 10, height: 10 }}
     />
 
@@ -96,9 +98,9 @@ const CustomComponent: React.FC<CustomCardProps> = ({ data }) => (
     </div>
 
     {/* Output CanvasNodeHandle */}
-    <WorflowCanvasNodeHandle
+    <WorkflowCanvasNodeHandle
       type="source"
-      position={WorflowCanvasNodePosition.Bottom}
+      position={WorkflowCanvasNodePosition?.Bottom}
       style={{ background: "#555", width: 10, height: 10 }}
     />
   </div>
@@ -185,7 +187,7 @@ const initialEdges = [
 ];
 
 export default () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<IWorkflowCanvasRefProp>(null);
   const handleZoomIn = () => {
     canvasRef.current?.zoomIn({ duration: 200 });
   };
@@ -200,6 +202,25 @@ export default () => {
         workFlowEdges={initialEdges}
         workFlowNodes={initialNodes}
         nodeTypes={nodeTypes}
+        miniMapConfig={{
+          show: true,
+          nodeColor: "var(--button-border2)",
+          maskColor: "rgba(0,0,0,0.5)",
+          width: 150,
+          height: 120,
+          className:
+            "bg-minimap! overflow-hidden! rounded-md! border! border-button-border2!",
+          zoomStep: 0.5,
+        }}
+        backgroundConfig={{
+          show: true,
+          variant: WorkflowCanvasBackgroundVariant.Dots,
+          gap: 18,
+          size: 1,
+
+        }}
+        
+        
       >
         <ToolTip onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
       </WorkflowCanvas>
