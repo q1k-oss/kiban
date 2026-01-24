@@ -2,12 +2,17 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Background, MiniMap, useReactFlow, Handle, Position, ReactFlowProvider, BackgroundVariant, } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { useState, useCallback, forwardRef, useImperativeHandle, } from "react";
+import { useState, useCallback, forwardRef, useImperativeHandle, useEffect, } from "react";
 const WorkflowCanvasInner = forwardRef(({ workFlowEdges = [], workFlowNodes = [], nodeTypes, children, backgroundColor = "transparent", className = "", ProOptions = { hideAttribution: true }, miniMapConfig = {}, backgroundConfig = {}, fitView: fitViewProp = true, fitViewOptions, nodesDraggable = true, nodesConnectable = true, elementsSelectable = true, panOnDrag = true, zoomOnScroll = true, zoomOnPinch = true, zoomOnDoubleClick = true, panOnScroll = false, selectNodesOnDrag = true, snapToGrid = false, snapGrid = [15, 15], onlyRenderVisibleElements = false, minZoom = 0.5, maxZoom = 2, defaultViewport, onNodesChange: onNodesChangeProp, onEdgesChange: onEdgesChangeProp, onConnect: onConnectProp, onNodeClick, onEdgeClick, onInit, onNodeDragStart, onNodeDrag, onNodeDragStop, }, ref) => {
     const [nodes, setNodes] = useState(workFlowNodes);
     const [edges, setEdges] = useState(workFlowEdges);
+    useEffect(() => {
+        setNodes(workFlowNodes);
+    }, [workFlowNodes]);
+    useEffect(() => {
+        setEdges(workFlowEdges);
+    }, [workFlowEdges]);
     const { zoomIn, zoomOut, fitView, setCenter, getZoom } = useReactFlow();
-    // Expose methods to parent via ref
     useImperativeHandle(ref, () => ({
         zoomIn: (options) => zoomIn(options),
         zoomOut: (options) => zoomOut(options),
@@ -18,7 +23,7 @@ const WorkflowCanvasInner = forwardRef(({ workFlowEdges = [], workFlowNodes = []
         getEdges: () => edges,
         setNodes,
         setEdges,
-    }));
+    }), [zoomIn, zoomOut, fitView, setCenter, getZoom, nodes, edges]);
     const onNodesChange = useCallback((changes) => {
         setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot));
         onNodesChangeProp === null || onNodesChangeProp === void 0 ? void 0 : onNodesChangeProp(changes);

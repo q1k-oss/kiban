@@ -1,6 +1,6 @@
 import { BackgroundVariant, type Edge, type Node, type FitViewOptions, type ReactFlowProps, type OnNodesChange, type OnEdgesChange, type OnConnect, type NodeTypes, type ProOptions, type NodeMouseHandler, type EdgeMouseHandler } from "@xyflow/react";
 import React from "react";
-interface IMiniMapConfigProp {
+export interface IMiniMapConfigProp {
     show?: boolean;
     nodeColor?: string;
     maskColor?: string;
@@ -76,4 +76,3 @@ export interface IWorkflowCanvasProp {
     onNodeDragStop?: NodeMouseHandler;
     ProOptions?: ProOptions;
 }
-export {};

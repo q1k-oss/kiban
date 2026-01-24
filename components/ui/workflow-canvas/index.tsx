@@ -26,6 +26,7 @@ import React, {
   useCallback,
   forwardRef,
   useImperativeHandle,
+  useEffect,
 } from "react";
 
 import {
@@ -33,6 +34,8 @@ import {
   IWorkflowCanvasProp,
   IWorkflowCanvasRefProp,
   IZoomOptionsProp,
+  IMiniMapConfigProp,
+  IBackgroundConfigProp,
 } from "./types";
 
 const WorkflowCanvasInner = forwardRef<
@@ -81,21 +84,33 @@ const WorkflowCanvasInner = forwardRef<
   ) => {
     const [nodes, setNodes] = useState<Node[]>(workFlowNodes);
     const [edges, setEdges] = useState<Edge[]>(workFlowEdges);
+
+    useEffect(() => {
+      setNodes(workFlowNodes);
+    }, [workFlowNodes]);
+
+    useEffect(() => {
+      setEdges(workFlowEdges);
+    }, [workFlowEdges]);
+
     const { zoomIn, zoomOut, fitView, setCenter, getZoom } = useReactFlow();
 
-    // Expose methods to parent via ref
-    useImperativeHandle(ref, () => ({
-      zoomIn: (options?: IZoomOptionsProp) => zoomIn(options),
-      zoomOut: (options?: IZoomOptionsProp) => zoomOut(options),
-      fitView: (options?: FitViewOptions) => fitView(options),
-      setCenter: (x: number, y: number, options?: ISetCenterOptionsProp) =>
-        setCenter(x, y, options),
-      getZoom: () => getZoom(),
-      getNodes: () => nodes,
-      getEdges: () => edges,
-      setNodes,
-      setEdges,
-    }));
+    useImperativeHandle(
+      ref,
+      () => ({
+        zoomIn: (options?: IZoomOptionsProp) => zoomIn(options),
+        zoomOut: (options?: IZoomOptionsProp) => zoomOut(options),
+        fitView: (options?: FitViewOptions) => fitView(options),
+        setCenter: (x: number, y: number, options?: ISetCenterOptionsProp) =>
+          setCenter(x, y, options),
+        getZoom: () => getZoom(),
+        getNodes: () => nodes,
+        getEdges: () => edges,
+        setNodes,
+        setEdges,
+      }),
+      [zoomIn, zoomOut, fitView, setCenter, getZoom, nodes, edges],
+    );
 
     const onNodesChange: OnNodesChange = useCallback(
       (changes) => {
@@ -207,4 +222,6 @@ export type {
   ISetCenterOptionsProp,
   IWorkflowCanvasRefProp,
   IZoomOptionsProp,
+  IMiniMapConfigProp,
+  IBackgroundConfigProp,
 };

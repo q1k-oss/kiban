@@ -14,7 +14,7 @@ import {
 } from "@xyflow/react";
 import React from "react";
 
-interface IMiniMapConfigProp {
+export interface IMiniMapConfigProp {
   show?: boolean;
   nodeColor?: string;
   maskColor?: string;
