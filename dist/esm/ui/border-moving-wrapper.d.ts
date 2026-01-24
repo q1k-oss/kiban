@@ -1,5 +1,5 @@
 import React from "react";
-interface BorderMovingWrapperProps {
+interface IBorderMovingWrapperProps {
     children: React.ReactNode;
     colors?: string[];
     animationDuration?: number;
@@ -11,5 +11,6 @@ interface BorderMovingWrapperProps {
     hoverOnlyTransition?: number;
     animationDirection?: 'CLOCKWISE' | 'ANTI-CLOCKWISE';
 }
-declare const BorderMovingWrapper: ({ children, colors, animationDuration, borderWidth, borderRadius, className, blendPercentage, hoverOnly, hoverOnlyTransition, animationDirection }: BorderMovingWrapperProps) => import("react/jsx-runtime").JSX.Element;
+declare const BorderMovingWrapper: ({ children, colors, animationDuration, borderWidth, borderRadius, className, blendPercentage, hoverOnly, hoverOnlyTransition, animationDirection }: IBorderMovingWrapperProps) => import("react/jsx-runtime").JSX.Element;
 export { BorderMovingWrapper };
+export type { IBorderMovingWrapperProps };

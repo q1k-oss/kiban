@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-interface BorderMovingWrapperProps {
+interface IBorderMovingWrapperProps {
   children: React.ReactNode;
   colors?: string[];
   animationDuration?: number;
@@ -25,14 +25,16 @@ const BorderMovingWrapper = ({
   hoverOnly = false,
   hoverOnlyTransition = 0.3,
   animationDirection = 'CLOCKWISE'
-}: BorderMovingWrapperProps) => {
+}: IBorderMovingWrapperProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const shouldShow = hoverOnly ? isHovered : true;
 
   const generateConicGradient = (colors: string[], blendPct: number) => {
     const numColors = colors.length;
+    if (numColors === 0) return 'none';
     const step = 100 / numColors;
+    const clampedBlend = Math.min(blendPct, step - 0.1);
 
     const colorStops = colors
       .map((color, index) => {
@@ -41,8 +43,8 @@ const BorderMovingWrapper = ({
         const nextColor = colors[(index + 1) % numColors];
 
         
-        const solidEnd = end - blendPct;
-        // const blendStart = end - blendPct;
+        const solidEnd = end - clampedBlend;
+        
         const blendEnd = end;
 
         
@@ -82,3 +84,4 @@ const BorderMovingWrapper = ({
 };
 
 export { BorderMovingWrapper };
+export type {IBorderMovingWrapperProps}

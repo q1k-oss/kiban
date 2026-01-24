@@ -274,9 +274,9 @@
       top: -50%;
       width: 200%;
       height: 200%;
+      
+      background-image: var(--border-moving-wrapper-gradient);
       background-repeat: no-repeat;
-
-      background: var(--border-moving-wrapper-gradient);
       animation: rotate var(--border-moving-wrapper-animation-duration) linear infinite;
       opacity: var(--border-moving-wrapper-opacity);
       transition: opacity var(--border-moving-wrapper-transition-duration) ease;

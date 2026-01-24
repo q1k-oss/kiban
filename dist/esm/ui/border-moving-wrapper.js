@@ -6,14 +6,16 @@ const BorderMovingWrapper = ({ children, colors = ["#399953", "#fbb300", "#d53e3
     const shouldShow = hoverOnly ? isHovered : true;
     const generateConicGradient = (colors, blendPct) => {
         const numColors = colors.length;
+        if (numColors === 0)
+            return 'none';
         const step = 100 / numColors;
+        const clampedBlend = Math.min(blendPct, step - 0.1);
         const colorStops = colors
             .map((color, index) => {
             const start = index * step;
             const end = (index + 1) * step;
             const nextColor = colors[(index + 1) % numColors];
-            const solidEnd = end - blendPct;
-            // const blendStart = end - blendPct;
+            const solidEnd = end - clampedBlend;
             const blendEnd = end;
             return `${color} ${start}%, ${color} ${solidEnd}%, ${nextColor} ${blendEnd}%`;
         })
