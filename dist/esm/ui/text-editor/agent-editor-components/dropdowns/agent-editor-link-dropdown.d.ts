@@ -4,5 +4,5 @@ interface LinkDropdownProps {
     isOpen: boolean;
     onToggle: () => void;
 }
-export declare const LinkDropdown: ({ editor, isOpen, onToggle }: LinkDropdownProps) => import("react/jsx-runtime").JSX.Element;
+export declare const LinkDropdown: ({ editor, isOpen, onToggle, }: LinkDropdownProps) => import("react/jsx-runtime").JSX.Element;
 export {};

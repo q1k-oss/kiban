@@ -4,11 +4,12 @@ import { useState } from "react";
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
 import { Input } from "../../../input";
-import { activeButtonClass, baseButtonClass, hoverButtonClass } from "../utils";
-export const LinkDropdown = ({ editor, isOpen, onToggle }) => {
+import { activeButtonClass, baseButtonClass, hoverButtonClass, normalizeUrl, } from "../utils";
+export const LinkDropdown = ({ editor, isOpen, onToggle, }) => {
     const [url, setUrl] = useState("");
     const handleAddLink = () => {
-        if (url.trim()) {
+        const ValidURL = url ? normalizeUrl(url.trim()) : null;
+        if (ValidURL) {
             editor.chain().focus().setLink({ href: url }).run();
             setUrl("");
             onToggle();

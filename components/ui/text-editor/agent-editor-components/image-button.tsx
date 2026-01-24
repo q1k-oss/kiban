@@ -4,7 +4,7 @@ import { Editor } from "@tiptap/core";
 import { AppIcon } from "../../app-icon";
 import { Button } from "../../button";
 
-import { baseButtonClass, hoverButtonClass } from "./utils";
+import { baseButtonClass, hoverButtonClass, normalizeUrl } from "./utils";
 
 interface ImageButtonProps {
   editor: Editor;
@@ -12,8 +12,9 @@ interface ImageButtonProps {
 
 export const ImageButton = ({ editor }: ImageButtonProps) => {
   const handleAddImage = () => {
-    const url = window.prompt("Enter image URL");
-    if (url?.trim()) {
+    const raw = prompt("Enter image URL:");
+    const url = raw ? normalizeUrl(raw.trim()) : null;
+    if (url) {
       editor.chain().focus().setImage({ src: url }).run();
     }
   };

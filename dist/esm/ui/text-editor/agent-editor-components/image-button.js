@@ -2,11 +2,12 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { AppIcon } from "../../app-icon";
 import { Button } from "../../button";
-import { baseButtonClass, hoverButtonClass } from "./utils";
+import { baseButtonClass, hoverButtonClass, normalizeUrl } from "./utils";
 export const ImageButton = ({ editor }) => {
     const handleAddImage = () => {
-        const url = window.prompt("Enter image URL");
-        if (url === null || url === void 0 ? void 0 : url.trim()) {
+        const raw = prompt("Enter image URL:");
+        const url = raw ? normalizeUrl(raw.trim()) : null;
+        if (url) {
             editor.chain().focus().setImage({ src: url }).run();
         }
     };
