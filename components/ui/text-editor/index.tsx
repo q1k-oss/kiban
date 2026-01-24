@@ -55,7 +55,7 @@ const TextEditor = ({
   highlightColors,
   enableHeadingAnchors = false,
   anchorLinkClassName = "heading-anchor",
-  editorStyles,
+  editorStyles = "",
 }: ITextEditorProps) => {
   const styles = defaultEditorStyles + editorStyles;
   const editor = useEditor({

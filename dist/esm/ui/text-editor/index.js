@@ -18,7 +18,7 @@ import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu"
 import { editorStyles as defaultEditorStyles } from "./notion-editor-components/editor-styles";
 import { FloatingCommandMenu } from "./notion-editor-components/floating-command-menu";
 import { FontSize } from "./notion-editor-components/font-size";
-const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className = "", editorClassName = "", headingLevels = [1, 2, 3], placeholder = "start typing...", linkClassName = "text-blue-500 underline hover:text-blue-600", highlightMulticolor = false, textAlignTypes = ["heading", "paragraph"], variant = "AGENT_EDITOR", topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors = false, anchorLinkClassName = "heading-anchor", editorStyles, }) => {
+const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, className = "", editorClassName = "", headingLevels = [1, 2, 3], placeholder = "start typing...", linkClassName = "text-blue-500 underline hover:text-blue-600", highlightMulticolor = false, textAlignTypes = ["heading", "paragraph"], variant = "AGENT_EDITOR", topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors = false, anchorLinkClassName = "heading-anchor", editorStyles = "", }) => {
     const styles = defaultEditorStyles + editorStyles;
     const editor = useEditor({
         extensions: [
