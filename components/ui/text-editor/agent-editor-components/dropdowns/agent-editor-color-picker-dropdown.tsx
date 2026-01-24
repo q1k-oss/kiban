@@ -36,7 +36,7 @@ export const ColorPickerDropdown = ({
             <Button
               key={color}
               onClick={() => {
-                editor.chain().focus().setColor(color).run();
+                editor.chain().focus().setMark("textStyle", { color }).run();
                 onToggle();
               }}
               className="w-6 h-6 rounded-full border border-border-3 hover:scale-110 transition-transform bg-transparent"

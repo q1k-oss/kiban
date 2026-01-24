@@ -67,15 +67,15 @@ export const editorStyles = `
   }
 
   .ProseMirror code {
-    color: #ef4444;
+    color: var(--color-secondary-text);
     padding: 0.2em 0.4em;
     border-radius: 0.25rem;
     font-size: 0.875em;
   }
 
   .ProseMirror pre {
-    background-color: #1f2937;
-    color: #f9fafb;
+    background-color: rgba(31, 41, 55, 0.3);
+    color: var(--color-secondary-text);
     padding: 1rem;
     border-radius: 0.5rem;
     overflow-x: auto;
@@ -112,7 +112,7 @@ export const editorStyles = `
   }
 
   .ProseMirror p.is-editor-empty:first-child::before {
-    color: #adb5bd;
+    color: var(--disabled-text);
     content: attr(data-placeholder);
     float: left;
     height: 0;

@@ -155,6 +155,12 @@ export const AGENT_TOOLBAR_CONFIG: ITopToolbarItem[][] = [
       action: (e) => e.chain().focus().toggleBlockquote().run(),
       isActive: (e) => e.isActive("blockquote"),
     },
+    {
+      icon: "minus",
+      title: "Divider",
+      action: (e) => e.chain().focus().setHorizontalRule().run(),
+      isActive: (e) => e.isActive("horizontalRule"),
+    },
   ],
   // Media
   [
