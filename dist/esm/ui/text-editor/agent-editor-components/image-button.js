@@ -10,6 +10,9 @@ export const ImageButton = ({ editor }) => {
         if (url) {
             editor.chain().focus().setImage({ src: url }).run();
         }
+        else {
+            alert("Invalid image URL. Please enter a valid URL.");
+        }
     };
     return (_jsx(Button, { onClick: handleAddImage, className: `${baseButtonClass} ${hoverButtonClass}`, title: "Insert Image", "aria-label": "Insert Image", children: _jsx(AppIcon, { iconName: "image", size: 16 }) }));
 };

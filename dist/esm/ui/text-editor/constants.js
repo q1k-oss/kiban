@@ -1,5 +1,5 @@
 // toolbar/constants.ts
-import { validateImageUrl } from "./agent-editor-components/utils";
+import { normalizeUrl, validateImageUrl, } from "./agent-editor-components/utils";
 export const COLORS = [
     "#000000",
     "#ef4444",
@@ -281,8 +281,9 @@ export const NOTION_BUBBLE_FORMAT_MENU_TOOLBAR_CONFIG = [
         icon: "link",
         action: (e) => {
             const url = prompt("Enter URL:");
-            if (url) {
-                e.chain().focus().setLink({ href: url }).run();
+            const validUrl = url ? normalizeUrl(url.trim()) : null;
+            if (validUrl) {
+                e.chain().focus().setLink({ href: validUrl }).run();
             }
         },
         active: (e) => e.isActive("link"),

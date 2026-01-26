@@ -16,6 +16,8 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
     const url = raw ? validateImageUrl(raw) : null;
     if (url) {
       editor.chain().focus().setImage({ src: url }).run();
+    } else {
+      alert("Invalid image URL. Please enter a valid URL.");
     }
   };
 
