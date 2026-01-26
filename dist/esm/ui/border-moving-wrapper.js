@@ -9,7 +9,7 @@ const BorderMovingWrapper = ({ children, colors = ["#399953", "#fbb300", "#d53e3
         if (numColors === 0)
             return 'none';
         const step = 100 / numColors;
-        const clampedBlend = Math.min(blendPct, step - 0.1);
+        const clampedBlend = Math.max(0, Math.min(blendPct, step - 0.1));
         const colorStops = colors
             .map((color, index) => {
             const start = index * step;

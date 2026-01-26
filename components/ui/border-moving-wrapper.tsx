@@ -34,7 +34,7 @@ const BorderMovingWrapper = ({
     const numColors = colors.length;
     if (numColors === 0) return 'none';
     const step = 100 / numColors;
-    const clampedBlend = Math.min(blendPct, step - 0.1);
+    const clampedBlend = Math.max(0, Math.min(blendPct, step - 0.1));
 
     const colorStops = colors
       .map((color, index) => {
