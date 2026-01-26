@@ -187,7 +187,7 @@ const initialEdges = [
 ];
 
 export default () => {
-  const canvasRef = useRef<IWorkflowCanvasRefProp>(null);
+  const canvasRef = useRef<IWorkflowCanvasRefProp | null>(null);
   const handleZoomIn = () => {
     canvasRef.current?.zoomIn({ duration: 200 });
   };
