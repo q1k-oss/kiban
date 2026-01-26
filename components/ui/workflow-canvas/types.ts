@@ -1,6 +1,6 @@
 import {
   BackgroundVariant,
- type Edge,
+  type Edge,
   type Node,
   type FitViewOptions,
   type ReactFlowProps,
@@ -92,5 +92,5 @@ export interface IWorkflowCanvasProp {
   onNodeDragStop?: NodeMouseHandler;
 
   // Pro options
-  ProOptions?: ProOptions;
+  proOptions?: ProOptions;
 }

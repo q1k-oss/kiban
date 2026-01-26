@@ -21,12 +21,13 @@ import {
   type Connection,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import React, {
+import {
   useState,
   useCallback,
   forwardRef,
   useImperativeHandle,
   useEffect,
+  useRef,
 } from "react";
 
 import {
@@ -50,7 +51,7 @@ const WorkflowCanvasInner = forwardRef<
       children,
       backgroundColor = "transparent",
       className = "",
-      ProOptions = { hideAttribution: true },
+      proOptions = { hideAttribution: true },
       miniMapConfig = {},
       backgroundConfig = {},
       fitView: fitViewProp = true,
@@ -85,6 +86,18 @@ const WorkflowCanvasInner = forwardRef<
     const [nodes, setNodes] = useState<Node[]>(workFlowNodes);
     const [edges, setEdges] = useState<Edge[]>(workFlowEdges);
 
+    // Use refs to track latest state for imperative handle without causing re-creation
+    const nodesRef = useRef<Node[]>(nodes);
+    const edgesRef = useRef<Edge[]>(edges);
+
+    useEffect(() => {
+      nodesRef.current = nodes;
+    }, [nodes]);
+
+    useEffect(() => {
+      edgesRef.current = edges;
+    }, [edges]);
+
     useEffect(() => {
       setNodes(workFlowNodes);
     }, [workFlowNodes]);
@@ -104,12 +117,12 @@ const WorkflowCanvasInner = forwardRef<
         setCenter: (x: number, y: number, options?: ISetCenterOptionsProp) =>
           setCenter(x, y, options),
         getZoom: () => getZoom(),
-        getNodes: () => nodes,
-        getEdges: () => edges,
+        getNodes: () => nodesRef.current,
+        getEdges: () => edgesRef.current,
         setNodes,
         setEdges,
       }),
-      [zoomIn, zoomOut, fitView, setCenter, getZoom, nodes, edges],
+      [zoomIn, zoomOut, fitView, setCenter, getZoom],
     );
 
     const onNodesChange: OnNodesChange = useCallback(
@@ -149,7 +162,7 @@ const WorkflowCanvasInner = forwardRef<
         onNodeDragStop={onNodeDragStop}
         onInit={onInit}
         nodeTypes={nodeTypes}
-        proOptions={ProOptions}
+        proOptions={proOptions}
         fitView={fitViewProp}
         fitViewOptions={fitViewOptions}
         nodesDraggable={nodesDraggable}

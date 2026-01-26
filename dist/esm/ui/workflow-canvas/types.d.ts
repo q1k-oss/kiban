@@ -74,5 +74,5 @@ export interface IWorkflowCanvasProp {
     onNodeDragStart?: NodeMouseHandler;
     onNodeDrag?: NodeMouseHandler;
     onNodeDragStop?: NodeMouseHandler;
-    ProOptions?: ProOptions;
+    proOptions?: ProOptions;
 }

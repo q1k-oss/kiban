@@ -72,7 +72,7 @@ const CustomComponent: React.FC<CustomCardProps> = ({ data }) => (
     {/* Input CanvasNodeHandle */}
     <WorkflowCanvasNodeHandle
       type="target"
-      position={WorkflowCanvasNodePosition?.Top}
+      position={WorkflowCanvasNodePosition.Top}
       style={{ background: "#555", width: 10, height: 10 }}
     />
 
@@ -100,7 +100,7 @@ const CustomComponent: React.FC<CustomCardProps> = ({ data }) => (
     {/* Output CanvasNodeHandle */}
     <WorkflowCanvasNodeHandle
       type="source"
-      position={WorkflowCanvasNodePosition?.Bottom}
+      position={WorkflowCanvasNodePosition.Bottom}
       style={{ background: "#555", width: 10, height: 10 }}
     />
   </div>
@@ -186,7 +186,7 @@ const initialEdges = [
   },
 ];
 
-export default () => {
+const WorkflowCanvasDemo = () => {
   const canvasRef = useRef<IWorkflowCanvasRefProp | null>(null);
   const handleZoomIn = () => {
     canvasRef.current?.zoomIn({ duration: 200 });
@@ -217,13 +217,12 @@ export default () => {
           variant: WorkflowCanvasBackgroundVariant.Dots,
           gap: 18,
           size: 1,
-
         }}
-        
-        
       >
         <ToolTip onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
       </WorkflowCanvas>
     </div>
   );
 };
+
+export default WorkflowCanvasDemo;
