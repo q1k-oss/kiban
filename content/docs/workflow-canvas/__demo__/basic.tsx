@@ -216,7 +216,7 @@ const WorkflowCanvasDemo = () => {
           show: true,
           variant: WorkflowCanvasBackgroundVariant.Dots,
           gap: 18,
-          size: 1,
+          size: 2,
         }}
       >
         <ToolTip onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
