@@ -11,11 +11,11 @@ import {
 
 export default () => (
   <div className="relative h-[300px] overflow-hidden">
-    <Sheet>
+    <Sheet behavior="panel">
       <SheetTrigger asChild>
         <Button variant="outline">Open Sheet</Button>
       </SheetTrigger>
-      <SheetContent disablePortal positioning="absolute">
+      <SheetContent positioning="absolute">
         <SheetHeader>
           <SheetTitle>Project Details</SheetTitle>
           <SheetDescription>

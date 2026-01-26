@@ -7,7 +7,24 @@ import * as React from "react";
 
 import { cn } from "../utils";
 
-const Sheet = SheetPrimitive.Root;
+type SheetBehavior = "modal" | "panel";
+
+interface SheetProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Root> {
+  behavior?: SheetBehavior;
+}
+
+const Sheet = ({
+  behavior = "modal",
+  ...props
+}: SheetProps) => {
+  return (
+    <SheetPrimitive.Root
+      modal={behavior === "modal"}
+      {...props}
+    />
+  );
+};
 
 const SheetTrigger = SheetPrimitive.Trigger;
 
@@ -44,7 +61,7 @@ const sheetVariants = cva(
       },
       positioning: {
         fixed: "fixed z-50",
-        absolute: "absolute z-50",
+        absolute: "absolute",
       },
     },
     defaultVariants: {
@@ -57,7 +74,7 @@ const sheetVariants = cva(
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {
-  disablePortal?: boolean;
+  
 }
 
 const SheetContent = React.forwardRef<
@@ -70,7 +87,7 @@ const SheetContent = React.forwardRef<
       positioning,
       className,
       children,
-      disablePortal = false,
+      
       ...props
     },
     ref
@@ -97,7 +114,7 @@ const SheetContent = React.forwardRef<
         </SheetPrimitive.Content>
       </>
     );
-    if (disablePortal) {
+    if (!showOverlay) {
       return content;
     }
 

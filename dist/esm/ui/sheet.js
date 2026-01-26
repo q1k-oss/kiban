@@ -16,7 +16,10 @@ import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
 import { cn } from "../utils";
-const Sheet = SheetPrimitive.Root;
+const Sheet = (_a) => {
+    var { behavior = "modal" } = _a, props = __rest(_a, ["behavior"]);
+    return (_jsx(SheetPrimitive.Root, Object.assign({ modal: behavior === "modal" }, props)));
+};
 const SheetTrigger = SheetPrimitive.Trigger;
 const SheetClose = SheetPrimitive.Close;
 const SheetPortal = SheetPrimitive.Portal;
@@ -35,7 +38,7 @@ const sheetVariants = cva("gap-4 bg-background shadow-lg transition ease-in-out 
         },
         positioning: {
             fixed: "fixed z-50",
-            absolute: "absolute z-50",
+            absolute: "absolute",
         },
     },
     defaultVariants: {
@@ -44,11 +47,11 @@ const sheetVariants = cva("gap-4 bg-background shadow-lg transition ease-in-out 
     },
 });
 const SheetContent = React.forwardRef((_a, ref) => {
-    var { side = "right", positioning, className, children, disablePortal = false } = _a, props = __rest(_a, ["side", "positioning", "className", "children", "disablePortal"]);
+    var { side = "right", positioning, className, children } = _a, props = __rest(_a, ["side", "positioning", "className", "children"]);
     const showOverlay = positioning !== "absolute";
     const preventOutsideClose = positioning === "absolute";
     const content = (_jsxs(_Fragment, { children: [showOverlay && _jsx(SheetOverlay, {}), _jsxs(SheetPrimitive.Content, Object.assign({ ref: ref, className: cn(sheetVariants({ side, positioning }), className), onInteractOutside: preventOutsideClose ? (e) => e.preventDefault() : undefined }, props, { children: [_jsxs(SheetPrimitive.Close, { className: "absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] }), children] }))] }));
-    if (disablePortal) {
+    if (!showOverlay) {
         return content;
     }
     return _jsx(SheetPortal, { children: content });
