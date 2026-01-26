@@ -1,0 +1,38 @@
+---
+title: WorkFlowCanvas
+description: A reusable canvas component built on XYFlow (React Flow) to render dynamic workflow graphs with custom nodes, edges, and interactions.
+tags: ["workflow", "canvas", "react-flow", "xyflow", "graph", "ui"]
+---
+
+<Links links={[{ title: "XYFlow / React Flow Docs", url: "https://reactflow.dev/" }]} />
+
+
+### When To Use
+
+Use **WorkFlowCanvas** when you need to:
+
+- Visualize workflows, pipelines, or process graphs
+- Render custom nodes with rich UI (cards, actions, icons)
+- Dynamically manage nodes and edges from configs or APIs
+- Handle edge interactions (connect, select, delete, hover)
+- Keep React Flow logic encapsulated and reusable
+- Build low-code/no-code style editors or agent flows
+
+Canvas abstracts React Flow internals while still exposing full control over nodes, edges, and interactions.
+---
+
+### Features
+
+- Built on XYFlow (React Flow)
+- Supports custom nodeTypes
+- Dynamic nodes & edges via props
+- Edge handlers (connect, click, hover, delete)
+- MiniMap & background support
+- Clean separation between Canvas logic and Node UI
+- Re-exports CanvasHandle and CanvasNodePosition for custom nodes
+
+---
+
+### Examples
+
+<Preview lang="jsx" file="/workflow-canvas/__demo__/basic" title="Basic Usage" />
