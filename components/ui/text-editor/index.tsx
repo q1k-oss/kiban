@@ -57,7 +57,7 @@ const TextEditor = ({
   anchorLinkClassName = "heading-anchor",
   editorStyles = "",
 }: ITextEditorProps) => {
-  const styles = defaultEditorStyles + editorStyles;
+  const styles = defaultEditorStyles + (editorStyles ?? "");
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
