@@ -3,7 +3,20 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Background, MiniMap, useReactFlow, Handle, Position, ReactFlowProvider, BackgroundVariant, } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { useState, useCallback, forwardRef, useImperativeHandle, useEffect, useRef, } from "react";
-const WorkflowCanvasInner = forwardRef(({ workFlowEdges = [], workFlowNodes = [], nodeTypes, children, backgroundColor = "transparent", className = "", proOptions = { hideAttribution: true }, miniMapConfig = {}, backgroundConfig = {}, fitView: fitViewProp = true, fitViewOptions, nodesDraggable = true, nodesConnectable = true, elementsSelectable = true, panOnDrag = true, zoomOnScroll = true, zoomOnPinch = true, zoomOnDoubleClick = true, panOnScroll = false, selectNodesOnDrag = true, snapToGrid = false, snapGrid = [15, 15], onlyRenderVisibleElements = false, minZoom = 0.5, maxZoom = 2, defaultViewport, onNodesChange: onNodesChangeProp, onEdgesChange: onEdgesChangeProp, onConnect: onConnectProp, onNodeClick, onEdgeClick, onInit, onNodeDragStart, onNodeDrag, onNodeDragStop, }, ref) => {
+const WorkflowCanvasInner = forwardRef(({ workFlowEdges = [], workFlowNodes = [], nodeTypes, children, backgroundColor = "transparent", className = "", proOptions = { hideAttribution: true }, miniMapConfig = {
+    show: true,
+    nodeColor: "var(--button-border2)",
+    maskColor: "rgba(0,0,0,0.5)",
+    width: 150,
+    height: 120,
+    className: "bg-minimap! overflow-hidden! rounded-md! border! border-button-border2!",
+    zoomStep: 0.5,
+}, backgroundConfig = {
+    show: true,
+    variant: BackgroundVariant.Dots,
+    gap: 18,
+    size: 1,
+}, fitView: fitViewProp = true, fitViewOptions, nodesDraggable = true, nodesConnectable = true, elementsSelectable = true, panOnDrag = true, zoomOnScroll = true, zoomOnPinch = true, zoomOnDoubleClick = true, panOnScroll = false, selectNodesOnDrag = true, snapToGrid = false, snapGrid = [15, 15], onlyRenderVisibleElements = false, minZoom = 0.5, maxZoom = 2, defaultViewport, onNodesChange: onNodesChangeProp, onEdgesChange: onEdgesChangeProp, onConnect: onConnectProp, onNodeClick, onEdgeClick, onInit, onNodeDragStart, onNodeDrag, onNodeDragStop, }, ref) => {
     const [nodes, setNodes] = useState(workFlowNodes);
     const [edges, setEdges] = useState(workFlowEdges);
     // Use refs to track latest state for imperative handle without causing re-creation
