@@ -7,7 +7,24 @@ import * as React from "react";
 
 import { cn } from "../utils";
 
-const Sheet = SheetPrimitive.Root;
+type SheetBehavior = "modal" | "panel";
+
+interface SheetProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Root> {
+  behavior?: SheetBehavior;
+}
+
+const Sheet = ({
+  behavior = "modal",
+  ...props
+}: SheetProps) => {
+  return (
+    <SheetPrimitive.Root
+      modal={behavior === "modal"}
+      {...props}
+    />
+  );
+};
 
 const SheetTrigger = SheetPrimitive.Trigger;
 
@@ -31,7 +48,7 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out ",
+  "gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out ",
   {
     variants: {
       side: {
@@ -42,36 +59,68 @@ const sheetVariants = cva(
         right:
           "right-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
       },
+      positioning: {
+        fixed: "fixed z-50",
+        absolute: "absolute",
+      },
     },
     defaultVariants: {
       side: "right",
+      positioning: "fixed",
     },
   }
 );
 
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
+    VariantProps<typeof sheetVariants> {
+  
+}
 
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
->(({ side = "right", className, children, ...props }, ref) => (
-  <SheetPortal>
-    <SheetOverlay />
-    <SheetPrimitive.Content
-      ref={ref}
-      className={cn(sheetVariants({ side }), className)}
-      {...props}
-    >
-      <SheetPrimitive.Close className="absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary">
-        <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </SheetPrimitive.Close>
-      {children}
-    </SheetPrimitive.Content>
-  </SheetPortal>
-));
+>(
+  (
+    {
+      side = "right",
+      positioning,
+      className,
+      children,
+      
+      ...props
+    },
+    ref
+  ) => {
+    const showOverlay = positioning !== "absolute";
+    const preventOutsideClose = positioning === "absolute";
+
+    const content = (
+      <>
+        {showOverlay && <SheetOverlay />}
+        <SheetPrimitive.Content
+          ref={ref}
+          className={cn(sheetVariants({ side, positioning }), className)}
+          onInteractOutside={
+            preventOutsideClose ? (e) => e.preventDefault() : undefined
+          }
+          {...props}
+        >
+          <SheetPrimitive.Close className="absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </SheetPrimitive.Close>
+          {children}
+        </SheetPrimitive.Content>
+      </>
+    );
+    if (!showOverlay) {
+      return content;
+    }
+
+    return <SheetPortal>{content}</SheetPortal>;
+  }
+);
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
 const SheetHeader = ({
