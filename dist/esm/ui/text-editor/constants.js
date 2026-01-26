@@ -1,4 +1,5 @@
 // toolbar/constants.ts
+import { validateImageUrl } from "./agent-editor-components/utils";
 export const COLORS = [
     "#000000",
     "#ef4444",
@@ -237,8 +238,9 @@ export const NOTION_FLOAT_MENU_TOOLBAR_CONFIG = [
         description: "Upload or embed with a link",
         action: (e) => {
             const url = prompt("Enter image URL:");
-            if (url) {
-                e.chain().focus().setImage({ src: url }).run();
+            const validUrl = url ? validateImageUrl(url) : null;
+            if (validUrl) {
+                e.chain().focus().setImage({ src: validUrl }).run();
             }
         },
         keywords: ["image", "img", "photo", "picture"],

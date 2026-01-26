@@ -1,5 +1,6 @@
 // toolbar/constants.ts
 
+import { validateImageUrl } from "./agent-editor-components/utils";
 import { IBubbleMenu, IFloatMenu, ITopToolbarItem } from "./types/type";
 
 export const COLORS = [
@@ -243,8 +244,9 @@ export const NOTION_FLOAT_MENU_TOOLBAR_CONFIG: IFloatMenu[] = [
     description: "Upload or embed with a link",
     action: (e) => {
       const url = prompt("Enter image URL:");
-      if (url) {
-        e.chain().focus().setImage({ src: url }).run();
+      const validUrl = url ? validateImageUrl(url) : null;
+      if (validUrl) {
+        e.chain().focus().setImage({ src: validUrl }).run();
       }
     },
     keywords: ["image", "img", "photo", "picture"],

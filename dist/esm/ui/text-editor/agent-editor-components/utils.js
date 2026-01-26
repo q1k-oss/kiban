@@ -16,3 +16,22 @@ export const normalizeUrl = (raw) => {
         return null;
     }
 };
+export const validateImageUrl = (raw) => {
+    const trimmed = raw.trim();
+    if (trimmed.startsWith("data:")) {
+        if (trimmed.startsWith("data:image/")) {
+            return trimmed;
+        }
+        return null;
+    }
+    try {
+        const url = new URL(trimmed);
+        if (!["http:", "https:"].includes(url.protocol)) {
+            return null;
+        }
+        return url.href;
+    }
+    catch (_a) {
+        return null;
+    }
+};
