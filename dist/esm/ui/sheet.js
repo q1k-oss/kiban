@@ -10,13 +10,16 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
 import { cn } from "../utils";
-const Sheet = SheetPrimitive.Root;
+const Sheet = (_a) => {
+    var { behavior = "modal" } = _a, props = __rest(_a, ["behavior"]);
+    return (_jsx(SheetPrimitive.Root, Object.assign({ modal: behavior === "modal" }, props)));
+};
 const SheetTrigger = SheetPrimitive.Trigger;
 const SheetClose = SheetPrimitive.Close;
 const SheetPortal = SheetPrimitive.Portal;
@@ -25,7 +28,7 @@ const SheetOverlay = React.forwardRef((_a, ref) => {
     return (_jsx(SheetPrimitive.Overlay, Object.assign({ className: cn("fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className) }, props, { ref: ref })));
 });
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
-const sheetVariants = cva("fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out ", {
+const sheetVariants = cva("gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out ", {
     variants: {
         side: {
             top: "inset-x-0 top-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
@@ -33,14 +36,25 @@ const sheetVariants = cva("fixed z-50 gap-4 bg-background shadow-lg transition e
             left: "left-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
             right: "right-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
         },
+        positioning: {
+            fixed: "fixed z-50",
+            absolute: "absolute",
+        },
     },
     defaultVariants: {
         side: "right",
+        positioning: "fixed",
     },
 });
 const SheetContent = React.forwardRef((_a, ref) => {
-    var { side = "right", className, children } = _a, props = __rest(_a, ["side", "className", "children"]);
-    return (_jsxs(SheetPortal, { children: [_jsx(SheetOverlay, {}), _jsxs(SheetPrimitive.Content, Object.assign({ ref: ref, className: cn(sheetVariants({ side }), className) }, props, { children: [_jsxs(SheetPrimitive.Close, { className: "absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] }), children] }))] }));
+    var { side = "right", positioning, className, children } = _a, props = __rest(_a, ["side", "positioning", "className", "children"]);
+    const showOverlay = positioning !== "absolute";
+    const preventOutsideClose = positioning === "absolute";
+    const content = (_jsxs(_Fragment, { children: [showOverlay && _jsx(SheetOverlay, {}), _jsxs(SheetPrimitive.Content, Object.assign({ ref: ref, className: cn(sheetVariants({ side, positioning }), className), onInteractOutside: preventOutsideClose ? (e) => e.preventDefault() : undefined }, props, { children: [_jsxs(SheetPrimitive.Close, { className: "absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] }), children] }))] }));
+    if (!showOverlay) {
+        return content;
+    }
+    return _jsx(SheetPortal, { children: content });
 });
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 const SheetHeader = (_a) => {

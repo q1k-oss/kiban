@@ -1,13 +1,18 @@
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { type VariantProps } from "class-variance-authority";
 import * as React from "react";
-declare const Sheet: React.FC<SheetPrimitive.DialogProps>;
+type SheetBehavior = "modal" | "panel";
+interface SheetProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Root> {
+    behavior?: SheetBehavior;
+}
+declare const Sheet: ({ behavior, ...props }: SheetProps) => import("react/jsx-runtime").JSX.Element;
 declare const SheetTrigger: React.ForwardRefExoticComponent<SheetPrimitive.DialogTriggerProps & React.RefAttributes<HTMLButtonElement>>;
 declare const SheetClose: React.ForwardRefExoticComponent<SheetPrimitive.DialogCloseProps & React.RefAttributes<HTMLButtonElement>>;
 declare const SheetPortal: React.FC<SheetPrimitive.DialogPortalProps>;
 declare const SheetOverlay: React.ForwardRefExoticComponent<Omit<SheetPrimitive.DialogOverlayProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 declare const sheetVariants: (props?: {
     side?: "left" | "right" | "top" | "bottom";
+    positioning?: "fixed" | "absolute";
 } & import("class-variance-authority/dist/types").ClassProp) => string;
 interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, VariantProps<typeof sheetVariants> {
 }
