@@ -51,3 +51,4 @@ export * from './ui/stepper.js';
 export * from './ui/app-icon.js';
 export * from './ui/border-moving-wrapper.js';
 export * from './ui/workflow-canvas/index.js';
+export * from './ui/text-editor/index.js';
