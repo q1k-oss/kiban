@@ -9,49 +9,63 @@ export default () => {
         iconName={"layout-dashboard"}
         size={40}
         className="text-muted-foreground"
-        source="LUCIDE"
       />
       <AppIcon
-        iconName={"FolderQ1kIcon"}
+        iconName={"custom-folder-q1k-icon"}
         size={40}
         className="text-muted-foreground"
-        source="CUSTOM"
+        source="custom"
       />
       <AppIcon
-        iconName="TokenIcon"
+        iconName="custom-token-icon"
         size={40}
         className="text-muted-foreground"
-        source="CUSTOM"
+        source="custom"
       />
       <AppIcon
-        iconName={"rocket"}
+        iconName={"custom-square-icon-fill"}
         size={40}
         className="text-muted-foreground"
-        source="LUCIDE"
+        source="custom"
       />
       <AppIcon
-        iconName={"GoogleDriveIcon"}
+        iconName={"custom-google-drive-icon"}
         size={40}
         className="text-muted-foreground"
-        source="CUSTOM"
+        source="custom"
       />
       <AppIcon
-        iconName={"FileCSVIcon"}
+        iconName={"custom-arrow-up-icon"}
         size={40}
         className="text-red-700"
-        source="CUSTOM"
+        source="custom"
       />
       <AppIcon
-        iconName={"FilePDFIcon"}
+        iconName={"custom-facebook-fill"}
         size={40}
-        className="text-green-700"
-        source="CUSTOM"
+        className="text-green-900"
+        source="custom"
+      />
+     <AppIcon
+        iconName={"custom-reddit-fill"}
+        size={40}
+        source="custom"
+        // strokeWidth={1}
+        className="text-red-600"
+      />
+
+      <AppIcon
+        iconName={"custom-xtwitter"}
+        size={40}
+        source="custom"
+        // strokeWidth={1}
       />
       <AppIcon
-        iconName={"FileDOCIcon"}
+        iconName={"custom-linkedin-fill"}
         size={40}
-        className="text-orange-700"
-        source="CUSTOM"
+        source="custom"
+        className="text-amber-500"
+        // strokeWidth={1}
       />
     </div>
   );
