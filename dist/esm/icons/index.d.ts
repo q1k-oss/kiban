@@ -4,7 +4,7 @@ declare const CustomIcons: {
     "custom-create-agent-icon": import("react").FC<import("./CreateAgentIcon").CreateAgentIconProps>;
     "custom-filter-icon": import("react").FC<import("./FilterIcon").FilterIconProps>;
     "custom-folder-q1k-icon": import("react").FC<import("./FolderQ1kIcon").FolderQ1kIconProps>;
-    "custon-paper-clip-icon": () => import("react/jsx-runtime").JSX.Element;
+    "custom-paper-clip-icon": () => import("react/jsx-runtime").JSX.Element;
     "custom-square-icon-fill": import("react").FC<import("./SquareIconFill").ISquareIconFillProp>;
     "custom-token-icon": import("react").FC<import("./TokenIcon").TokenIconProps>;
     "custom-google-drive-icon": import("react").FC<import("./GoogleDriveIcon").GoogleDriveIconProps>;

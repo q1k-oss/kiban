@@ -21,7 +21,7 @@ const CustomIcons = {
     "custom-create-agent-icon": CreateAgentIcon,
     "custom-filter-icon": FilterIcon,
     "custom-folder-q1k-icon": FolderQ1kIcon,
-    "custon-paper-clip-icon": PaperClipIcon,
+    "custom-paper-clip-icon": PaperClipIcon,
     "custom-square-icon-fill": SquareIconFill,
     "custom-token-icon": TokenIcon,
     "custom-google-drive-icon": GoogleDriveIcon,

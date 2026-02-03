@@ -14,7 +14,7 @@ export const ArrowUpIcon: React.FC<IArrowUpIconProp> = ({
   return (
     <svg
       width={size}
-      height={size}
+      height={size * (18 / 14)}
       viewBox="0 0 14 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
