@@ -6,9 +6,10 @@ export default () => {
   return (
     <div className="flex items-center justify-between gap-2 w-full">
       <AppIcon
-        iconName={"layout-dashboard"}
+        iconName={"custom-q1k-logo"}
         size={40}
         className="text-muted-foreground"
+        source="custom"
       />
       <AppIcon
         iconName={"custom-folder-q1k-icon"}

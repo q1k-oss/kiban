@@ -16,6 +16,7 @@ declare const CustomIcons: {
     "custom-linkedin-fill": import("react").FC<import("./LinkedinFillLogo").ILinkedinFillLogoProp>;
     "custom-reddit-fill": import("react").FC<import("./RedditLogo").IRedditLogo>;
     "custom-facebook-fill": import("react").FC<import("./FaceBookFillLogo").IFaceBookFillLogo>;
+    "custom-q1k-logo": import("react").FC<import("./Q1KLogo").IQ1KLogoProp>;
 };
 export type CustomIconName = keyof typeof CustomIcons;
 export { CustomIcons };

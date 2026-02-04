@@ -11,6 +11,7 @@ import { FullPreviewPlay } from "./FullPreviewPlay";
 import { GoogleDriveIcon } from "./GoogleDriveIcon";
 import { LinkedinFillLogo } from "./LinkedinFillLogo";
 import { PaperClipIcon } from "./PaperClipIcon";
+import { Q1KLogo } from "./Q1KLogo";
 import { RedditLogo } from "./RedditLogo";
 import { SquareIconFill } from "./SquareIconFill";
 import { TokenIcon } from "./TokenIcon";
@@ -34,6 +35,7 @@ const CustomIcons = {
   "custom-linkedin-fill": LinkedinFillLogo,
   "custom-reddit-fill": RedditLogo,
   "custom-facebook-fill": FaceBookFillLogo,
+  "custom-q1k-logo": Q1KLogo,
 };
 
 export type CustomIconName = keyof typeof CustomIcons;
