@@ -1,12 +1,7 @@
 "use client";
 import { jsx as _jsx } from "react/jsx-runtime";
 import { Button } from '../button';
-import objectToGetParams from './utils';
-function openShareWindow(shareUrl, windowWidth = 660, windowHeight = 460) {
-    const left = window.screen.width / 2 - windowWidth / 2;
-    const top = window.screen.height / 2 - windowHeight / 2;
-    window.open(shareUrl, 'share-window', `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`);
-}
+import objectToGetParams, { openShareWindow } from './utils';
 function getRedditShareUrl(url, options) {
     if (!url) {
         throw new Error('Reddit share requires a URL');

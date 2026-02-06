@@ -3,7 +3,7 @@ import React from "react";
 
 import { Button } from "../button";
 
-import objectToGetParams from "./utils";
+import objectToGetParams, { openShareWindow } from "./utils";
 
 export interface FacebookShareButtonProps {
   url: string;
@@ -12,21 +12,6 @@ export interface FacebookShareButtonProps {
   className?: string;
   disabled?: boolean;
   onClick?: () => void;
-}
-
-function openShareWindow(
-  shareUrl: string,
-  windowWidth = 550,
-  windowHeight = 400,
-) {
-  const left = window.screen.width / 2 - windowWidth / 2;
-  const top = window.screen.height / 2 - windowHeight / 2;
-
-  window.open(
-    shareUrl,
-    "share-window",
-    `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`,
-  );
 }
 
 function getFacebookShareUrl(url: string, options: { hashtag?: string }) {

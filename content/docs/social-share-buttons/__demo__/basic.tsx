@@ -14,12 +14,7 @@ export default function Basic() {
 
   return (
     <div className="flex flex-wrap gap-2">
-      <LinkedinShareButton
-        url={shareUrl}
-        title={shareTitle}
-        summary="A great read about..."
-        source="My Website"
-      >
+      <LinkedinShareButton url={shareUrl}>
         Share on LinkedIn
       </LinkedinShareButton>
 
