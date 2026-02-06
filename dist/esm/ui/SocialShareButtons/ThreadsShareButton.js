@@ -1,5 +1,6 @@
 "use client";
 import { jsx as _jsx } from "react/jsx-runtime";
+import { Button } from '../button';
 import objectToGetParams from './utils';
 function openShareWindow(shareUrl, windowWidth = 550, windowHeight = 400) {
     const left = window.screen.width / 2 - windowWidth / 2;
@@ -22,5 +23,5 @@ export default function ThreadsShareButton({ url, title, children, className, di
         const shareUrl = getThreadsShareUrl(url, { title });
         openShareWindow(shareUrl);
     };
-    return (_jsx("button", { type: "button", className: className, onClick: handleClick, disabled: disabled, "aria-label": "Share on Threads", children: children }));
+    return (_jsx(Button, { type: "button", className: className, onClick: handleClick, disabled: disabled, "aria-label": "Share on Threads", children: children }));
 }

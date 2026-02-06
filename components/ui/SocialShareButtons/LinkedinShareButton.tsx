@@ -1,7 +1,10 @@
-"use client"
-import React from 'react';
+"use client";
+import React from "react";
 
-import objectToGetParams from './utils';
+import { Button } from "../button";
+
+import objectToGetParams from "./utils";
+
 
 export interface LinkedinShareButtonProps {
   url: string;
@@ -14,25 +17,32 @@ export interface LinkedinShareButtonProps {
   onClick?: () => void;
 }
 
-function openShareWindow(shareUrl: string, windowWidth = 750, windowHeight = 600) {
+function openShareWindow(
+  shareUrl: string,
+  windowWidth = 750,
+  windowHeight = 600,
+) {
   const left = window.screen.width / 2 - windowWidth / 2;
   const top = window.screen.height / 2 - windowHeight / 2;
 
   window.open(
     shareUrl,
-    'share-window',
-    `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`
+    "share-window",
+    `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`,
   );
 }
 
-function getLinkedinShareUrl(url: string, options: { title?: string; summary?: string; source?: string }) {
+function getLinkedinShareUrl(
+  url: string,
+  options: { title?: string; summary?: string; source?: string },
+) {
   if (!url) {
-    throw new Error('LinkedIn share requires a URL');
+    throw new Error("LinkedIn share requires a URL");
   }
 
   return (
-    'https://linkedin.com/shareArticle' +
-    objectToGetParams({ url, mini: 'true', ...options })
+    "https://linkedin.com/shareArticle" +
+    objectToGetParams({ url, mini: "true", ...options })
   );
 }
 
@@ -55,7 +65,7 @@ export default function LinkedinShareButton({
   };
 
   return (
-    <button
+    <Button
       type="button"
       className={className}
       onClick={handleClick}
@@ -63,6 +73,6 @@ export default function LinkedinShareButton({
       aria-label="Share on LinkedIn"
     >
       {children}
-    </button>
+    </Button>
   );
 }

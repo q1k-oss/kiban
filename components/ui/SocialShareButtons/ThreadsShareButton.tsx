@@ -1,6 +1,8 @@
 "use client"
 import React from 'react';
 
+import { Button } from '../button';
+
 import objectToGetParams from './utils';
 
 export interface ThreadsShareButtonProps {
@@ -53,7 +55,7 @@ export default function ThreadsShareButton({
   };
 
   return (
-    <button
+    <Button
       type="button"
       className={className}
       onClick={handleClick}
@@ -61,6 +63,6 @@ export default function ThreadsShareButton({
       aria-label="Share on Threads"
     >
       {children}
-    </button>
+    </Button>
   );
 }

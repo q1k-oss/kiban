@@ -1,7 +1,9 @@
-"use client"
-import React from 'react';
+"use client";
+import React from "react";
 
-import objectToGetParams from './utils';
+import { Button } from "../button";
+
+import objectToGetParams from "./utils";
 
 export interface TwitterShareButtonProps {
   url: string;
@@ -15,33 +17,42 @@ export interface TwitterShareButtonProps {
   onClick?: () => void;
 }
 
-function openShareWindow(shareUrl: string, windowWidth = 550, windowHeight = 400) {
+function openShareWindow(
+  shareUrl: string,
+  windowWidth = 550,
+  windowHeight = 400,
+) {
   const left = window.screen.width / 2 - windowWidth / 2;
   const top = window.screen.height / 2 - windowHeight / 2;
 
   window.open(
     shareUrl,
-    'share-window',
-    `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`
+    "share-window",
+    `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`,
   );
 }
 
 function getTwitterShareUrl(
   url: string,
-  options: { title?: string; via?: string; hashtags?: string[]; related?: string[] }
+  options: {
+    title?: string;
+    via?: string;
+    hashtags?: string[];
+    related?: string[];
+  },
 ) {
   if (!url) {
-    throw new Error('Twitter share requires a URL');
+    throw new Error("Twitter share requires a URL");
   }
 
   return (
-    'https://twitter.com/intent/tweet' +
+    "https://twitter.com/intent/tweet" +
     objectToGetParams({
       url,
       text: options.title,
       via: options.via,
-      hashtags: options.hashtags?.join(','),
-      related: options.related?.join(','),
+      hashtags: options.hashtags?.join(","),
+      related: options.related?.join(","),
     })
   );
 }
@@ -66,7 +77,7 @@ export default function TwitterShareButton({
   };
 
   return (
-    <button
+    <Button
       type="button"
       className={className}
       onClick={handleClick}
@@ -74,6 +85,6 @@ export default function TwitterShareButton({
       aria-label="Share on Twitter"
     >
       {children}
-    </button>
+    </Button>
   );
 }

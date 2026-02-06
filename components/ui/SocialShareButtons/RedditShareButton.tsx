@@ -1,6 +1,8 @@
 "use client"
 import React from 'react';
 
+import { Button } from '../button';
+
 import objectToGetParams from './utils';
 
 export interface RedditShareButtonProps {
@@ -51,7 +53,7 @@ export default function RedditShareButton({
   };
 
   return (
-    <button
+    <Button
       type="button"
       className={className}
       onClick={handleClick}
@@ -59,6 +61,6 @@ export default function RedditShareButton({
       aria-label="Share on Reddit"
     >
       {children}
-    </button>
+    </Button>
   );
 }

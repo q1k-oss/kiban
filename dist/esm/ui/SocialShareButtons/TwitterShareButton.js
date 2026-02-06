@@ -1,23 +1,24 @@
 "use client";
 import { jsx as _jsx } from "react/jsx-runtime";
-import objectToGetParams from './utils';
+import { Button } from "../button";
+import objectToGetParams from "./utils";
 function openShareWindow(shareUrl, windowWidth = 550, windowHeight = 400) {
     const left = window.screen.width / 2 - windowWidth / 2;
     const top = window.screen.height / 2 - windowHeight / 2;
-    window.open(shareUrl, 'share-window', `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`);
+    window.open(shareUrl, "share-window", `width=${windowWidth},height=${windowHeight},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`);
 }
 function getTwitterShareUrl(url, options) {
     var _a, _b;
     if (!url) {
-        throw new Error('Twitter share requires a URL');
+        throw new Error("Twitter share requires a URL");
     }
-    return ('https://twitter.com/intent/tweet' +
+    return ("https://twitter.com/intent/tweet" +
         objectToGetParams({
             url,
             text: options.title,
             via: options.via,
-            hashtags: (_a = options.hashtags) === null || _a === void 0 ? void 0 : _a.join(','),
-            related: (_b = options.related) === null || _b === void 0 ? void 0 : _b.join(','),
+            hashtags: (_a = options.hashtags) === null || _a === void 0 ? void 0 : _a.join(","),
+            related: (_b = options.related) === null || _b === void 0 ? void 0 : _b.join(","),
         }));
 }
 export default function TwitterShareButton({ url, title, via, hashtags, related, children, className, disabled = false, onClick, }) {
@@ -28,5 +29,5 @@ export default function TwitterShareButton({ url, title, via, hashtags, related,
         const shareUrl = getTwitterShareUrl(url, { title, via, hashtags, related });
         openShareWindow(shareUrl);
     };
-    return (_jsx("button", { type: "button", className: className, onClick: handleClick, disabled: disabled, "aria-label": "Share on Twitter", children: children }));
+    return (_jsx(Button, { type: "button", className: className, onClick: handleClick, disabled: disabled, "aria-label": "Share on Twitter", children: children }));
 }
