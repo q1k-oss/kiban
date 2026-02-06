@@ -1,4 +1,4 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-export const ArrowUpIcon = () => {
-    return (_jsx("svg", { width: "15", height: "19", viewBox: "0 0 15 19", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: _jsx("path", { d: "M0.875 7.875L7.375 0.875M7.375 0.875L13.375 7.875M7.375 0.875V17.875", stroke: "#BABABA", strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" }) }));
+export const ArrowUpIcon = ({ size = 20, className, strokeWidth = 1.5, }) => {
+    return (_jsx("svg", { width: size, height: size * (18 / 14), viewBox: "0 0 14 18", fill: "none", xmlns: "http://www.w3.org/2000/svg", className: className, children: _jsx("path", { d: "M0.5 7.5L7 0.5M7 0.5L13 7.5M7 0.5V17.5", stroke: "currentColor", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: strokeWidth }) }));
 };
