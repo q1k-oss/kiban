@@ -1,3 +1,4 @@
+import { AiStars } from "./AiStars";
 import { ArrowUpIcon } from "./ArrowUpIcon";
 import { CheckIcon } from "./CheckIcon";
 import { CreateAgentIcon } from "./CreateAgentIcon";
@@ -36,6 +37,8 @@ const CustomIcons = {
   "custom-reddit-fill": RedditLogo,
   "custom-facebook-fill": FaceBookFillLogo,
   "custom-q1k-logo": Q1KLogo,
+  "custom-ai-stars": AiStars,
+
 };
 
 export type CustomIconName = keyof typeof CustomIcons;

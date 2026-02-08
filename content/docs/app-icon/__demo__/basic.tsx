@@ -36,9 +36,9 @@ export default () => {
         source="custom"
       />
       <AppIcon
-        iconName={"custom-arrow-up-icon"}
+        iconName={"custom-ai-stars"}
         size={40}
-        className="text-red-700"
+        
         source="custom"
       />
       <AppIcon
