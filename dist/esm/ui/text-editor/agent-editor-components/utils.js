@@ -19,6 +19,57 @@ export const normalizeUrl = (raw) => {
         return null;
     }
 };
+export const buildResponsiveImageAttrs = (urls) => ({
+    src: urls.full,
+    srcset: `${urls.thumbnail} 400w, ${urls.medium} 800w, ${urls.full} 1200w`,
+    sizes: "(max-width: 400px) 400px, (max-width: 800px) 800px, 1200px",
+});
+const LOADING_SVG = [
+    '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150">',
+    '<rect width="200" height="150" fill="#f1f5f9" rx="8"/>',
+    '<circle cx="100" cy="65" r="16" fill="none" stroke="#94a3b8" stroke-width="3"',
+    ' stroke-dasharray="80" stroke-linecap="round">',
+    '<animateTransform attributeName="transform" type="rotate"',
+    ' from="0 100 65" to="360 100 65" dur="1s" repeatCount="indefinite"/>',
+    "</circle>",
+    '<text x="100" y="105" text-anchor="middle" fill="#94a3b8"',
+    ' font-family="sans-serif" font-size="12">Uploading...</text>',
+    "</svg>",
+].join("");
+const UPLOAD_PLACEHOLDER_SRC = `data:image/svg+xml,${encodeURIComponent(LOADING_SVG)}`;
+const findPlaceholderNode = (view, uploadId, callback) => {
+    view.state.doc.descendants((node, pos) => {
+        if (node.type.name === "image" && node.attrs.alt === uploadId) {
+            callback(pos, node.nodeSize);
+            return false;
+        }
+    });
+};
+export const uploadAndInsertImage = (view, pos, file, uploadHandler) => {
+    const uploadId = `__uploading_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const placeholderNode = view.state.schema.nodes.image.create({
+        src: UPLOAD_PLACEHOLDER_SRC,
+        alt: uploadId,
+    });
+    if (pos !== null) {
+        view.dispatch(view.state.tr.insert(pos, placeholderNode));
+    }
+    else {
+        view.dispatch(view.state.tr.replaceSelectionWith(placeholderNode));
+    }
+    uploadHandler(file)
+        .then((urls) => {
+        const attrs = buildResponsiveImageAttrs(urls);
+        findPlaceholderNode(view, uploadId, (nodePos) => {
+            view.dispatch(view.state.tr.setNodeMarkup(nodePos, undefined, Object.assign(Object.assign({}, attrs), { alt: "" })));
+        });
+    })
+        .catch(() => {
+        findPlaceholderNode(view, uploadId, (nodePos, nodeSize) => {
+            view.dispatch(view.state.tr.delete(nodePos, nodePos + nodeSize));
+        });
+    });
+};
 export const validateImageUrl = (raw) => {
     const trimmed = raw.trim();
     if (trimmed.startsWith("data:")) {

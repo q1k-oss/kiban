@@ -1,19 +1,20 @@
 import React, { createContext, useContext } from "react";
 
-
 import { COLORS, FONT_SIZES, HIGHLIGHT_COLORS } from "../constants";
-import { IFontSizeOption } from "../types/type";
+import { IFontSizeOption, ImageUploadHandler } from "../types/type";
 
 interface EditorConfig {
   fontSizes?: IFontSizeOption[];
   colors?: string[];
   highlightColors?: { color: string; label: string }[];
+  onImageUpload?: ImageUploadHandler;
 }
 
 interface TextEditorConfigContextValue {
   fontSizes: IFontSizeOption[];
   colors: string[];
   highlightColors: { color: string; label: string }[];
+  onImageUpload?: ImageUploadHandler;
 }
 
 const TextEditorConfigContext = createContext<TextEditorConfigContextValue>({
@@ -43,6 +44,7 @@ export const TextEditorConfigProvider = ({
     fontSizes: config.fontSizes || FONT_SIZES,
     colors: config.colors || COLORS,
     highlightColors: config.highlightColors || HIGHLIGHT_COLORS,
+    onImageUpload: config.onImageUpload,
   };
 
   return (
