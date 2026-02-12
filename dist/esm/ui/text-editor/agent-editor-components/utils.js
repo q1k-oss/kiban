@@ -37,13 +37,17 @@ const LOADING_SVG = [
     "</svg>",
 ].join("");
 const UPLOAD_PLACEHOLDER_SRC = `data:image/svg+xml,${encodeURIComponent(LOADING_SVG)}`;
-const findPlaceholderNode = (view, uploadId, callback) => {
+const findPlaceholderNode = (view, uploadId) => {
+    let result = null;
     view.state.doc.descendants((node, pos) => {
+        if (result)
+            return false;
         if (node.type.name === "image" && node.attrs.alt === uploadId) {
-            callback(pos, node.nodeSize);
+            result = { pos, nodeSize: node.nodeSize };
             return false;
         }
     });
+    return result;
 };
 export const uploadAndInsertImage = (view, pos, file, uploadHandler) => {
     const uploadId = `__uploading_${Date.now()}_${Math.random().toString(36).slice(2)}`;
@@ -60,14 +64,17 @@ export const uploadAndInsertImage = (view, pos, file, uploadHandler) => {
     uploadHandler(file)
         .then((urls) => {
         const attrs = buildResponsiveImageAttrs(urls);
-        findPlaceholderNode(view, uploadId, (nodePos) => {
-            view.dispatch(view.state.tr.setNodeMarkup(nodePos, undefined, Object.assign(Object.assign({}, attrs), { alt: "" })));
-        });
+        const found = findPlaceholderNode(view, uploadId);
+        if (!found)
+            return;
+        const newNode = view.state.schema.nodes.image.create(Object.assign(Object.assign({}, attrs), { alt: "" }));
+        view.dispatch(view.state.tr.replaceWith(found.pos, found.pos + found.nodeSize, newNode));
     })
         .catch(() => {
-        findPlaceholderNode(view, uploadId, (nodePos, nodeSize) => {
-            view.dispatch(view.state.tr.delete(nodePos, nodePos + nodeSize));
-        });
+        const found = findPlaceholderNode(view, uploadId);
+        if (!found)
+            return;
+        view.dispatch(view.state.tr.delete(found.pos, found.pos + found.nodeSize));
     });
 };
 export const validateImageUrl = (raw) => {

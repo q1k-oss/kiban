@@ -19,13 +19,15 @@ async function dummyImageUpload(file: File) {
 
 export default function ImageUploadDemo() {
   return (
-    <div className="w-full min-h-[400px] border rounded-lg p-4">
+    
       <TextEditor
         value="<h1>Image Upload Demo</h1><p>Drag & drop an image, paste from clipboard, or click the image button in the toolbar to upload.</p>"
-        // onChange={(content) => console.log(content)}
+        onChange={({html}) => console.log(html)}
         variant="AGENT_EDITOR"
+        editorClassName="py-4 max-h-150 overflow-y-auto"
         onImageUpload={dummyImageUpload}
+        enableHeadingAnchors={true}
       />
-    </div>
+    
   );
 }

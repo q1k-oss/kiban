@@ -52,14 +52,16 @@ const UPLOAD_PLACEHOLDER_SRC = `data:image/svg+xml,${encodeURIComponent(LOADING_
 const findPlaceholderNode = (
   view: EditorView,
   uploadId: string,
-  callback: (pos: number, nodeSize: number) => void,
-) => {
+): { pos: number; nodeSize: number } | null => {
+  let result: { pos: number; nodeSize: number } | null = null;
   view.state.doc.descendants((node, pos) => {
+    if (result) return false;
     if (node.type.name === "image" && node.attrs.alt === uploadId) {
-      callback(pos, node.nodeSize);
+      result = { pos, nodeSize: node.nodeSize };
       return false;
     }
   });
+  return result;
 };
 
 export const uploadAndInsertImage = (
@@ -83,19 +85,21 @@ export const uploadAndInsertImage = (
   uploadHandler(file)
     .then((urls) => {
       const attrs = buildResponsiveImageAttrs(urls);
-      findPlaceholderNode(view, uploadId, (nodePos) => {
-        view.dispatch(
-          view.state.tr.setNodeMarkup(nodePos, undefined, {
-            ...attrs,
-            alt: "",
-          }),
-        );
+      const found = findPlaceholderNode(view, uploadId);
+      if (!found) return;
+
+      const newNode = view.state.schema.nodes.image.create({
+        ...attrs,
+        alt: "",
       });
+      view.dispatch(
+        view.state.tr.replaceWith(found.pos, found.pos + found.nodeSize, newNode),
+      );
     })
     .catch(() => {
-      findPlaceholderNode(view, uploadId, (nodePos, nodeSize) => {
-        view.dispatch(view.state.tr.delete(nodePos, nodePos + nodeSize));
-      });
+      const found = findPlaceholderNode(view, uploadId);
+      if (!found) return;
+      view.dispatch(view.state.tr.delete(found.pos, found.pos + found.nodeSize));
     });
 };
 

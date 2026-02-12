@@ -18,7 +18,10 @@ import { useRef } from "react";
 import { TopToolbar } from "./agent-editor-components/top-toolbar";
 import { uploadAndInsertImage } from "./agent-editor-components/utils";
 import { TextEditorConfigProvider } from "./context/editor-config-context";
-import { HeadingWithAnchor } from "./extensions/heading-with-anchor";
+import {
+  HeadingWithAnchor,
+  deduplicateHeadingIds,
+} from "./extensions/heading-with-anchor";
 import { ResponsiveImage } from "./extensions/responsive-image";
 import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu";
 import { editorStyles as defaultEditorStyles } from "./notion-editor-components/editor-styles";
@@ -38,15 +41,15 @@ import type {
 } from "./types/type";
 
 const TextEditor = ({
-  value = "<h1>Untitled Document</h1>",
+  value = "",
   onChange,
   wrapperClassName = "",
   editorClassName = "",
   headingLevels = [1, 2, 3],
   placeholder = "start typing...",
   linkClassName = "text-blue-500 underline hover:text-blue-600",
-  highlightMulticolor = false,
-  textAlignTypes = ["heading", "paragraph"],
+  highlightMulticolor = true,
+  textAlignTypes = ["heading", "paragraph", "image"],
   variant = "AGENT_EDITOR",
   topToolbar,
   bubbleMenu,
@@ -163,8 +166,11 @@ const TextEditor = ({
       },
     },
     onUpdate({ editor }) {
+      const rawHtml = editor.getHTML();
       onChange?.({
-        html: editor.getHTML(),
+        html: enableHeadingAnchors
+          ? deduplicateHeadingIds(rawHtml)
+          : rawHtml,
         json: editor.getJSON(),
         text: editor.getText(),
       });
