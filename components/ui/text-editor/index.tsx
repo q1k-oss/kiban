@@ -109,10 +109,7 @@ const TextEditor = ({
       },
       handleDOMEvents: {
         dragover: (_view, event) => {
-          if (
-            onImageUploadRef.current &&
-            (event as DragEvent).dataTransfer?.types?.includes("Files")
-          ) {
+          if ((event as DragEvent).dataTransfer?.types?.includes("Files")) {
             event.preventDefault();
             (event as DragEvent).dataTransfer!.dropEffect = "copy";
           }

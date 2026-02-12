@@ -67,8 +67,7 @@ const TextEditor = ({ value = "<h1>Untitled Document</h1>", onChange, wrapperCla
             handleDOMEvents: {
                 dragover: (_view, event) => {
                     var _a, _b;
-                    if (onImageUploadRef.current &&
-                        ((_b = (_a = event.dataTransfer) === null || _a === void 0 ? void 0 : _a.types) === null || _b === void 0 ? void 0 : _b.includes("Files"))) {
+                    if ((_b = (_a = event.dataTransfer) === null || _a === void 0 ? void 0 : _a.types) === null || _b === void 0 ? void 0 : _b.includes("Files")) {
                         event.preventDefault();
                         event.dataTransfer.dropEffect = "copy";
                     }
