@@ -14,53 +14,7 @@ const sampleBlog: Blog = {
   summary:
     "This article explores the intersection of AI and modern web development, covering code generation tools, intelligent testing frameworks, and AI-powered design systems that are reshaping developer workflows.",
   content: `
-    <h2 id="introduction">Introduction</h2>
-    <p>The landscape of web development is evolving rapidly. With the advent of AI-powered tools, developers can now build sophisticated applications faster than ever before.</p>
-
-    <h2 id="ai-code-generation">AI-Powered Code Generation</h2>
-    <p>Modern AI assistants can generate <strong>production-ready code</strong> from natural language descriptions. This dramatically reduces the time spent on boilerplate and repetitive tasks.</p>
-    <blockquote>The best code is the code you don't have to write. AI is making that philosophy a reality.</blockquote>
-
-    <h3 id="benefits">Key Benefits</h3>
-    <ul>
-      <li>Faster prototyping and iteration cycles</li>
-      <li>Reduced bugs through AI-assisted code review</li>
-      <li>Automated test generation and coverage analysis</li>
-      <li>Intelligent refactoring suggestions</li>
-    </ul>
-
-    <h2 id="intelligent-testing">Intelligent Testing Frameworks</h2>
-    <p>AI-driven testing tools can automatically identify <em>edge cases</em>, generate test suites, and even predict where bugs are most likely to occur based on code patterns.</p>
-
-    <h3 id="testing-example">Example: Automated Test Generation</h3>
-    <pre><code class="language-typescript">// AI-generated test for a user authentication module
-describe('UserAuth', () => {
-  it('should reject invalid email formats', () => {
-    expect(validateEmail('not-an-email')).toBe(false);
-    expect(validateEmail('user@domain.com')).toBe(true);
-  });
-
-  it('should enforce password complexity', () => {
-    expect(validatePassword('weak')).toBe(false);
-    expect(validatePassword('Str0ng!Pass')).toBe(true);
-  });
-});</code></pre>
-
-    <h2 id="design-systems">AI-Powered Design Systems</h2>
-    <p>Design systems are becoming smarter with AI integration. Components can now adapt to <u>user preferences</u>, accessibility needs, and device capabilities automatically.</p>
-
-    <h3 id="responsive-design">Responsive Intelligence</h3>
-    <p>Instead of relying on fixed breakpoints, AI-powered layouts can analyze user behavior and device metrics to deliver truly adaptive interfaces.</p>
-    <ol>
-      <li>Analyze viewport and interaction patterns</li>
-      <li>Predict optimal layout configurations</li>
-      <li>Apply real-time adjustments based on context</li>
-    </ol>
-
-    <hr />
-
-    <h2 id="conclusion">Conclusion</h2>
-    <p>The fusion of AI and web development is not just a trend — it's a fundamental shift in how we build for the web. Embracing these tools today will prepare teams for the challenges and opportunities of tomorrow.</p>
+  <h3 id="introduction"><a href="#introduction" class="heading-anchor">#</a><span>Introduction</span></h3><p>Focus has become one of the most valuable skills of the modern era. While intelligence and talent remain important, the ability to concentrate deeply on important tasks often separates average performers from exceptional ones.</p><p>Deep work is not about working longer hours. It is about working with intensity and intention. A single hour of fully concentrated effort can produce more meaningful output than an entire day filled with interruptions.</p><hr><h3 id="the-psychology-behind-focus"><a href="#the-psychology-behind-focus" class="heading-anchor">#</a><span>The Psychology Behind Focus</span></h3><p>Our brains are not designed for constant context switching. Every notification, message, or quick glance at social media forces the brain to shift attention. These shifts consume cognitive resources and reduce overall mental efficiency.</p><p>Research in cognitive psychology suggests that sustained focus strengthens neural circuits related to learning and problem-solving. When we practice deep concentration, our brain adapts by becoming more efficient at complex thinking.</p><p>In contrast, chronic distraction trains the brain to crave novelty. This reduces patience and makes long-term projects feel overwhelming.</p><hr><h3 id="benefits-of-deep-work"><a href="#benefits-of-deep-work" class="heading-anchor">#</a><span>Benefits of Deep Work</span></h3><ol><li><p>Higher Quality Output<br>Focused effort leads to fewer mistakes and more refined thinking.</p></li><li><p>Faster Skill Development<br>Deliberate practice accelerates mastery.</p></li><li><p>Greater Satisfaction<br>Completing meaningful work provides deeper fulfillment than finishing small, scattered tasks.</p></li><li><p>Competitive Advantage<br>In a distracted world, the ability to focus deeply is rare and valuable.</p></li></ol><hr><h3 id="practical-strategies-to-practice-deep-work"><a href="#practical-strategies-to-practice-deep-work" class="heading-anchor">#</a><span>Practical Strategies to Practice Deep Work</span></h3><p>Schedule Focus Blocks<br>Dedicate specific hours each day for uninterrupted work. Treat these blocks as non-negotiable appointments.</p><p>Eliminate Distractions<br>Turn off notifications. Keep your phone away. Use website blockers if necessary.</p><p>Set Clear Goals<br>Before starting a deep work session, define exactly what you want to accomplish.</p><p>Work in Time Intervals<br>Techniques like the 60–90 minute focus cycle can maintain mental energy without burnout.</p><p>Create a Ritual<br>Start deep work sessions with a small routine — such as organizing your desk or writing your goal — to signal your brain that it’s time to concentrate.</p><hr><h3 id="overcoming-common-challenges"><a href="#overcoming-common-challenges" class="heading-anchor">#</a><span>Overcoming Common Challenges</span></h3><p>Many people struggle initially because their attention span has weakened. Start small. Even 30 minutes of focused work is progress. Gradually increase duration as your concentration improves.</p><p>Another challenge is the fear of missing out — checking messages or updates constantly. Remind yourself that most interruptions are not urgent. Protecting your focus protects your future success.</p><hr><h3 id="long-term-impact"><a href="#long-term-impact" class="heading-anchor">#</a><span>Long-Term Impact</span></h3><p>Deep work compounds over time. A person who practices focused effort daily will accumulate skills, knowledge, and achievements that far exceed those who work in fragmented patterns.</p><p>The ability to concentrate deeply is not just a productivity tool — it is a life skill. It shapes your career trajectory, personal growth, and creative output.</p><hr><h3 id="conclusion"><a href="#conclusion" class="heading-anchor">#</a><span>Conclusion</span></h3><p>In a noisy world, focus is power. Deep work is not about isolation or rigidity; it is about choosing what deserves your full attention. By cultivating this habit, you build discipline, improve performance, and create meaningful results that stand the test of time.</p><p></p>
   `,
   tags: "AI,Web Development,TypeScript,Testing,Design Systems",
   authorName: "Jane Doe",
@@ -88,7 +42,7 @@ export default function BlogPreviewBasicDemo() {
               onClick={() => setOpen(false)}
               className="sticky top-3 float-right mr-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-background border border-border-3 text-secondary-text hover:text-primary-text transition"
             >
-              <AppIcon iconName="x" size={20}/>
+              <AppIcon iconName="x" size={20} />
             </Button>
             <div className="p-6 no-scrollbar">
               <BlogPreview loading={false} blog={sampleBlog} />

@@ -7,9 +7,10 @@ export const generateId = (text) => {
         .replace(/\s+/g, '-')
         .trim();
 };
-// Extract text content from HTML
+// Extract text content from HTML (strips heading-anchor elements first)
 export const extractTextContent = (html) => {
-    return html.replace(/<[^>]*>/g, '');
+    const cleaned = html.replace(/<a\b[^>]*class\s*=\s*["'][^"']*heading-anchor[^"']*["'][^>]*>[\s\S]*?<\/a>/gi, '');
+    return cleaned.replace(/<[^>]*>/g, '');
 };
 // Parse HTML attributes
 export const parseAttributes = (attrString) => {

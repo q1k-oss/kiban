@@ -7,11 +7,20 @@ function getAllHeadings(html) {
     const doc = parser.parseFromString(html, 'text/html');
     return Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6')).map((el) => {
         var _a;
-        return ({
-            level: Number(el.tagName.replace('H', '')),
-            text: ((_a = el.textContent) === null || _a === void 0 ? void 0 : _a.trim()) || '',
-            id: el.id,
-        });
+        // Remove heading-anchor elements before extracting text
+        const clone = el.cloneNode(true);
+        clone.querySelectorAll('.heading-anchor').forEach((a) => a.remove());
+        const text = ((_a = clone.textContent) === null || _a === void 0 ? void 0 : _a.trim()) || '';
+        // Use the heading's id, or extract from heading-anchor href
+        let id = el.id;
+        if (!id) {
+            const anchor = el.querySelector('.heading-anchor');
+            const href = anchor === null || anchor === void 0 ? void 0 : anchor.getAttribute('href');
+            if (href === null || href === void 0 ? void 0 : href.startsWith('#')) {
+                id = href.slice(1);
+            }
+        }
+        return { level: Number(el.tagName.replace('H', '')), text, id };
     });
 }
 export default function TableOfContent({ blogContent, }) {

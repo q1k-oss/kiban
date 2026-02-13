@@ -9,9 +9,13 @@ export const generateId = (text: string): string => {
     .trim();
 };
 
-// Extract text content from HTML
+// Extract text content from HTML (strips heading-anchor elements first)
 export const extractTextContent = (html: string): string => {
-  return html.replace(/<[^>]*>/g, '');
+  const cleaned = html.replace(
+    /<a\b[^>]*class\s*=\s*["'][^"']*heading-anchor[^"']*["'][^>]*>[\s\S]*?<\/a>/gi,
+    '',
+  );
+  return cleaned.replace(/<[^>]*>/g, '');
 };
 
 // Parse HTML attributes

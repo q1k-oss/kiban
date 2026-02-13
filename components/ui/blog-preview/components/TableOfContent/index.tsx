@@ -16,11 +16,24 @@ function getAllHeadings(html: string): HeadingTag[] {
   const doc = parser.parseFromString(html, 'text/html');
 
   return Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6')).map(
-    (el) => ({
-      level: Number(el.tagName.replace('H', '')),
-      text: el.textContent?.trim() || '',
-      id: el.id,
-    }),
+    (el) => {
+      // Remove heading-anchor elements before extracting text
+      const clone = el.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll('.heading-anchor').forEach((a) => a.remove());
+
+      const text = clone.textContent?.trim() || '';
+      // Use the heading's id, or extract from heading-anchor href
+      let id = el.id;
+      if (!id) {
+        const anchor = el.querySelector('.heading-anchor');
+        const href = anchor?.getAttribute('href');
+        if (href?.startsWith('#')) {
+          id = href.slice(1);
+        }
+      }
+
+      return { level: Number(el.tagName.replace('H', '')), text, id };
+    },
   );
 }
 
