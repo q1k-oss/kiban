@@ -1,7 +1,7 @@
 import React from "react";
-export interface IArrowUpIconProp {
+export interface IQ1KLogoProp {
     size?: number;
     className?: string;
     strokeWidth?: number;
 }
-export declare const ArrowUpIcon: React.FC<IArrowUpIconProp>;
+export declare const Q1KLogo: React.FC<IQ1KLogoProp>;
