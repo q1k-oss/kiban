@@ -1,10 +1,15 @@
-import { format } from 'date-fns';
+import { format, isValid } from 'date-fns';
 
 import { cn } from '../../../utils/cn';
 import { ISingleBlogHeaderProp } from '../types/type';
 
 import SingleBlogHeaderBackground from './SingleBlogHeaderBackground';
 
+function formatDate(value: string): string | null {
+  const date = new Date(value);
+  if (!isValid(date)) return null;
+  return format(date, 'MMM dd, yyyy');
+}
 
 export default function SingleBlogHeader({
   blogFlagName,
@@ -13,6 +18,7 @@ export default function SingleBlogHeader({
   title,
   className,
 }: ISingleBlogHeaderProp) {
+  const formattedDate = updatedAt ? formatDate(updatedAt) : null;
   return (
     <div
       className={cn(
@@ -39,9 +45,9 @@ export default function SingleBlogHeader({
       {excerpt && (
         <p className="text-secondary-text font-light text-lg z-10">{excerpt}</p>
       )}
-      {updatedAt && (
+      {formattedDate && (
         <p className="text-secondary-text font-light z-10">
-          Updated, {format(new Date(updatedAt), 'MMM dd, yyyy')}
+          Updated, {formattedDate}
         </p>
       )}
       <hr className="border-border-3 z-10" />

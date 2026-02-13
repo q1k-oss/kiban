@@ -8,6 +8,6 @@ const HeadingRenderer = ({ level, innerHtml, attrs, config, renderContent, }) =>
         (config === null || config === void 0 ? void 0 : config.className) ||
         '';
     const HeadingTag = level;
-    return (_jsxs(HeadingTag, { id: id, className: cn(headingClassName), children: [(config === null || config === void 0 ? void 0 : config.addAnchors) && id && (_jsx("a", { href: `#${id}`, className: cn('ml-2 opacity-0 transition-opacity duration-200 no-underline text-blue-500 group-hover:opacity-100'), children: config.anchorSymbol || '#' })), renderContent(innerHtml)] }));
+    return (_jsxs(HeadingTag, { id: id, className: cn('group', headingClassName), children: [renderContent(innerHtml), (config === null || config === void 0 ? void 0 : config.addAnchors) && id && (_jsx("a", { href: `#${id}`, className: "ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 no-underline text-blue-500", children: config.anchorSymbol || '#' }))] }));
 };
 export { HeadingRenderer };

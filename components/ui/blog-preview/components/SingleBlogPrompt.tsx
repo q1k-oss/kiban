@@ -5,6 +5,7 @@ import { ISingleBlogPromptProp } from '../types/type';
 export const SingleBlogPrompt = ({
   blogPrompt,
   className,
+  onBuild,
 }: ISingleBlogPromptProp) => {
   return (
     <div
@@ -17,7 +18,7 @@ export const SingleBlogPrompt = ({
         {blogPrompt}
       </p>
       <div className="w-full flex items-center justify-end mt-4">
-        <Button className="border border-border-3 bg-button-fill-3 text-xs h-fit w-fit hover:bg-button-fill-3 font-dm-mono">
+        <Button onClick={onBuild} className="border border-border-3 bg-button-fill-3 text-xs h-fit w-fit hover:bg-button-fill-3 font-dm-mono">
           Build an Agent
         </Button>
       </div>

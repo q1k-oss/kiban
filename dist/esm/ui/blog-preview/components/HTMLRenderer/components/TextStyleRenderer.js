@@ -11,6 +11,11 @@ const TextStyleRenderer = ({ type, innerHtml, config, renderContent, }) => {
             return (_jsx("code", { className: (config === null || config === void 0 ? void 0 : config.codeClassName) || '', children: innerHtml
                     .replace(/&lt;/g, '<')
                     .replace(/&gt;/g, '>')
+                    .replace(/&quot;/g, '"')
+                    .replace(/&#39;/g, "'")
+                    .replace(/&#x27;/g, "'")
+                    .replace(/&apos;/g, "'")
+                    .replace(/&#(\d+);/g, (_, num) => String.fromCharCode(Number(num)))
                     .replace(/&amp;/g, '&') }));
         case 'u':
             return (_jsx("u", { className: (config === null || config === void 0 ? void 0 : config.underlineClassName) || '', children: renderContent(innerHtml) }));

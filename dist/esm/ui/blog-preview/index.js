@@ -67,8 +67,13 @@ const defaultHtmlRendererConfig = {
     hr: {
         className: "my-8 border-t border-border-3 ",
     },
+    sanitization: {
+        stripScripts: true,
+        stripEvents: true,
+        stripStyles: true,
+    },
 };
-const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-start justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", }) => {
+const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-start justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", onBuild, }) => {
     const [copied, setCopied] = useState(false);
     const url = typeof window !== "undefined"
         ? `${window.location.origin}/blogs/${blog.slug}`
@@ -109,7 +114,19 @@ const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5",
         if (!(blog === null || blog === void 0 ? void 0 : blog.content))
             return null;
         const mergedConfig = htmlRendererConfig
-            ? Object.assign(Object.assign({}, defaultHtmlRendererConfig), htmlRendererConfig) : defaultHtmlRendererConfig;
+            ? Object.keys(Object.assign(Object.assign({}, defaultHtmlRendererConfig), htmlRendererConfig)).reduce((acc, key) => {
+                const k = key;
+                const defaultVal = defaultHtmlRendererConfig[k];
+                const userVal = htmlRendererConfig[k];
+                if (defaultVal && userVal && typeof defaultVal === 'object' && typeof userVal === 'object' && !Array.isArray(defaultVal)) {
+                    acc[key] = Object.assign(Object.assign({}, defaultVal), userVal);
+                }
+                else {
+                    acc[key] = userVal !== undefined ? userVal : defaultVal;
+                }
+                return acc;
+            }, {})
+            : defaultHtmlRendererConfig;
         return (_jsx("div", { className: "w-full", children: _jsx(HtmlRenderer, { content: blog.content, config: mergedConfig }) }));
     };
     const renderBlogTag = () => {
@@ -140,7 +157,7 @@ const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5",
             return _jsx(SingleBlogPromptSkeleton, {});
         if (!(blog === null || blog === void 0 ? void 0 : blog.prompt))
             return null;
-        return _jsx(SingleBlogPrompt, { blogPrompt: blog.prompt });
+        return _jsx(SingleBlogPrompt, { blogPrompt: blog.prompt, onBuild: onBuild });
     };
     return (_jsxs("div", { className: className, children: [_jsx("div", { className: headerClassName, children: renderBlogHeader() }), _jsxs("div", { className: "flex items-start gap-10 relative mt-2 md:mt-6 ", children: [_jsxs("div", { className: contentClassName, children: [_jsx("div", { className: "mb-6", children: renderBlogSummary() }), _jsxs("div", { className: "md:px-8", children: [_jsx("div", { children: renderBlogContent() }), (loading || (blog === null || blog === void 0 ? void 0 : blog.tags)) && (_jsxs("div", { className: tagsClassName, children: [_jsx("span", { className: "text-lg  text-icon-color-default mr-4", children: "Tags:" }), _jsx("div", { className: "flex flex-wrap justify-start gap-4", children: renderBlogTag() })] })), (loading || ((blog === null || blog === void 0 ? void 0 : blog.authorEmail) && (blog === null || blog === void 0 ? void 0 : blog.authorName))) && (_jsx("div", { className: " mt-12", children: renderAuthorDetails() }))] })] }), _jsxs("div", { className: sidebarClassName, children: [renderBlogTOC(), _jsx("div", { className: "flex items-center justify-center gap-2 my-10", children: renderSocialMediaIcons() }), (loading || (blog === null || blog === void 0 ? void 0 : blog.prompt)) && (_jsxs("div", { className: "mt-10", children: [_jsx("span", { className: "text-primary-text font-semibold text-lg", children: "Ready to turn ideas into action?" }), _jsx("div", { className: "mt-4", children: renderBlogPrompt() })] }))] })] }), _jsx(FloatingBuildAgentButton, {})] }));
 };

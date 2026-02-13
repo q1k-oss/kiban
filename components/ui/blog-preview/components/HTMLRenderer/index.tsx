@@ -2,7 +2,6 @@
 'use client';
 import React from 'react';
 
-import './styles.css';
 import {
   CodeBlockRenderer,
   ImageRenderer,
@@ -45,7 +44,7 @@ const renderHtmlContent = (
     // Add text before this tag
     if (matchIndex > currentIndex) {
       const text = html.substring(currentIndex, matchIndex);
-      if (text.trim()) {
+      if (text.length > 0) {
         if (stack.length > 0) {
           stack[stack.length - 1].children.push(text);
         } else {
@@ -81,7 +80,7 @@ const renderHtmlContent = (
     } else {
       // Opening tag
       const selfClosing =
-        attributes.includes('/') ||
+        attributes.trimEnd().endsWith('/') ||
         ['img', 'br', 'hr', 'input', 'meta', 'link'].includes(tagName);
 
       if (selfClosing) {
@@ -113,7 +112,7 @@ const renderHtmlContent = (
   // Add remaining text
   if (currentIndex < html.length) {
     const text = html.substring(currentIndex);
-    if (text.trim()) {
+    if (text.length > 0) {
       elements.push(<React.Fragment key={keyCounter++}>{text}</React.Fragment>);
     }
   }

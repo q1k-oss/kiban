@@ -45,7 +45,20 @@ export const BLOCK_TAGS = new Set([
   'h6',
 ]);
 
-// Basic HTML sanitization
+// Dangerous URI protocol pattern
+const DANGEROUS_URI = /^\s*(javascript|vbscript|data\s*:(?!image\/(png|jpe?g|gif|webp|svg\+xml)))/i;
+
+// Risky tags that should always be stripped
+const DANGEROUS_TAGS = new Set([
+  'script', 'noscript', 'iframe', 'object', 'embed', 'applet',
+  'form', 'input', 'textarea', 'select', 'button',
+  'svg', 'math', 'base', 'link', 'meta',
+]);
+
+const escapeRegex = (str: string): string =>
+  str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// HTML sanitization
 export const sanitizeHtml = (
   html: string,
   config?: {
@@ -57,31 +70,48 @@ export const sanitizeHtml = (
 ): string => {
   let sanitized = html;
 
-  // Strip scripts
+  // Always strip dangerous tags (script, iframe, svg, etc.)
   if (config?.stripScripts !== false) {
-    sanitized = sanitized.replace(
-      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-      '',
-    );
+    for (const tag of DANGEROUS_TAGS) {
+      const open = new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}>`, 'gi');
+      sanitized = sanitized.replace(open, '');
+      // Self-closing variants
+      const selfClose = new RegExp(`<${tag}\\b[^>]*/?>`, 'gi');
+      sanitized = sanitized.replace(selfClose, '');
+    }
   }
 
-  // Strip inline styles
-  if (config?.stripStyles) {
-    sanitized = sanitized.replace(/style\s*=\s*["'][^"']*["']/gi, '');
+  // Strip <style> blocks and inline style attributes
+  if (config?.stripStyles !== false) {
     sanitized = sanitized.replace(
-      /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi,
+      /<style\b[^>]*>[\s\S]*?<\/style>/gi,
       '',
     );
+    sanitized = sanitized.replace(/\bstyle\s*=\s*["'][^"']*["']/gi, '');
   }
 
-  // Strip event handlers
+  // Strip event handlers (on*)
   if (config?.stripEvents !== false) {
-    sanitized = sanitized.replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
+    sanitized = sanitized.replace(/\bon\w+\s*=\s*["'][^"']*["']/gi, '');
+    // Also handle unquoted event handlers
+    sanitized = sanitized.replace(/\bon\w+\s*=\s*[^\s>]+/gi, '');
   }
+
+  // Strip dangerous URI protocols from href/src/action/formaction attributes
+  sanitized = sanitized.replace(
+    /\b(href|src|action|formaction)\s*=\s*["']([^"']*)["']/gi,
+    (match, attr, url) => {
+      if (DANGEROUS_URI.test(url)) {
+        return `${attr}="#"`;
+      }
+      return match;
+    },
+  );
 
   // Filter allowed tags
   if (config?.allowedTags && config.allowedTags.length > 0) {
-    const allowedPattern = config.allowedTags.join('|');
+    const escaped = config.allowedTags.map(escapeRegex);
+    const allowedPattern = escaped.join('|');
     const tagRegex = new RegExp(`<(?!\\/?(${allowedPattern})\\b)[^>]+>`, 'gi');
     sanitized = sanitized.replace(tagRegex, '');
   }

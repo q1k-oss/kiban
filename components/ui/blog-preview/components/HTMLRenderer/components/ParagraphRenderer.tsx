@@ -8,13 +8,22 @@ interface ParagraphRendererProps {
   renderContent: (html: string) => React.ReactNode;
 }
 
+const INLINE_TAGS = new Set([
+  'code', 'span', 'a', 'strong', 'em', 'b', 'i', 'u',
+  'img', 'br', 'sub', 'sup', 'mark', 'small', 'del', 's',
+  'abbr', 'cite', 'q', 'kbd', 'var', 'samp', 'time',
+]);
+
 const ParagraphRenderer: React.FC<ParagraphRendererProps> = ({
   innerHtml,
   config,
   renderContent,
 }) => {
   const hasBlockChild = Array.from(innerHtml.matchAll(/<\s*([\w-]+)/g)).some(
-    (match) => BLOCK_TAGS.has(match[1].toLowerCase()),
+    (match) => {
+      const tag = match[1].toLowerCase();
+      return BLOCK_TAGS.has(tag) && !INLINE_TAGS.has(tag);
+    },
   );
 
   // Don't wrap in <p> if it contains block elements

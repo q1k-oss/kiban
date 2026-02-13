@@ -105,13 +105,15 @@ export const editorStyles = `
     margin: 1em 0;
   }
 
-  .ProseMirror img[style*="text-align: center"] {
+  .ProseMirror img[style*="text-align: center"],
+  .ProseMirror img[style*="text-align:center"] {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .ProseMirror img[style*="text-align: right"] {
+  .ProseMirror img[style*="text-align: right"],
+  .ProseMirror img[style*="text-align:right"] {
     display: block;
     margin-left: auto;
     margin-right: 0;

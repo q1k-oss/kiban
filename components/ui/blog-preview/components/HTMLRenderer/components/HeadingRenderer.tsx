@@ -30,18 +30,16 @@ const HeadingRenderer: React.FC<HeadingRendererProps> = ({
   const HeadingTag = level as React.ElementType;
 
   return (
-    <HeadingTag id={id} className={cn(headingClassName)}>
+    <HeadingTag id={id} className={cn('group', headingClassName)}>
+      {renderContent(innerHtml)}
       {config?.addAnchors && id && (
         <a
           href={`#${id}`}
-          className={cn(
-            'ml-2 opacity-0 transition-opacity duration-200 no-underline text-blue-500 group-hover:opacity-100',
-          )}
+          className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 no-underline text-blue-500"
         >
           {config.anchorSymbol || '#'}
         </a>
       )}
-      {renderContent(innerHtml)}
     </HeadingTag>
   );
 };

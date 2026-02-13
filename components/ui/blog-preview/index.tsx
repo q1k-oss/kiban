@@ -71,6 +71,11 @@ const defaultHtmlRendererConfig = {
   hr: {
     className: "my-8 border-t border-border-3 ",
   },
+  sanitization: {
+    stripScripts: true,
+    stripEvents: true,
+    stripStyles: true,
+  },
 };
 
 const BlogPreview: React.FC<IBlogPreviewProp> = ({
@@ -83,6 +88,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar",
   tagsClassName = "flex items-start justify-start gap-4 mt-12",
   tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text",
+  onBuild,
 }) => {
   const [copied, setCopied] = useState(false);
   const url =
@@ -185,7 +191,20 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
     if (loading) return <SingleBlogContentSkeleton />;
     if (!blog?.content) return null;
     const mergedConfig = htmlRendererConfig
-      ? { ...defaultHtmlRendererConfig, ...htmlRendererConfig }
+      ? Object.keys({ ...defaultHtmlRendererConfig, ...htmlRendererConfig }).reduce(
+          (acc, key) => {
+            const k = key as keyof typeof defaultHtmlRendererConfig;
+            const defaultVal = defaultHtmlRendererConfig[k];
+            const userVal = htmlRendererConfig[k];
+            if (defaultVal && userVal && typeof defaultVal === 'object' && typeof userVal === 'object' && !Array.isArray(defaultVal)) {
+              (acc as Record<string, unknown>)[key] = { ...defaultVal, ...userVal };
+            } else {
+              (acc as Record<string, unknown>)[key] = userVal !== undefined ? userVal : defaultVal;
+            }
+            return acc;
+          },
+          {} as typeof defaultHtmlRendererConfig,
+        )
       : defaultHtmlRendererConfig;
     return (
       <div className="w-full">
@@ -229,7 +248,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   const renderBlogPrompt = () => {
     if (loading) return <SingleBlogPromptSkeleton />;
     if (!blog?.prompt) return null;
-    return <SingleBlogPrompt blogPrompt={blog.prompt} />;
+    return <SingleBlogPrompt blogPrompt={blog.prompt} onBuild={onBuild} />;
   };
 
  

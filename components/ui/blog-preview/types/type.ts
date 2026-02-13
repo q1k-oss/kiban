@@ -45,6 +45,7 @@ export interface IBlogPreviewProp {
   sidebarClassName?: string;
   tagsClassName?: string;
   tagClassName?: string;
+  onBuild?: () => void;
 }
 
 
@@ -70,4 +71,5 @@ export interface ISingleBlogSummaryProp {
 export interface ISingleBlogPromptProp {
   blogPrompt: string;
   className?: string;
+  onBuild?: () => void;
 }

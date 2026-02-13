@@ -37,6 +37,11 @@ const TextStyleRenderer: React.FC<TextStyleRendererProps> = ({
           {innerHtml
             .replace(/&lt;/g, '<')
             .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&#x27;/g, "'")
+            .replace(/&apos;/g, "'")
+            .replace(/&#(\d+);/g, (_, num) => String.fromCharCode(Number(num)))
             .replace(/&amp;/g, '&')}
         </code>
       );

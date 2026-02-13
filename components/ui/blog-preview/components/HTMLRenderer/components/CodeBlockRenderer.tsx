@@ -11,10 +11,15 @@ const CodeBlockRenderer: React.FC<{
 }> = ({ language, code, config }) => {
   const [copied, setCopied] = React.useState<boolean>(false);
 
-  const handleCopy = (): void => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async (): Promise<void> => {
+    if (!navigator.clipboard) return;
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard write failed silently
+    }
   };
 
   const lines: string[] = code.split('\n');
