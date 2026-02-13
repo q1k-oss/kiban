@@ -1,0 +1,47 @@
+---
+title: Social Share Buttons
+description: A reusable UI-kit component that renders multiple social media share buttons and handles platform-specific sharing logic in a consistent way.
+tags: ["share", "social-media", "ui-kit", "buttons", "reusable"]
+---
+
+<Links
+  links={[
+    { title: "LinkedIn Share Docs", url: "https://learn.microsoft.com/linkedin/consumer/integrations/self-serve/plugins/share-plugin" },
+    { title: "Twitter/X Share", url: "https://developer.x.com/en/docs/twitter-for-websites/tweet-button/overview" },
+  ]}
+/>
+
+### When To Use
+
+Use the **Social Share Buttons** (`LinkedinShareButton`, `TwitterShareButton`, `FacebookShareButton`) when you need to:
+
+
+- Share content across multiple social media platforms
+- Render platform-specific share buttons
+- Maintain consistent UI and behavior across applications
+- Abstract platform-specific share URLs and logic
+- Easily enable or disable supported platforms
+- Reuse social sharing functionality across consumer apps
+
+These buttons centralize social media sharing logic inside the UI Kit, allowing consumer applications to focus only on providing the content to be shared.
+
+---
+
+### Features
+
+- Supports multiple platforms (LinkedIn, Reddit, Twitter/X, Threads, etc.)
+- Reusable and configurable button group
+- Platform-specific share URL handling
+- Consistent styling via UI Kit
+- Easy to consume and extend
+- Future-ready for additional share actions (Copy link, Email, etc.)
+
+---
+
+### Examples
+
+<Preview
+  lang="jsx"
+  file="/social-share-buttons/__demo__/basic"
+  title="Basic Usage"
+/>
