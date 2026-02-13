@@ -1,12 +1,10 @@
 import React from "react";
-
-export interface IArrowUpIconProp {
+export interface ISquareIconFillProp {
   size?: number;
   className?: string;
   strokeWidth?: number;
 }
-
-export const ArrowUpIcon: React.FC<IArrowUpIconProp> = ({
+export const SquareIconFill: React.FC<ISquareIconFillProp> = ({
   size = 20,
   className,
   strokeWidth = 1.5,
@@ -14,17 +12,17 @@ export const ArrowUpIcon: React.FC<IArrowUpIconProp> = ({
   return (
     <svg
       width={size}
-      height={size * (18 / 14)}
-      viewBox="0 0 14 18"
+      height={size}
+      viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <path
-        d="M0.5 7.5L7 0.5M7 0.5L13 7.5M7 0.5V17.5"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      <rect
+        width='18'
+        height='18'
+        rx="2"
+        fill="currentColor"
         strokeWidth={strokeWidth}
       />
     </svg>
