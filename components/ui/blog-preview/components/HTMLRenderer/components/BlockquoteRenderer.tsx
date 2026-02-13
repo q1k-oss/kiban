@@ -1,6 +1,7 @@
 import React from 'react';
+
+import {cn} from '../../../../../utils/cn'
 import { HtmlRendererConfig } from '../type';
-import { cn } from '@happect/ethereal-ui';
 
 interface BlockquoteRendererProps {
   innerHtml: string;

@@ -1,6 +1,8 @@
 import React from 'react';
+
+import {cn} from '../../../../../utils/cn'
+import { AppIcon } from "../../../../app-icon";
 import { HtmlRendererConfig } from '../type';
-import { AppIcon, cn } from '@happect/ethereal-ui';
 
 const CodeBlockRenderer: React.FC<{
   language: string;
@@ -37,7 +39,7 @@ const CodeBlockRenderer: React.FC<{
             config.copyButtonClassName,
           )}
         >
-          {copied ? '✓ Copied!' : <AppIcon iconName="copy" />}
+          {copied ? '✓ Copied!' : <AppIcon iconName="copy" size={18}/>}
         </button>
       )}
       <pre

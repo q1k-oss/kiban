@@ -1,5 +1,8 @@
-import { Skeleton } from '@happect/ethereal-ui';
 import React from 'react';
+
+import { Skeleton } from "../../../skeleton";
+
+
 
 export const SingleBlogSummarySkeleton = () => {
   return (

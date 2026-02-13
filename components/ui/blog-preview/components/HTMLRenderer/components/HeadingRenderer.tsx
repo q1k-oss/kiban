@@ -1,6 +1,7 @@
 import React from 'react';
+
+import {cn} from '../../../../../utils/cn'
 import { HtmlRendererConfig } from '../type';
-import { cn } from '@happect/ethereal-ui';
 import { generateId, extractTextContent } from '../utils';
 
 interface HeadingRendererProps {

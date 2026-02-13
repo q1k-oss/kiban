@@ -1,8 +1,22 @@
 // hooks/useActiveHeading.ts
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+
+function getScrollParent(node: HTMLElement | null): HTMLElement | Window {
+  if (!node) return window;
+  let current = node.parentElement;
+  while (current) {
+    const { overflow, overflowY } = getComputedStyle(current);
+    if (/(auto|scroll)/.test(overflow + overflowY)) {
+      return current;
+    }
+    current = current.parentElement;
+  }
+  return window;
+}
 
 export function useActiveHeading(headingIds: string[]) {
   const [activeId, setActiveId] = useState<string>('');
+  const scrollParentRef = useRef<HTMLElement | Window>(window);
 
   const getActiveHeading = useCallback(() => {
     if (headingIds.length === 0) return '';
@@ -47,6 +61,11 @@ export function useActiveHeading(headingIds: string[]) {
   useEffect(() => {
     if (headingIds.length === 0) return;
 
+    // Find the nearest scrollable ancestor of the first heading
+    const firstEl = document.getElementById(headingIds[0]);
+    const scrollParent = getScrollParent(firstEl);
+    scrollParentRef.current = scrollParent;
+
     const handleScroll = () => {
       const newActiveId = getActiveHeading();
       setActiveId(newActiveId);
@@ -55,10 +74,17 @@ export function useActiveHeading(headingIds: string[]) {
     // Initial check
     handleScroll();
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    scrollParent.addEventListener('scroll', handleScroll, { passive: true });
+    // Also listen to window in case both fire
+    if (scrollParent !== window) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      scrollParent.removeEventListener('scroll', handleScroll);
+      if (scrollParent !== window) {
+        window.removeEventListener('scroll', handleScroll);
+      }
     };
   }, [headingIds, getActiveHeading]);
 

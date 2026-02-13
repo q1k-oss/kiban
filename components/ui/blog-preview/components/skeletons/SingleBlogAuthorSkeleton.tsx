@@ -1,4 +1,6 @@
-import { cn, Skeleton } from '@happect/ethereal-ui';
+import { cn } from '../../../../utils/cn';
+import { Skeleton } from "../../../skeleton";
+
 interface ISingleBlogAuthorSkeleton {
   className?: string;
 }

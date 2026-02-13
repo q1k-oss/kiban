@@ -1,4 +1,5 @@
-import { Button, cn } from '@happect/ethereal-ui';
+import { cn } from '../../../utils/cn';
+import { Button } from '../../button';
 import { ISingleBlogPromptProp } from '../types/type';
 
 export const SingleBlogPrompt = ({

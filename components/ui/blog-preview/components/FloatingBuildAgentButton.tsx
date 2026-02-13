@@ -1,7 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { AppIcon, Button, cn } from '@happect/ethereal-ui';
+
+import { cn } from '../../../utils/cn';
+import { AppIcon } from '../../app-icon';
+import { Button } from '../../button';
+
+
 
 export default function FloatingBuildAgentButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +41,7 @@ export default function FloatingBuildAgentButton() {
               <AppIcon
                 iconName="custom-ai-stars"
                 size={16}
+                source='custom'
                 
               />
             </button>

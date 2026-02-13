@@ -1,4 +1,4 @@
-import { cn } from '@happect/ethereal-ui';
+import { cn } from '../../../utils/cn';
 import { ISingleBlogAuthorProp } from '../types/type';
 
 const SingleBlogAuthor = ({

@@ -1,5 +1,8 @@
-import { cn, Skeleton } from '@happect/ethereal-ui';
 import React from 'react';
+
+import { cn } from '../../../../utils/cn';
+import { Skeleton } from "../../../skeleton";
+
 
 export default function SingleBlogPromptSkeleton({
   className,

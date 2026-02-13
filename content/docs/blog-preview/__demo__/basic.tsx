@@ -1,9 +1,11 @@
 "use client";
 
-import { SingleBlogView } from "@happect/ethereal-ui";
-import type { IBlog } from "@happect/ethereal-ui";
+import { useState } from "react";
 
-const sampleBlog: IBlog = {
+import { AppIcon, BlogPreview, Button } from "@happect/ethereal-ui";
+import type { Blog } from "@happect/ethereal-ui";
+
+const sampleBlog: Blog = {
   title: "Building Modern Web Applications with AI",
   excerpt:
     "Explore how artificial intelligence is transforming the way we build, deploy, and maintain web applications in 2025.",
@@ -68,11 +70,32 @@ describe('UserAuth', () => {
 };
 
 export default function BlogPreviewBasicDemo() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="w-full h-[500px] border rounded-lg overflow-auto">
-      <div className="origin-top-left scale-[0.4] w-[250%]">
-        <SingleBlogView loading={false} blog={sampleBlog} error={null} />
-      </div>
-    </div>
+    <>
+      <Button
+        onClick={() => setOpen(true)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition h-fit"
+      >
+        Click to Preview Blog
+      </Button>
+
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black backdrop-blur-sm no-scrollbar">
+          <div className="relative w-full h-full bg-black overflow-y-auto shadow-2xl no-scrollbar">
+            <Button
+              onClick={() => setOpen(false)}
+              className="sticky top-3 float-right mr-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-background border border-border-3 text-secondary-text hover:text-primary-text transition"
+            >
+              <AppIcon iconName="x" size={20}/>
+            </Button>
+            <div className="p-6 no-scrollbar">
+              <BlogPreview loading={false} blog={sampleBlog} />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -1,30 +1,52 @@
-import React from 'react';
 
-export interface IBlog {
-  title: string;
+import type { HtmlRendererConfig } from '../components/HTMLRenderer/type';
+
+export type BlogStatus = 'draft' | 'published' | 'archived';
+
+export interface Flag {
+  id: number;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Blog {
+  id?: number;
+  title?: string;
+  slug?: string;
+  content?: string;
   excerpt?: string;
-  content: string;
-  summary?: string;
-  prompt?: string;
-  tags?: string;
+  status?: BlogStatus;
+  authorId?: string;
   authorName?: string;
   authorEmail?: string;
-  updatedAt: string;
-  flag?: {
-    name: string;
-  };
+  coverImage?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  flagId?: number;
+  flag?: Flag;
+  promoted?: boolean;
+  promotedAt?: string;
+  summary?: string;
+  tags?: string;
+  prompt?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
 }
 
-export interface ISingleBlogViewProp {
+export interface IBlogPreviewProp {
   loading: boolean;
-  blog: IBlog;
-  error: string | null;
+  blog: Blog;
+  htmlRendererConfig?: HtmlRendererConfig;
+  className?: string;
+  headerClassName?: string;
+  contentClassName?: string;
+  sidebarClassName?: string;
+  tagsClassName?: string;
+  tagClassName?: string;
 }
 
-export interface ISingleBlogControllerProp {
-  children: React.ReactNode;
-  blogSlug: string;
-}
 
 export interface ISingleBlogHeaderProp {
   blogFlagName: string | undefined;

@@ -6,7 +6,7 @@ tags: ["blog", "preview", "html-renderer", "article", "content"]
 
 ### When To Use
 
-Use **SingleBlogView** when you need to:
+Use **BlogPreview** when you need to:
 
 - Render a full blog article from raw HTML content
 - Display article metadata (title, excerpt, tags, author, date)
@@ -36,27 +36,34 @@ Use **SingleBlogView** when you need to:
 
 ## API Reference
 
-### SingleBlogView Props
+### BlogPreview Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `loading` | `boolean` | — | Show skeleton loading state |
 | `blog` | `IBlog` | — | Blog data object with HTML content |
 | `error` | `string \| null` | — | Error message to display |
+| `htmlRendererConfig` | `HtmlRendererConfig` | Built-in defaults | Override the HTML renderer config for code blocks, headings, paragraphs, lists, images, etc. Shallow-merged with defaults |
+| `className` | `string` | `md:pt-5` | Root wrapper className |
+| `headerClassName` | `string` | — | Blog header section className |
+| `contentClassName` | `string` | `w-full px-0 md:px-6` | Main content column className |
+| `sidebarClassName` | `string` | `hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar` | Sidebar (TOC, share buttons, prompt) className |
+| `tagsClassName` | `string` | `flex items-start justify-start gap-4 mt-12` | Tags row container className |
+| `tagClassName` | `string` | `py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text` | Individual tag badge className |
 
 ### IBlog Interface
 
 ```ts
 interface IBlog {
-  title: string;
+  title?: string;
   excerpt?: string;
-  content: string;
+  content?: string;
   summary?: string;
   prompt?: string;
   tags?: string;
   authorName?: string;
   authorEmail?: string;
-  updatedAt: string;
+  updatedAt?: string;
   flag?: {
     name: string;
   };

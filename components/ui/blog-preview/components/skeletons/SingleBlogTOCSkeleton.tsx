@@ -1,4 +1,5 @@
-import { Skeleton } from '@happect/ethereal-ui';
+import { Skeleton } from "../../../skeleton";
+
 
 export const SingleBlogTOCSkeleton = () => {
   return (

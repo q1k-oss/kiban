@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ISingleBlogSummaryProp } from '../types/type';
 
 export const SingleBlogSummary = ({ blogSummary }: ISingleBlogSummaryProp) => {

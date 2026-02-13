@@ -1,9 +1,8 @@
 // components/HtmlRenderer/HtmlRenderer.tsx
 'use client';
 import React from 'react';
+
 import './styles.css';
-import { HtmlRendererConfig, HtmlRendererProps } from './type';
-import { parseAttributes, sanitizeHtml } from './utils';
 import {
   CodeBlockRenderer,
   ImageRenderer,
@@ -15,6 +14,8 @@ import {
   TableRenderer,
   TextStyleRenderer,
 } from './components';
+import { HtmlRendererConfig, HtmlRendererProps } from './type';
+import { parseAttributes, sanitizeHtml } from './utils';
 
 // ============= MAIN RENDERER FUNCTION =============
 

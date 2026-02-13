@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { HtmlRendererConfig } from '../type';
 import React from 'react';
-import { cn } from '@happect/ethereal-ui';
+
+import {cn} from '../../../../../utils/cn'
+import { HtmlRendererConfig } from '../type';
 
 const ImageRenderer: React.FC<{
   src: string;

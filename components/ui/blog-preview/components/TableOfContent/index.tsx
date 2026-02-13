@@ -1,5 +1,8 @@
-import { AppIcon } from '@happect/ethereal-ui';
 import { useEffect, useMemo, useState } from 'react';
+
+
+import { AppIcon } from "../../../app-icon";
+
 import { useActiveHeading } from './useActiveHeading';
 
 type HeadingTag = {
@@ -53,9 +56,9 @@ export default function TableOfContent({
   return (
     <div className="relative hidden md:flex">
 
-     <div className="relative w-1 rounded-full overflow-hidden">
+     <div className="relative w-1 rounded-full overflow-hidden self-stretch">
         <div
-          className="w-full transition-all duration-300 ease-out"
+          className="absolute top-0 left-0 w-full transition-all duration-300 ease-out"
           style={{
             height: `${progress}%`,
             background: 'var(--ai-icon-3)',
