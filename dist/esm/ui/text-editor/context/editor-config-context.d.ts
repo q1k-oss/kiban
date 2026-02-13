@@ -1,5 +1,5 @@
 import React from "react";
-import { IFontSizeOption } from "../types/type";
+import { IFontSizeOption, ImageUploadHandler } from "../types/type";
 interface EditorConfig {
     fontSizes?: IFontSizeOption[];
     colors?: string[];
@@ -7,6 +7,7 @@ interface EditorConfig {
         color: string;
         label: string;
     }[];
+    onImageUpload?: ImageUploadHandler;
 }
 interface TextEditorConfigContextValue {
     fontSizes: IFontSizeOption[];
@@ -15,6 +16,7 @@ interface TextEditorConfigContextValue {
         color: string;
         label: string;
     }[];
+    onImageUpload?: ImageUploadHandler;
 }
 export declare const useTextEditorConfig: () => TextEditorConfigContextValue;
 interface TextEditorConfigProviderProps {

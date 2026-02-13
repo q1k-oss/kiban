@@ -105,6 +105,18 @@ export const editorStyles = `
     margin: 1em 0;
   }
 
+  .ProseMirror img[style*="text-align: center"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ProseMirror img[style*="text-align: right"] {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
   .ProseMirror mark {
     background-color: #fef3c7;
     padding: 0.125em 0.25em;
