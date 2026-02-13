@@ -3,7 +3,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import React from 'react';
 import { CodeBlockRenderer, ImageRenderer, HeadingRenderer, LinkRenderer, ParagraphRenderer, ListRenderer, BlockquoteRenderer, TableRenderer, TextStyleRenderer, } from './components';
-import { parseAttributes, sanitizeHtml } from './utils';
+import { parseAttributes, parseCssToReactStyle, sanitizeHtml } from './utils';
 // ============= MAIN RENDERER FUNCTION =============
 const renderHtmlContent = (html, config) => {
     const elements = [];
@@ -107,11 +107,11 @@ const renderElement = (tag, attributesStr, innerHtml, children, config, key) => 
     }
     // ============= IMAGES =============
     if (lowerTag === 'img') {
-        return (_jsx(ImageRenderer, { src: attrs.src || '', alt: attrs.alt || '', config: config.images }, key));
+        return (_jsx(ImageRenderer, { src: attrs.src || '', alt: attrs.alt || '', attrs: attrs, config: config.images }, key));
     }
     // ============= PARAGRAPHS =============
     if (lowerTag === 'p') {
-        return (_jsx(ParagraphRenderer, { innerHtml: innerHtml, config: config.paragraphs, renderContent: renderContent }, key));
+        return (_jsx(ParagraphRenderer, { innerHtml: innerHtml, attrs: attrs, config: config.paragraphs, renderContent: renderContent }, key));
     }
     // ============= LISTS =============
     if (lowerTag === 'ul' || lowerTag === 'ol' || lowerTag === 'li') {
@@ -140,8 +140,13 @@ const renderElement = (tag, attributesStr, innerHtml, children, config, key) => 
     if (lowerTag === 'hr') {
         return _jsx("hr", { className: (_b = config.hr) === null || _b === void 0 ? void 0 : _b.className, style: (_c = config.hr) === null || _c === void 0 ? void 0 : _c.style }, key);
     }
-    // Default: render as the original tag
-    return React.createElement(lowerTag, { key }, renderHtmlContent(innerHtml, config));
+    // Default: render as the original tag, preserving style and class
+    const defaultProps = { key };
+    if (attrs.style)
+        defaultProps.style = parseCssToReactStyle(attrs.style);
+    if (attrs.class)
+        defaultProps.className = attrs.class;
+    return React.createElement(lowerTag, defaultProps, renderHtmlContent(innerHtml, config));
 };
 // ============= MAIN COMPONENT =============
 export const HtmlRenderer = ({ content, config = {}, className = '', style = {}, }) => {

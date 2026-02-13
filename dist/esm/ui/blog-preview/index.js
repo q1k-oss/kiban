@@ -70,7 +70,7 @@ const defaultHtmlRendererConfig = {
     sanitization: {
         stripScripts: true,
         stripEvents: true,
-        stripStyles: true,
+        stripStyles: false,
     },
 };
 const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-start justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", onBuild, }) => {

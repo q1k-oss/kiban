@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Helper functions for HTML rendering
 
 // Generate ID from text
@@ -29,6 +31,25 @@ export const parseAttributes = (attrString: string): Record<string, string> => {
   }
 
   return attrs;
+};
+
+// Convert CSS text to React CSSProperties object
+export const parseCssToReactStyle = (
+  cssText: string | undefined,
+): React.CSSProperties | undefined => {
+  if (!cssText) return undefined;
+  const style: Record<string, string> = {};
+  cssText.split(';').forEach((decl) => {
+    const colonIdx = decl.indexOf(':');
+    if (colonIdx < 0) return;
+    const prop = decl.substring(0, colonIdx).trim();
+    const value = decl.substring(colonIdx + 1).trim();
+    if (!prop || !value) return;
+    // Convert kebab-case to camelCase
+    const camelProp = prop.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    style[camelProp] = value;
+  });
+  return Object.keys(style).length > 0 ? style : undefined;
 };
 
 // Block tags that shouldn't be wrapped in <p>

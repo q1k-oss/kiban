@@ -1,21 +1,23 @@
 import React from 'react';
 import { HtmlRendererConfig } from '../type';
-import { BLOCK_TAGS } from '../utils';
+import { BLOCK_TAGS, parseCssToReactStyle } from '../utils';
 
 interface ParagraphRendererProps {
   innerHtml: string;
+  attrs: Record<string, string>;
   config?: HtmlRendererConfig['paragraphs'];
   renderContent: (html: string) => React.ReactNode;
 }
 
 const INLINE_TAGS = new Set([
   'code', 'span', 'a', 'strong', 'em', 'b', 'i', 'u',
-  'img', 'br', 'sub', 'sup', 'mark', 'small', 'del', 's',
+  'br', 'sub', 'sup', 'mark', 'small', 'del', 's',
   'abbr', 'cite', 'q', 'kbd', 'var', 'samp', 'time',
 ]);
 
 const ParagraphRenderer: React.FC<ParagraphRendererProps> = ({
   innerHtml,
+  attrs,
   config,
   renderContent,
 }) => {
@@ -26,14 +28,16 @@ const ParagraphRenderer: React.FC<ParagraphRendererProps> = ({
     },
   );
 
+  const inlineStyle = parseCssToReactStyle(attrs.style);
+
   // Don't wrap in <p> if it contains block elements
   if (hasBlockChild) {
     return (
-      <div className={config?.className || ''}>{renderContent(innerHtml)}</div>
+      <div className={config?.className || ''} style={inlineStyle}>{renderContent(innerHtml)}</div>
     );
   }
 
-  return <p className={config?.className || ''}>{renderContent(innerHtml)}</p>;
+  return <p className={config?.className || ''} style={inlineStyle}>{renderContent(innerHtml)}</p>;
 };
 
 export { ParagraphRenderer };

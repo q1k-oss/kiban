@@ -74,7 +74,7 @@ const defaultHtmlRendererConfig = {
   sanitization: {
     stripScripts: true,
     stripEvents: true,
-    stripStyles: true,
+    stripStyles: false,
   },
 };
 

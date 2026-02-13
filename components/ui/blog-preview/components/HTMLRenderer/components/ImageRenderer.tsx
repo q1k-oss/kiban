@@ -3,12 +3,14 @@ import React from 'react';
 
 import {cn} from '../../../../../utils/cn'
 import { HtmlRendererConfig } from '../type';
+import { parseCssToReactStyle } from '../utils';
 
 const ImageRenderer: React.FC<{
   src: string;
   alt: string;
+  attrs?: Record<string, string>;
   config?: HtmlRendererConfig['images'];
-}> = ({ src, alt, config }) => {
+}> = ({ src, alt, attrs, config }) => {
   const [error, setError] = React.useState<boolean>(false);
 
 
@@ -60,9 +62,13 @@ const ImageRenderer: React.FC<{
     />
   );
 
+  const inlineStyle = parseCssToReactStyle(attrs?.style);
+  const textAlign = inlineStyle?.textAlign as string | undefined;
+  const alignmentClass = textAlign === 'center' ? 'mx-auto w-fit' : textAlign === 'right' ? 'ml-auto w-fit' : '';
+
   if (config?.wrapperClassName || config?.addCaption) {
     return (
-      <figure className={cn('my-8', config?.wrapperClassName)}>
+      <figure className={cn('my-8', alignmentClass, config?.wrapperClassName)}>
         {image}
         {config?.addCaption && alt && (
           <figcaption className={cn('text-center italic text-[#666] mt-2 text-sm')}>

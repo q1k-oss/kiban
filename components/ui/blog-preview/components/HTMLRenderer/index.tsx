@@ -14,7 +14,7 @@ import {
   TextStyleRenderer,
 } from './components';
 import { HtmlRendererConfig, HtmlRendererProps } from './type';
-import { parseAttributes, sanitizeHtml } from './utils';
+import { parseAttributes, parseCssToReactStyle, sanitizeHtml } from './utils';
 
 // ============= MAIN RENDERER FUNCTION =============
 
@@ -195,6 +195,7 @@ const renderElement = (
         key={key}
         src={attrs.src || ''}
         alt={attrs.alt || ''}
+        attrs={attrs}
         config={config.images}
       />
     );
@@ -206,6 +207,7 @@ const renderElement = (
       <ParagraphRenderer
         key={key}
         innerHtml={innerHtml}
+        attrs={attrs}
         config={config.paragraphs}
         renderContent={renderContent}
       />
@@ -282,10 +284,14 @@ const renderElement = (
     return <hr key={key} className={config.hr?.className} style={config.hr?.style} />;
   }
 
-  // Default: render as the original tag
+  // Default: render as the original tag, preserving style and class
+  const defaultProps: Record<string, unknown> = { key };
+  if (attrs.style) defaultProps.style = parseCssToReactStyle(attrs.style);
+  if (attrs.class) defaultProps.className = attrs.class;
+
   return React.createElement(
     lowerTag,
-    { key },
+    defaultProps,
     renderHtmlContent(innerHtml, config),
   );
 };

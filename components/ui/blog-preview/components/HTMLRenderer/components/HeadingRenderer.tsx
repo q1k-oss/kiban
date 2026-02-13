@@ -2,7 +2,7 @@ import React from 'react';
 
 import {cn} from '../../../../../utils/cn'
 import { HtmlRendererConfig } from '../type';
-import { generateId, extractTextContent } from '../utils';
+import { generateId, extractTextContent, parseCssToReactStyle } from '../utils';
 
 interface HeadingRendererProps {
   level: string;
@@ -50,12 +50,13 @@ const HeadingRenderer: React.FC<HeadingRendererProps> = ({
     '';
 
   const HeadingTag = level as React.ElementType;
+  const inlineStyle = parseCssToReactStyle(attrs.style);
 
-  // Show hover anchor if: config says addAnchors, OR the original HTML had a heading-anchor
-  const showAnchor = (config?.addAnchors || hasExistingAnchor) && id;
+  // Show hover anchor only when explicitly configured
+  const showAnchor = config?.addAnchors && id;
 
   return (
-    <HeadingTag id={id} className={cn('group', headingClassName)}>
+    <HeadingTag id={id} className={cn('group', headingClassName)} style={inlineStyle}>
       {renderContent(cleanedHtml)}
       {showAnchor && (
         <a

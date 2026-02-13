@@ -37,15 +37,23 @@ const CodeBlockRenderer: React.FC<{
         </div>
       )}
       {config?.copyButton && (
-        <button
-          onClick={handleCopy}
-          className={cn(
-            'absolute top-2 right-2 text-white border-none py-2 px-4 rounded cursor-pointer text-sm z-10',
-            config.copyButtonClassName,
+        <div className="absolute top-2 right-2 z-10">
+          {copied && (
+            <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs rounded bg-secondary-text text-black whitespace-nowrap animate-in fade-in slide-in-from-bottom-1 duration-200">
+              Copied!
+              <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-secondary-text" />
+            </span>
           )}
-        >
-          {copied ? '✓ Copied!' : <AppIcon iconName="copy" size={18}/>}
-        </button>
+          <button
+            onClick={handleCopy}
+            className={cn(
+              'text-white border-none py-2 px-4 rounded cursor-pointer text-sm',
+              config.copyButtonClassName,
+            )}
+          >
+            {copied ? <AppIcon iconName="check" size={18}/> : <AppIcon iconName="copy" size={18}/>}
+          </button>
+        </div>
       )}
       <pre
         className={cn(

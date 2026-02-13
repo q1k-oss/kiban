@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { cn } from '../../../../../utils/cn';
-import { generateId, extractTextContent } from '../utils';
+import { generateId, extractTextContent, parseCssToReactStyle } from '../utils';
 // Strip existing heading-anchor <a> tags from inner HTML
 const HEADING_ANCHOR_RE = /<a\b[^>]*class\s*=\s*["'][^"']*heading-anchor[^"']*["'][^>]*>[\s\S]*?<\/a>/gi;
 function stripHeadingAnchors(html) {
@@ -25,8 +25,9 @@ const HeadingRenderer = ({ level, innerHtml, attrs, config, renderContent, }) =>
         (config === null || config === void 0 ? void 0 : config.className) ||
         '';
     const HeadingTag = level;
-    // Show hover anchor if: config says addAnchors, OR the original HTML had a heading-anchor
-    const showAnchor = ((config === null || config === void 0 ? void 0 : config.addAnchors) || hasExistingAnchor) && id;
-    return (_jsxs(HeadingTag, { id: id, className: cn('group', headingClassName), children: [renderContent(cleanedHtml), showAnchor && (_jsx("a", { href: `#${id}`, className: "ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 no-underline text-blue-500", children: (config === null || config === void 0 ? void 0 : config.anchorSymbol) || '#' }))] }));
+    const inlineStyle = parseCssToReactStyle(attrs.style);
+    // Show hover anchor only when explicitly configured
+    const showAnchor = (config === null || config === void 0 ? void 0 : config.addAnchors) && id;
+    return (_jsxs(HeadingTag, { id: id, className: cn('group', headingClassName), style: inlineStyle, children: [renderContent(cleanedHtml), showAnchor && (_jsx("a", { href: `#${id}`, className: "ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 no-underline text-blue-500", children: (config === null || config === void 0 ? void 0 : config.anchorSymbol) || '#' }))] }));
 };
 export { HeadingRenderer };

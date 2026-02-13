@@ -2,6 +2,7 @@ import React from 'react';
 import { HtmlRendererConfig } from '../type';
 interface ParagraphRendererProps {
     innerHtml: string;
+    attrs: Record<string, string>;
     config?: HtmlRendererConfig['paragraphs'];
     renderContent: (html: string) => React.ReactNode;
 }
