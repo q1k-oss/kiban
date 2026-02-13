@@ -1,7 +1,7 @@
 import React from "react";
-export interface IArrowUpIconProp {
+export interface IRedditLogo {
     size?: number;
     className?: string;
     strokeWidth?: number;
 }
-export declare const ArrowUpIcon: React.FC<IArrowUpIconProp>;
+export declare const RedditLogo: React.FC<IRedditLogo>;
