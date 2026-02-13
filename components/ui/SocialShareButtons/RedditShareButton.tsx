@@ -14,6 +14,15 @@ export interface RedditShareButtonProps {
   onClick?: () => void;
 }
 
+/**
+ * Builds a Reddit submit URL for sharing the given page.
+ *
+ * @param url - The URL to share; must be a non-empty string.
+ * @param options - Optional settings for the share URL.
+ * @param options.title - Optional post title to include in the share URL.
+ * @returns A Reddit submit URL containing query parameters for `url` and optional `title`.
+ * @throws Error if `url` is falsy.
+ */
 function getRedditShareUrl(url: string, options: { title?: string }) {
   if (!url) {
     throw new Error('Reddit share requires a URL');
@@ -25,6 +34,16 @@ function getRedditShareUrl(url: string, options: { title?: string }) {
   );
 }
 
+/**
+ * Renders a button that opens a centered Reddit submit window for the provided URL.
+ *
+ * @param url - The destination URL to share on Reddit.
+ * @param title - Optional title to include with the shared URL.
+ * @param children - Content rendered inside the button.
+ * @param className - Optional CSS class names applied to the button.
+ * @param disabled - If `true`, the button is inert and will not open the share window.
+ * @param onClick - Optional callback invoked when the button is clicked (called before the share window opens).
+ */
 export default function RedditShareButton({
   url,
   title,

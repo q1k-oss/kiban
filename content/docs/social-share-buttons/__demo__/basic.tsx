@@ -8,6 +8,14 @@ import {
   ThreadsShareButton,
 } from "@happect/ethereal-ui/ui/SocialShareButtons";
 
+/**
+ * Demo component that renders a row of social share buttons using a fixed URL and title.
+ *
+ * Renders LinkedIn, Twitter (with hashtags), Facebook, Reddit, and Threads share buttons
+ * configured with the component's `shareUrl` and `shareTitle`.
+ *
+ * @returns A JSX element containing the configured social share buttons wrapped in a flex container
+ */
 export default function Basic() {
   const shareUrl = "https://github.com";
   const shareTitle = "Check out this article";

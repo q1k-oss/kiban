@@ -17,6 +17,18 @@ export interface TwitterShareButtonProps {
   onClick?: () => void;
 }
 
+/**
+ * Constructs a Twitter intent URL prefilled with the provided tweet data.
+ *
+ * @param url - The URL to include in the tweet.
+ * @param options - Optional tweet parameters.
+ * @param options.title - Text to prefill the tweet body.
+ * @param options.via - Twitter username (without `@`) to attribute the tweet to.
+ * @param options.hashtags - Array of hashtags to include (without `#`); they will be joined with commas.
+ * @param options.related - Array of related Twitter usernames (without `@`); they will be joined with commas.
+ * @returns The full Twitter intent URL containing the corresponding query parameters.
+ * @throws Error if `url` is an empty string or falsy.
+ */
 function getTwitterShareUrl(
   url: string,
   options: {
@@ -42,6 +54,20 @@ function getTwitterShareUrl(
   );
 }
 
+/**
+ * Renders a button that opens a centered Twitter share window prefilled with the provided tweet data.
+ *
+ * @param url - The URL to include in the tweet; required.
+ * @param title - The text content of the tweet.
+ * @param via - The Twitter username to attribute the tweet to (without `@`).
+ * @param hashtags - Array of hashtags; they will be joined with commas.
+ * @param related - Array of related Twitter accounts; they will be joined with commas.
+ * @param children - Content rendered inside the button.
+ * @param className - Optional CSS class names applied to the button.
+ * @param disabled - When true, the button is non-interactive and will not open the share window.
+ * @param onClick - Optional callback invoked immediately before opening the share window.
+ * @returns A React element that renders a button which opens a Twitter share window populated with the provided data.
+ */
 export default function TwitterShareButton({
   url,
   title,

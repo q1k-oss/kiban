@@ -13,6 +13,13 @@ export interface LinkedinShareButtonProps {
   onClick?: () => void;
 }
 
+/**
+ * Builds a LinkedIn sharing URL for the provided page URL.
+ *
+ * @param url - The page URL to share; must be a non-empty string.
+ * @returns A LinkedIn share URL that includes the provided `url` as a query parameter.
+ * @throws Error if `url` is falsy.
+ */
 function getLinkedinShareUrl(url: string) {
   if (!url) {
     throw new Error("LinkedIn share requires a URL");
@@ -24,6 +31,11 @@ function getLinkedinShareUrl(url: string) {
   );
 }
 
+/**
+ * Renders a button that opens a LinkedIn share window for the provided URL when clicked.
+ *
+ * @returns The Button element configured to share `url` on LinkedIn.
+ */
 export default function LinkedinShareButton({
   url,
   children,
