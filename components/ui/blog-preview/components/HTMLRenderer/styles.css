@@ -1,0 +1,6 @@
+/* Heading anchor - requires CSS for parent:hover child selector */
+h1:hover .heading-anchor,
+h2:hover .heading-anchor,
+h3:hover .heading-anchor {
+  opacity: 1;
+}
