@@ -4,6 +4,12 @@ import React from "react";
 import { ClassNameValue } from "tailwind-merge";
 import type { Props as TippyProps } from "tippy.js";
 export type ITextEditorVariant = "AGENT_EDITOR" | "NOTION_EDITOR";
+export interface IImageUploadResult {
+    thumbnail: string;
+    medium: string;
+    full: string;
+}
+export type ImageUploadHandler = (file: File) => Promise<IImageUploadResult>;
 export interface ITextEditorProps {
     value?: string;
     onChange?: (content: {
@@ -11,7 +17,7 @@ export interface ITextEditorProps {
         json: unknown;
         text: string;
     }) => void;
-    className?: string;
+    wrapperClassName?: string;
     editorClassName?: ClassNameValue;
     headingLevels?: Level[];
     placeholder?: string;
@@ -33,6 +39,8 @@ export interface ITextEditorProps {
     enableHeadingAnchors?: boolean;
     anchorLinkClassName?: string;
     editorStyles?: string;
+    onImageUpload?: ImageUploadHandler;
+    topToolbarClassName?: string;
 }
 export interface IToolbarButton {
     icon: string;

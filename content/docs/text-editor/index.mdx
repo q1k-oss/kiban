@@ -45,6 +45,8 @@ Use **TextEditor** when you need to:
 
 <Preview lang="jsx" file="/text-editor/__demo__/customEntries" title="Custom Configuration" />
 
+<Preview lang="jsx" file="/text-editor/__demo__/imageUpload" title="Image Upload – Drag & Drop, Paste, Toolbar" />
+
 ---
 
 ## API Reference
@@ -58,7 +60,7 @@ Use **TextEditor** when you need to:
 | `variant` | `'AGENT_EDITOR' \| 'NOTION_EDITOR'` | `'AGENT_EDITOR'` | Editor UI variant |
 | `placeholder` | `string` | `"start typing..."` | Placeholder text |
 | `editable` | `boolean` | `true` | Enable or disable editing |
-| `className` | `string` | — | Wrapper container classes |
+| `wrapperClassName` | `string` | — | Wrapper container classes |
 | `editorClassName` | `string` | — | Editor content classes |
 | `headingLevels` | `number[]` | `[1,2,3]` | Supported heading levels |
 | `enableHeadingAnchors` | `boolean` | `false` | Auto-generate heading IDs |
@@ -68,6 +70,7 @@ Use **TextEditor** when you need to:
 | `topToolbar` | `(editor) => ReactNode` | — | Custom top toolbar (Agent Editor) |
 | `bubbleMenu` | `(editor) => ReactNode` | — | Custom bubble menu (Notion Editor) |
 | `floatingMenu` | `(editor) => ReactNode` | — | Custom floating menu (Notion Editor) |
+| `onImageUpload` | `(file: File) => Promise<ImageUploadResult>` | — | Async image upload handler for drag & drop, paste, and toolbar |
 
 ---
 
@@ -88,5 +91,11 @@ interface FontSizeOption {
 interface HighlightColor {
   color: string;
   label: string;
+}
+
+interface ImageUploadResult {
+  thumbnail: string;
+  medium: string;
+  full: string;
 }
 ```
