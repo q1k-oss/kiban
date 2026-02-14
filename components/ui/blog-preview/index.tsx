@@ -98,6 +98,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
       : "");
 
   const handleCopyLink = async () => {
+    if (!url) return;
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -141,7 +142,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
             source="custom"
           />
         </LinkedinShareButton>
-        <TwitterShareButton className={baseStyle} url={url} title={blog.title}>
+        <TwitterShareButton className={baseStyle} url={url} title={blog?.title}>
           <AppIcon
             iconName="custom-xtwitter"
             size={15}
@@ -149,7 +150,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
             source="custom"
           />
         </TwitterShareButton>
-        <RedditShareButton className={baseStyle} url={url} title={blog.title}>
+        <RedditShareButton className={baseStyle} url={url} title={blog?.title}>
           <AppIcon
             iconName="custom-reddit-fill"
             size={16}

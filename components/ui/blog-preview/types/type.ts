@@ -37,7 +37,7 @@ export interface Blog {
 
 export interface IBlogPreviewProp {
   loading: boolean;
-  blog: Blog;
+  blog?: Blog;
   htmlRendererConfig?: HtmlRendererConfig;
   className?: string;
   headerClassName?: string;
