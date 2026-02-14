@@ -13,7 +13,7 @@ import {
   BubbleMenu,
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import { TopToolbar } from "./agent-editor-components/top-toolbar";
 import { uploadAndInsertImage } from "./agent-editor-components/utils";
@@ -178,6 +178,15 @@ const TextEditor = ({
 
     immediatelyRender: false,
   });
+
+  // Sync editor content when value prop changes externally
+  useEffect(() => {
+    if (!editor || editor.isDestroyed) return;
+    const currentHtml = editor.getHTML();
+    if (value !== currentHtml) {
+      editor.commands.setContent(value, false);
+    }
+  }, [value, editor]);
 
   if (!editor) return null;
 
