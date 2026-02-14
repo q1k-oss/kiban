@@ -10,7 +10,7 @@ export const SingleBlogPrompt = ({
   return (
     <div
       className={cn(
-        'p-6 border border-[#F49D5699] rounded-md  font-dm-mono',
+        'p-6 border border-[#F49D5699] rounded-md font-dm-mono',
         className,
       )}
     >
@@ -18,7 +18,7 @@ export const SingleBlogPrompt = ({
         {blogPrompt}
       </p>
       <div className="w-full flex items-center justify-end mt-4">
-        <Button onClick={onBuild} className="border border-border-3 bg-button-fill-3 text-xs h-fit w-fit hover:bg-button-fill-3 font-dm-mono">
+        <Button onClick={onBuild} className="border border-border-3 bg-button-fill-3 text-xs h-fit w-fit hover:bg-button-fill-3">
           Build an Agent
         </Button>
       </div>

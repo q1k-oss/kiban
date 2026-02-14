@@ -85,7 +85,7 @@
   --color-node-field-fill: var(--node-field-fill);
   --color-border-3: var(--border-3);
   --color-button-fill-3: var(--button-fill-3);
-  --font-dm-mono: var(--font-dm-mono);
+  --font-dm-mono: 'DM Mono', monospace;
   --color-ai-icon-3: var(--ai-icon-3)
 }
 
