@@ -30,11 +30,13 @@ export default function SingleBlogHeader({
       <SingleBlogHeaderBackground className="absolute inset-0 z-0 hidden md:block" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-0 bg-linear-to-b from-transparent to-black" />
 
-      {blogFlagName && (
-        <div className="flex items-center  gap-4 z-100">
-          <span className="px-2 py-1.5 text-primary-text bg-button-fill-3 rounded-sm font-medium text-xs">
-            {blogFlagName}
-          </span>
+      {(blogFlagName || readTime) && (
+        <div className="flex items-center gap-4 z-10">
+          {blogFlagName && (
+            <span className="px-2 py-1.5 text-primary-text bg-button-fill-3 rounded-sm font-medium text-xs">
+              {blogFlagName}
+            </span>
+          )}
           {readTime && <span className="text-sm">{readTime}</span>}
         </div>
       )}

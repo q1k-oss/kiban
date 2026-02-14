@@ -4,10 +4,10 @@ import type { HtmlRendererConfig } from '../components/HTMLRenderer/type';
 export type BlogStatus = 'draft' | 'published' | 'archived';
 
 export interface Flag {
-  id: number;
+  id?: number;
   name: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Blog {
