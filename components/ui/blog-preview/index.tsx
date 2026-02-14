@@ -89,12 +89,13 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   tagsClassName = "flex items-start justify-start gap-4 mt-12",
   tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text",
   onBuild,
+  shareUrl,
 }) => {
   const [copied, setCopied] = useState(false);
-  const url =
-    typeof window !== "undefined"
+  const url = shareUrl
+    || (typeof window !== "undefined" && blog?.slug
       ? `${window.location.origin}/blogs/${blog.slug}`
-      : "";
+      : "");
 
   const handleCopyLink = async () => {
     try {

@@ -73,11 +73,12 @@ const defaultHtmlRendererConfig = {
         stripStyles: false,
     },
 };
-const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-start justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", onBuild, }) => {
+const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-start justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", onBuild, shareUrl, }) => {
     const [copied, setCopied] = useState(false);
-    const url = typeof window !== "undefined"
-        ? `${window.location.origin}/blogs/${blog.slug}`
-        : "";
+    const url = shareUrl
+        || (typeof window !== "undefined" && (blog === null || blog === void 0 ? void 0 : blog.slug)
+            ? `${window.location.origin}/blogs/${blog.slug}`
+            : "");
     const handleCopyLink = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             yield navigator.clipboard.writeText(url);

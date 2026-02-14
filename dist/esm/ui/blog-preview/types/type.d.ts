@@ -41,6 +41,7 @@ export interface IBlogPreviewProp {
     tagsClassName?: string;
     tagClassName?: string;
     onBuild?: () => void;
+    shareUrl?: string;
 }
 export interface ISingleBlogHeaderProp {
     blogFlagName: string | undefined;
