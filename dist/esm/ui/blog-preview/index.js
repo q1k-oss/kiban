@@ -102,7 +102,7 @@ const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5",
         var _a, _b, _c;
         if (loading)
             return _jsx(SingleBlogHeaderSkeleton, {});
-        return (_jsx(SingleBlogHeader, { title: (_a = blog === null || blog === void 0 ? void 0 : blog.title) !== null && _a !== void 0 ? _a : "", excerpt: blog === null || blog === void 0 ? void 0 : blog.excerpt, blogFlagName: (_b = blog === null || blog === void 0 ? void 0 : blog.flag) === null || _b === void 0 ? void 0 : _b.name, updatedAt: (_c = blog === null || blog === void 0 ? void 0 : blog.updatedAt) !== null && _c !== void 0 ? _c : "", className: "px-0 md:px-6 pt-4 md:pt-14 pb-6" }));
+        return (_jsx(SingleBlogHeader, { title: (_a = blog === null || blog === void 0 ? void 0 : blog.title) !== null && _a !== void 0 ? _a : "", excerpt: blog === null || blog === void 0 ? void 0 : blog.excerpt, blogFlagName: (_b = blog === null || blog === void 0 ? void 0 : blog.flag) === null || _b === void 0 ? void 0 : _b.name, updatedAt: (_c = blog === null || blog === void 0 ? void 0 : blog.updatedAt) !== null && _c !== void 0 ? _c : "", readTime: blog === null || blog === void 0 ? void 0 : blog.readTime, className: "px-0 md:px-6 pt-4 md:pt-14 pb-6" }));
     };
     const renderBlogSummary = () => {
         if (loading)

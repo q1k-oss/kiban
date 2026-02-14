@@ -6,11 +6,14 @@ function getAllHeadings(html) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     return Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6')).map((el) => {
-        var _a;
-        // Remove heading-anchor elements before extracting text
+        var _a, _b;
+        // Extract text: prefer non-anchor text, fall back to anchor text
         const clone = el.cloneNode(true);
-        clone.querySelectorAll('.heading-anchor').forEach((a) => a.remove());
-        const text = ((_a = clone.textContent) === null || _a === void 0 ? void 0 : _a.trim()) || '';
+        const anchors = clone.querySelectorAll('.heading-anchor');
+        const anchorText = anchors.length > 0 ? ((_a = anchors[0].textContent) === null || _a === void 0 ? void 0 : _a.trim()) || '' : '';
+        anchors.forEach((a) => a.remove());
+        const remainingText = ((_b = clone.textContent) === null || _b === void 0 ? void 0 : _b.trim()) || '';
+        const text = remainingText || anchorText;
         // Use the heading's id, or extract from heading-anchor href
         let id = el.id;
         if (!id) {

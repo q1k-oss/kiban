@@ -178,6 +178,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
         excerpt={blog?.excerpt}
         blogFlagName={blog?.flag?.name}
         updatedAt={blog?.updatedAt ?? ""}
+        readTime={blog?.readTime}
         className="px-0 md:px-6 pt-4 md:pt-14 pb-6"
       />
     );

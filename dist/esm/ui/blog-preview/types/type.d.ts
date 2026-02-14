@@ -26,6 +26,7 @@ export interface Blog {
     summary?: string;
     tags?: string;
     prompt?: string;
+    readTime?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;
@@ -48,6 +49,7 @@ export interface ISingleBlogHeaderProp {
     title: string;
     excerpt: string | undefined;
     updatedAt: string;
+    readTime?: string;
     className?: string;
 }
 export interface ISingleBlogAuthorProp {

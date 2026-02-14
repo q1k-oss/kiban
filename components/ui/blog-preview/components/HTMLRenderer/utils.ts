@@ -11,13 +11,17 @@ export const generateId = (text: string): string => {
     .trim();
 };
 
-// Extract text content from HTML (strips heading-anchor elements first)
+// Extract text content from HTML (strips heading-anchor elements first, preserving inner text if needed)
 export const extractTextContent = (html: string): string => {
-  const cleaned = html.replace(
-    /<a\b[^>]*class\s*=\s*["'][^"']*heading-anchor[^"']*["'][^>]*>[\s\S]*?<\/a>/gi,
-    '',
-  );
-  return cleaned.replace(/<[^>]*>/g, '');
+  const anchorRe = /<a\b[^>]*class\s*=\s*["'][^"']*heading-anchor[^"']*["'][^>]*>([\s\S]*?)<\/a>/gi;
+  const stripped = html.replace(anchorRe, '');
+  const remainingText = stripped.replace(/<[^>]*>/g, '').trim();
+
+  // If stripping leaves no text, preserve anchor inner content instead
+  if (!remainingText) {
+    return html.replace(anchorRe, '$1').replace(/<[^>]*>/g, '').trim();
+  }
+  return remainingText;
 };
 
 // Parse HTML attributes

@@ -12,11 +12,19 @@ interface HeadingRendererProps {
   renderContent: (html: string) => React.ReactNode;
 }
 
-// Strip existing heading-anchor <a> tags from inner HTML
-const HEADING_ANCHOR_RE = /<a\b[^>]*class\s*=\s*["'][^"']*heading-anchor[^"']*["'][^>]*>[\s\S]*?<\/a>/gi;
+// Match heading-anchor <a> tags, capturing inner content
+const HEADING_ANCHOR_RE = /<a\b[^>]*class\s*=\s*["'][^"']*heading-anchor[^"']*["'][^>]*>([\s\S]*?)<\/a>/gi;
 
 function stripHeadingAnchors(html: string): string {
-  return html.replace(HEADING_ANCHOR_RE, '');
+  // Replace anchor with its inner content, then check if remaining text is meaningful
+  const stripped = html.replace(HEADING_ANCHOR_RE, '');
+  const remainingText = stripped.replace(/<[^>]*>/g, '').trim();
+
+  // If stripping leaves no text, preserve anchor inner content instead
+  if (!remainingText) {
+    return html.replace(HEADING_ANCHOR_RE, '$1');
+  }
+  return stripped;
 }
 
 // Extract href from the first heading-anchor in the HTML (if any)
@@ -35,6 +43,7 @@ const HeadingRenderer: React.FC<HeadingRendererProps> = ({
   config,
   renderContent,
 }) => {
+  HEADING_ANCHOR_RE.lastIndex = 0;
   const hasExistingAnchor = HEADING_ANCHOR_RE.test(innerHtml);
   const cleanedHtml = hasExistingAnchor ? stripHeadingAnchors(innerHtml) : innerHtml;
   const existingHref = hasExistingAnchor ? extractAnchorHref(innerHtml) : null;

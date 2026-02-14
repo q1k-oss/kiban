@@ -17,11 +17,14 @@ function getAllHeadings(html: string): HeadingTag[] {
 
   return Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6')).map(
     (el) => {
-      // Remove heading-anchor elements before extracting text
+      // Extract text: prefer non-anchor text, fall back to anchor text
       const clone = el.cloneNode(true) as HTMLElement;
-      clone.querySelectorAll('.heading-anchor').forEach((a) => a.remove());
+      const anchors = clone.querySelectorAll('.heading-anchor');
+      const anchorText = anchors.length > 0 ? anchors[0].textContent?.trim() || '' : '';
+      anchors.forEach((a) => a.remove());
 
-      const text = clone.textContent?.trim() || '';
+      const remainingText = clone.textContent?.trim() || '';
+      const text = remainingText || anchorText;
       // Use the heading's id, or extract from heading-anchor href
       let id = el.id;
       if (!id) {

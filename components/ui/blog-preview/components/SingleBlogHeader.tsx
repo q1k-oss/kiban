@@ -16,6 +16,7 @@ export default function SingleBlogHeader({
   excerpt,
   updatedAt,
   title,
+  readTime,
   className,
 }: ISingleBlogHeaderProp) {
   const formattedDate = updatedAt ? formatDate(updatedAt) : null;
@@ -31,10 +32,10 @@ export default function SingleBlogHeader({
 
       {blogFlagName && (
         <div className="flex items-center  gap-4 z-100">
-          <span className="px-2 py-1.5 text-primary-text bg-button-fill-3 rounded-sm font-medium text-base  md:text-xs">
+          <span className="px-2 py-1.5 text-primary-text bg-button-fill-3 rounded-sm font-medium text-xs">
             {blogFlagName}
           </span>
-          <span className="text-base md:text-sm">. 4 min read</span>
+          {readTime && <span className="text-sm">{readTime}</span>}
         </div>
       )}
       {title && (
