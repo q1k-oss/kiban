@@ -1,7 +1,7 @@
 ---
 title: Border Moving Wrapper
-description: A reusable wrapper component that adds an animated, glowing, moving border effect around any child content.
-tags: ["border", "animation", "glow", "ui", "wrapper"]
+description: A reusable wrapper component that renders an animated gradient border around any child content using SVG line segments.
+tags: ["border", "animation", "gradient", "ui", "wrapper"]
 ---
 
 ### When To Use
@@ -11,21 +11,26 @@ Use the Border-Moving component when you need to:
 - Highlight important UI elements like cards, buttons, or feature sections
 - Draw user attention using subtle motion and glowing effects
 - Add a modern visual accent without modifying inner components
-- Create interactive hover or focus states
+- Create interactive hover, focus, or click states
 - Emphasize calls-to-action or premium content
+- Add marching ants or split-draw animation effects
 
 Border-Moving is especially useful for **feature cards, CTAs, pricing sections, dashboards, and landing pages**.
 
 ## Features
 
-- Animated **conic-gradient moving border**
-- Multi-color support with smooth color blending
-- Fully customizable animation speed, border width, and radius
+- Animated **SVG gradient border** with configurable segments
+- Multi-color gradient with smooth color interpolation
+- Multiple animation modes: **once** (draw and stop) or **loop** (continuous rotation)
+- Animation variants: **default** (single direction) or **split** (two arms meeting in the middle)
+- Configurable trigger: **mount**, **hover**, **focus**, **click**, or **manual**
+- **Marching ants** (dashed line) effect with configurable dash width, gap, and speed
+- Customizable start position, stroke width, line caps, and border radius
+- Border positioning: **inner** or **outer** with optional offset
+- Lazy loading with IntersectionObserver for performance
+- Throttled resize handling with ResizeObserver
+- Reverse animation direction support
 - Wraps any React node without affecting its layout
-- Automatically adapts to child size
-- Optional **hover-only animation mode**
-- Adjustable hover transition timing
-- CSS-variable driven for performance and flexibility
 
 ### Examples
 <Preview
@@ -43,23 +48,51 @@ Border-Moving is especially useful for **feature cards, CTAs, pricing sections, 
   file="/border-moving-wrapper/__demo__/direction"
   title="Anti-Clockwise direction version"
 />
- 
+
 ## Props
 
 | Prop | Type | Default | Description |
 |-----|-----|--------|-------------|
-| `children` | `React.ReactNode` | — | Content wrapped by the animated border |
-| `colors` | `string[]` | `["#399953","#fbb300","#d53e33","#377af5"]` | Colors used to generate the conic-gradient border |
-| `animationDuration` | `number` | `4` | Duration (in seconds) for one full border rotation |
-| `borderWidth` | `number` | `4` | Thickness of the animated border (px) |
-| `borderRadius` | `number` | `0` | Border radius applied to the wrapper (px) |
-| `className` | `string` | `""` | Additional class names for custom styling |
-| `blendPercentage` | `number` | `10` | Percentage used to blend between adjacent colors |
-| `hoverOnly` | `boolean` | `false` | Enables border animation only on hover |
-| `hoverOnlyTransition` | `number` | `0.3` | Transition duration (in seconds) for hover effects |
-| `animationDirection` | `CLOCKWISE \| ANTI-CLOCKWISE` | `CLOCKWISE` | Direction of the border animation |
+| `children` | `ReactNode` | — | Content wrapped by the animated border |
+| `colors` | `string[]` | `['#0066ff', '#ffdd00']` | Array of hex colors for the gradient |
+| `startPosition` | `StartPosition` | `'top-left'` | Where on the border the gradient starts. Can be a position name or a number 0-1 |
+| `strokeWidth` | `number` | `3` | Width of the border stroke in pixels |
+| `lineCapStart` | `'round' \| 'square'` | `'square'` | Line cap style for the start of the stroke |
+| `lineCapEnd` | `'round' \| 'square'` | `'square'` | Line cap style for the end/tip of the stroke |
+| `borderRadius` | `number` | `12` | Border radius in pixels |
+| `segments` | `number` | `200` | Number of segments to divide the border into |
+| `duration` | `number` | `2000` | Animation duration in milliseconds |
+| `animate` | `boolean` | `true` | Whether to animate the border drawing in |
+| `trigger` | `Trigger` | `'mount'` | What triggers the border: `'mount'`, `'hover'`, `'focus'`, `'click'`, or `'manual'` |
+| `animationMode` | `AnimationMode` | `'once'` | `'once'` draws and stops, `'loop'` continuously animates around |
+| `variant` | `Variant` | `'default'` | `'default'` draws from one point, `'split'` draws from both directions |
+| `reverse` | `boolean` | `false` | Reverse the animation direction |
+| `active` | `boolean` | — | For manual trigger control - whether the border is active |
+| `showWhenInactive` | `boolean` | `false` | Whether border is visible when not triggered |
+| `lazy` | `boolean` | `true` | Lazy load - only render when visible in viewport |
+| `lazyRootMargin` | `string` | `'100px'` | Root margin for lazy loading intersection observer |
+| `resizeThrottle` | `number` | `150` | Throttle interval in ms for resize recalculations |
+| `ants` | `boolean` | `false` | Enable marching ants (dashed line) effect |
+| `antsDashWidth` | `number` | `20` | Width of each dash in the ants effect (px) |
+| `antsGapWidth` | `number` | `16` | Gap between dashes in the ants effect (px) |
+| `antsSpeed` | `number` | `250` | Speed of the ants animation in ms per dash cycle |
+| `borderPosition` | `'inner' \| 'outer'` | `'inner'` | Draw border inside or outside the element |
+| `borderOffset` | `number \| string` | `0` | Offset the border by a CSS length value |
+| `style` | `CSSProperties` | `{}` | Additional CSS styles for the container |
+| `className` | `string` | `''` | Additional CSS class name for the container |
+
+### Types
+
+```ts
+type StartPosition = 'top-left' | 'top' | 'top-right' | 'right' | 'bottom-right' | 'bottom' | 'bottom-left' | 'left' | number;
+type AnimationMode = 'once' | 'loop';
+type Trigger = 'mount' | 'hover' | 'focus' | 'click' | 'manual';
+type Variant = 'default' | 'split';
+```
 
 > **Notes**
-> - All numeric values are interpreted as **pixels** unless stated otherwise  
-> - `blendPercentage` controls how smoothly colors transition inside the conic gradient  
-> - When `hoverOnly` is enabled, opacity and padding animate based on hover state
+> - All numeric values are interpreted as **pixels** unless stated otherwise
+> - `duration` is in **milliseconds** (not seconds)
+> - `startPosition` accepts named positions or a number between 0-1 representing a point along the border path
+> - When `trigger` is `'manual'`, use the `active` prop to control visibility
+> - The `ants` effect works alongside the draw-in animation for a marching dashes appearance
