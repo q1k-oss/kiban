@@ -5,20 +5,21 @@ function lerp(a: number, b: number, t: number): number {
 }
 
 // Cache for parsed hex colors to avoid repeated regex parsing
-const parsedColorCache = new Map<string, [number, number, number]>();
+const parsedColorCache = new Map<string, [number, number, number, number]>();
 
-function parseHexColor(hex: string): [number, number, number] {
+function parseHexColor(hex: string): [number, number, number, number] {
   const cached = parsedColorCache.get(hex);
   if (cached) return cached;
 
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  const parsed: [number, number, number] = result
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i.exec(hex);
+  const parsed: [number, number, number, number] = result
     ? [
         parseInt(result[1], 16),
         parseInt(result[2], 16),
         parseInt(result[3], 16),
+        result[4] !== undefined ? parseInt(result[4], 16) / 255 : 1,
       ]
-    : [0, 0, 0];
+    : [0, 0, 0, 1];
 
   // Limit cache size to prevent memory leaks
   if (parsedColorCache.size > 1000) {
@@ -31,9 +32,13 @@ function parseHexColor(hex: string): [number, number, number] {
 }
 
 function interpolateColor(color1: string, color2: string, t: number): string {
-  const [r1, g1, b1] = parseHexColor(color1);
-  const [r2, g2, b2] = parseHexColor(color2);
+  const [r1, g1, b1, a1] = parseHexColor(color1);
+  const [r2, g2, b2, a2] = parseHexColor(color2);
+  const a = lerp(a1, a2, t);
 
+  if (a < 1) {
+    return `rgba(${Math.round(lerp(r1, r2, t))}, ${Math.round(lerp(g1, g2, t))}, ${Math.round(lerp(b1, b2, t))}, ${parseFloat(a.toFixed(3))})`;
+  }
   return `rgb(${Math.round(lerp(r1, r2, t))}, ${Math.round(lerp(g1, g2, t))}, ${Math.round(lerp(b1, b2, t))})`;
 }
 
