@@ -167,6 +167,15 @@ export const AGENT_TOOLBAR_CONFIG = [
         },
         { icon: "image", title: "Image", type: "image" },
     ],
+    // Table
+    [
+        {
+            icon: "table",
+            title: "Table",
+            type: "table",
+            isActive: (e) => e.isActive("table"),
+        },
+    ],
 ];
 export const NOTION_FLOAT_MENU_TOOLBAR_CONFIG = [
     {
@@ -244,6 +253,17 @@ export const NOTION_FLOAT_MENU_TOOLBAR_CONFIG = [
             }
         },
         keywords: ["image", "img", "photo", "picture"],
+    },
+    {
+        icon: "table",
+        label: "Table",
+        description: "Insert a table with rows and columns",
+        action: (e) => e
+            .chain()
+            .focus()
+            .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+            .run(),
+        keywords: ["table", "grid", "spreadsheet", "rows", "columns"],
     },
 ];
 export const NOTION_BUBBLE_FORMAT_MENU_TOOLBAR_CONFIG = [
