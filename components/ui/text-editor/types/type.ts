@@ -51,7 +51,7 @@ export interface IToolbarButton {
 export interface IDropdownButton {
   icon: string;
   title: string;
-  type: "color-picker" | "link" | "image" | "highlight" | "font-size";
+  type: "color-picker" | "link" | "image" | "highlight" | "font-size" | "table";
   isActive?: (editor: Editor) => boolean;
 }
 

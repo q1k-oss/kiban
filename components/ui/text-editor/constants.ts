@@ -176,6 +176,15 @@ export const AGENT_TOOLBAR_CONFIG: ITopToolbarItem[][] = [
     },
     { icon: "image", title: "Image", type: "image" as const },
   ],
+  // Table
+  [
+    {
+      icon: "table",
+      title: "Table",
+      type: "table" as const,
+      isActive: (e) => e.isActive("table"),
+    },
+  ],
 ];
 export const NOTION_FLOAT_MENU_TOOLBAR_CONFIG: IFloatMenu[] = [
   {
@@ -253,6 +262,18 @@ export const NOTION_FLOAT_MENU_TOOLBAR_CONFIG: IFloatMenu[] = [
       }
     },
     keywords: ["image", "img", "photo", "picture"],
+  },
+  {
+    icon: "table",
+    label: "Table",
+    description: "Insert a table with rows and columns",
+    action: (e) =>
+      e
+        .chain()
+        .focus()
+        .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+        .run(),
+    keywords: ["table", "grid", "spreadsheet", "rows", "columns"],
   },
 ];
 

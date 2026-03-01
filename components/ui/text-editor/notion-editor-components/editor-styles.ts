@@ -165,4 +165,96 @@ export const editorStyles = `
   text-decoration: none !important;
   font-weight: inherit !important;
 }
+
+  .ProseMirror .tableWrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.5em 0;
+  }
+
+  .ProseMirror table {
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid var(--button-fill-3);
+    border-radius: 0.75rem;
+  }
+
+  .ProseMirror td,
+  .ProseMirror th {
+    min-width: 1em;
+    border: 1px solid var(--button-fill-3);
+    padding: 0.5rem 0.75rem;
+    vertical-align: top;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    word-break: break-word;
+    
+  }
+
+  .ProseMirror th {
+    font-weight: 600;
+    background-color: var(--button-fill-3);
+    color: var(--color-primary-text);
+    border: 1px solid var(--node-field-fill);
+  }
+
+  .ProseMirror td {
+    color: var(--color-secondary-text);
+  }
+
+  /* Rounded corners on outer cells */
+  .ProseMirror table tr:first-child th:first-child,
+  .ProseMirror table tr:first-child td:first-child {
+    border-top-left-radius: 0.75rem;
+  }
+
+  .ProseMirror table tr:first-child th:last-child,
+  .ProseMirror table tr:first-child td:last-child {
+    border-top-right-radius: 0.75rem;
+  }
+
+  .ProseMirror table tr:last-child td:first-child,
+  .ProseMirror table tr:last-child th:first-child {
+    border-bottom-left-radius: 0.75rem;
+  }
+
+  .ProseMirror table tr:last-child td:last-child,
+  .ProseMirror table tr:last-child th:last-child {
+    border-bottom-right-radius: 0.75rem;
+  }
+
+  .ProseMirror .selectedCell::after {
+    z-index: 2;
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.15);
+    pointer-events: none;
+  }
+
+  .ProseMirror .column-resize-handle {
+    position: absolute;
+    right: -2px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #3b82f6;
+    pointer-events: none;
+  }
+
+  .ProseMirror.resize-cursor {
+    cursor: col-resize;
+  }
+
+  .ProseMirror table > * + * {
+    margin-top: 0;
+  }
   `;
