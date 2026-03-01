@@ -9,6 +9,7 @@ import { ColorPickerDropdown } from "./dropdowns/agent-editor-color-picker-dropd
 import { FontSizeDropdown } from "./dropdowns/agent-editor-font-size-dropdown";
 import { HighlightDropdown } from "./dropdowns/agent-editor-highlight-dropdown";
 import { LinkDropdown } from "./dropdowns/agent-editor-link-dropdown";
+import { TableDropdown } from "./dropdowns/agent-editor-table-dropdown";
 import { ImageButton } from "./image-button";
 import { ToolbarButton } from "./top-toolbar-button";
 import { ToolbarDivider } from "./top-toolbar-divider";
@@ -68,6 +69,15 @@ export const TopToolbar = ({ editor, className }: { editor: Editor; className?: 
         );
       case "image":
         return <ImageButton key={idx} editor={editor} />;
+      case "table":
+        return (
+          <TableDropdown
+            key={idx}
+            editor={editor}
+            isOpen={activeDropdown === "table"}
+            onToggle={() => toggleDropdown("table")}
+          />
+        );
     }
   };
 

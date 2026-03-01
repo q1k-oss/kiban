@@ -5,6 +5,7 @@ import Heading from "@tiptap/extension-heading";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
+import { Table, TableCell, TableHeader, TableRow } from "@tiptap/extension-table";
 import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
 import { useEditor, EditorContent, FloatingMenu, BubbleMenu, } from "@tiptap/react";
@@ -58,6 +59,12 @@ const TextEditor = ({ value = "", onChange, wrapperClassName = "", editorClassNa
                 inline: true,
                 allowBase64: true,
             }),
+            Table.configure({
+                resizable: true,
+            }),
+            TableRow,
+            TableCell,
+            TableHeader,
         ],
         content: value,
         editorProps: {
