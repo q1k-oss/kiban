@@ -6,64 +6,194 @@ const SingleBlogHeaderBackground = ({ className }:ISingleBlogHeaderBackgroundPro
   return (
     <div
       className={cn(
-        'relative w-full min-h-[320px] overflow-hidden bg-[#050505]',
+        'relative w-full min-h-[320px] overflow-hidden ',
         className,
       )}
     >
-      {/* radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,200,120,0.08),transparent_40%),radial-gradient(circle_at_70%_70%,rgba(255,200,120,0.06),transparent_45%)]" />
-
-      {/* grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none
-        bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)]
-        bg-[size:48px_48px]"
-      />
-
-      {/* blocks */}
-      <div className="absolute inset-0">
-        <span
-          className="absolute top-[12%] left-[8%]
-          w-[clamp(60px,8vw,110px)] h-[clamp(60px,8vw,110px)]
-          bg-gradient-to-br from-[rgba(255,200,120,0.25)] to-[rgba(120,90,40,0.15)]
-          shadow-[0_0_30px_rgba(255,200,120,0.15),inset_0_0_20px_rgba(255,255,255,0.05)]"
-        />
-
-        <span
-          className="absolute top-[22%] left-[14%]
-          w-[clamp(60px,8vw,110px)] h-[clamp(60px,8vw,110px)]
-          bg-gradient-to-br from-[rgba(255,200,120,0.25)] to-[rgba(120,90,40,0.15)]
-          shadow-[0_0_30px_rgba(255,200,120,0.15),inset_0_0_20px_rgba(255,255,255,0.05)]"
-        />
-
-        <span
-          className="absolute top-[35%] left-[42%]
-          w-[clamp(60px,8vw,110px)] h-[clamp(60px,8vw,110px)]
-          bg-gradient-to-br from-[rgba(255,200,120,0.25)] to-[rgba(120,90,40,0.15)]
-          shadow-[0_0_30px_rgba(255,200,120,0.15),inset_0_0_20px_rgba(255,255,255,0.05)]"
-        />
-
-        <span
-          className="absolute top-[18%] right-[18%]
-          w-[clamp(60px,8vw,110px)] h-[clamp(60px,8vw,110px)]
-          bg-gradient-to-br from-[rgba(255,200,120,0.25)] to-[rgba(120,90,40,0.15)]
-          shadow-[0_0_30px_rgba(255,200,120,0.15),inset_0_0_20px_rgba(255,255,255,0.05)]"
-        />
-    
-        <span
-          className="absolute top-[40%] right-[12%]
-          w-[clamp(60px,8vw,110px)] h-[clamp(60px,8vw,110px)]
-          bg-gradient-to-br from-[rgba(255,200,120,0.25)] to-[rgba(120,90,40,0.15)]
-          shadow-[0_0_30px_rgba(255,200,120,0.15),inset_0_0_20px_rgba(255,255,255,0.05)]"
-        />
-
-        <span
-          className="absolute bottom-[18%] left-[22%]
-          w-[clamp(60px,8vw,110px)] h-[clamp(60px,8vw,110px)]
-          bg-gradient-to-br from-[rgba(255,200,120,0.25)] to-[rgba(120,90,40,0.15)]
-          shadow-[0_0_30px_rgba(255,200,120,0.15),inset_0_0_20px_rgba(255,255,255,0.05)]"
-        />
-      </div>
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 1728 428"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMin slice"
+      >
+        <g opacity="0.6" clipPath="url(#clip0_bg)">
+          <rect width="1728" height="428" fill="transparent" />
+          <mask
+            id="mask0_bg"
+            style={{ maskType: 'luminance' }}
+            maskUnits="userSpaceOnUse"
+            x="-330"
+            y="-238"
+            width="1956"
+            height="1440"
+          >
+            <path
+              d="M758.16 303.826C758.16 451.086 660.795 570.464 540.69 570.464C420.584 570.464 -329.822 53.9664 -329.822 -93.2934C-329.822 -240.553 748.365 -37.8228 868.471 -37.8228C988.577 -37.8228 758.16 156.566 758.16 303.826Z"
+              fill="url(#paint0_bg)"
+            />
+            <path
+              d="M1089.32 304.232C1413.39 596.921 1263.69 449.833 1542.03 442.422C1585.7 450.834 1659.82 451.234 1607.01 385.542C1541 303.428 1562.27 245.429 1479.77 155.965C1397.27 66.5014 1347.02 -24.3924 1222.47 -166.682C1097.91 -308.973 1088.33 -191.679 947.908 -202.798C807.488 -213.917 871.534 -196.259 677.79 10.1976C484.046 216.655 765.255 11.5435 1089.32 304.232Z"
+              fill="#D9D9D9"
+            />
+            <path
+              d="M783.375 764.615C349.695 815.674 558.971 799.915 381.212 1014.23C346.123 1041.55 296.998 1097.06 381.212 1100.59C486.48 1105 516.107 1159.21 637.764 1156.06C759.421 1152.91 860.908 1174.97 1050.01 1174.97C1239.12 1174.97 1157.17 1090.51 1258.03 992.171C1358.88 893.837 1303.41 930.397 1275.68 648.631C1247.94 366.865 1217.05 713.557 783.375 764.615Z"
+              fill="#D9D9D9"
+            />
+          </mask>
+          <g mask="url(#mask0_bg)">
+            <g opacity="0.2">
+              <line x1="-32.2949" y1="107" x2="1479.28" y2="107" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="-32.2949" y1="214" x2="1479.28" y2="214" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="-32.2949" y1="321" x2="1479.28" y2="321" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="-32.2949" y1="428" x2="1479.28" y2="428" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="9" y1="4" x2="9" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="100" y1="4" x2="100" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="182" y1="4" x2="182" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="273" y1="4" x2="273" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="344" y1="4" x2="344" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="414" y1="4" x2="414" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="505" y1="4" x2="505" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="595" y1="4" x2="595" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="750" y1="4" x2="750" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="906" y1="4" x2="906" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="997" y1="4" x2="997" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="830" y1="4" x2="830" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="1156" y1="4" x2="1156" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="1246" y1="4" x2="1246" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="1400" y1="4" x2="1400" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="1550" y1="4" x2="1550" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+              <line x1="1700" y1="4" x2="1700" y2="1171.41" stroke="white" strokeOpacity="0.32" strokeWidth="1.2607" />
+            </g>
+            <rect opacity="0.7" x="1156" y="214" width="90" height="107" fill="url(#paint1_bg)" fillOpacity="0.4" />
+            <rect x="505" y="107" width="90" height="107" fill="url(#paint2_bg)" fillOpacity="0.61" />
+            <rect opacity="0.7" x="1067" y="321" width="90" height="107" fill="url(#paint3_bg)" fillOpacity="0.4" />
+            <rect x="414" y="214" width="90" height="107" fill="url(#paint4_bg)" fillOpacity="0.61" />
+            <rect opacity="0.7" x="1065" y="214" width="90" height="107" fill="url(#paint5_bg)" fillOpacity="0.4" />
+            <rect x="414" y="107" width="90" height="107" fill="url(#paint6_bg)" fillOpacity="0.61" />
+            <g opacity="0.6">
+              <rect x="997" y="0" width="90" height="107" fill="url(#paint7_bg)" fillOpacity="0.41" />
+              <rect x="907" y="-107" width="90" height="107" fill="url(#paint8_bg)" fillOpacity="0.41" />
+              <rect x="906" y="0" width="90" height="107" fill="url(#paint9_bg)" fillOpacity="0.41" />
+            </g>
+            <g opacity="0.6">
+              <rect x="182" y="107" width="91" height="107" fill="url(#paint10_bg)" fillOpacity="0.24" />
+              <rect x="101" y="0" width="91" height="107" fill="url(#paint11_bg)" fillOpacity="0.24" />
+              <rect x="9" y="0" width="91" height="107" fill="url(#paint12_bg)" fillOpacity="0.24" />
+              <rect x="90" y="107" width="91" height="107" fill="url(#paint13_bg)" fillOpacity="0.24" />
+              <rect x="422" y="-107" width="91" height="107" fill="#FFF2B7" />
+              <rect x="180" y="321" width="90" height="107" fill="url(#paint14_bg)" fillOpacity="0.24" />
+            </g>
+          </g>
+        </g>
+        <defs>
+          <linearGradient id="paint0_bg" x1="189.585" y1="-19.5425" x2="644.067" y2="222.511" gradientUnits="userSpaceOnUse">
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="paint1_bg" x1="1156" y1="214" x2="1246" y2="321" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint2_bg" x1="505" y1="107" x2="595" y2="214" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint3_bg" x1="1067" y1="321" x2="1157" y2="428" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint4_bg" x1="414" y1="214" x2="504" y2="321" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint5_bg" x1="1065" y1="214" x2="1155" y2="321" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint6_bg" x1="414" y1="107" x2="504" y2="214" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint7_bg" x1="997" y1="0" x2="1087" y2="107" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint8_bg" x1="907" y1="-107" x2="997" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint9_bg" x1="906" y1="0" x2="996" y2="107" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint10_bg" x1="182" y1="107" x2="273" y2="214" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint11_bg" x1="101" y1="0" x2="192" y2="107" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint12_bg" x1="9" y1="0" x2="100" y2="107" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint13_bg" x1="90" y1="107" x2="181" y2="214" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <linearGradient id="paint14_bg" x1="180" y1="321" x2="270" y2="428" gradientUnits="userSpaceOnUse">
+            <stop offset="0.145383" stopColor="#C3946F" stopOpacity="0.6" />
+            <stop offset="0.340032" stopColor="#F49D56" stopOpacity="0.6" />
+            <stop offset="0.572516" stopColor="#FFF2B7" />
+            <stop offset="0.758001" stopColor="#FEEEB2" stopOpacity="0.981103" />
+            <stop offset="1" stopColor="#F4C656" />
+          </linearGradient>
+          <clipPath id="clip0_bg">
+            <rect width="1728" height="428" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
     </div>
   );
 };

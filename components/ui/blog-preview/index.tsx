@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 
 import { AppIcon } from "../app-icon";
+import { BorderMovingWrapper } from "../border-moving-wrapper";
 import { Button } from "../button";
 import { Skeleton } from "../skeleton";
 import {
@@ -34,10 +35,8 @@ const defaultHtmlRendererConfig = {
     showLanguage: true,
     copyButton: true,
     lineNumbers: false,
-    className:
-      "mt-4 text-icon-color-default font-light text-sm leading-6 py-1",
-    headerLanguageClassName:
-      "text-icon-color-default text-md! capitalize pb-4",
+    className: "mt-4 text-icon-color-default font-light text-sm leading-6 py-1",
+    headerLanguageClassName: "text-icon-color-default text-md! capitalize pb-4",
   },
   headings: {
     addIds: true,
@@ -92,8 +91,9 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   shareUrl,
 }) => {
   const [copied, setCopied] = useState(false);
-  const url = shareUrl
-    || (typeof window !== "undefined" && blog?.slug
+  const url =
+    shareUrl ||
+    (typeof window !== "undefined" && blog?.slug
       ? `${window.location.origin}/blogs/${blog.slug}`
       : "");
 
@@ -194,15 +194,28 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
     if (loading) return <SingleBlogContentSkeleton />;
     if (!blog?.content) return null;
     const mergedConfig = htmlRendererConfig
-      ? Object.keys({ ...defaultHtmlRendererConfig, ...htmlRendererConfig }).reduce(
+      ? Object.keys({
+          ...defaultHtmlRendererConfig,
+          ...htmlRendererConfig,
+        }).reduce(
           (acc, key) => {
             const k = key as keyof typeof defaultHtmlRendererConfig;
             const defaultVal = defaultHtmlRendererConfig[k];
             const userVal = htmlRendererConfig[k];
-            if (defaultVal && userVal && typeof defaultVal === 'object' && typeof userVal === 'object' && !Array.isArray(defaultVal)) {
-              (acc as Record<string, unknown>)[key] = { ...defaultVal, ...userVal };
+            if (
+              defaultVal &&
+              userVal &&
+              typeof defaultVal === "object" &&
+              typeof userVal === "object" &&
+              !Array.isArray(defaultVal)
+            ) {
+              (acc as Record<string, unknown>)[key] = {
+                ...defaultVal,
+                ...userVal,
+              };
             } else {
-              (acc as Record<string, unknown>)[key] = userVal !== undefined ? userVal : defaultVal;
+              (acc as Record<string, unknown>)[key] =
+                userVal !== undefined ? userVal : defaultVal;
             }
             return acc;
           },
@@ -254,14 +267,26 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
     return <SingleBlogPrompt blogPrompt={blog.prompt} onBuild={onBuild} />;
   };
 
- 
-
   return (
     <div className={className}>
       <div className={headerClassName}>{renderBlogHeader()}</div>
       <div className="flex items-start gap-10 relative mt-2 md:mt-6 ">
         <div className={contentClassName}>
-          <div className="mb-6">{renderBlogSummary()}</div>
+          <div className="mb-6">
+            <BorderMovingWrapper
+              colors={[
+                "#C3946F99",
+                "#F49D5699",
+                "#FFF2B7",
+                "#FEEEB2FA",
+                "#F4C656",
+              ]}
+              animationMode="loop"
+              strokeWidth={1}
+            >
+              {renderBlogSummary()}
+            </BorderMovingWrapper>
+          </div>
           <div className="md:px-8">
             <div>{renderBlogContent()}</div>
             {(loading || blog?.tags) && (
@@ -289,7 +314,21 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
               <span className="text-primary-text font-semibold text-lg">
                 Ready to turn ideas into action?
               </span>
-              <div className="mt-4">{renderBlogPrompt()}</div>
+              <div className="mt-4">
+                <BorderMovingWrapper
+                  colors={[
+                    "#C3946F99",
+                    "#F49D5699",
+                    "#FFF2B7",
+                    "#FEEEB2FA",
+                    "#F4C656",
+                  ]}
+                  animationMode="loop"
+                  strokeWidth={1}
+                >
+                  {renderBlogPrompt()}
+                </BorderMovingWrapper>
+              </div>
             </div>
           )}
         </div>

@@ -14,7 +14,7 @@ export default function SingleBlogPromptSkeleton({
       {' '}
       <div
         className={cn(
-          'p-6 border border-[#F49D5699] flex flex-col gap-4 rounded-md',
+          'p-6 flex flex-col gap-4 ',
           className,
         )}
       >

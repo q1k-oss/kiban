@@ -10,7 +10,7 @@ export const SingleBlogPrompt = ({
   return (
     <div
       className={cn(
-        'p-6 border border-[#F49D5699] rounded-md font-dm-mono',
+        'p-6 font-dm-mono',
         className,
       )}
     >
