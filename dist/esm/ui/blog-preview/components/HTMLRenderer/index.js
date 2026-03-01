@@ -46,7 +46,7 @@ const renderHtmlContent = (html, config) => {
         else {
             // Opening tag
             const selfClosing = attributes.trimEnd().endsWith('/') ||
-                ['img', 'br', 'hr', 'input', 'meta', 'link'].includes(tagName);
+                ['img', 'br', 'hr', 'input', 'meta', 'link', 'col'].includes(tagName);
             if (selfClosing) {
                 const renderedElement = renderElement(tagName, attributes, '', [], config, keyCounter++);
                 if (stack.length > 0) {
@@ -127,7 +127,15 @@ const renderElement = (tag, attributesStr, innerHtml, children, config, key) => 
     }
     // ============= TABLE ELEMENTS =============
     if (['table', 'thead', 'tbody', 'tr', 'th', 'td'].includes(lowerTag)) {
-        return (_jsx(TableRenderer, { type: lowerTag, innerHtml: innerHtml, config: config.table, renderContent: renderContent }, key));
+        // Strip whitespace-only text between table tags to prevent hydration errors
+        const cleanedInnerHtml = innerHtml.replace(/>\s+</g, '><').trim();
+        const tableConfig = Object.assign(Object.assign({}, config), { paragraphs: { className: '' } });
+        const renderTableContent = (html) => renderHtmlContent(html, tableConfig);
+        return (_jsx(TableRenderer, { type: lowerTag, innerHtml: cleanedInnerHtml, config: config.table, renderContent: renderTableContent }, key));
+    }
+    // ============= VOID ELEMENTS =============
+    if (['col', 'colgroup'].includes(lowerTag)) {
+        return null;
     }
     // ============= TEXT STYLES =============
     if (['strong', 'b', 'em', 'i', 'code', 'u', 'del', 's'].includes(lowerTag)) {
@@ -146,6 +154,11 @@ const renderElement = (tag, attributesStr, innerHtml, children, config, key) => 
         defaultProps.style = parseCssToReactStyle(attrs.style);
     if (attrs.class)
         defaultProps.className = attrs.class;
+    // Void elements must not have children
+    const VOID_ELEMENTS = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+    if (VOID_ELEMENTS.includes(lowerTag)) {
+        return React.createElement(lowerTag, defaultProps);
+    }
     return React.createElement(lowerTag, defaultProps, renderHtmlContent(innerHtml, config));
 };
 // ============= MAIN COMPONENT =============

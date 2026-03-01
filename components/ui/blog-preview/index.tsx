@@ -67,6 +67,14 @@ const defaultHtmlRendererConfig = {
     olClassName: "list-decimal ml-6 my-5 font-bold",
     liClassName: "my-1 font-semi-bold",
   },
+  table: {
+    className: "w-full mt-4",
+    thClassName:
+      "border border-node-field-fill bg-button-fill-3 text-secondary-text font-semibold text-sm text-center p-3",
+    tdClassName:
+      "border border-button-fill-3 text-secondary-text text-sm text-center p-3",
+    responsive: true,
+  },
   hr: {
     className: "my-8 border-t border-border-3 ",
   },

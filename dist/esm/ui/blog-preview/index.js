@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from "react";
 import { AppIcon } from "../app-icon";
+import { BorderMovingWrapper } from "../border-moving-wrapper";
 import { Button } from "../button";
 import { Skeleton } from "../skeleton";
 import { FacebookShareButton, LinkedinShareButton, RedditShareButton, TwitterShareButton, } from "../SocialShareButtons";
@@ -64,6 +65,12 @@ const defaultHtmlRendererConfig = {
         olClassName: "list-decimal ml-6 my-5 font-bold",
         liClassName: "my-1 font-semi-bold",
     },
+    table: {
+        className: "w-full mt-4",
+        thClassName: "border border-node-field-fill bg-button-fill-3 text-secondary-text font-semibold text-sm text-center p-3",
+        tdClassName: "border border-button-fill-3 text-secondary-text text-sm text-center p-3",
+        responsive: true,
+    },
     hr: {
         className: "my-8 border-t border-border-3 ",
     },
@@ -75,8 +82,8 @@ const defaultHtmlRendererConfig = {
 };
 const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-start justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", onBuild, shareUrl, }) => {
     const [copied, setCopied] = useState(false);
-    const url = shareUrl
-        || (typeof window !== "undefined" && (blog === null || blog === void 0 ? void 0 : blog.slug)
+    const url = shareUrl ||
+        (typeof window !== "undefined" && (blog === null || blog === void 0 ? void 0 : blog.slug)
             ? `${window.location.origin}/blogs/${blog.slug}`
             : "");
     const handleCopyLink = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -121,11 +128,16 @@ const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5",
                 const k = key;
                 const defaultVal = defaultHtmlRendererConfig[k];
                 const userVal = htmlRendererConfig[k];
-                if (defaultVal && userVal && typeof defaultVal === 'object' && typeof userVal === 'object' && !Array.isArray(defaultVal)) {
+                if (defaultVal &&
+                    userVal &&
+                    typeof defaultVal === "object" &&
+                    typeof userVal === "object" &&
+                    !Array.isArray(defaultVal)) {
                     acc[key] = Object.assign(Object.assign({}, defaultVal), userVal);
                 }
                 else {
-                    acc[key] = userVal !== undefined ? userVal : defaultVal;
+                    acc[key] =
+                        userVal !== undefined ? userVal : defaultVal;
                 }
                 return acc;
             }, {})
@@ -162,7 +174,19 @@ const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5",
             return null;
         return _jsx(SingleBlogPrompt, { blogPrompt: blog.prompt, onBuild: onBuild });
     };
-    return (_jsxs("div", { className: className, children: [_jsx("div", { className: headerClassName, children: renderBlogHeader() }), _jsxs("div", { className: "flex items-start gap-10 relative mt-2 md:mt-6 ", children: [_jsxs("div", { className: contentClassName, children: [_jsx("div", { className: "mb-6", children: renderBlogSummary() }), _jsxs("div", { className: "md:px-8", children: [_jsx("div", { children: renderBlogContent() }), (loading || (blog === null || blog === void 0 ? void 0 : blog.tags)) && (_jsxs("div", { className: tagsClassName, children: [_jsx("span", { className: "text-lg  text-icon-color-default mr-4", children: "Tags:" }), _jsx("div", { className: "flex flex-wrap justify-start gap-4", children: renderBlogTag() })] })), (loading || ((blog === null || blog === void 0 ? void 0 : blog.authorEmail) && (blog === null || blog === void 0 ? void 0 : blog.authorName))) && (_jsx("div", { className: " mt-12", children: renderAuthorDetails() }))] })] }), _jsxs("div", { className: sidebarClassName, children: [renderBlogTOC(), _jsx("div", { className: "flex items-center justify-center gap-2 my-10", children: renderSocialMediaIcons() }), (loading || (blog === null || blog === void 0 ? void 0 : blog.prompt)) && (_jsxs("div", { className: "mt-10", children: [_jsx("span", { className: "text-primary-text font-semibold text-lg", children: "Ready to turn ideas into action?" }), _jsx("div", { className: "mt-4", children: renderBlogPrompt() })] }))] })] }), _jsx(FloatingBuildAgentButton, {})] }));
+    return (_jsxs("div", { className: className, children: [_jsx("div", { className: headerClassName, children: renderBlogHeader() }), _jsxs("div", { className: "flex items-start gap-10 relative mt-2 md:mt-6 ", children: [_jsxs("div", { className: contentClassName, children: [_jsx("div", { className: "mb-6", children: _jsx(BorderMovingWrapper, { colors: [
+                                        "#C3946F99",
+                                        "#F49D5699",
+                                        "#FFF2B7",
+                                        "#FEEEB2FA",
+                                        "#F4C656",
+                                    ], animationMode: "loop", strokeWidth: 1, children: renderBlogSummary() }) }), _jsxs("div", { className: "md:px-8", children: [_jsx("div", { children: renderBlogContent() }), (loading || (blog === null || blog === void 0 ? void 0 : blog.tags)) && (_jsxs("div", { className: tagsClassName, children: [_jsx("span", { className: "text-lg  text-icon-color-default mr-4", children: "Tags:" }), _jsx("div", { className: "flex flex-wrap justify-start gap-4", children: renderBlogTag() })] })), (loading || ((blog === null || blog === void 0 ? void 0 : blog.authorEmail) && (blog === null || blog === void 0 ? void 0 : blog.authorName))) && (_jsx("div", { className: " mt-12", children: renderAuthorDetails() }))] })] }), _jsxs("div", { className: sidebarClassName, children: [renderBlogTOC(), _jsx("div", { className: "flex items-center justify-center gap-2 my-10", children: renderSocialMediaIcons() }), (loading || (blog === null || blog === void 0 ? void 0 : blog.prompt)) && (_jsxs("div", { className: "mt-10", children: [_jsx("span", { className: "text-primary-text font-semibold text-lg", children: "Ready to turn ideas into action?" }), _jsx("div", { className: "mt-4", children: _jsx(BorderMovingWrapper, { colors: [
+                                                "#C3946F99",
+                                                "#F49D5699",
+                                                "#FFF2B7",
+                                                "#FEEEB2FA",
+                                                "#F4C656",
+                                            ], animationMode: "loop", strokeWidth: 1, children: renderBlogPrompt() }) })] }))] })] }), _jsx(FloatingBuildAgentButton, {})] }));
 };
 export default BlogPreview;
 export { BlogPreview };

@@ -81,7 +81,7 @@ const renderHtmlContent = (
       // Opening tag
       const selfClosing =
         attributes.trimEnd().endsWith('/') ||
-        ['img', 'br', 'hr', 'input', 'meta', 'link'].includes(tagName);
+        ['img', 'br', 'hr', 'input', 'meta', 'link', 'col'].includes(tagName);
 
       if (selfClosing) {
         const renderedElement = renderElement(
@@ -251,15 +251,25 @@ const renderElement = (
 
   // ============= TABLE ELEMENTS =============
   if (['table', 'thead', 'tbody', 'tr', 'th', 'td'].includes(lowerTag)) {
+    // Strip whitespace-only text between table tags to prevent hydration errors
+    const cleanedInnerHtml = innerHtml.replace(/>\s+</g, '><').trim();
+    const tableConfig = { ...config, paragraphs: { className: '' } };
+    const renderTableContent = (html: string) =>
+      renderHtmlContent(html, tableConfig);
     return (
       <TableRenderer
         key={key}
         type={lowerTag as 'table' | 'thead' | 'tbody' | 'tr' | 'th' | 'td'}
-        innerHtml={innerHtml}
+        innerHtml={cleanedInnerHtml}
         config={config.table}
-        renderContent={renderContent}
+        renderContent={renderTableContent}
       />
     );
+  }
+
+  // ============= VOID ELEMENTS =============
+  if (['col', 'colgroup'].includes(lowerTag)) {
+    return null;
   }
 
   // ============= TEXT STYLES =============
@@ -288,6 +298,12 @@ const renderElement = (
   const defaultProps: Record<string, unknown> = { key };
   if (attrs.style) defaultProps.style = parseCssToReactStyle(attrs.style);
   if (attrs.class) defaultProps.className = attrs.class;
+
+  // Void elements must not have children
+  const VOID_ELEMENTS = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+  if (VOID_ELEMENTS.includes(lowerTag)) {
+    return React.createElement(lowerTag, defaultProps);
+  }
 
   return React.createElement(
     lowerTag,
