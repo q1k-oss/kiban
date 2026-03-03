@@ -17,12 +17,10 @@ import FloatingBuildAgentButton from "./components/FloatingBuildAgentButton";
 import HtmlRenderer from "./components/HTMLRenderer";
 import SingleBlogAuthor from "./components/SingleBlogAuthor";
 import SingleBlogHeader from "./components/SingleBlogHeader";
-import { SingleBlogPrompt } from "./components/SingleBlogPrompt";
 import { SingleBlogSummary } from "./components/SingleBlogSummary";
 import SingleBlogAuthorSkeleton from "./components/skeletons/SingleBlogAuthorSkeleton";
 import { SingleBlogContentSkeleton } from "./components/skeletons/SingleBlogContentSkeleton";
 import { SingleBlogHeaderSkeleton } from "./components/skeletons/SingleBlogHeaderSkeleton";
-import SingleBlogPromptSkeleton from "./components/skeletons/SingleBlogPromptSkeleton";
 import { SingleBlogSummarySkeleton } from "./components/skeletons/SingleBlogSummarySkeleton";
 import { SingleBlogTOCSkeleton } from "./components/skeletons/SingleBlogTOCSkeleton";
 import TableOfContent from "./components/TableOfContent";
@@ -95,7 +93,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar",
   tagsClassName = "flex items-start justify-start gap-4 mt-12",
   tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text",
-  onBuild,
+  
   shareUrl,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -269,11 +267,6 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
     return <TableOfContent blogContent={blog.content} />;
   };
 
-  const renderBlogPrompt = () => {
-    if (loading) return <SingleBlogPromptSkeleton />;
-    if (!blog?.prompt) return null;
-    return <SingleBlogPrompt blogPrompt={blog.prompt} onBuild={onBuild} />;
-  };
 
   return (
     <div className={className}>
@@ -291,6 +284,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
               ]}
               animationMode="loop"
               strokeWidth={1}
+              className="w-full"
             >
               {renderBlogSummary()}
             </BorderMovingWrapper>
@@ -317,28 +311,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
           <div className="flex items-center justify-center gap-2 my-10">
             {renderSocialMediaIcons()}
           </div>
-          {(loading || blog?.prompt) && (
-            <div className="mt-10">
-              <span className="text-primary-text font-semibold text-lg">
-                Ready to turn ideas into action?
-              </span>
-              <div className="mt-4">
-                <BorderMovingWrapper
-                  colors={[
-                    "#C3946F99",
-                    "#F49D5699",
-                    "#FFF2B7",
-                    "#FEEEB2FA",
-                    "#F4C656",
-                  ]}
-                  animationMode="loop"
-                  strokeWidth={1}
-                >
-                  {renderBlogPrompt()}
-                </BorderMovingWrapper>
-              </div>
-            </div>
-          )}
+          
         </div>
       </div>
       <FloatingBuildAgentButton />

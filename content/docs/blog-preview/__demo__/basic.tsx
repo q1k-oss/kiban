@@ -150,7 +150,7 @@ export default function BlogPreviewBasicDemo() {
               <AppIcon iconName="x" size={20} />
             </Button>
             <div className="p-6 no-scrollbar">
-              <BlogPreview loading={false} blog={sampleBlog} h />
+              <BlogPreview loading={false} blog={sampleBlog} />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Skeleton } from "../../../skeleton";
+import SingleBlogHeaderBackground from '../SingleBlogHeaderBackground';
 
 
 export const SingleBlogHeaderSkeleton = () => {
@@ -9,6 +10,7 @@ export const SingleBlogHeaderSkeleton = () => {
       className="relative w-full min-h-[300px] bg-[url(/q1ader_bg.png)]
                  bg-cover bg-center bg-no-repeat px-6 py-8 flex flex-col justify-end gap-6"
     >
+       <SingleBlogHeaderBackground className="absolute inset-0 z-0 hidden md:block" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-linear-to-b from-transparent to-black" />
 
       <div className="flex items-center text-xs gap-4">
