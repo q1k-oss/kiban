@@ -85,6 +85,8 @@
   --color-node-field-fill: var(--node-field-fill);
   --color-border-3: var(--border-3);
   --color-button-fill-3: var(--button-fill-3);
+  --font-dm-mono: 'DM Mono', monospace;
+  --color-ai-icon-3: var(--ai-icon-3)
 }
 
 :root {
@@ -167,6 +169,7 @@
   --node-field-fill: oklch(from #4c4a4a l c h);
   --border-3: oklch(from #434343 l c h);
   --button-fill-3: oklch(from #272727 l c h);
+  --ai-icon-3: linear-gradient(to bottom, oklch(from #C3946F l c h / 0.6), oklch(from #F49D56 l c h / 0.6), oklch(from #FFF2B7 l c h), oklch(from #FEEEB2 l c h / 0.98), oklch(from #F4C656 l c h));
 }
 
 .dark {
@@ -247,6 +250,15 @@
   --node-field-fill: oklch(from #4c4a4a l c h);
   --border-3: oklch(from #434343 l c h);
   --button-fill-3: oklch(from #272727 l c h);
+  --ai-icon-3: linear-gradient(to bottom, oklch(from #C3946F l c h / 0.6), oklch(from #F49D56 l c h / 0.6), oklch(from #FFF2B7 l c h), oklch(from #FEEEB2 l c h / 0.98), oklch(from #F4C656 l c h));
+}
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @layer base {
@@ -264,5 +276,10 @@
     100% {
       transform: rotate(1turn);
     }
+  }
+
+  .mask-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
 }

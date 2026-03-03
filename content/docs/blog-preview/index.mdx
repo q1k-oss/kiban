@@ -1,0 +1,85 @@
+---
+title: Blog Preview
+description: A full-featured blog article viewer with HTML rendering, table of contents, author details, social sharing, and responsive layout.
+tags: ["blog", "preview", "html-renderer", "article", "content"]
+---
+
+### When To Use
+
+Use **BlogPreview** when you need to:
+
+- Render a full blog article from raw HTML content
+- Display article metadata (title, excerpt, tags, author, date)
+- Auto-generate a table of contents from heading elements
+- Provide social media sharing buttons
+- Show a loading skeleton while content is being fetched
+
+---
+
+## Features
+
+- **HTML Content Rendering** – Parses and renders HTML blog content with syntax highlighting, styled headings, images, lists, blockquotes, and tables
+- **Table of Contents** – Auto-generated from heading tags with scroll tracking and progress indicator
+- **Loading Skeletons** – Full skeleton UI for header, content, TOC, author, summary, and prompt sections
+- **Responsive Layout** – Two-column desktop layout (content + sidebar) with single-column mobile view
+- **Social Sharing** – Copy link, X/Twitter, Facebook, LinkedIn, and Reddit share buttons
+- **Blog Metadata** – Category flag, reading time, updated date, author details, and tags
+- **Floating Agent Button** – Mobile-only CTA for building AI agents
+
+---
+
+### Examples
+
+<Preview lang="jsx" file="/blog-preview/__demo__/basic" title="Blog Preview – Full Article View" />
+
+---
+
+## API Reference
+
+### BlogPreview Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `loading` | `boolean` | — | Show skeleton loading state |
+| `blog` | `IBlog` | — | Blog data object with HTML content |
+| `error` | `string \| null` | — | Error message to display |
+| `htmlRendererConfig` | `HtmlRendererConfig` | Built-in defaults | Override the HTML renderer config for code blocks, headings, paragraphs, lists, images, etc. Shallow-merged with defaults |
+| `className` | `string` | `md:pt-5` | Root wrapper className |
+| `headerClassName` | `string` | — | Blog header section className |
+| `contentClassName` | `string` | `w-full px-0 md:px-6` | Main content column className |
+| `sidebarClassName` | `string` | `hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar` | Sidebar (TOC, share buttons, prompt) className |
+| `tagsClassName` | `string` | `flex items-start justify-start gap-4 mt-12` | Tags row container className |
+| `tagClassName` | `string` | `py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text` | Individual tag badge className |
+
+### IBlog Interface
+
+```ts
+interface IBlog {
+  title?: string;
+  excerpt?: string;
+  content?: string;
+  summary?: string;
+  prompt?: string;
+  tags?: string;
+  authorName?: string;
+  authorEmail?: string;
+  updatedAt?: string;
+  flag?: {
+    name: string;
+  };
+}
+```
+
+---
+
+### Sub-Components
+
+| Component | Purpose |
+|-----------|---------|
+| `SingleBlogHeader` | Title, excerpt, category flag, and date with decorative background |
+| `SingleBlogSummary` | Highlighted summary block with orange border |
+| `HtmlRenderer` | Converts HTML string to styled React components |
+| `TableOfContent` | Auto-generated TOC with scroll tracking |
+| `SingleBlogAuthor` | Author name and email card |
+| `SingleBlogPrompt` | Call-to-action prompt with "Build an Agent" button |
+| `FloatingBuildAgentButton` | Mobile-only floating CTA |

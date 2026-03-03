@@ -1,17 +1,24 @@
-import '@/styles/ethereal.css';
-import '@/styles/internal.css';
-import { RootProvider } from 'fumadocs-ui/provider';
-import { Inter } from 'next/font/google';
-import type { ReactNode } from 'react';
+import "@/styles/ethereal.css";
+import "@/styles/internal.css";
+import { RootProvider } from "fumadocs-ui/provider";
+import { DM_Mono, Inter } from "next/font/google";
+import type { ReactNode } from "react";
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ["latin"],
+});
+
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  display: "swap",
 });
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning >
-      <body>
+    <html lang="en" className={inter.className} suppressHydrationWarning>
+      <body className={`${dmMono.variable}`}>
         <RootProvider>{children}</RootProvider>
       </body>
     </html>
