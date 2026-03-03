@@ -49,7 +49,7 @@ export * from './utils/index';
 export * from './icons/index';
 export * from './ui/stepper';
 export * from './ui/app-icon';
-export * from './ui/border-moving-wrapper';
+export * from './ui/border-moving-wrapper/index';
 export * from './ui/workflow-canvas/index';
 export * from './ui/text-editor/index';
 export * from './ui/SocialShareButtons/index';
