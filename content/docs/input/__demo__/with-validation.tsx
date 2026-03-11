@@ -3,7 +3,7 @@
 import { CheckCircle2, XCircle } from 'lucide-react';
 import { useState } from 'react';
 
-import { Input, Label } from '@happect/ethereal-ui';
+import { Input, Label } from '@q1k-oss/kiban';
 
 export default () => {
   const [email, setEmail] = useState('');

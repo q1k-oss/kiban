@@ -5,7 +5,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@happect/ethereal-ui"
+} from "@q1k-oss/kiban"
 
 export default function NavigationMenuDemo() {
   return (

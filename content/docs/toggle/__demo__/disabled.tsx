@@ -1,6 +1,6 @@
 import { Bold, Italic, Underline } from 'lucide-react';
 
-import { Toggle, ToggleGroup, ToggleGroupItem } from '@happect/ethereal-ui';
+import { Toggle, ToggleGroup, ToggleGroupItem } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex flex-col gap-6">

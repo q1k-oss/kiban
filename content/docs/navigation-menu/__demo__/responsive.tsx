@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
   Button,
-} from "@happect/ethereal-ui";
+} from "@q1k-oss/kiban";
 
 export default function NavigationMenuResponsiveDemo() {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,7 +35,7 @@ export default function NavigationMenuResponsiveDemo() {
       {/* Mobile menu button */}
       {isMobile && (
         <div className="flex justify-between items-center p-4 border-b">
-          <span className="font-semibold">Ethereal Garden</span>
+          <span className="font-semibold">Kiban</span>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -65,7 +65,7 @@ export default function NavigationMenuResponsiveDemo() {
                       className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-400 to-indigo-600 p-6 no-underline outline-none focus:shadow-md"
                       href="#"
                     >
-                      <div className="text-lg font-medium text-white">Ethereal Garden</div>
+                      <div className="text-lg font-medium text-white">Kiban</div>
                       <p className="text-sm leading-tight text-white/90">
                         A beautiful garden of UI components for your applications
                       </p>
@@ -78,7 +78,7 @@ export default function NavigationMenuResponsiveDemo() {
                     >
                       <div className="text-sm font-medium leading-none">Introduction</div>
                       <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        Learn about the basics of Ethereal Garden components
+                        Learn about the basics of Kiban components
                       </p>
                     </NavigationMenuLink>
                   </li>
@@ -89,7 +89,7 @@ export default function NavigationMenuResponsiveDemo() {
                     >
                       <div className="text-sm font-medium leading-none">Installation</div>
                       <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        How to install and set up Ethereal Garden in your project
+                        How to install and set up Kiban in your project
                       </p>
                     </NavigationMenuLink>
                   </li>

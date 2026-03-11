@@ -1,4 +1,4 @@
-import { ScrollArea } from '@happect/ethereal-ui';
+import { ScrollArea } from '@q1k-oss/kiban';
 
 // Sample item data
 const items = Array.from({ length: 50 }).map((_, i, a) => `Item ${i + 1} of ${a.length}`);

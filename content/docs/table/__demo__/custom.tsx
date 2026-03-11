@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
   Badge,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Sample product data
 const products = [

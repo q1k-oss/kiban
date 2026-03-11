@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BorderMovingWrapper } from "@happect/ethereal-ui";
+import { BorderMovingWrapper } from "@q1k-oss/kiban";
 
 export default () => {
   return (

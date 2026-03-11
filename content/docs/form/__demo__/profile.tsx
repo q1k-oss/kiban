@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
   Separator,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Define form schema
 const formSchema = z.object({

@@ -1,6 +1,6 @@
 import { Bold, Italic, Underline } from 'lucide-react';
 
-import { Toggle } from '@happect/ethereal-ui';
+import { Toggle } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex items-center gap-2">

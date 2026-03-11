@@ -13,7 +13,7 @@ import {
   ContextMenuSeparator,
   ContextMenuShortcut,
   ContextMenuTrigger,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => {
   const [checkboxValues, setCheckboxValues] = useState({

@@ -7,18 +7,18 @@ import {
   DialogTrigger,
   DialogFooter,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Generate fake terms and conditions
 const generateTerms = () => {
   const sections = [
     {
       title: "1. Introduction",
-      content: "Welcome to Ethereal Garden. These Terms of Service govern your use of our platform and services. By accessing or using our services, you agree to be bound by these Terms."
+      content: "Welcome to Kiban. These Terms of Service govern your use of our platform and services. By accessing or using our services, you agree to be bound by these Terms."
     },
     {
       title: "2. Definitions",
-      content: "Throughout these Terms, 'we', 'us', and 'our' refer to Ethereal Garden. 'Service' refers to the applications, website, content, and other services provided by Ethereal Garden. 'User', 'you', and 'your' refer to you, the person accessing or using the Service."
+      content: "Throughout these Terms, 'we', 'us', and 'our' refer to Kiban. 'Service' refers to the applications, website, content, and other services provided by Kiban. 'User', 'you', and 'your' refer to you, the person accessing or using the Service."
     },
     {
       title: "3. Account Registration",
@@ -38,7 +38,7 @@ const generateTerms = () => {
     },
     {
       title: "7. Limitation Of Liability",
-      content: "In no event shall Ethereal Garden, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service."
+      content: "In no event shall Kiban, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service."
     },
     {
       title: "8. Changes",

@@ -9,7 +9,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default function PaginationWithTextDemo() {
   const [currentPage, setCurrentPage] = useState(1);

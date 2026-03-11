@@ -3,7 +3,7 @@ import { AutoTypeTable } from 'fumadocs-typescript/ui';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
 
-import { Toaster } from '@happect/ethereal-ui';
+import { Toaster } from '@q1k-oss/kiban';
 
 import { ExternalLinks } from '../external-links';
 import { CodePreview } from '../preview';

@@ -3,7 +3,7 @@
 import { Moon, Sun, Zap, Volume2, VolumeX, Wifi, WifiOff } from 'lucide-react';
 import { useState } from 'react';
 
-import { Switch } from '@happect/ethereal-ui';
+import { Switch } from '@q1k-oss/kiban';
 
 export default () => {
   const [theme, setTheme] = useState(false);

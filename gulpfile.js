@@ -60,7 +60,7 @@ function buildCommonJS() {
   const webpackConfig = {
     mode: 'production',
     output: {
-      filename: 'ethereal.min.js',
+      filename: 'kiban.min.js',
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'commonjs2',
     },
@@ -92,7 +92,7 @@ function buildCommonJS() {
       ],
       alias: {
         [pkg.name]: process.cwd(),
-        ["@happect/ethereal-ui"]: path.resolve(__dirname, 'components'),
+        ["@q1k-oss/kiban"]: path.resolve(__dirname, 'components'),
         ["@/utils"]: path.resolve(__dirname, 'utils'),
         "lucide-react/dynamic": path.resolve(__dirname, 'node_modules/lucide-react/dynamic.mjs'),
       },
@@ -236,8 +236,8 @@ function buildESModule() {
       resolveJsonModule: true,
       lib: ['dom', 'es2017'],
       paths: {
-        '@happect/ethereal-ui': ['.'],
-        '@happect/ethereal-ui/*': ['./*'],
+        '@q1k-oss/kiban': ['.'],
+        '@q1k-oss/kiban/*': ['./*'],
       },
       allowJs: true
     }));

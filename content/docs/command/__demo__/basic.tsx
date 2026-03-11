@@ -9,7 +9,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <Command className="rounded-lg border shadow-md">

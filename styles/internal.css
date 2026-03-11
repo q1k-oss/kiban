@@ -54,25 +54,26 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-ethereal-purple via-ethereal-teal to-ethereal-blue text-transparent bg-clip-text animate-shimmer;
+    @apply text-transparent bg-clip-text animate-shimmer;
+    background-image: linear-gradient(to right, #5c4a1e, #8a7034, #a8924a, #8a7034, #5c4a1e);
     background-size: 300% 100%;
   }
 
   .code-block {
-    @apply bg-white/60 dark:bg-gray-900/80 p-4 rounded-xl text-ethereal-light text-sm overflow-x-auto border border-zinc-300 dark:border-gray-800;
-    box-shadow: inset 0 0 20px rgba(121, 40, 202, 0.1);
+    @apply bg-white/60 dark:bg-gray-900/80 p-4 rounded-xl text-kiban-light text-sm overflow-x-auto border border-zinc-300 dark:border-gray-800;
+    box-shadow: inset 0 0 20px rgba(92, 74, 30, 0.08);
   }
 
   .neon-glow {
-    filter: drop-shadow(0 0 10px rgba(121, 40, 202, 0.5));
+    filter: drop-shadow(0 0 10px rgba(92, 74, 30, 0.3));
   }
 
   .cyber-grid {
     background-image: linear-gradient(
-        rgba(121, 40, 202, 0.1) 1px,
+        rgba(92, 74, 30, 0.08) 1px,
         transparent 1px
       ),
-      linear-gradient(90deg, rgba(121, 40, 202, 0.1) 1px, transparent 1px);
+      linear-gradient(90deg, rgba(92, 74, 30, 0.08) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
@@ -104,13 +105,13 @@
 
 @keyframes glow {
   0% {
-    box-shadow: 0 0 20px rgba(121, 40, 202, 0.3);
+    box-shadow: 0 0 20px rgba(92, 74, 30, 0.15);
   }
   50% {
-    box-shadow: 0 0 30px rgba(0, 201, 167, 0.5);
+    box-shadow: 0 0 30px rgba(92, 74, 30, 0.25);
   }
   100% {
-    box-shadow: 0 0 20px rgba(121, 40, 202, 0.3);
+    box-shadow: 0 0 20px rgba(92, 74, 30, 0.15);
   }
 }
 
@@ -225,14 +226,16 @@
   );
 }
 
-:base {
-  --main-top: #f5f5f5;
-  --main-bottom: #ffffff;
+:root {
+  --main-top: #000000;
+  --main-bottom: #000000;
+  --main-foreground: #f4f4f4;
 }
 
 .dark {
-  --main-top: #121212;
+  --main-top: #000000;
   --main-bottom: #000000;
+  --main-foreground: #f4f4f4;
 }
 
 @theme inline {
@@ -241,12 +244,12 @@
   --animate-glow: glow 3s infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-shimmer: shimmer 8s ease-in-out infinite;
-  --color-ethereal-purple: #7928ca;
-  --color-ethereal-teal: #00c9a7;
-  --color-ethereal-blue: #2196f3;
-  --color-ethereal-pink: #ff4081;
-  --color-ethereal-dark: #121212;
-  --color-ethereal-light: #ffffff;
+  --color-kiban-gold: #5c4a1e;
+  --color-kiban-warm: #8a7034;
+  --color-kiban-amber: #6b5a2a;
+  --color-kiban-bronze: #4a3c18;
+  --color-kiban-dark: #121212;
+  --color-kiban-light: #ffffff;
   --color-main-top: var(--main-top);
   --color-main-bottom: var(--main-bottom);
 }

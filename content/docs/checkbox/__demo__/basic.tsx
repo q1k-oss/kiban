@@ -1,4 +1,4 @@
-import { Checkbox } from '@happect/ethereal-ui';
+import { Checkbox } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex items-center space-x-2">

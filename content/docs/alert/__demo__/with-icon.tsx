@@ -4,7 +4,7 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <div className="space-y-4">

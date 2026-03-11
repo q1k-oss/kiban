@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex flex-col gap-6">

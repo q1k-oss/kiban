@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Calendar } from '@happect/ethereal-ui';
+import { Calendar } from '@q1k-oss/kiban';
 
 export default () => {
   const [selectedDates, setSelectedDates] = useState<Date[] | undefined>([

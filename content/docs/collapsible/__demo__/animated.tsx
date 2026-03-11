@@ -8,7 +8,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => {
   const [isOpen1, setIsOpen1] = useState(false);

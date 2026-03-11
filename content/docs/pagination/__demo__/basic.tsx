@@ -6,7 +6,7 @@ import {
   PaginationNext,
   PaginationPrevious,
   PaginationEllipsis,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default function PaginationBasicDemo() {
   return (

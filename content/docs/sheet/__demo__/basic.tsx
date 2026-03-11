@@ -7,7 +7,7 @@ import {
   SheetTrigger,
   SheetFooter,
   Button,
-} from "@happect/ethereal-ui";
+} from "@q1k-oss/kiban";
 
 export default () => (
   <div className="relative h-[300px] overflow-hidden">

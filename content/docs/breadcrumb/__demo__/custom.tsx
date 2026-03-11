@@ -7,7 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <div className="space-y-8">

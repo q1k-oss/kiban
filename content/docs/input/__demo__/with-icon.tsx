@@ -1,7 +1,7 @@
 import { BadgeAlert, BadgeCheck } from "lucide-react";
 import React from "react";
 
-import { Input } from "@happect/ethereal-ui";
+import { Input } from "@q1k-oss/kiban";
 
 export default () => {
   const temp = (

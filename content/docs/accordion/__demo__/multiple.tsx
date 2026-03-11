@@ -3,22 +3,22 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <Accordion type="multiple" className="w-full">
     <AccordionItem value="item-1">
-      <AccordionTrigger>What is Ethereal UI?</AccordionTrigger>
+      <AccordionTrigger>What is Kiban?</AccordionTrigger>
       <AccordionContent>
-        Ethereal UI is a beautiful, modern component library built with React and Radix UI.
+        Kiban is a beautiful, modern component library built with React and Radix UI.
       </AccordionContent>
     </AccordionItem>
     <AccordionItem value="item-2">
       <AccordionTrigger>How do I install it?</AccordionTrigger>
       <AccordionContent>
-        You can install Ethereal UI using npm or yarn:
+        You can install Kiban using npm or yarn:
         <pre className="mt-2 p-2 bg-muted rounded-md">
-          <code>npm install ethereal-ui</code>
+          <code>npm install @q1k-oss/kiban</code>
         </pre>
       </AccordionContent>
     </AccordionItem>

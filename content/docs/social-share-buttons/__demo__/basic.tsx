@@ -6,7 +6,7 @@ import {
   TwitterShareButton,
   FacebookShareButton,
   ThreadsShareButton,
-} from "@happect/ethereal-ui/ui/SocialShareButtons";
+} from "@q1k-oss/kiban/ui/SocialShareButtons";
 
 export default function Basic() {
   const shareUrl = "https://github.com";

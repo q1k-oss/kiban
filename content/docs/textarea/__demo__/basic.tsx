@@ -1,4 +1,4 @@
-import { Textarea } from '@happect/ethereal-ui';
+import { Textarea } from '@q1k-oss/kiban';
 
 export default () => (
   <Textarea 

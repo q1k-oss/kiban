@@ -3,7 +3,7 @@
 import { Bold, Italic, Underline, Strikethrough } from 'lucide-react';
 import { useState } from 'react';
 
-import { ToggleGroup, ToggleGroupItem } from '@happect/ethereal-ui';
+import { ToggleGroup, ToggleGroupItem } from '@q1k-oss/kiban';
 
 export default function ToggleGroupMultipleDemo() {
   const [formatting, setFormatting] = useState<string[]>(['bold', 'italic']);

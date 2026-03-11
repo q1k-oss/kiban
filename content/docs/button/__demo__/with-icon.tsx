@@ -1,6 +1,6 @@
 import { Check, ArrowRight, Mail, Download, Plus, Settings } from "lucide-react";
 
-import { Button, ButtonIconPosition } from "@happect/ethereal-ui";
+import { Button, ButtonIconPosition } from "@q1k-oss/kiban";
 
 export default function ButtonWithIconDemo() {
   return (

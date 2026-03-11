@@ -5,7 +5,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
   Badge,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex justify-center">

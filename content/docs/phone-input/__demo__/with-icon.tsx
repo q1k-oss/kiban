@@ -1,7 +1,7 @@
 import { BadgeAlert } from "lucide-react";
 import React from "react";
 
-import { PhoneInput } from "@happect/ethereal-ui";
+import { PhoneInput } from "@q1k-oss/kiban";
 
 
 export default () => {

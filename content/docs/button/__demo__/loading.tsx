@@ -3,7 +3,7 @@
 import { Save, Download, Send } from "lucide-react";
 import { useState } from "react";
 
-import { Button } from "@happect/ethereal-ui";
+import { Button } from "@q1k-oss/kiban";
 
 export default function ButtonLoadingDemo() {
   const [isSaving, setIsSaving] = useState(false);

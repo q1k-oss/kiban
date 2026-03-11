@@ -1,4 +1,4 @@
-import { Input } from '@happect/ethereal-ui';
+import { Input } from '@q1k-oss/kiban';
 
 export default function InputBasicDemo() {
   return (

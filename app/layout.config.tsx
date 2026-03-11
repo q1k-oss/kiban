@@ -9,7 +9,7 @@ import { type HomeLayoutProps } from 'fumadocs-ui/layouts/home';
  */
 export const baseOptions: HomeLayoutProps = {
   nav: {
-    title: 'Ethereal Garden',
+    title: 'Kiban (基盤)',
 
   },
   links: [
@@ -19,5 +19,5 @@ export const baseOptions: HomeLayoutProps = {
       active: 'nested-url',
     },
   ],
-  githubUrl: 'https://github.com/Invier/ethereal-garden',
+  githubUrl: 'https://github.com/q1k-oss/kiban',
 };

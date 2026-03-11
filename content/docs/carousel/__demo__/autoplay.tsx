@@ -8,7 +8,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default function CarouselAutoplayDemo() {
   const [api, setApi] = useState<any>();

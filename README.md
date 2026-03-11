@@ -1,56 +1,51 @@
 <div align="center">
-  <img src="public/logo.png" alt="Ethereal UI Logo" width="150" height="150"/>
+  <img src="public/logo.png" alt="Kiban Logo" width="150" height="150"/>
 </div>
 
-<h1 align="center">Ethereal UI</h1>
+<h1 align="center">Kiban (基盤)</h1>
 
 <div align="center">
-  Ethereal Garden - A React UI Component Library
+  Foundation for your React interfaces - A UI Component Library
 </div>
 
 <br/>
 
 <div align="center">
-  <a href="https://www.npmjs.com/package/ethereal-ui">
-    <img src="https://img.shields.io/npm/v/ethereal-ui.svg?style=for-the-badge&label=VERSION" alt="NPM Version"/>
+  <a href="https://www.npmjs.com/package/@q1k-oss/kiban">
+    <img src="https://img.shields.io/npm/v/@q1k-oss/kiban.svg?style=for-the-badge&label=VERSION" alt="NPM Version"/>
   </a>
-  <a href="https://www.npmjs.com/package/ethereal-ui">
-    <img src="https://img.shields.io/npm/dm/ethereal-ui.svg?style=for-the-badge" alt="NPM Downloads"/>
+  <a href="https://www.npmjs.com/package/@q1k-oss/kiban">
+    <img src="https://img.shields.io/npm/dm/@q1k-oss/kiban.svg?style=for-the-badge" alt="NPM Downloads"/>
   </a>
-  <a href="https://github.com/Invier/ethereal-garden/graphs/contributors">
-    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/invier/ethereal-garden?style=for-the-badge"/>
+  <a href="https://github.com/q1k-oss/kiban/graphs/contributors">
+    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/q1k-oss/kiban?style=for-the-badge"/>
   </a>
-  <a href="https://github.com/Invier/ethereal-garden/actions">
-    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/invier/ethereal-garden/publish.yml?style=for-the-badge&label=NPM%20BUILD"/>
+  <a href="https://github.com/q1k-oss/kiban/actions">
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/q1k-oss/kiban/publish.yml?style=for-the-badge&label=NPM%20BUILD"/>
   </a>
-  <img alt="Netlify" src="https://img.shields.io/netlify/9a0bb099-bcd9-4154-9246-6ea61c516d26?style=for-the-badge&label=WEBSITE%20BUILD"/>
 </div>
 
 ---
 
-## 📚 Description
+## Description
 
-Ethereal UI is a React component library designed to provide a set of reusable and customizable UI components. This library aims to help developers build beautiful and consistent user interfaces with ease.
+**Kiban** (基盤) means "foundation," "base," or "infrastructure" in Japanese. It is a React component library designed to provide a solid foundation of reusable and customizable UI components. Built on top of Radix UI primitives and styled with Tailwind CSS.
 
 ---
 
-## 📦 Installation
-
-To install the library, run:
+## Installation
 
 ```sh
-npm install ethereal-ui
+npm install @q1k-oss/kiban
 ```
 
 ---
 
-## 💻 Example Usage
-
-Here is an example of how to use the Tabs component from the library:
+## Usage
 
 ```jsx
 import * as React from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@happect/ethereal-ui";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@q1k-oss/kiban";
 
 const MyComponent = () => (
   <Tabs defaultValue="preview">
@@ -68,75 +63,48 @@ export default MyComponent;
 
 ---
 
-## 🎨 Adding Styles
+## Styles
 
-To include the styles, import the `ethereal-ui/styles/ethereal.css` file in your main styles file or App.ts:
+Import the stylesheet in your main styles file or App.ts:
 
 ```css
-@import "ethereal-ui/styles/ethereal.css";
-@source '../node_modules/ethereal-ui';
+@import "@q1k-oss/kiban/styles/kiban.css";
+@source '../node_modules/@q1k-oss/kiban';
 ```
 
 ---
 
-## 🛠️ Development
-
-To start the development server, run:
+## Development
 
 ```sh
+# Start the documentation site
 npm run www:dev
-```
 
-To build the project, run:
+# Build the component library
+npm run build:package
 
-```sh
+# Build the documentation site
 npm run www:build
 ```
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please follow these steps to contribute:
+Contributions are welcome! Please follow these steps:
 
-1. **Fork the repository**: Click the "Fork" button at the top right corner of the repository page to create a copy of the repository in your GitHub account.
-
-2. **Clone the repository**: Clone your forked repository to your local machine using the following command:
-
-```sh
-git clone https://github.com/Invier/ethereal-garden.git
-```
-
-3. **Create a new branch**: Create a new branch for your feature or bug fix:
-
-```sh
-git checkout -b my-feature-branch
-```
-
-4. **Install dependencies**: Install the project dependencies:
-
-5. **Make your changes**: Make your changes to the codebase. Ensure that your code follows the project's coding standards and conventions.
-
-6. **Run tests**: Run the tests to ensure that your changes do not break any existing functionality.
-
-7. **Commit your changes**: Commit your changes with a descriptive commit message:
-
-```sh
-git commit -m "Add new feature"
-```
-
-8. **Push your changes**: Push your changes to your forked repository:
-
-```sh
-git push origin my-feature-branch
-```
-
-9. **Create a pull request**: Go to the original repository and create a pull request from your forked repository. Provide a clear and descriptive title and description for your pull request.
-
-10. **Review process**: Your pull request will be reviewed by the maintainers. You may be asked to make additional changes before it is merged.
+1. Fork the repository
+2. Clone your fork:
+   ```sh
+   git clone https://github.com/q1k-oss/kiban.git
+   ```
+3. Create a feature branch: `git checkout -b my-feature`
+4. Install dependencies: `npm install`
+5. Make your changes and commit: `git commit -m "feat: add new feature"`
+6. Push and open a pull request
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License.

@@ -7,7 +7,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default function InputOTPBasicDemo() {
   const [value, setValue] = useState('');

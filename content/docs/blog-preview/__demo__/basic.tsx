@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { AppIcon, BlogPreview, Button } from "@happect/ethereal-ui";
-import type { Blog } from "@happect/ethereal-ui";
+import { AppIcon, BlogPreview, Button } from "@q1k-oss/kiban";
+import type { Blog } from "@q1k-oss/kiban";
 
 const sampleBlog: Blog = {
   title: "Building Modern Web Applications with AI",

@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => {
   const [side, setSide] = useState<"top" | "right" | "bottom" | "left">("right");

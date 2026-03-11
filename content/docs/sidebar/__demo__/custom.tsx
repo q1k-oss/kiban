@@ -37,7 +37,7 @@ import {
   DropdownMenuItem,
   SidebarProvider,
   SidebarInset,
-} from "@happect/ethereal-ui";
+} from "@q1k-oss/kiban";
 
 export default function SidebarCustomDemo() {
   const [activeItem, setActiveItem] = useState("dashboard");

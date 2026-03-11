@@ -2,7 +2,7 @@
 
 import { Info } from "lucide-react"
 
-import { Button, Popover, PopoverContent, PopoverTrigger } from "@happect/ethereal-ui"
+import { Button, Popover, PopoverContent, PopoverTrigger } from "@q1k-oss/kiban"
 
 export default function PopoverArrowDemo() {
   return (

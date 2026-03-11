@@ -1,6 +1,6 @@
 import { Check, X, AlertCircle, Bell } from 'lucide-react';
 
-import { Badge } from '@happect/ethereal-ui';
+import { Badge } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex flex-col gap-4">

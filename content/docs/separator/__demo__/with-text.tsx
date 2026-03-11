@@ -1,4 +1,4 @@
-import { Separator } from '@happect/ethereal-ui';
+import { Separator } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="space-y-8">

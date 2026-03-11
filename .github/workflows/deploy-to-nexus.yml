@@ -26,7 +26,7 @@ jobs:
       - name: Configure npm registries
         run: |
           npm config set registry https://registry.npmjs.org/
-          npm config set @happect:registry https://npm.chives.io/repository/npm/
+          npm config set @q1k-oss:registry https://npm.chives.io/repository/npm/
           npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
 
       - name: Install dependencies
@@ -56,7 +56,7 @@ jobs:
 
       - name: Configure npm for publishing
         run: |
-          npm config set @happect:registry https://npm.chives.io/repository/npm/
+          npm config set @q1k-oss:registry https://npm.chives.io/repository/npm/
           npm config set //npm.chives.io/repository/npm/:_authToken ${{ secrets.NEXUS_NPM_TOKEN }}
 
       - name: Publish to Nexus NPM Registry
@@ -67,7 +67,7 @@ jobs:
       - name: Verify publication
         run: |
           echo "Package published successfully!"
-          echo "Package: @happect/ethereal-ui"
+          echo "Package: @q1k-oss/kiban"
           echo "Registry: https://npm.chives.io/"
 
       # Gather metadata for Discord notifications
@@ -105,7 +105,7 @@ jobs:
               "embeds": [
                 {
                   "title": "✅ Deployment Successful",
-                  "description": "Package **@happect/ethereal-ui** has been successfully published to Nexus NPM Registry",
+                  "description": "Package **@q1k-oss/kiban** has been successfully published to Nexus NPM Registry",
                   "color": 3329330,
                   "fields": [
                     { "name": "📦 Package", "value": "${{ steps.package.outputs.name }}", "inline": true },
@@ -138,7 +138,7 @@ jobs:
               "embeds": [
                 {
                   "title": "❌ Deployment Failed",
-                  "description": "Failed to publish **@happect/ethereal-ui** to Nexus NPM Registry",
+                  "description": "Failed to publish **@q1k-oss/kiban** to Nexus NPM Registry",
                   "color": 15548997,
                   "fields": [
                     { "name": "📦 Package", "value": "${{ steps.package.outputs.name }}", "inline": true },

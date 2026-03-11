@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Basic breadcrumb demo created at timestamp: 20230525
 

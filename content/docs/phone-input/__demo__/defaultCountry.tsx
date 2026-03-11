@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PhoneInput } from '@happect/ethereal-ui'
+import { PhoneInput } from '@q1k-oss/kiban'
 
 export default function defaultCountry() {
   return (

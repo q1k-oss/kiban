@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Slider } from '@happect/ethereal-ui';
+import { Slider } from '@q1k-oss/kiban';
 
 export default () => {
   const [value, setValue] = useState([50]);

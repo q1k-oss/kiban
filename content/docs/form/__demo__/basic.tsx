@@ -15,7 +15,7 @@ import {
   FormMessage,
   Input,
   Button,
-} from "@happect/ethereal-ui";
+} from "@q1k-oss/kiban";
 
 // Define form schema with zod
 const formSchema = z.object({

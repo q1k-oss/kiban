@@ -9,7 +9,7 @@ import {
   CardTitle,
   Button,
   Badge,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Sample data for the cards
 const courses = [

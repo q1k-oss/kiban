@@ -13,13 +13,13 @@ import {
   SheetFooter,
   Button,
   Separator,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Sample cart items
 const initialItems = [
   {
     id: 1,
-    name: 'Ethereal Tee',
+    name: 'Kiban Tee',
     description: 'Black, Size M',
     price: 29.99,
     quantity: 1,

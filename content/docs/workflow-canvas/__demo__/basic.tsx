@@ -9,7 +9,7 @@ import {
   WorkflowCanvasNodeHandle,
   WorkflowCanvasNodePosition,
   cn,
-} from "@happect/ethereal-ui";
+} from "@q1k-oss/kiban";
 // ================= TYPES =================
 interface CustomCardProps {
   data: {

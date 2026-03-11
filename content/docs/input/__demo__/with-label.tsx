@@ -1,4 +1,4 @@
-import { Input, Label } from '@happect/ethereal-ui';
+import { Input, Label } from '@q1k-oss/kiban';
 
 export default function InputWithLabelDemo() {
   return (

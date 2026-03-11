@@ -14,7 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Sample data
 const actions = [

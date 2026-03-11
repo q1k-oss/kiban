@@ -1,6 +1,6 @@
 # NPM Publishing Setup Guide
 
-This guide explains how to set up and use the GitHub Action workflow for publishing your `ethereal-ui` package to NPM.
+This guide explains how to set up and use the GitHub Action workflow for publishing your `@q1k-oss/kiban` package to NPM.
 
 ## 🔧 Initial Setup
 
@@ -127,7 +127,7 @@ git commit -m "BREAKING: change API structure [major]"
    - Check the secret name is exactly `NPM_TOKEN`
 
 2. **"Package name already exists"**
-   - The package name `ethereal-ui` might be taken
+   - The package name `@q1k-oss/kiban` might be taken
    - Update the `name` field in `package.json` to something unique
 
 3. **"Permission denied"**
@@ -153,10 +153,10 @@ npm pack --dry-run
 
 ## 📦 Package Information
 
-- **Package Name**: `ethereal-ui`
+- **Package Name**: `@q1k-oss/kiban`
 - **Registry**: NPM Public Registry
-- **Documentation**: https://ethereal.garden
-- **Repository**: https://github.com/invier/ethereal-garden
+- **Documentation**: https://github.com/q1k-oss/kiban
+- **Repository**: https://github.com/q1k-oss/kiban
 
 ## 🎉 Success!
 

@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 type Preference = {
   id: string;

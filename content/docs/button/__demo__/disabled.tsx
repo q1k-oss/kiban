@@ -1,4 +1,4 @@
-import { Button } from '@happect/ethereal-ui';
+import { Button } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex flex-row gap-4 flex-wrap">

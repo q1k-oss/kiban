@@ -1,6 +1,6 @@
 "use client";
 
-import { TextEditor } from "@happect/ethereal-ui";
+import { TextEditor } from "@q1k-oss/kiban";
 
 export default function CustomEntriesDemo() {
   return (

@@ -6,8 +6,8 @@ import { Features } from "@/internal/components/features";
 import { Footer } from "@/internal/components/footer";
 import { Hero } from "@/internal/components/hero";
 export const metadata: Metadata = {
-  title: "Ethereal Garden",
-  description: "A React component library with cyberpunk aesthetics",
+  title: "Kiban (基盤)",
+  description: "A React UI Component Library - Foundation for your interfaces",
 };
 
 export default function HomePage() {

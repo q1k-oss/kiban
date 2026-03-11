@@ -12,7 +12,7 @@ import {
   ContextMenuTrigger,
   ContextMenuLabel,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => {
   const [liked, setLiked] = useState(false);

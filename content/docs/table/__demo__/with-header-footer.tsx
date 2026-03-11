@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Sample data
 const invoices = [

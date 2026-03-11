@@ -25,7 +25,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <DropdownMenu>

@@ -1,6 +1,6 @@
 "use client";
 
-import { TextEditor } from "@happect/ethereal-ui";
+import { TextEditor } from "@q1k-oss/kiban";
 
 const PLACEHOLDER_IMAGES = {
   thumbnail: "https://placehold.co/400x300/e2e8f0/64748b?text=Thumbnail+400w",

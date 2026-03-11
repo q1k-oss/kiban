@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Switch } from '@happect/ethereal-ui';
+import { Switch } from '@q1k-oss/kiban';
 
 export default () => {
   const [notifications, setNotifications] = useState(true);

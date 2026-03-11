@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Checkbox } from '@happect/ethereal-ui';
+import { Checkbox } from '@q1k-oss/kiban';
 
 export default () => {
   const [selected, setSelected] = useState<string[]>([]);

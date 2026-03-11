@@ -1,6 +1,6 @@
 import { Bold } from 'lucide-react';
 
-import { Toggle } from '@happect/ethereal-ui';
+import { Toggle } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex flex-col gap-8">

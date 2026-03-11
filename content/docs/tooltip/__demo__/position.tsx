@@ -4,7 +4,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <TooltipProvider>

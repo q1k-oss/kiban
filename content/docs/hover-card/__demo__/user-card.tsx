@@ -8,7 +8,7 @@ import {
   AvatarFallback,
   AvatarImage,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default () => (
   <HoverCard>
@@ -26,7 +26,7 @@ export default () => (
         <div className="space-y-1">
           <h4 className="text-sm font-semibold">Sarah Johnson</h4>
           <p className="text-sm text-muted-foreground">
-            Product Designer at Ethereal Garden
+            Product Designer at Kiban
           </p>
           <div className="flex items-center pt-2">
             <CalendarDays className="mr-2 h-4 w-4 opacity-70" />

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-import { Progress } from '@happect/ethereal-ui';
+import { Progress } from '@q1k-oss/kiban';
 
 export default () => {
   const [progress, setProgress] = useState(0);

@@ -23,7 +23,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 // Define form schema with complex validation rules
 const formSchema = z.object({

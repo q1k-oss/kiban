@@ -1,4 +1,4 @@
-import { ScrollArea } from '@happect/ethereal-ui';
+import { ScrollArea } from '@q1k-oss/kiban';
 
 export default () => (
   <ScrollArea className="h-72 w-full rounded-md border p-4">

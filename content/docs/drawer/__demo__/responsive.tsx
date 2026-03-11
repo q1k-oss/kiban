@@ -20,7 +20,7 @@ import {
   DialogFooter,
   DialogClose,
   Button,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default function DrawerResponsiveDemo() {
   const [isMobile, setIsMobile] = useState(false);

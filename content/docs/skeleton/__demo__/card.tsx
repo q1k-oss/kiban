@@ -1,4 +1,4 @@
-import { Skeleton } from '@happect/ethereal-ui';
+import { Skeleton } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex flex-col space-y-3">

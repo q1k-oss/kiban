@@ -20,10 +20,10 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@happect/ethereal-ui": [
+      "@q1k-oss/kiban": [
         "components/index.ts"
       ],
-      "@happect/ethereal-ui/*": [
+      "@q1k-oss/kiban/*": [
         "./components/*"
       ],
       "@/*": [

@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 
-import { Button, IStepItem, Stepper } from "@happect/ethereal-ui";
+import { Button, IStepItem, Stepper } from "@q1k-oss/kiban";
 
 export default function StepperDemo() {
   const stepperRef = useRef<any>(null);

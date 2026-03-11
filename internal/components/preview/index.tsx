@@ -11,7 +11,7 @@ import {
   TabsTrigger,
   TabsContent,
   Skeleton,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 import { CopyToClipboard } from '../copy-to-clipboard';
 

@@ -1,4 +1,4 @@
-import { ScrollArea } from '@happect/ethereal-ui';
+import { ScrollArea } from '@q1k-oss/kiban';
 
 // Sample image data
 const images = [

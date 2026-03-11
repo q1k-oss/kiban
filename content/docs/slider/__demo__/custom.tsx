@@ -3,7 +3,7 @@
 import { Volume, Volume2, VolumeX } from 'lucide-react';
 import { useState } from 'react';
 
-import { Slider } from '@happect/ethereal-ui';
+import { Slider } from '@q1k-oss/kiban';
 
 export default () => {
   const [volume, setVolume] = useState([50]);

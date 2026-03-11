@@ -23,7 +23,7 @@ const config = {
   webpack: (config, { isServer, dev }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@happect/ethereal-ui": path.resolve(__dirname, "components/*"),
+      "@q1k-oss/kiban": path.resolve(__dirname, "components/*"),
     };
 
     // Enable hot reload for node_modules in development mode

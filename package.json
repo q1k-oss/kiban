@@ -1,10 +1,10 @@
 {
-  "name": "@happect/ethereal-ui",
-  "description": "Ethereal Garden - A React UI Component Library",
-  "version": "0.0.28",
+  "name": "@q1k-oss/kiban",
+  "description": "Kiban (基盤) - A React UI Component Library",
+  "version": "1.0.0",
   "files": [
     "dist",
-    "styles/ethereal.css"
+    "styles/kiban.css"
   ],
   "license": "MIT",
   "main": "dist/esm/index.js",
@@ -16,21 +16,23 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/esm/index.js"
     },
-    "./styles": "./styles/ethereal.css",
-    "./styles/ethereal.css": "./styles/ethereal.css",
-    "./ethereal.css": "./styles/ethereal.css"
+    "./styles": "./styles/kiban.css",
+    "./styles/kiban.css": "./styles/kiban.css",
+    "./kiban.css": "./styles/kiban.css"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Happect/ethereal-garden.git"
+    "url": "https://github.com/q1k-oss/kiban.git"
   },
   "bugs": {
-    "url": "https://github.com/Happect/ethereal-garden/issues"
+    "url": "https://github.com/q1k-oss/kiban/issues"
   },
+  "homepage": "https://github.com/q1k-oss/kiban",
   "scripts": {
     "build": "npm run build:package",
     "prepare": "npm run build",
@@ -51,7 +53,6 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Textarea } from '@happect/ethereal-ui';
+import { Textarea } from '@q1k-oss/kiban';
 
 export default () => {
   const [value, setValue] = useState('');

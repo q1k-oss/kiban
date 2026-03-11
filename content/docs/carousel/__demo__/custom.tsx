@@ -14,13 +14,13 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default function CarouselCustomDemo() {
   const products = [
     {
       id: 1,
-      title: "Ethereal Lamp",
+      title: "Kiban Lamp",
       price: "$89.99",
       image: "https://via.placeholder.com/300x200/f5f5f5/333?text=Lamp",
       badge: "New"

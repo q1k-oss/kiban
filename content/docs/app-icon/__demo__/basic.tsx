@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AppIcon } from "@happect/ethereal-ui/ui/app-icon";
+import { AppIcon } from "@q1k-oss/kiban/ui/app-icon";
 
 export default () => {
   return (

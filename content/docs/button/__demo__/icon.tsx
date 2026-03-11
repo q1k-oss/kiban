@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 
-import { Button, ButtonIconPosition } from '@happect/ethereal-ui';
+import { Button, ButtonIconPosition } from '@q1k-oss/kiban';
 
 export default () => (
   <div className="flex flex-row gap-4 flex-wrap">

@@ -6,7 +6,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { Button } from "@happect/ethereal-ui";
+import { Button } from "@q1k-oss/kiban";
 import {
   Form,
   FormControl,
@@ -15,8 +15,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@happect/ethereal-ui";
-import { PhoneInput } from "@happect/ethereal-ui";
+} from "@q1k-oss/kiban";
+import { PhoneInput } from "@q1k-oss/kiban";
 
 export default () => {
   const FormSchema = z.object({

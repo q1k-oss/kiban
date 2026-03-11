@@ -17,7 +17,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@happect/ethereal-ui';
+} from '@q1k-oss/kiban';
 
 export default function DrawerSidesDemo() {
   const [side, setSide] = useState<'top' | 'right' | 'bottom' | 'left'>('bottom');
