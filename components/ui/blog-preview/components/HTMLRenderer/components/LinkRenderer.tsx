@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { HtmlRendererConfig } from '../type';
 
 interface LinkRendererProps {

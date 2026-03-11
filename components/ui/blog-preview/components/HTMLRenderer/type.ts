@@ -1,6 +1,6 @@
 // ============= TYPES =============
 
-import { CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 
 export interface HtmlRendererConfig {
   // Code block configuration

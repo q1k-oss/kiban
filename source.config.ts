@@ -34,8 +34,9 @@ export default defineConfig({
         light: 'one-light',
         dark: 'ayu-dark',
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       transformers: [
-        ...(rehypeCodeDefaultOptions.transformers ?? []),
+        ...((rehypeCodeDefaultOptions.transformers ?? []) as any[]),
         transformerTwoslash(),
         transformerRemoveNotationEscape(),
       ],

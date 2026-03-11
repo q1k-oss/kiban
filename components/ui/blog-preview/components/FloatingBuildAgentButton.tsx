@@ -4,8 +4,8 @@ import { useState } from "react";
 
 import { cn } from "../../../utils/cn";
 import { AppIcon } from "../../app-icon";
-import { Button } from "../../button";
 import { BorderMovingWrapper } from "../../border-moving-wrapper";
+import { Button } from "../../button";
 
 export default function FloatingBuildAgentButton() {
   const [isOpen, setIsOpen] = useState(false);

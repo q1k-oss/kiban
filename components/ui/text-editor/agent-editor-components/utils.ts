@@ -15,7 +15,7 @@ export const hoverButtonClass =
 
 export const normalizeUrl = (raw: string): string | null => {
   const trimmed = raw.trim();
-  const urlString = /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,}(\/.*)?$/i.test(
+  const urlString = /^[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,}(\/.*)?$/i.test(
     trimmed,
   )
     ? `https://${trimmed}`
