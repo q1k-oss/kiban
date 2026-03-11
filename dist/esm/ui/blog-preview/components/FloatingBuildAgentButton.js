@@ -3,8 +3,8 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from "react";
 import { cn } from "../../../utils/cn";
 import { AppIcon } from "../../app-icon";
-import { Button } from "../../button";
 import { BorderMovingWrapper } from "../../border-moving-wrapper";
+import { Button } from "../../button";
 export default function FloatingBuildAgentButton() {
     const [isOpen, setIsOpen] = useState(false);
     return (_jsxs("div", { className: "md:hidden", children: [isOpen && (_jsx("div", { className: "fixed inset-0 bg-black/80", style: { zIndex: 99998 }, onClick: () => setIsOpen(false) })), isOpen && (_jsx("div", { className: "fixed left-12 right-8 ", style: { zIndex: 99999, bottom: "100px" }, children: _jsx(BorderMovingWrapper, { colors: [

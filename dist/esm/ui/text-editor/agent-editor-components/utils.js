@@ -6,7 +6,7 @@ export const activeButtonClass = "bg-primary-foreground/10 text-primary-text";
 export const hoverButtonClass = "hover:text-primary-text hover:bg-primary-foreground/10";
 export const normalizeUrl = (raw) => {
     const trimmed = raw.trim();
-    const urlString = /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,}(\/.*)?$/i.test(trimmed)
+    const urlString = /^[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,}(\/.*)?$/i.test(trimmed)
         ? `https://${trimmed}`
         : trimmed;
     try {
