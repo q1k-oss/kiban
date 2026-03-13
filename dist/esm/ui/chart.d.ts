@@ -1,62 +1,83 @@
 import * as React from "react";
-import * as RechartsPrimitive from "recharts";
-declare const THEMES: {
-    readonly light: "";
-    readonly dark: ".dark";
+export type ChartDataPoint = {
+    label: string;
+    [key: string]: string | number;
 };
-export type ChartConfig = {
-    [k in string]: {
-        label?: React.ReactNode;
-        icon?: React.ComponentType;
-    } & ({
-        color?: string;
-        theme?: never;
-    } | {
-        color?: never;
-        theme: Record<keyof typeof THEMES, string>;
-    });
+export type ChartSeries = {
+    dataKey: string;
+    color: string;
+    name?: string;
+    curveType?: "monotone" | "linear" | "step" | "basis";
 };
-declare const ChartContainer: React.ForwardRefExoticComponent<Omit<React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & {
+export type ChartType = "line" | "bar" | "area";
+export interface ChartGridConfig {
+    rowStroke?: string;
+    rowStrokeOpacity?: number;
+    rowStrokeDasharray?: string;
+    columnStroke?: string;
+    columnStrokeOpacity?: number;
+    columnStrokeDasharray?: string;
+}
+export interface ChartAxisConfig {
+    stroke?: string;
+    tickStroke?: string;
+    labelColor?: string;
+    labelFontSize?: number;
+}
+export interface ChartBarConfig {
+    borderRadius?: number;
+    opacity?: number;
+    padding?: number;
+}
+export interface ChartLineConfig {
+    strokeWidth?: number;
+    strokeLinecap?: "butt" | "round" | "square";
+}
+export interface ChartPointConfig {
+    show?: boolean;
+    radius?: number;
+    strokeColor?: string;
+    strokeWidth?: number;
+}
+export interface ChartAreaGradientConfig {
+    fromOpacity?: number;
+    toOpacity?: number;
+}
+export interface ChartTooltipStyles {
+    backgroundColor?: string;
+    color?: string;
+    border?: string;
+    borderRadius?: string;
+    padding?: string;
+    fontSize?: string;
+    boxShadow?: string;
+}
+export interface ChartConfig {
+    type?: ChartType;
+    series: ChartSeries[];
+    showGrid?: boolean;
+    showAxis?: boolean;
+    showTooltip?: boolean;
+    showLegend?: boolean;
+    margin?: {
+        top: number;
+        right: number;
+        bottom: number;
+        left: number;
+    };
+    grid?: ChartGridConfig;
+    xAxis?: ChartAxisConfig;
+    yAxis?: ChartAxisConfig;
+    bar?: ChartBarConfig;
+    line?: ChartLineConfig;
+    point?: ChartPointConfig;
+    areaGradient?: ChartAreaGradientConfig;
+    tooltipStyles?: ChartTooltipStyles;
+}
+export interface ChartProps extends React.ComponentProps<"div"> {
+    data: ChartDataPoint[];
     config: ChartConfig;
-    children: React.ComponentProps<typeof RechartsPrimitive.ResponsiveContainer>["children"];
-}, "ref"> & React.RefAttributes<HTMLDivElement>>;
-declare const ChartStyle: ({ id, config }: {
-    id: string;
-    config: ChartConfig;
-}) => import("react/jsx-runtime").JSX.Element;
-declare const ChartTooltip: typeof RechartsPrimitive.Tooltip;
-declare const ChartTooltipContent: React.ForwardRefExoticComponent<Omit<RechartsPrimitive.DefaultTooltipContentProps<import("recharts/types/component/DefaultTooltipContent").ValueType, import("recharts/types/component/DefaultTooltipContent").NameType> & {
-    accessibilityLayer?: boolean;
-    active?: boolean | undefined;
-    includeHidden?: boolean | undefined;
-    allowEscapeViewBox?: import("recharts/types/util/types").AllowInDimension;
-    animationDuration?: import("recharts/types/util/types").AnimationDuration;
-    animationEasing?: import("recharts/types/util/types").AnimationTiming;
-    content?: import("recharts/types/component/Tooltip").ContentType<import("recharts/types/component/DefaultTooltipContent").ValueType, import("recharts/types/component/DefaultTooltipContent").NameType>;
-    coordinate?: Partial<import("recharts/types/util/types").Coordinate>;
-    cursor?: boolean | React.ReactElement | React.SVGProps<SVGElement>;
-    filterNull?: boolean;
-    defaultIndex?: number;
-    isAnimationActive?: boolean;
-    offset?: number;
-    payloadUniqBy?: import("recharts/types/util/payload/getUniqPayload").UniqueOption<import("recharts/types/component/DefaultTooltipContent").Payload<import("recharts/types/component/DefaultTooltipContent").ValueType, import("recharts/types/component/DefaultTooltipContent").NameType>>;
-    position?: Partial<import("recharts/types/util/types").Coordinate>;
-    reverseDirection?: import("recharts/types/util/types").AllowInDimension;
-    shared?: boolean;
-    trigger?: "hover" | "click";
-    useTranslate3d?: boolean;
-    viewBox?: import("recharts/types/util/types").CartesianViewBox;
-    wrapperStyle?: React.CSSProperties;
-} & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & {
-    hideLabel?: boolean;
-    hideIndicator?: boolean;
-    indicator?: "line" | "dot" | "dashed";
-    nameKey?: string;
-    labelKey?: string;
-}, "ref"> & React.RefAttributes<HTMLDivElement>>;
-declare const ChartLegend: typeof RechartsPrimitive.Legend;
-declare const ChartLegendContent: React.ForwardRefExoticComponent<Omit<React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
-    hideIcon?: boolean;
-    nameKey?: string;
-}, "ref"> & React.RefAttributes<HTMLDivElement>>;
-export { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, ChartStyle, };
+    height?: number;
+}
+declare const Chart: React.ForwardRefExoticComponent<Omit<ChartProps, "ref"> & React.RefAttributes<HTMLDivElement>>;
+export { Chart };
