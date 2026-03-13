@@ -1,0 +1,79 @@
+---
+title: Menubar
+description: A horizontal menu bar with dropdown menus, commonly used for application-level navigation and actions.
+tags: ["menubar", "menu", "navigation", "dropdown"]
+---
+
+### When To Use
+
+Use the Menubar component when you need to:
+
+- Create application-level menus (File, Edit, View, etc.)
+- Provide organized access to actions and settings
+- Group related commands with keyboard shortcuts
+- Build desktop-style navigation bars
+- Offer radio or checkbox selections within menus
+
+The Menubar is built on [Radix UI Menubar](https://www.radix-ui.com/primitives/docs/components/menubar) with full keyboard navigation and accessibility support.
+
+### Examples
+
+<Preview
+  lang="jsx"
+  file="/menubar/__demo__/basic"
+  title="Basic"
+  description="A standard menubar with File, Edit, and View menus."
+/>
+
+<Preview
+  lang="jsx"
+  file="/menubar/__demo__/with-submenu"
+  title="With Submenu"
+  description="Menus with nested submenus for organizing related items."
+/>
+
+<Preview
+  lang="jsx"
+  file="/menubar/__demo__/with-checkbox"
+  title="With Checkbox Items"
+  description="Toggle-able menu items for settings and preferences."
+/>
+
+<Preview
+  lang="jsx"
+  file="/menubar/__demo__/with-radio"
+  title="With Radio Groups"
+  description="Single-select options within a menu using radio groups."
+/>
+
+### Components
+
+| Component | Description |
+|-----------|-------------|
+| `Menubar` | Root container for the menu bar. |
+| `MenubarMenu` | A single menu within the bar. |
+| `MenubarTrigger` | Button that opens a menu dropdown. |
+| `MenubarContent` | Dropdown content container. |
+| `MenubarItem` | A single clickable menu item. |
+| `MenubarCheckboxItem` | A menu item with a checkbox toggle. |
+| `MenubarRadioGroup` | Groups radio items for single-select. |
+| `MenubarRadioItem` | A radio-selectable menu item. |
+| `MenubarLabel` | Non-interactive section label. |
+| `MenubarSeparator` | Visual divider between menu items. |
+| `MenubarShortcut` | Keyboard shortcut hint displayed inline. |
+| `MenubarSub` | Wrapper for a submenu. |
+| `MenubarSubTrigger` | Item that opens a nested submenu. |
+| `MenubarSubContent` | Content of a nested submenu. |
+| `MenubarGroup` | Groups related items together. |
+| `MenubarPortal` | Renders content in a portal. |
+
+### Accessibility
+
+The Menubar component follows WAI-ARIA Menu Bar pattern:
+
+- Full keyboard navigation with arrow keys
+- `Enter` or `Space` to activate items
+- `Escape` to close menus
+- Type-ahead search to jump to items
+- Proper ARIA roles (`menubar`, `menu`, `menuitem`, `menuitemcheckbox`, `menuitemradio`)
+- Focus management between menus and submenus
