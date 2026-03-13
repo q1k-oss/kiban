@@ -17,6 +17,30 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  transpilePackages: [
+    "@visx/group",
+    "@visx/shape",
+    "@visx/scale",
+    "@visx/axis",
+    "@visx/grid",
+    "@visx/tooltip",
+    "@visx/responsive",
+    "@visx/curve",
+    "@visx/gradient",
+    "@visx/legend",
+    "@visx/text",
+    "@visx/event",
+    "d3-shape",
+    "d3-path",
+    "d3-scale",
+    "d3-array",
+    "d3-format",
+    "d3-time",
+    "d3-time-format",
+    "d3-interpolate",
+    "d3-color",
+    "internmap",
+  ],
   images: {
     domains: ['images.unsplash.com'],
   },
@@ -31,8 +55,8 @@ const config = {
       // Configure webpack to watch node_modules
       config.watchOptions = {
         ...config.watchOptions,
-        poll: 1000, // Check for changes every second
-        aggregateTimeout: 300, // Delay rebuild by 300ms
+        // poll: 1000, // Check for changes every second
+        // aggregateTimeout: 300, // Delay rebuild by 300ms
         ignored: [
           '**/node_modules/**',
         ],

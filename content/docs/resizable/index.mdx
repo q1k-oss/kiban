@@ -1,0 +1,88 @@
+---
+title: Resizable
+description: Resizable panel groups for building split-pane layouts with draggable dividers.
+tags: ["resizable", "panels", "split", "layout", "drag"]
+---
+
+### When To Use
+
+Use the Resizable component when you need to:
+
+- Create split-pane layouts (like IDEs or email clients)
+- Let users resize content areas by dragging
+- Build flexible dashboards with adjustable sections
+- Create vertical or horizontal resizable layouts
+- Nest resizable panels for complex layouts
+
+Built on [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels) with smooth dragging and keyboard support.
+
+### Examples
+
+<Preview
+  lang="jsx"
+  file="/resizable/__demo__/basic"
+  title="Basic"
+  description="Two horizontal panels with a minimal resize divider."
+/>
+
+<Preview
+  lang="jsx"
+  file="/resizable/__demo__/with-handle"
+  title="With Handle"
+  description="A visible drag handle on the divider for better discoverability."
+/>
+
+<Preview
+  lang="jsx"
+  file="/resizable/__demo__/vertical"
+  title="Vertical"
+  description="Vertically stacked resizable panels."
+/>
+
+<Preview
+  lang="jsx"
+  file="/resizable/__demo__/three-panels"
+  title="Nested Layout"
+  description="An IDE-style layout with sidebar, content, terminal, and inspector panels."
+/>
+
+### Components
+
+| Component | Description |
+|-----------|-------------|
+| `ResizablePanelGroup` | Root container. Set `direction` to `"horizontal"` or `"vertical"`. |
+| `ResizablePanel` | A single resizable panel within the group. |
+| `ResizableHandle` | The draggable divider between panels. |
+
+### ResizablePanelGroup Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `direction` | `"horizontal" \| "vertical"` | — | Layout direction of panels. |
+| `className` | `string` | — | Additional CSS classes. |
+
+### ResizablePanel Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultSize` | `number` | — | Initial size as a percentage (0–100). |
+| `minSize` | `number` | — | Minimum size as a percentage. |
+| `maxSize` | `number` | — | Maximum size as a percentage. |
+| `collapsible` | `boolean` | `false` | Whether the panel can collapse to zero. |
+| `collapsedSize` | `number` | — | Size when collapsed. |
+| `onCollapse` | `() => void` | — | Called when panel collapses. |
+| `onExpand` | `() => void` | — | Called when panel expands. |
+| `onResize` | `(size: number) => void` | — | Called during resize with current size. |
+
+### ResizableHandle Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `withHandle` | `boolean` | `false` | Show a visible grip icon on the handle. |
+| `className` | `string` | — | Additional CSS classes. |
+
+### Accessibility
+
+- Handles are keyboard focusable and support arrow key resizing
+- Focus ring is visible when navigating with keyboard
+- Proper `role` and ARIA attributes from react-resizable-panels

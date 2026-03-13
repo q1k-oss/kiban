@@ -1,0 +1,158 @@
+---
+title: Chart
+description: A flexible charting component built on visx (Airbnb's visualization library) with support for line, bar, and area charts.
+tags: ["chart", "visualization", "data", "visx", "graph"]
+---
+
+### When To Use
+
+Use the Chart component when you need to:
+
+- Display data trends over time with line charts
+- Compare values across categories with bar charts
+- Show volume or cumulative data with area charts
+- Visualize multiple data series together
+- Add interactive tooltips for data exploration
+
+The Chart component is built on [visx](https://airbnb.io/visx/) — a collection of low-level visualization primitives from Airbnb, giving you full control over rendering while keeping a simple API.
+
+### Examples
+
+<Preview
+  lang="jsx"
+  file="/chart/__demo__/basic"
+  title="Line Chart"
+  description="A basic line chart with a single data series."
+/>
+
+<Preview
+  lang="jsx"
+  file="/chart/__demo__/bar"
+  title="Bar Chart"
+  description="A bar chart for comparing values across categories."
+/>
+
+<Preview
+  lang="jsx"
+  file="/chart/__demo__/area"
+  title="Area Chart"
+  description="An area chart with gradient fill and multiple series."
+/>
+
+<Preview
+  lang="jsx"
+  file="/chart/__demo__/multi-line"
+  title="Multi-line Chart"
+  description="A line chart with multiple data series and a legend."
+/>
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `ChartDataPoint[]` | — | Array of data points. Each must have a `label` string and numeric values for each series. |
+| `config` | `ChartConfig` | — | Configuration object for chart type, series, and all visual options. |
+| `height` | `number` | `350` | Height of the chart in pixels. |
+
+### ChartConfig
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `type` | `"line" \| "bar" \| "area"` | `"line"` | Chart type to render. |
+| `series` | `ChartSeries[]` | — | Array of data series to plot. |
+| `showGrid` | `boolean` | `true` | Show grid lines. |
+| `showAxis` | `boolean` | `true` | Show x and y axes. |
+| `showTooltip` | `boolean` | `true` | Enable interactive tooltips. |
+| `showLegend` | `boolean` | `true` | Show legend (only when multiple series). |
+| `margin` | `{ top, right, bottom, left }` | `{ 20, 20, 40, 50 }` | Chart margins in pixels. |
+| `grid` | `ChartGridConfig` | see below | Grid line customization. |
+| `xAxis` | `ChartAxisConfig` | see below | X-axis customization. |
+| `yAxis` | `ChartAxisConfig` | see below | Y-axis customization. |
+| `bar` | `ChartBarConfig` | see below | Bar chart customization. |
+| `line` | `ChartLineConfig` | see below | Line chart customization. |
+| `point` | `ChartPointConfig` | see below | Data point customization. |
+| `areaGradient` | `ChartAreaGradientConfig` | see below | Area gradient fill customization. |
+| `tooltipStyles` | `ChartTooltipStyles` | see below | Tooltip appearance customization. |
+
+### ChartSeries
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `dataKey` | `string` | — | Key in data point for this series' values. |
+| `color` | `string` | — | Color for this series (hex, rgb, etc.). |
+| `name` | `string` | `dataKey` | Display name in legends and tooltips. |
+| `curveType` | `"monotone" \| "linear" \| "step" \| "basis"` | `"monotone"` | Interpolation curve (line/area only). |
+
+### ChartGridConfig
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `rowStroke` | `string` | `"#888"` | Horizontal grid line color. |
+| `rowStrokeOpacity` | `number` | `0.2` | Horizontal grid line opacity. |
+| `rowStrokeDasharray` | `string` | `"4"` | Horizontal grid dash pattern. |
+| `columnStroke` | `string` | `"#888"` | Vertical grid line color. |
+| `columnStrokeOpacity` | `number` | `0.15` | Vertical grid line opacity. |
+| `columnStrokeDasharray` | `string` | `"4"` | Vertical grid dash pattern. |
+
+### ChartAxisConfig
+
+Applies separately to `xAxis` and `yAxis`.
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `stroke` | `string` | `"#888"` | Axis line color. |
+| `tickStroke` | `string` | `"#888"` | Tick mark color. |
+| `labelColor` | `string` | `"#999"` | Tick label text color. |
+| `labelFontSize` | `number` | `11` | Tick label font size. |
+
+### ChartBarConfig
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `borderRadius` | `number` | `4` | Bar corner radius. |
+| `opacity` | `number` | `0.9` | Bar fill opacity. |
+| `padding` | `number` | `0.3` | Spacing between bars (0–1). |
+
+### ChartLineConfig
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `strokeWidth` | `number` | `2` | Line thickness. |
+| `strokeLinecap` | `"butt" \| "round" \| "square"` | `"round"` | Line cap style. |
+
+### ChartPointConfig
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `show` | `boolean` | `true` | Show data points on line/area charts. |
+| `radius` | `number` | `3` | Point circle radius. |
+| `strokeColor` | `string` | `"#1a1a1a"` | Point border color. |
+| `strokeWidth` | `number` | `2` | Point border width. |
+
+### ChartAreaGradientConfig
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `fromOpacity` | `number` | `0.4` | Gradient opacity at the top. |
+| `toOpacity` | `number` | `0.05` | Gradient opacity at the bottom. |
+
+### ChartTooltipStyles
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `backgroundColor` | `string` | `"#1a1a1a"` | Tooltip background color. |
+| `color` | `string` | `"#e5e5e5"` | Tooltip text color. |
+| `border` | `string` | `"1px solid #333"` | Tooltip border. |
+| `borderRadius` | `string` | `"8px"` | Tooltip corner radius. |
+| `padding` | `string` | `"8px 12px"` | Tooltip padding. |
+| `fontSize` | `string` | `"12px"` | Tooltip font size. |
+| `boxShadow` | `string` | `"0 4px 6px -1px rgb(0 0 0 / 0.1)"` | Tooltip shadow. |
+
+### Accessibility
+
+The Chart component follows these accessibility practices:
+
+- Uses semantic SVG elements with proper structure
+- Tooltips provide text alternatives for visual data
+- Colors use sufficient contrast against the background
+- Responsive sizing adapts to container width
