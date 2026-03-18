@@ -1,0 +1,56 @@
+"use client";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { cn } from "../../utils";
+import { AppIcon } from "../app-icon";
+import { getStepStyle } from "./utils";
+export const StepperVertical = ({ steps, size, subSize, showDescription, colors, styles, className, renderIndicator, expandedMap, onToggleExpanded, showExpandIcon, }) => (_jsx("div", { className: cn("flex flex-col", className), children: steps.map((step, i) => {
+        var _a, _b;
+        const isLast = i === steps.length - 1;
+        const hasSubSteps = !!((_a = step.subSteps) === null || _a === void 0 ? void 0 : _a.length);
+        const stepLabel = `${i + 1}`;
+        const parentFilled = step.status === "completed";
+        const isExpanded = hasSubSteps ? ((_b = expandedMap[i]) !== null && _b !== void 0 ? _b : true) : false;
+        return (_jsxs("div", { className: "flex flex-col", children: [_jsxs("div", { className: "flex items-center gap-3", children: [_jsx("span", { style: getStepStyle(step.status, size, colors, styles), className: "flex items-center justify-center shrink-0 transition-all duration-500", children: renderIndicator(step.status, stepLabel) }), showDescription && (_jsxs("div", { className: "flex flex-col leading-none", style: { gap: styles.labelDescriptionGap }, children: [_jsx("span", { className: "font-medium leading-tight transition-colors duration-300", style: {
+                                        fontSize: styles.labelFontSize,
+                                        color: step.status === "pending" ? colors.pendingText : "inherit",
+                                    }, children: step.label }), step.description && (_jsx("span", { className: "leading-tight transition-colors duration-300", style: {
+                                        fontSize: styles.descriptionFontSize,
+                                        color: colors.pendingText,
+                                    }, children: step.description }))] })), hasSubSteps && showExpandIcon && (_jsx("button", { type: "button", onClick: () => onToggleExpanded(i), className: "flex items-center justify-center shrink-0 transition-transform duration-300 cursor-pointer bg-transparent border-none p-0", style: {
+                                transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                                color: step.status === "pending" ? colors.pendingText : "inherit",
+                            }, children: _jsx(AppIcon, { iconName: "chevron-right", size: 16 }) }))] }), !isLast && (_jsxs("div", { className: "flex", style: { marginLeft: size / 2 - styles.connectorThickness / 2 }, children: [_jsx("div", { className: "relative flex-shrink-0", style: {
+                                width: styles.connectorThickness,
+                                backgroundColor: colors.connectorEmpty,
+                            }, children: _jsx("div", { className: "absolute top-0 left-0 w-full transition-all duration-700", style: {
+                                    height: parentFilled ? "100%" : "0%",
+                                    backgroundColor: colors.connectorFilled,
+                                } }) }), hasSubSteps ? (_jsx("div", { className: "grid transition-[grid-template-rows,opacity] duration-300", style: {
+                                gridTemplateRows: isExpanded ? "1fr" : "0fr",
+                                opacity: isExpanded ? 1 : 0,
+                                marginLeft: styles.subStepsOffset,
+                            }, children: _jsx("div", { className: "overflow-hidden", children: _jsx("div", { className: "flex flex-col", style: {
+                                        paddingTop: isExpanded ? styles.subStepsPadding : 0,
+                                        paddingBottom: isExpanded ? styles.subStepsPadding : 0,
+                                    }, children: step.subSteps.map((sub, subIdx) => {
+                                        const isLastSub = subIdx === step.subSteps.length - 1;
+                                        const subLabel = `${i + 1}.${subIdx + 1}`;
+                                        return (_jsxs("div", { className: "flex flex-col", children: [_jsxs("div", { className: "flex items-center gap-3", children: [_jsx("span", { style: getStepStyle(sub.status, subSize, colors, styles, true), className: "flex items-center justify-center shrink-0 transition-all duration-500", children: renderIndicator(sub.status, subLabel, true) }), showDescription && (_jsxs("div", { className: "flex flex-col leading-none", style: { gap: styles.subLabelDescriptionGap }, children: [_jsx("span", { className: "font-medium leading-tight transition-colors duration-300", style: {
+                                                                        fontSize: styles.subLabelFontSize,
+                                                                        color: sub.status === "pending"
+                                                                            ? colors.pendingText
+                                                                            : "inherit",
+                                                                    }, children: sub.label }), sub.description && (_jsx("span", { className: "leading-tight transition-colors duration-300", style: {
+                                                                        fontSize: styles.descriptionFontSize,
+                                                                        color: colors.pendingText,
+                                                                    }, children: sub.description }))] }))] }), !isLastSub && (_jsx("div", { className: "relative flex-shrink-0", style: {
+                                                        width: styles.subConnectorThickness,
+                                                        height: styles.subConnectorGap,
+                                                        marginLeft: subSize / 2 - styles.subConnectorThickness / 2,
+                                                        backgroundColor: colors.connectorEmpty,
+                                                    }, children: _jsx("div", { className: "absolute top-0 left-0 w-full transition-all duration-700", style: {
+                                                            height: sub.status === "completed" ? "100%" : "0%",
+                                                            backgroundColor: colors.connectorFilled,
+                                                        } }) }))] }, subIdx));
+                                    }) }) }) })) : (_jsx("div", { style: { height: styles.connectorGap } })), hasSubSteps && !isExpanded && (_jsx("div", { style: { height: styles.connectorGap } }))] }))] }, i));
+    }) }));
