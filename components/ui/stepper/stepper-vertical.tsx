@@ -58,7 +58,7 @@ export const StepperVertical = ({
                   className="font-medium leading-tight transition-colors duration-300"
                   style={{
                     fontSize: styles.labelFontSize,
-                    color: step.status === "pending" ? colors.pendingText : "inherit",
+                    color: step.status === "completed" ? colors.completedLabelColor : step.status === "on_going" ? colors.activeLabelColor : colors.pendingLabelColor,
                   }}
                 >
                   {step.label}
@@ -68,7 +68,7 @@ export const StepperVertical = ({
                     className="leading-tight transition-colors duration-300"
                     style={{
                       fontSize: styles.descriptionFontSize,
-                      color: colors.pendingText,
+                      color: step.status === "completed" ? colors.completedDescriptionColor : step.status === "on_going" ? colors.activeDescriptionColor : colors.pendingDescriptionColor,
                     }}
                   >
                     {step.description}
@@ -150,10 +150,7 @@ export const StepperVertical = ({
                                 className="font-medium leading-tight transition-colors duration-300"
                                 style={{
                                   fontSize: styles.subLabelFontSize,
-                                  color:
-                                    sub.status === "pending"
-                                      ? colors.pendingText
-                                      : "inherit",
+                                  color: sub.status === "completed" ? colors.completedLabelColor : sub.status === "on_going" ? colors.activeLabelColor : colors.pendingLabelColor,
                                 }}
                               >
                                 {sub.label}
@@ -163,7 +160,7 @@ export const StepperVertical = ({
                                   className="leading-tight transition-colors duration-300"
                                   style={{
                                     fontSize: styles.descriptionFontSize,
-                                    color: colors.pendingText,
+                                    color: sub.status === "completed" ? colors.completedDescriptionColor : sub.status === "on_going" ? colors.activeDescriptionColor : colors.pendingDescriptionColor,
                                   }}
                                 >
                                   {sub.description}

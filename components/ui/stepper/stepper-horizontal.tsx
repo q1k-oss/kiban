@@ -57,7 +57,7 @@ export const StepperHorizontal = ({
                   className="font-medium text-center leading-tight transition-colors duration-300 whitespace-nowrap"
                   style={{
                     fontSize: styles.labelFontSize,
-                    color: step.status === "pending" ? colors.pendingText : "inherit",
+                    color: step.status === "completed" ? colors.completedLabelColor : step.status === "on_going" ? colors.activeLabelColor : colors.pendingLabelColor,
                   }}
                 >
                   {step.label}
@@ -67,7 +67,7 @@ export const StepperHorizontal = ({
                     className="text-center leading-tight transition-colors duration-300 whitespace-nowrap"
                     style={{
                       fontSize: styles.descriptionFontSize,
-                      color: colors.pendingText,
+                      color: step.status === "completed" ? colors.completedDescriptionColor : step.status === "on_going" ? colors.activeDescriptionColor : colors.pendingDescriptionColor,
                     }}
                   >
                     {step.description}
@@ -153,7 +153,7 @@ export const StepperHorizontal = ({
                                   style={{
                                     marginTop: 6,
                                     fontSize: styles.subLabelFontSize,
-                                    color: sub.status === "pending" ? colors.pendingText : "inherit",
+                                    color: sub.status === "completed" ? colors.completedLabelColor : sub.status === "on_going" ? colors.activeLabelColor : colors.pendingLabelColor,
                                   }}
                                 >
                                   {sub.label}

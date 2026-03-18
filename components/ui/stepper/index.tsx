@@ -2,13 +2,12 @@
 
 import React, { useImperativeHandle, forwardRef, useState } from "react";
 
-import type { StepperProps, StepperRef, StepStatus } from "./types";
-import { DEFAULT_COLORS, DEFAULT_STYLES } from "./utils";
 import { CheckIcon, DotIndicator } from "./icons";
-import { useStepper } from "./use-stepper";
-import { StepperVertical } from "./stepper-vertical";
 import { StepperHorizontal } from "./stepper-horizontal";
-import type { IStepItem } from "./types";
+import { StepperVertical } from "./stepper-vertical";
+import type { StepperProps, StepperRef, StepStatus, IStepItem } from "./types";
+import { useStepper } from "./use-stepper";
+import { DEFAULT_COLORS, DEFAULT_SIZES, DEFAULT_STYLES } from "./utils";
 
 const DEFAULT_STEPS: IStepItem[] = [
   { label: "Step 1", status: "on_going" },
@@ -22,10 +21,12 @@ export type {
   ISubStepItem,
   IStepItem,
   StepperColors,
+  StepperSizes,
   StepperStyles,
   StepperProps,
   StepperRef,
   ResolvedColors,
+  ResolvedSizes,
   ResolvedStyles,
 } from "./types";
 
@@ -33,11 +34,10 @@ export const Stepper = forwardRef<StepperRef, StepperProps>(
   (
     {
       steps: initialSteps = DEFAULT_STEPS,
-      size = 42,
-      subSize = 32,
       indicator = "number",
       orientation = "vertical",
       colors = {},
+      sizes = {},
       styles = {},
       animationDelay = 600,
       className,
@@ -52,6 +52,13 @@ export const Stepper = forwardRef<StepperRef, StepperProps>(
       ...DEFAULT_COLORS,
       ...Object.fromEntries(
         Object.entries(colors).filter(([, v]) => v !== undefined)
+      ),
+    };
+
+    const resolvedSizes = {
+      ...DEFAULT_SIZES,
+      ...Object.fromEntries(
+        Object.entries(sizes).filter(([, v]) => v !== undefined)
       ),
     };
 
@@ -82,24 +89,29 @@ export const Stepper = forwardRef<StepperRef, StepperProps>(
       setExpandedMap((prev) => ({ ...prev, [index]: !prev[index] }));
     };
 
+    const { boxSize, subBoxSize } = resolvedSizes;
+
     const renderIndicator = (
       status: StepStatus,
       label: string,
       isSubStep?: boolean
     ) => {
-      const currentSize = isSubStep ? finalSubSize : finalSize;
+      const currentSize = isSubStep ? subBoxSize : boxSize;
       const checkSize = isSubStep
-        ? (resolvedStyles.subCompletedIconSize ?? Math.round(currentSize * 0.45))
-        : (resolvedStyles.completedIconSize ?? Math.round(currentSize * 0.45));
+        ? (resolvedSizes.subCompletedIconSize ?? Math.round(currentSize * 0.45))
+        : (resolvedSizes.completedIconSize ?? Math.round(currentSize * 0.45));
       if (status === "completed") {
         return <CheckIcon color={resolvedColors.completedIconColor} size={checkSize} />;
       }
       if (indicator === "dot" || (indicator === "number" && status === "on_going")) {
+        const dotSize = isSubStep ? resolvedSizes.subDotSize : resolvedSizes.dotSize;
         return (
           <DotIndicator
             color={status === "on_going" ? resolvedColors.activeDotColor : resolvedColors.pendingDotColor}
             glowColor={resolvedColors.glowColor}
             isActive={status === "on_going"}
+            dotSize={dotSize}
+            glowSize={resolvedSizes.glowSize}
           />
         );
       }
@@ -117,13 +129,10 @@ export const Stepper = forwardRef<StepperRef, StepperProps>(
       );
     };
 
-    const finalSize = resolvedStyles.boxSize ?? size;
-    const finalSubSize = resolvedStyles.subBoxSize ?? subSize;
-
     const sharedProps = {
       steps,
-      size: finalSize,
-      subSize: finalSubSize,
+      size: boxSize,
+      subSize: subBoxSize,
       showDescription,
       colors: resolvedColors,
       styles: resolvedStyles,

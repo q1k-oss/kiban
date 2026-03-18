@@ -1,4 +1,11 @@
-import type { IStepItem, StepStatus, ResolvedColors, ResolvedStyles } from "./types";
+import type {
+  IStepItem,
+  StepStatus,
+  ResolvedColors,
+  ResolvedStyles,
+  ResolvedSizes,
+} from "./types";
+
 import type React from "react";
 
 export const deepCopySteps = (steps: IStepItem[]): IStepItem[] =>
@@ -55,6 +62,20 @@ export const DEFAULT_COLORS: ResolvedColors = {
   activeDotColor: "var(--stepper-active-dot, var(--status-text-inprogress))",
   pendingDotColor: "var(--stepper-pending-dot, var(--muted-foreground))",
   completedIconColor: "var(--stepper-check-icon, var(--primary-foreground))",
+  completedLabelColor: "var(--stepper-completed-label, inherit)",
+  completedDescriptionColor: "var(--stepper-completed-description, var(--muted-foreground))",
+  activeLabelColor: "var(--stepper-active-label, inherit)",
+  activeDescriptionColor: "var(--stepper-active-description, var(--muted-foreground))",
+  pendingLabelColor: "var(--stepper-pending-label, var(--muted-foreground))",
+  pendingDescriptionColor: "var(--stepper-pending-description, var(--muted-foreground))",
+};
+
+export const DEFAULT_SIZES: ResolvedSizes = {
+  boxSize: 42,
+  subBoxSize: 32,
+  dotSize: 10,
+  subDotSize: 8,
+  glowSize: 20,
 };
 
 export const DEFAULT_STYLES: ResolvedStyles = {

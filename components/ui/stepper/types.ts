@@ -44,13 +44,38 @@ export interface StepperColors {
   pendingDotColor?: string;
   /** Color of the check icon in completed steps */
   completedIconColor?: string;
+  /** Label color for completed steps */
+  completedLabelColor?: string;
+  /** Description color for completed steps */
+  completedDescriptionColor?: string;
+  /** Label color for the active step */
+  activeLabelColor?: string;
+  /** Description color for the active step */
+  activeDescriptionColor?: string;
+  /** Label color for pending steps */
+  pendingLabelColor?: string;
+  /** Description color for pending steps */
+  pendingDescriptionColor?: string;
+}
+
+export interface StepperSizes {
+  /** Size of main step box in px @default 42 */
+  boxSize?: number;
+  /** Size of sub-step box in px @default 32 */
+  subBoxSize?: number;
+  /** Size of the dot indicator in px @default 10 */
+  dotSize?: number;
+  /** Size of the sub-step dot indicator in px @default 8 */
+  subDotSize?: number;
+  /** Size of the glow ping around active dot in px @default 20 */
+  glowSize?: number;
+  /** Size of the check icon in completed steps in px. Defaults to 45% of box size */
+  completedIconSize?: number;
+  /** Size of the check icon in completed sub-steps in px. Defaults to 45% of sub-box size */
+  subCompletedIconSize?: number;
 }
 
 export interface StepperStyles {
-  /** Size of main step box in px (overrides the `size` prop) */
-  boxSize?: number;
-  /** Size of sub-step box in px (overrides the `subSize` prop) */
-  subBoxSize?: number;
   /** Border radius of main step boxes (e.g. "4px", "50%", "0") @default "4px" */
   borderRadius?: string;
   /** Border radius of sub-step boxes @default "4px" */
@@ -85,25 +110,19 @@ export interface StepperStyles {
   subStepsPadding?: number;
   /** Left offset of sub-steps from the main connector in px @default 24 */
   subStepsOffset?: number;
-  /** Size of the check icon in completed steps in px. Defaults to 45% of box size */
-  completedIconSize?: number;
-  /** Size of the check icon in completed sub-steps in px. Defaults to 45% of sub-box size */
-  subCompletedIconSize?: number;
 }
 
 export interface StepperProps {
   steps?: IStepItem[];
-  /** Size of the step indicator in px */
-  size?: number;
-  /** Size of the sub-step indicator in px */
-  subSize?: number;
   /** Display mode: "number" shows step numbers, "dot" shows dots */
   indicator?: "number" | "dot";
   /** Layout orientation */
   orientation?: "vertical" | "horizontal";
   /** Custom colors — all optional, falls back to currentColor/theme */
   colors?: StepperColors;
-  /** Custom styles for step boxes, connectors, fonts */
+  /** Custom sizes for step boxes, dots, icons */
+  sizes?: StepperSizes;
+  /** Custom styles for connectors, fonts, spacing */
   styles?: StepperStyles;
   /** Animation delay in ms between steps */
   animationDelay?: number;
@@ -119,10 +138,19 @@ export interface StepperProps {
   onStepChange?: (stepIndex: number, status: StepStatus) => void;
 }
 
+/** Resolved size values passed to renderers */
+export interface ResolvedSizes {
+  boxSize: number;
+  subBoxSize: number;
+  dotSize: number;
+  subDotSize: number;
+  glowSize: number;
+  completedIconSize?: number;
+  subCompletedIconSize?: number;
+}
+
 /** Resolved style values passed to renderers */
 export interface ResolvedStyles {
-  boxSize?: number;
-  subBoxSize?: number;
   borderRadius: string;
   subBorderRadius: string;
   borderWidth: number;
@@ -140,8 +168,6 @@ export interface ResolvedStyles {
   subLabelDescriptionGap: string;
   subStepsPadding: number;
   subStepsOffset: number;
-  completedIconSize?: number;
-  subCompletedIconSize?: number;
 }
 
 export interface StepperRef {
@@ -168,4 +194,10 @@ export interface ResolvedColors {
   activeDotColor: string;
   pendingDotColor: string;
   completedIconColor: string;
+  completedLabelColor: string;
+  completedDescriptionColor: string;
+  activeLabelColor: string;
+  activeDescriptionColor: string;
+  pendingLabelColor: string;
+  pendingDescriptionColor: string;
 }

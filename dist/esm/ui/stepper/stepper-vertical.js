@@ -12,10 +12,10 @@ export const StepperVertical = ({ steps, size, subSize, showDescription, colors,
         const isExpanded = hasSubSteps ? ((_b = expandedMap[i]) !== null && _b !== void 0 ? _b : true) : false;
         return (_jsxs("div", { className: "flex flex-col", children: [_jsxs("div", { className: "flex items-center gap-3", children: [_jsx("span", { style: getStepStyle(step.status, size, colors, styles), className: "flex items-center justify-center shrink-0 transition-all duration-500", children: renderIndicator(step.status, stepLabel) }), showDescription && (_jsxs("div", { className: "flex flex-col leading-none", style: { gap: styles.labelDescriptionGap }, children: [_jsx("span", { className: "font-medium leading-tight transition-colors duration-300", style: {
                                         fontSize: styles.labelFontSize,
-                                        color: step.status === "pending" ? colors.pendingText : "inherit",
+                                        color: step.status === "completed" ? colors.completedLabelColor : step.status === "on_going" ? colors.activeLabelColor : colors.pendingLabelColor,
                                     }, children: step.label }), step.description && (_jsx("span", { className: "leading-tight transition-colors duration-300", style: {
                                         fontSize: styles.descriptionFontSize,
-                                        color: colors.pendingText,
+                                        color: step.status === "completed" ? colors.completedDescriptionColor : step.status === "on_going" ? colors.activeDescriptionColor : colors.pendingDescriptionColor,
                                     }, children: step.description }))] })), hasSubSteps && showExpandIcon && (_jsx("button", { type: "button", onClick: () => onToggleExpanded(i), className: "flex items-center justify-center shrink-0 transition-transform duration-300 cursor-pointer bg-transparent border-none p-0", style: {
                                 transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
                                 color: step.status === "pending" ? colors.pendingText : "inherit",
@@ -37,12 +37,10 @@ export const StepperVertical = ({ steps, size, subSize, showDescription, colors,
                                         const subLabel = `${i + 1}.${subIdx + 1}`;
                                         return (_jsxs("div", { className: "flex flex-col", children: [_jsxs("div", { className: "flex items-center gap-3", children: [_jsx("span", { style: getStepStyle(sub.status, subSize, colors, styles, true), className: "flex items-center justify-center shrink-0 transition-all duration-500", children: renderIndicator(sub.status, subLabel, true) }), showDescription && (_jsxs("div", { className: "flex flex-col leading-none", style: { gap: styles.subLabelDescriptionGap }, children: [_jsx("span", { className: "font-medium leading-tight transition-colors duration-300", style: {
                                                                         fontSize: styles.subLabelFontSize,
-                                                                        color: sub.status === "pending"
-                                                                            ? colors.pendingText
-                                                                            : "inherit",
+                                                                        color: sub.status === "completed" ? colors.completedLabelColor : sub.status === "on_going" ? colors.activeLabelColor : colors.pendingLabelColor,
                                                                     }, children: sub.label }), sub.description && (_jsx("span", { className: "leading-tight transition-colors duration-300", style: {
                                                                         fontSize: styles.descriptionFontSize,
-                                                                        color: colors.pendingText,
+                                                                        color: sub.status === "completed" ? colors.completedDescriptionColor : sub.status === "on_going" ? colors.activeDescriptionColor : colors.pendingDescriptionColor,
                                                                     }, children: sub.description }))] }))] }), !isLastSub && (_jsx("div", { className: "relative flex-shrink-0", style: {
                                                         width: styles.subConnectorThickness,
                                                         height: styles.subConnectorGap,
