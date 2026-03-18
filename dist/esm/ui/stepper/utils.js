@@ -5,7 +5,7 @@ export const deepCopySteps = (steps) => steps.map((s) => {
 export const getStepStyle = (status, stepSize, colors, styles, isSubStep) => ({
     width: stepSize,
     height: stepSize,
-    backgroundColor: status === "completed"
+    background: status === "completed"
         ? colors.completedBg
         : status === "on_going"
             ? colors.activeBg

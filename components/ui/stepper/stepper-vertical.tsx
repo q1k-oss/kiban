@@ -100,14 +100,14 @@ export const StepperVertical = ({
                 className="relative flex-shrink-0"
                 style={{
                   width: styles.connectorThickness,
-                  backgroundColor: colors.connectorEmpty,
+                  background: colors.connectorEmpty,
                 }}
               >
                 <div
                   className="absolute top-0 left-0 w-full transition-all duration-700"
                   style={{
                     height: parentFilled ? "100%" : "0%",
-                    backgroundColor: colors.connectorFilled,
+                    background: colors.connectorFilled,
                   }}
                 />
               </div>
@@ -181,14 +181,14 @@ export const StepperVertical = ({
                               width: styles.subConnectorThickness,
                               height: styles.subConnectorGap,
                               marginLeft: subSize / 2 - styles.subConnectorThickness / 2,
-                              backgroundColor: colors.connectorEmpty,
+                              background: colors.connectorEmpty,
                             }}
                           >
                             <div
                               className="absolute top-0 left-0 w-full transition-all duration-700"
                               style={{
                                 height: sub.status === "completed" ? "100%" : "0%",
-                                backgroundColor: colors.connectorFilled,
+                                background: colors.connectorFilled,
                               }}
                             />
                           </div>

@@ -16,7 +16,7 @@ export const getStepStyle = (
 ): React.CSSProperties => ({
   width: stepSize,
   height: stepSize,
-  backgroundColor:
+  background:
     status === "completed"
       ? colors.completedBg
       : status === "on_going"

@@ -5,6 +5,6 @@ export const CheckIcon = ({ color, size = 16 }) => (_jsx("span", { className: "a
 export const DotIndicator = ({ color, glowColor, isActive, }) => (_jsxs("div", { className: "relative flex items-center justify-center", children: [isActive && (_jsx("span", { className: "absolute rounded-full animate-ping", style: {
                 width: "20px",
                 height: "20px",
-                backgroundColor: glowColor || color || "currentColor",
+                background: glowColor || color || "currentColor",
                 opacity: 0.3,
-            } })), _jsx("svg", { viewBox: "0 0 24 24", className: "w-2.5 h-2.5 relative z-[2]", children: _jsx("circle", { cx: "12", cy: "12", r: "10", fill: color || "currentColor" }) })] }));
+            } })), _jsx("div", { className: "w-2.5 h-2.5 relative z-[2] rounded-full", style: { background: color || "currentColor" } })] }));

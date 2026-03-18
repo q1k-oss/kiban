@@ -24,10 +24,10 @@ export const StepperHorizontal = ({ steps, size, subSize, showDescription, color
                                 height: styles.connectorThickness,
                                 marginTop: size / 2 - styles.connectorThickness / 2,
                                 minWidth: styles.connectorGap,
-                                backgroundColor: colors.connectorEmpty,
+                                background: colors.connectorEmpty,
                             }, children: _jsx("div", { className: "absolute top-0 left-0 h-full transition-all duration-700", style: {
                                     width: parentFilled ? "100%" : "0%",
-                                    backgroundColor: colors.connectorFilled,
+                                    background: colors.connectorFilled,
                                 } }) }), hasSubSteps && (_jsx("div", { className: "grid transition-[grid-template-rows,opacity] duration-300", style: {
                                 gridTemplateRows: isExpanded ? "1fr" : "0fr",
                                 opacity: isExpanded ? 1 : 0,
@@ -50,10 +50,10 @@ export const StepperHorizontal = ({ steps, size, subSize, showDescription, color
                                                         height: styles.subConnectorThickness,
                                                         width: styles.subConnectorGap,
                                                         marginTop: subSize / 2 - styles.subConnectorThickness / 2,
-                                                        backgroundColor: colors.connectorEmpty,
+                                                        background: colors.connectorEmpty,
                                                     }, children: _jsx("div", { className: "absolute top-0 left-0 h-full transition-all duration-700", style: {
                                                             width: subFilled ? "100%" : "0%",
-                                                            backgroundColor: colors.connectorFilled,
+                                                            background: colors.connectorFilled,
                                                         } }) }))] }, subIdx));
                                     }) }) }) }))] }))] }, i));
     }) }));

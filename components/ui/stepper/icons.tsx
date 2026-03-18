@@ -25,13 +25,14 @@ export const DotIndicator = ({
         style={{
           width: "20px",
           height: "20px",
-          backgroundColor: glowColor || color || "currentColor",
+          background: glowColor || color || "currentColor",
           opacity: 0.3,
         }}
       />
     )}
-    <svg viewBox="0 0 24 24" className="w-2.5 h-2.5 relative z-[2]">
-      <circle cx="12" cy="12" r="10" fill={color || "currentColor"} />
-    </svg>
+    <div
+      className="w-2.5 h-2.5 relative z-[2] rounded-full"
+      style={{ background: color || "currentColor" }}
+    />
   </div>
 );

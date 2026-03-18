@@ -100,14 +100,14 @@ export const StepperHorizontal = ({
                   height: styles.connectorThickness,
                   marginTop: size / 2 - styles.connectorThickness / 2,
                   minWidth: styles.connectorGap,
-                  backgroundColor: colors.connectorEmpty,
+                  background: colors.connectorEmpty,
                 }}
               >
                 <div
                   className="absolute top-0 left-0 h-full transition-all duration-700"
                   style={{
                     width: parentFilled ? "100%" : "0%",
-                    backgroundColor: colors.connectorFilled,
+                    background: colors.connectorFilled,
                   }}
                 />
               </div>
@@ -169,14 +169,14 @@ export const StepperHorizontal = ({
                                   height: styles.subConnectorThickness,
                                   width: styles.subConnectorGap,
                                   marginTop: subSize / 2 - styles.subConnectorThickness / 2,
-                                  backgroundColor: colors.connectorEmpty,
+                                  background: colors.connectorEmpty,
                                 }}
                               >
                                 <div
                                   className="absolute top-0 left-0 h-full transition-all duration-700"
                                   style={{
                                     width: subFilled ? "100%" : "0%",
-                                    backgroundColor: colors.connectorFilled,
+                                    background: colors.connectorFilled,
                                   }}
                                 />
                               </div>

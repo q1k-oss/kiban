@@ -21,10 +21,10 @@ export const StepperVertical = ({ steps, size, subSize, showDescription, colors,
                                 color: step.status === "pending" ? colors.pendingText : "inherit",
                             }, children: _jsx(AppIcon, { iconName: "chevron-right", size: 16 }) }))] }), !isLast && (_jsxs("div", { className: "flex", style: { marginLeft: size / 2 - styles.connectorThickness / 2 }, children: [_jsx("div", { className: "relative flex-shrink-0", style: {
                                 width: styles.connectorThickness,
-                                backgroundColor: colors.connectorEmpty,
+                                background: colors.connectorEmpty,
                             }, children: _jsx("div", { className: "absolute top-0 left-0 w-full transition-all duration-700", style: {
                                     height: parentFilled ? "100%" : "0%",
-                                    backgroundColor: colors.connectorFilled,
+                                    background: colors.connectorFilled,
                                 } }) }), hasSubSteps ? (_jsx("div", { className: "grid transition-[grid-template-rows,opacity] duration-300", style: {
                                 gridTemplateRows: isExpanded ? "1fr" : "0fr",
                                 opacity: isExpanded ? 1 : 0,
@@ -47,10 +47,10 @@ export const StepperVertical = ({ steps, size, subSize, showDescription, colors,
                                                         width: styles.subConnectorThickness,
                                                         height: styles.subConnectorGap,
                                                         marginLeft: subSize / 2 - styles.subConnectorThickness / 2,
-                                                        backgroundColor: colors.connectorEmpty,
+                                                        background: colors.connectorEmpty,
                                                     }, children: _jsx("div", { className: "absolute top-0 left-0 w-full transition-all duration-700", style: {
                                                             height: sub.status === "completed" ? "100%" : "0%",
-                                                            backgroundColor: colors.connectorFilled,
+                                                            background: colors.connectorFilled,
                                                         } }) }))] }, subIdx));
                                     }) }) }) })) : (_jsx("div", { style: { height: styles.connectorGap } })), hasSubSteps && !isExpanded && (_jsx("div", { style: { height: styles.connectorGap } }))] }))] }, i));
     }) }));
