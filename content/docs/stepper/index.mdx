@@ -1,33 +1,156 @@
 ---
 title: Stepper
-description: A multi-step UI component that helps display progress and navigate through sequential steps.
+description: A multi-step UI component that helps display progress and navigate through sequential steps, with support for sub-steps, custom colors, and dot/number indicators.
 component: true
 ---
 
 ## When To Use
 
 - When you need to represent progress across multiple steps
-- When a process is divided into multiple stages (e.g. onboarding, verification)
-- When you want users to complete tasks in a guided flow
-- When you need visual feedback for completed, current and upcoming steps
-- Useful for forms, wizards, authentication flows, and multi-screen processes
+- When a process has nested sub-steps (e.g. step 3 has 3.1, 3.2, 3.3)
+- When you need a guided flow like onboarding, wizards, or multi-screen forms
+- When you want full control over colors, indicator style, and layout
 
 ## Examples
 
-### Basic
+### With Sub-Steps
 
-A basic stepper displaying steps with active and completed states.
+A vertical stepper with expandable sub-steps. Sub-steps display as decimal numbering (3.1, 3.2, 3.3).
 
 <Preview
   lang="jsx"
   file="/stepper/__demo__/basic"
-  title="Default"
-  description="A default stepper showing evenly spaced circles and progress lines."
+  title="Sub-Steps"
+  description="Steps with nested sub-steps that expand when the parent step is active."
 />
+
+### Dot Indicator
+
+Use `indicator="dot"` to show dots instead of numbers.
+
+<Preview
+  lang="jsx"
+  file="/stepper/__demo__/dot-indicator"
+  title="Dot Mode"
+  description="A stepper using dot indicators with a glowing active state."
+/>
+
+### Custom Colors
+
+Pass a `colors` prop to fully customize every visual aspect.
+
+<Preview
+  lang="jsx"
+  file="/stepper/__demo__/custom-colors"
+  title="Custom Colors"
+  description="A stepper with custom green/blue color scheme and sub-steps."
+/>
+
+### Horizontal
+
+Use `orientation="horizontal"` for a horizontal layout.
+
+<Preview
+  lang="jsx"
+  file="/stepper/__demo__/horizontal"
+  title="Horizontal"
+  description="A horizontal stepper with overflow scroll support."
+/>
+
+## Props
+
+### StepperProps
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `steps` | `IStepItem[]` | Default 3 steps | Array of step objects |
+| `size` | `number` | `42` | Size of main step indicators (px) |
+| `subSize` | `number` | `32` | Size of sub-step indicators (px) |
+| `indicator` | `"number" \| "dot"` | `"number"` | Show numbers or dots. Active step always shows a dot. |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Layout direction |
+| `colors` | `StepperColors` | `{}` | Custom color overrides |
+| `styles` | `StepperStyles` | `{}` | Custom style overrides |
+| `animationDelay` | `number` | `600` | Delay between step transitions (ms) |
+| `showDescription` | `boolean` | `true` | Show labels and descriptions |
+| `defaultExpanded` | `boolean` | `true` | Whether sub-steps start expanded or collapsed |
+| `showExpandIcon` | `boolean` | `true` | Show expand/collapse chevron. If false, sub-steps are always expanded. |
+| `onStepChange` | `(index, status) => void` | — | Callback on step change |
+| `className` | `string` | — | Additional root class |
+
+### IStepItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `label` | `string` | Step title |
+| `description` | `string?` | Optional description text |
+| `status` | `"pending" \| "on_going" \| "completed"` | Current state |
+| `subSteps` | `ISubStepItem[]?` | Nested sub-steps |
+
+### StepperColors
+
+All properties are optional. Falls back to CSS variables `--stepper-*` then to kiban.css theme variables.
+
+| Prop | Default fallback | Description |
+|------|-----------------|-------------|
+| `completedBg` | `--success` | Background for completed steps |
+| `completedBorder` | `--success` | Border for completed steps |
+| `completedText` | `--primary-foreground` | Text/icon color for completed steps |
+| `activeBg` | `transparent` | Background for active step |
+| `activeBorder` | `--status-text-inprogress` | Border for active step |
+| `activeText` | `--status-text-inprogress` | Text color for active step |
+| `pendingBg` | `transparent` | Background for pending steps |
+| `pendingBorder` | `--border` | Border for pending steps |
+| `pendingText` | `--muted-foreground` | Text color for pending steps |
+| `connectorFilled` | `--success` | Filled connector line color |
+| `connectorEmpty` | `--border` | Unfilled connector line color |
+| `glowColor` | `--status-text-inprogress` | Glow effect color for active dot |
+| `activeDotColor` | `--status-text-inprogress` | Dot color when active |
+| `pendingDotColor` | `--muted-foreground` | Dot color when pending |
+| `completedIconColor` | `--primary-foreground` | Color of the completed check icon |
+
+### StepperStyles
+
+All properties are optional with sensible defaults.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `boxSize` | `number` | — | Overrides `size` prop for main step boxes |
+| `subBoxSize` | `number` | — | Overrides `subSize` prop for sub-step boxes |
+| `borderRadius` | `string` | `"4px"` | Border radius for main steps |
+| `subBorderRadius` | `string` | `"4px"` | Border radius for sub-steps |
+| `borderWidth` | `number` | `1` | Border width for main steps |
+| `subBorderWidth` | `number` | `1` | Border width for sub-steps |
+| `connectorThickness` | `number` | `3` | Thickness of main connector lines |
+| `subConnectorThickness` | `number` | `2` | Thickness of sub-step connector lines |
+| `connectorGap` | `number` | `48` | Gap between main steps (px) |
+| `subConnectorGap` | `number` | `24` | Gap between sub-steps (px) |
+| `labelFontSize` | `string` | `"1rem"` | Font size for main step labels |
+| `subLabelFontSize` | `string` | `"0.75rem"` | Font size for sub-step labels |
+| `descriptionFontSize` | `string` | `"0.75rem"` | Font size for descriptions |
+| `indicatorFontSize` | `string` | `"0.875rem"` | Font size for main step indicator |
+| `subIndicatorFontSize` | `string` | `"0.75rem"` | Font size for sub-step indicator |
+| `labelDescriptionGap` | `string` | `"2px"` | Gap between label and description |
+| `subLabelDescriptionGap` | `string` | `"2px"` | Gap between sub-step label and description |
+| `subStepsPadding` | `number` | `24` | Padding above/below sub-steps area |
+| `subStepsOffset` | `number` | `24` | Left offset (vertical) or top offset (horizontal) of sub-steps |
+| `completedIconSize` | `number` | 45% of box | Size of completed check icon |
+| `subCompletedIconSize` | `number` | 45% of sub-box | Size of sub-step completed check icon |
+
+### StepperRef
+
+Methods exposed via `ref`:
+
+| Method | Description |
+|--------|-------------|
+| `next()` | Advance to the next step or sub-step |
+| `prev()` | Go back to the previous step or sub-step |
+| `goTo(index)` | Jump to a specific step by index |
+| `reset()` | Reset all steps to pending |
 
 ## Accessibility
 
-- Uses clearly visible active and completed states for accessibility
-- Can be navigated programmatically using step indexes
-- Labels for steps improve readability for assistive technologies
-
+- Step indicators clearly distinguish completed, active, and pending states
+- Animated transitions provide visual feedback
+- Labels and descriptions improve readability
+- Collapsible sub-steps with chevron toggle for cleaner UI
+- Can be navigated programmatically via ref methods
