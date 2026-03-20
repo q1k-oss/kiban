@@ -17,7 +17,6 @@ import {
   Button,
 } from "@q1k-oss/kiban";
 
-// Define form schema with zod
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -28,7 +27,6 @@ const formSchema = z.object({
 });
 
 export default function FormBasicDemo() {
-  // Initialize the form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,14 +35,12 @@ export default function FormBasicDemo() {
     },
   });
 
-  // Handler for form submission
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    // In a real app, you would handle form submission here
     setIsSubmitted(true);
   }
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
     <div className="space-y-8">
@@ -65,6 +61,22 @@ export default function FormBasicDemo() {
       ) : (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="johndoe" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="email"

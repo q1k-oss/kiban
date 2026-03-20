@@ -52,8 +52,7 @@ function FormControl(_a) {
     const totalFields = Object.keys(getValues()).length;
     return (_jsx(Slot, Object.assign({ "data-slot": "form-control", id: formItemId, "aria-describedby": !error
             ? `${formDescriptionId}`
-            : `${formDescriptionId} ${formMessageId}`, "aria-invalid": !!error, className: cn(totalFields === 1 && error && "shaky-effect", (error === null || error === void 0 ? void 0 : error.message) &&
-            "shadow-[0_0_4px_1px_rgb(var(--error-border-2))] border border-error-border-2 bg-error-fill rounded-md outline-none") }, props)));
+            : `${formDescriptionId} ${formMessageId}`, "aria-invalid": !!error, className: cn(totalFields === 1 && error && "shaky-effect") }, props)));
 }
 function FormDescription(_a) {
     var { className } = _a, props = __rest(_a, ["className"]);

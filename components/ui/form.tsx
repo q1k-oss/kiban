@@ -124,9 +124,7 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
       }
       aria-invalid={!!error}
       className={cn(
-        totalFields === 1 && error && "shaky-effect",
-        error?.message &&
-          "shadow-[0_0_4px_1px_rgb(var(--error-border-2))] border border-error-border-2 bg-error-fill rounded-md outline-none"
+        totalFields === 1 && error && "shaky-effect"
       )}
       {...props}
     />
