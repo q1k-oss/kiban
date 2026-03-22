@@ -106,10 +106,6 @@ const SheetContent = React.forwardRef<
           }
           {...props}
         >
-          <SheetPrimitive.Close className="absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </SheetPrimitive.Close>
           {children}
         </SheetPrimitive.Content>
       </>
@@ -123,18 +119,27 @@ const SheetContent = React.forwardRef<
 );
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
-const SheetHeader = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+const SheetHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, children, ...props }, ref) => (
   <div
+    ref={ref}
     className={cn(
-      "flex flex-col space-y-2 text-center text-sm sm:text-left  border-b border-stroke p-4",
+      "flex items-center justify-between text-sm border-b border-stroke p-4",
       className
     )}
     {...props}
-  />
-);
+  >
+    <div className="flex flex-col space-y-1 text-left">
+      {children}  
+    </div>
+    <SheetPrimitive.Close className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0">
+      <X className="h-4 w-4" />
+      <span className="sr-only">Close</span>
+    </SheetPrimitive.Close>
+  </div>
+));
 SheetHeader.displayName = "SheetHeader";
 
 const SheetFooter = ({

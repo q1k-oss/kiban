@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
@@ -50,17 +50,17 @@ const SheetContent = React.forwardRef((_a, ref) => {
     var { side = "right", positioning, className, children } = _a, props = __rest(_a, ["side", "positioning", "className", "children"]);
     const showOverlay = positioning !== "absolute";
     const preventOutsideClose = positioning === "absolute";
-    const content = (_jsxs(_Fragment, { children: [showOverlay && _jsx(SheetOverlay, {}), _jsxs(SheetPrimitive.Content, Object.assign({ ref: ref, className: cn(sheetVariants({ side, positioning }), className), onInteractOutside: preventOutsideClose ? (e) => e.preventDefault() : undefined }, props, { children: [_jsxs(SheetPrimitive.Close, { className: "absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] }), children] }))] }));
+    const content = (_jsxs(_Fragment, { children: [showOverlay && _jsx(SheetOverlay, {}), _jsx(SheetPrimitive.Content, Object.assign({ ref: ref, className: cn(sheetVariants({ side, positioning }), className), onInteractOutside: preventOutsideClose ? (e) => e.preventDefault() : undefined }, props, { children: children }))] }));
     if (!showOverlay) {
         return content;
     }
     return _jsx(SheetPortal, { children: content });
 });
 SheetContent.displayName = SheetPrimitive.Content.displayName;
-const SheetHeader = (_a) => {
-    var { className } = _a, props = __rest(_a, ["className"]);
-    return (_jsx("div", Object.assign({ className: cn("flex flex-col space-y-2 text-center text-sm sm:text-left  border-b border-stroke p-4", className) }, props)));
-};
+const SheetHeader = React.forwardRef((_a, ref) => {
+    var { className, children } = _a, props = __rest(_a, ["className", "children"]);
+    return (_jsxs("div", Object.assign({ ref: ref, className: cn("flex items-center justify-between text-sm border-b border-stroke p-4", className) }, props, { children: [_jsx("div", { className: "flex flex-col space-y-1 text-left", children: children }), _jsxs(SheetPrimitive.Close, { className: "rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] })] })));
+});
 SheetHeader.displayName = "SheetHeader";
 const SheetFooter = (_a) => {
     var { className } = _a, props = __rest(_a, ["className"]);

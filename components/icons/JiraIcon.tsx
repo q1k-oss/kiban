@@ -39,8 +39,8 @@ export const JiraIcon: React.FC<IJiraIcon> = ({
           y2="8.89589"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.176" stop-color="#0052CC" />
-          <stop offset="1" stop-color="#2684FF" />
+          <stop offset="0.176" stopColor="#0052CC" />
+          <stop offset="1" stopColor="#2684FF" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1996_36526"
