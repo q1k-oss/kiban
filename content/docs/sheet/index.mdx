@@ -3,6 +3,7 @@ title: Sheet
 description: A panel that slides out from the edge of the screen.
 tags: ["sheet", "panel", "overlay", "popup"]
 ---
+
 ### When To Use
 
 - When you need a panel that slides in from the edge of the viewport
@@ -12,28 +13,53 @@ tags: ["sheet", "panel", "overlay", "popup"]
 
 ### Examples
 
-<Preview lang="jsx" file="/sheet/__demo__/basic" title="Displaying sheet inside the particular component" />
+<Preview lang="jsx" file="/sheet/__demo__/basic" title="Basic" description="A simple sheet with header, content, and footer inside a contained area." />
 
-A basic Sheet component with a trigger button, content, and action buttons.
+<Preview lang="jsx" file="/sheet/__demo__/header-with-action" title="Header with Action" description="Sheet header with a title and action button alongside the close icon." />
 
-<Preview lang="jsx" file="/sheet/__demo__/side" title="Side" />
+<Preview lang="jsx" file="/sheet/__demo__/side" title="Side Variants" description="Choose which edge the sheet slides in from — top, right, bottom, or left." />
 
-A Sheet component with different side options (top, right, bottom, left).
+<Preview lang="jsx" file="/sheet/__demo__/form" title="Form" description="A sheet containing a task creation form with inputs and a footer." />
 
-<Preview lang="jsx" file="/sheet/__demo__/form" title="Form" />
+<Preview lang="jsx" file="/sheet/__demo__/custom" title="Notifications" description="A notification panel with read/unread states and mark-all-read action." />
 
-A Sheet component that contains a form for user input.
+### Props
 
-<Preview lang="jsx" file="/sheet/__demo__/custom" title="Custom" />
+#### Sheet
 
-A Sheet component with custom styling and behavior.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `behavior` | `"modal" \| "panel"` | `"modal"` | Modal shows overlay and traps focus. Panel renders inline without overlay. |
+| `open` | `boolean` | — | Controlled open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes |
+
+#### SheetContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"right"` | Which edge the sheet slides from |
+| `positioning` | `"fixed" \| "absolute"` | `"fixed"` | Fixed overlays the viewport. Absolute positions within the nearest relative parent. |
+| `className` | `string` | — | Additional classes |
+
+#### SheetHeader
+
+Renders a flex row with children on the left and a close button on the right. Place `SheetTitle`, `SheetDescription`, or any element (like a `Button`) as children.
+
+#### SheetTitle
+
+Renders the sheet's title text.
+
+#### SheetDescription
+
+Renders secondary description text below the title.
+
+#### SheetFooter
+
+A flex container for action buttons at the bottom.
 
 ### Accessibility
 
-The Sheet component follows WAI-ARIA guidelines for dialog components:
-
-- Uses `role="dialog"` for the sheet
-- Supports keyboard navigation for opening, closing, and interacting with the sheet
-- When opened, focus is trapped within the sheet until it is closed
-- The `Escape` key closes the sheet
-- Uses aria-labelledby and aria-describedby to provide context for screen readers 
+- Uses `role="dialog"` with `aria-labelledby` and `aria-describedby`
+- Focus is trapped within the sheet when open
+- `Escape` key closes the sheet
+- Overlay click closes modal sheets (disabled for panel behavior)

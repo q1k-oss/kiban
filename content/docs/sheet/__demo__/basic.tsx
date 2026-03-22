@@ -5,7 +5,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetFooter,
   Button,
 } from "@q1k-oss/kiban";
 
@@ -17,16 +16,22 @@ export default () => (
       </SheetTrigger>
       <SheetContent positioning="absolute">
         <SheetHeader>
-          <SheetTitle>Project Details</SheetTitle>
+          <SheetTitle>Edit Profile</SheetTitle>
           <SheetDescription>
-            View and edit your project information.
+            Make changes to your profile here. Click save when you're done.
           </SheetDescription>
         </SheetHeader>
-        
-        <SheetFooter>
-          <Button variant="outline">Cancel</Button>
-          <Button>Save Changes</Button>
-        </SheetFooter>
+        <div className="p-4 space-y-4">
+          <div className="space-y-1">
+            <p className="text-sm font-medium">Name</p>
+            <p className="text-sm text-muted-foreground">John Doe</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-sm font-medium">Email</p>
+            <p className="text-sm text-muted-foreground">john@example.com</p>
+          </div>
+        </div>
+      
       </SheetContent>
     </Sheet>
   </div>

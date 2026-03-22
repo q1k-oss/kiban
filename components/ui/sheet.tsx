@@ -55,9 +55,9 @@ const sheetVariants = cva(
         top: "inset-x-0 top-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         bottom:
           "inset-x-0 bottom-0  data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "left-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+        left: "left-0 top-4 bottom-4 h-[calc(100%-2rem)] w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
         right:
-          "right-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+          "right-0 top-4 bottom-4 h-[calc(100%-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
       },
       positioning: {
         fixed: "fixed z-50",
@@ -126,15 +126,13 @@ const SheetHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex items-center justify-between text-sm border-b border-stroke p-4",
+      "flex items-center gap-2 text-sm border-b border-stroke p-4",
       className
     )}
     {...props}
   >
-    <div className="flex flex-col space-y-1 text-left">
-      {children}  
-    </div>
-    <SheetPrimitive.Close className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0">
+    {children}
+    <SheetPrimitive.Close className="ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0">
       <X className="h-4 w-4" />
       <span className="sr-only">Close</span>
     </SheetPrimitive.Close>
@@ -162,7 +160,7 @@ const SheetTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-semibold text-foreground", className)}
+    className={cn("flex-1 text-lg font-semibold text-foreground", className)}
     {...props}
   />
 ));

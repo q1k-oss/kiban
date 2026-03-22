@@ -33,8 +33,8 @@ const sheetVariants = cva("gap-4 bg-background shadow-lg transition ease-in-out 
         side: {
             top: "inset-x-0 top-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
             bottom: "inset-x-0 bottom-0  data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-            left: "left-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
-            right: "right-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+            left: "left-0 top-4 bottom-4 h-[calc(100%-2rem)] w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+            right: "right-0 top-4 bottom-4 h-[calc(100%-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
         },
         positioning: {
             fixed: "fixed z-50",
@@ -59,7 +59,7 @@ const SheetContent = React.forwardRef((_a, ref) => {
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 const SheetHeader = React.forwardRef((_a, ref) => {
     var { className, children } = _a, props = __rest(_a, ["className", "children"]);
-    return (_jsxs("div", Object.assign({ ref: ref, className: cn("flex items-center justify-between text-sm border-b border-stroke p-4", className) }, props, { children: [_jsx("div", { className: "flex flex-col space-y-1 text-left", children: children }), _jsxs(SheetPrimitive.Close, { className: "rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] })] })));
+    return (_jsxs("div", Object.assign({ ref: ref, className: cn("flex items-center gap-2 text-sm border-b border-stroke p-4", className) }, props, { children: [children, _jsxs(SheetPrimitive.Close, { className: "ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] })] })));
 });
 SheetHeader.displayName = "SheetHeader";
 const SheetFooter = (_a) => {
@@ -69,7 +69,7 @@ const SheetFooter = (_a) => {
 SheetFooter.displayName = "SheetFooter";
 const SheetTitle = React.forwardRef((_a, ref) => {
     var { className } = _a, props = __rest(_a, ["className"]);
-    return (_jsx(SheetPrimitive.Title, Object.assign({ ref: ref, className: cn("text-lg font-semibold text-foreground", className) }, props)));
+    return (_jsx(SheetPrimitive.Title, Object.assign({ ref: ref, className: cn("flex-1 text-lg font-semibold text-foreground", className) }, props)));
 });
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 const SheetDescription = React.forwardRef((_a, ref) => {
