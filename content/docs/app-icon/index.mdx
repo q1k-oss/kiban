@@ -6,30 +6,45 @@ tags: ["icon", "lucide", "ui", "dynamic", "custom-icons"]
 
 <Links links={[{ title: "Lucide Icons", url: "https://lucide.dev/icons/" }]} />
 
-### When To Use
+## When To Use
 
-Use **AppIcon** when you need to:
+- Render icons dynamically using a string name (from API, config, etc.)
+- Combine Lucide icons with custom SVG icons in one component
+- Fallback icon for missing entries — no runtime crashes
+- Autocomplete and type safety for icon names
 
-- Render icons dynamically using a string value
-- Support icons coming from backend APIs or configurations
-- Combine **Lucide icons** with **custom SVG icons**
-- Avoid runtime crashes when an icon is missing
-- Enable autocomplete and type safety for icon names
-- Future-proof your UI when icons may increase or change
+## Examples
 
-`AppIcon` provides a single, scalable solution for resolving icons from multiple sources while maintaining clean and maintainable code.
+<Preview lang="jsx" file="/app-icon/__demo__/basic" title="Basic Usage" description="Render Lucide icons by name." />
 
----
+<Preview lang="jsx" file="/app-icon/__demo__/custom-icons" title="All Custom Icons" description="All registered custom icons available via source='custom'." />
 
-### Features
+## Props
 
-- Autocomplete support for icon names (Lucide + Custom)
-- Backend-safe string handling
-- Fallback icon for missing entries
-- Centralized icon resolution logic
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `iconName` | `string` | — | Name of the icon. Supports Lucide names and custom icon names (prefixed with `custom-`) |
+| `size` | `number` | `20` | Icon size in pixels |
+| `strokeWidth` | `number` | `1.5` | Stroke width for the icon |
+| `className` | `string` | — | Additional CSS classes |
+| `source` | `"lucide" \| "custom"` | `"lucide"` | Icon source. Use `"custom"` for project-specific SVG icons |
 
----
+## Usage
 
-### Examples
+```tsx
+// Lucide icon (default)
+<AppIcon iconName="check" />
 
-<Preview lang="jsx" file="/app-icon/__demo__/basic" title="Basic Usage" />
+// Lucide icon with custom size
+<AppIcon iconName="settings" size={32} strokeWidth={2} />
+
+// Custom icon
+<AppIcon iconName="custom-q1k-logo" source="custom" />
+
+// Custom icon with styling
+<AppIcon iconName="custom-ai-stars" source="custom" size={40} className="text-primary" />
+```
+
+## Custom Icons
+
+Custom icons are registered in `components/icons/index.tsx`. To add a new custom icon, create an SVG component and add it to the `CustomIcons` registry with a `custom-` prefixed key.

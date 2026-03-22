@@ -18,6 +18,10 @@ declare const CustomIcons: {
     "custom-facebook-fill": import("react").FC<import("./FaceBookFillLogo").IFaceBookFillLogo>;
     "custom-q1k-logo": import("react").FC<import("./Q1KLogo").IQ1KLogoProp>;
     "custom-ai-stars": import("react").FC<import("./AiStars").IAiStarsProp>;
+    "custom-file-txt-icon": import("react").FC<import("./FileTXTIcon").IFileTXTIcon>;
+    "custom-empty-doc-icon": import("react").FC<import("./EmptyDocument").IEmptyDocument>;
+    "custom-jira-icon": import("react").FC<import("./JiraIcon").IJiraIcon>;
+    "custom-dropbox-icon": import("react").FC<import("./DropboxIcon").IDropboxIcon>;
 };
 export type CustomIconName = keyof typeof CustomIcons;
 export { CustomIcons };
