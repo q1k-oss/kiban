@@ -26,6 +26,7 @@ const customIcons = [
   "custom-full-preview-play",
   "custom-jira-icon",
   "custom-dropbox-icon",
+  "custom-gmail-icon"
 ] as const;
 
 export default () => {

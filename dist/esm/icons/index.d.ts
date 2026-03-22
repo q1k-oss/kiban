@@ -22,6 +22,7 @@ declare const CustomIcons: {
     "custom-empty-doc-icon": import("react").FC<import("./EmptyDocument").IEmptyDocument>;
     "custom-jira-icon": import("react").FC<import("./JiraIcon").IJiraIcon>;
     "custom-dropbox-icon": import("react").FC<import("./DropboxIcon").IDropboxIcon>;
+    "custom-gmail-icon": import("react").FC<import("./GmailIcon").IGmailIcon>;
 };
 export type CustomIconName = keyof typeof CustomIcons;
 export { CustomIcons };

@@ -12,6 +12,7 @@ import { FileTXTIcon } from "./FileTXTIcon";
 import { FilterIcon } from "./FilterIcon";
 import { FolderQ1kIcon } from "./FolderQ1kIcon";
 import { FullPreviewPlay } from "./FullPreviewPlay";
+import { GmailIcon } from "./GmailIcon";
 import { GoogleDriveIcon } from "./GoogleDriveIcon";
 import { JiraIcon } from "./JiraIcon";
 import { LinkedinFillLogo } from "./LinkedinFillLogo";
@@ -45,7 +46,8 @@ const CustomIcons = {
   "custom-file-txt-icon": FileTXTIcon,
   "custom-empty-doc-icon": EmptyDocument,
   "custom-jira-icon": JiraIcon,
-  "custom-dropbox-icon":DropboxIcon
+  "custom-dropbox-icon": DropboxIcon,
+  "custom-gmail-icon": GmailIcon,
 };
 
 export type CustomIconName = keyof typeof CustomIcons;
