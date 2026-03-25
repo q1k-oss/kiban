@@ -15,6 +15,8 @@ declare const sheetVariants: (props?: {
     positioning?: "fixed" | "absolute";
 } & import("class-variance-authority/dist/types").ClassProp) => string;
 interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, VariantProps<typeof sheetVariants> {
+    showOverlay?: boolean;
+    preventOutsideClose?: boolean;
 }
 declare const SheetContent: React.ForwardRefExoticComponent<SheetContentProps & React.RefAttributes<HTMLDivElement>>;
 declare const SheetHeader: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
@@ -24,4 +26,13 @@ declare const SheetFooter: {
 };
 declare const SheetTitle: React.ForwardRefExoticComponent<Omit<SheetPrimitive.DialogTitleProps & React.RefAttributes<HTMLHeadingElement>, "ref"> & React.RefAttributes<HTMLHeadingElement>>;
 declare const SheetDescription: React.ForwardRefExoticComponent<Omit<SheetPrimitive.DialogDescriptionProps & React.RefAttributes<HTMLParagraphElement>, "ref"> & React.RefAttributes<HTMLParagraphElement>>;
-export { Sheet, SheetPortal, SheetOverlay, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, };
+interface SheetAdjacentProps extends React.HTMLAttributes<HTMLDivElement> {
+    open?: boolean;
+    side?: "left" | "right";
+    width?: string;
+    gap?: number;
+    onClose?: () => void;
+    title?: string;
+}
+declare const SheetAdjacent: React.ForwardRefExoticComponent<SheetAdjacentProps & React.RefAttributes<HTMLDivElement>>;
+export { Sheet, SheetPortal, SheetOverlay, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetAdjacent, };

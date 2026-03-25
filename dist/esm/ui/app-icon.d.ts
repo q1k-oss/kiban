@@ -18,6 +18,8 @@ interface AppIconProps {
     className?: string;
     /** Source of the icon - use "custom" for CustomIcons @default "lucide" */
     source?: IconSource;
+    /** Opacity of the icon (0 to 1) @default 1 */
+    opacity?: number;
 }
 /**
  * Unified icon component that renders icons from either:
