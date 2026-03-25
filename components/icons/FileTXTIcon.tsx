@@ -4,11 +4,13 @@ export interface IFileTXTIcon {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 export const FileTXTIcon: React.FC<IFileTXTIcon> = ({
   className = "",
   size = 26,
   strokeWidth = 1.2,
+  style,
 }) => {
   return (
     <svg
@@ -18,6 +20,7 @@ export const FileTXTIcon: React.FC<IFileTXTIcon> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M14.8343 2H6.16764C5.59301 2 5.04191 2.22828 4.63558 2.63461C4.22925 3.04093 4.00098 3.59203 4.00098 4.16667V21.5C4.00098 22.0746 4.22925 22.6257 4.63558 23.0321C5.04191 23.4384 5.59301 23.6667 6.16764 23.6667H19.1676C19.7423 23.6667 20.2934 23.4384 20.6997 23.0321C21.106 22.6257 21.3343 22.0746 21.3343 21.5V8.5M14.8343 2C15.1772 1.99945 15.5169 2.06674 15.8337 2.198C16.1505 2.32927 16.4383 2.52191 16.6803 2.76484L20.5673 6.65184C20.8109 6.89397 21.0041 7.18196 21.1357 7.49918C21.2674 7.8164 21.3349 8.15655 21.3343 8.5M14.8343 2V7.41667C14.8343 7.70399 14.9484 7.97954 15.1516 8.1827C15.3548 8.38587 15.6303 8.5 15.9176 8.5L21.3343 8.5"

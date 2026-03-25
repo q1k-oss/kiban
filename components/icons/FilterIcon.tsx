@@ -4,12 +4,14 @@ export interface FilterIconProps {
   className?: string;
   size?: number;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 
 export const FilterIcon: React.FC<FilterIconProps> = ({
   className,
   strokeWidth = 1.5,
   size = 20,
+  style,
 }) => {
   return (
     <svg
@@ -19,6 +21,7 @@ export const FilterIcon: React.FC<FilterIconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M0.850098 0.851562H18.8501M4.4501 7.35156H15.2501M7.1501 13.8516H12.5501"

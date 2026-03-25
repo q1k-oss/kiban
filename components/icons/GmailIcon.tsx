@@ -4,10 +4,12 @@ export interface IGmailIcon {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 export const GmailIcon: React.FC<IGmailIcon> = ({
   className = "",
   size = 20,
+  style,
 }) => {
   return (
     <svg
@@ -17,6 +19,7 @@ export const GmailIcon: React.FC<IGmailIcon> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M1.49961 19.25H5.00156V10.7508L0 7.00391V17.7547C0 18.584 0.674609 19.25 1.49961 19.25Z"

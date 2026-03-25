@@ -4,12 +4,14 @@ export interface FolderQ1kIconProps {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 
 export const FolderQ1kIcon: React.FC<FolderQ1kIconProps> = ({
   size = 24,
   className,
   strokeWidth = 1.5,
+  style,
 }) => {
   return (
     <svg
@@ -19,6 +21,7 @@ export const FolderQ1kIcon: React.FC<FolderQ1kIconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M21.75 20.5833

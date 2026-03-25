@@ -4,10 +4,12 @@ export interface IJiraIcon {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 export const JiraIcon: React.FC<IJiraIcon> = ({
   className = "",
   size = 20,
+  style,
 }) => {
   return (
     <svg
@@ -17,6 +19,7 @@ export const JiraIcon: React.FC<IJiraIcon> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M19.1644 0H9.52637C9.52637 2.32677 11.4763 4.22065 13.8718 4.22065H15.6546V5.87102C15.6546 8.19777 17.6045 10.0917 20.0001 10.0917V0.811664C20.0001 0.351723 19.638 0 19.1644 0Z"

@@ -4,12 +4,14 @@ export interface GoogleDriveIconProps {
   className?: string;
   size?: number;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 
 export const GoogleDriveIcon: React.FC<GoogleDriveIconProps> = ({
   className = "",
   size = 23,
   strokeWidth = 0,
+  style,
 }) => {
   // Calculate height based on original aspect ratio (21/23)
   const height = (size * 21) / 23;
@@ -23,6 +25,7 @@ export const GoogleDriveIcon: React.FC<GoogleDriveIconProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       strokeWidth={strokeWidth}
+      style={style}
     >
       <g clipPath="url(#clip0_961_8583)">
         <path

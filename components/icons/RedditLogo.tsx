@@ -3,11 +3,13 @@ export interface IRedditLogo {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 export const RedditLogo: React.FC<IRedditLogo> = ({
   size = 20,
   className,
   strokeWidth = 1.5,
+  style,
 }) => {
   return (
     <svg
@@ -17,6 +19,7 @@ export const RedditLogo: React.FC<IRedditLogo> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         fillRule="evenodd"
