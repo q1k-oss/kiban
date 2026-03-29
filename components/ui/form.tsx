@@ -17,7 +17,25 @@ import { cn } from "../utils";
 
 import { Label } from "./label";
 
-const Form = FormProvider;
+type FormConfigContextValue = {
+  errorAnimationClass?: string;
+};
+
+const FormConfigContext = React.createContext<FormConfigContextValue>({});
+
+function Form({
+  errorAnimationClass,
+  ...props
+}: React.ComponentProps<typeof FormProvider> & {
+  errorAnimationClass?: string;
+}) {
+  return (
+    <FormConfigContext.Provider value={{ errorAnimationClass }}>
+      <FormProvider {...props} />
+    </FormConfigContext.Provider>
+  );
+}
+Form.displayName = "Form";
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -108,10 +126,7 @@ function FormLabel({
 function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
-
-  const { getValues } = useFormContext();
-
-  const totalFields = Object.keys(getValues()).length;
+  const { errorAnimationClass } = React.useContext(FormConfigContext);
 
   return (
     <Slot
@@ -124,7 +139,7 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
       }
       aria-invalid={!!error}
       className={cn(
-        totalFields === 1 && error && "shaky-effect"
+        error && (errorAnimationClass ?? "kiban-form-field-shake-error")
       )}
       {...props}
     />
@@ -146,16 +161,20 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 
 function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField();
-  const errorMessage = error ? String(error?.message ?? "") : props.children;
+  const body = error ? String(error?.message ?? "") : props.children;
 
   return (
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-error-border-2 text-sm min-h-5", className)}
+      className={cn(
+        "text-sm min-h-5",
+        error ? "text-error-border-2" : "text-muted-foreground",
+        className
+      )}
       {...props}
     >
-      {errorMessage}
+      {body}
     </p>
   );
 }

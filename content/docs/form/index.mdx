@@ -1,6 +1,6 @@
 ---
 title: Form
-description: A set of components for building forms with validation.
+description: A set of components for building forms with validation, error animations, and accessible controls.
 tags: ["form", "input", "validation", "label"]
 ---
 
@@ -17,6 +17,10 @@ tags: ["form", "input", "validation", "label"]
 
 ## Examples
 
+### Basic
+
+A multi-field form with Zod validation, labels, descriptions, and error messages.
+
 <Preview
   lang="jsx"
   file="/form/__demo__/basic"
@@ -24,36 +28,38 @@ tags: ["form", "input", "validation", "label"]
   description="A simple form with username and email fields."
 />
 
+### Error Shake Animation
+
+Fields shake on validation error by default using the `kiban-form-field-shake-error` class.
+
 <Preview
   lang="jsx"
   file="/form/__demo__/shaky-effect"
-  title="Shaky Effect"
-  description="When a form has only one field, it shakes on validation error. Try submitting empty."
+  title="Error Shake"
+  description="Submit empty to see the shake animation on error."
 />
+
+### Custom Error Animation
+
+Pass `errorAnimationClass` to `Form` to use your own animation class instead of the default shake.
 
 <Preview
   lang="jsx"
-  file="/form/__demo__/login"
-  title="Login Form"
+  file="/form/__demo__/custom-error-animation"
+  title="Custom Error Animation"
+  description="Uses animate-bounce instead of the default shake on error."
 />
 
-<Preview
-  lang="jsx"
-  file="/form/__demo__/profile"
-  title="Profile Form"
-/>
-
-<Preview
-  lang="jsx"
-  file="/form/__demo__/validation"
-  title="Form Validation"
-/>
-
-## Components
+## Props
 
 ### Form
 
-Re-export of React Hook Form's `FormProvider`. Wraps your form and provides context to all child components.
+Wraps React Hook Form's `FormProvider` with additional config.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `errorAnimationClass` | `string` | `"kiban-form-field-shake-error"` | CSS class applied to fields on error. Pass `""` to disable. |
+| _...rest_ | — | — | All `FormProvider` props from React Hook Form |
 
 ### FormField
 
@@ -67,7 +73,7 @@ Wraps React Hook Form's `Controller`. Connects a form field to the form context.
 
 ### FormItem
 
-Container for a single form field. Provides layout (`grid gap-2`) and context for label/control/message linking.
+Container for a single form field. Provides layout and context for label/control/message linking.
 
 ### FormLabel
 
@@ -75,12 +81,12 @@ Styled label that auto-links to its `FormControl` via `htmlFor`. Sets `data-erro
 
 ### FormControl
 
-Wraps the actual input element via Radix `Slot`. Passes down:
+Wraps the input element via Radix `Slot`. Passes down:
 
 - `id` — links to `FormLabel`
 - `aria-describedby` — links to `FormDescription` and `FormMessage`
 - `aria-invalid` — set to `true` when field has an error
-- `shaky-effect` class — applied when the form has only 1 field and validation fails
+- Error animation class — applied when validation fails
 
 ### FormDescription
 
@@ -88,7 +94,7 @@ Helper text rendered below the input. Linked via `aria-describedby`.
 
 ### FormMessage
 
-Displays the validation error message. Uses `text-error-border-2` color.
+Displays the validation error message.
 
 ## Error Styling
 
@@ -99,11 +105,11 @@ has-[input[aria-invalid=true]]:border-error-border-2
 has-[input[aria-invalid=true]]:shadow-[0_0_4px_1px_rgb(var(--error-border-2))]
 ```
 
-This ensures the outer border of the `Input` component reacts to `aria-invalid` on the inner `<input>` element, rather than styling the inner input directly.
+This ensures the outer border of the `Input` component reacts to `aria-invalid` on the inner `<input>` element.
 
 ## Accessibility
 
 - All form controls are linked to their labels via `id`/`htmlFor`
 - Error messages are announced via `aria-describedby`
 - Invalid fields are marked with `aria-invalid`
-- Shaky animation provides visual feedback on single-field forms
+- Visual error feedback via configurable animation class

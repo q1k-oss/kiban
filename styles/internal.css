@@ -77,9 +77,6 @@
     background-size: 50px 50px;
   }
 
-  .shaky-effect {
-    animation: shake 0.5s;
-  }
   .animate-ringGlow {
     animation: ringGlow 1.6s ease-in-out infinite alternate-reverse;
   }
@@ -136,25 +133,6 @@
   }
 }
 
-@keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0); /* Move slightly left */
-  }
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0); /* Move slightly right */
-  }
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0); /* Move further left */
-  }
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0); /* Move further right */
-  }
-}
 
 @keyframes ringGlow {
   0% {

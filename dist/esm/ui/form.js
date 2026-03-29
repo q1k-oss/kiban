@@ -16,7 +16,12 @@ import * as React from "react";
 import { Controller, FormProvider, useFormContext, useFormState, } from "react-hook-form";
 import { cn } from "../utils";
 import { Label } from "./label";
-const Form = FormProvider;
+const FormConfigContext = React.createContext({});
+function Form(_a) {
+    var { errorAnimationClass } = _a, props = __rest(_a, ["errorAnimationClass"]);
+    return (_jsx(FormConfigContext.Provider, { value: { errorAnimationClass }, children: _jsx(FormProvider, Object.assign({}, props)) }));
+}
+Form.displayName = "Form";
 const FormFieldContext = React.createContext({});
 const FormField = (_a) => {
     var props = __rest(_a, []);
@@ -48,11 +53,10 @@ function FormLabel(_a) {
 function FormControl(_a) {
     var props = __rest(_a, []);
     const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
-    const { getValues } = useFormContext();
-    const totalFields = Object.keys(getValues()).length;
+    const { errorAnimationClass } = React.useContext(FormConfigContext);
     return (_jsx(Slot, Object.assign({ "data-slot": "form-control", id: formItemId, "aria-describedby": !error
             ? `${formDescriptionId}`
-            : `${formDescriptionId} ${formMessageId}`, "aria-invalid": !!error, className: cn(totalFields === 1 && error && "shaky-effect") }, props)));
+            : `${formDescriptionId} ${formMessageId}`, "aria-invalid": !!error, className: cn(error && (errorAnimationClass !== null && errorAnimationClass !== void 0 ? errorAnimationClass : "kiban-form-field-shake-error")) }, props)));
 }
 function FormDescription(_a) {
     var { className } = _a, props = __rest(_a, ["className"]);
@@ -63,7 +67,7 @@ function FormMessage(_a) {
     var _b;
     var { className } = _a, props = __rest(_a, ["className"]);
     const { error, formMessageId } = useFormField();
-    const errorMessage = error ? String((_b = error === null || error === void 0 ? void 0 : error.message) !== null && _b !== void 0 ? _b : "") : props.children;
-    return (_jsx("p", Object.assign({ "data-slot": "form-message", id: formMessageId, className: cn("text-error-border-2 text-sm min-h-5", className) }, props, { children: errorMessage })));
+    const body = error ? String((_b = error === null || error === void 0 ? void 0 : error.message) !== null && _b !== void 0 ? _b : "") : props.children;
+    return (_jsx("p", Object.assign({ "data-slot": "form-message", id: formMessageId, className: cn("text-sm min-h-5", error ? "text-error-border-2" : "text-muted-foreground", className) }, props, { children: body })));
 }
 export { useFormField, Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField, };
