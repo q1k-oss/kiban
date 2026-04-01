@@ -43,7 +43,7 @@ const FormItemContext = React.createContext({});
 function FormItem(_a) {
     var { className } = _a, props = __rest(_a, ["className"]);
     const id = React.useId();
-    return (_jsx(FormItemContext.Provider, { value: { id }, children: _jsx("div", Object.assign({ "data-slot": "form-item", className: cn("grid gap-2", className) }, props)) }));
+    return (_jsx(FormItemContext.Provider, { value: { id }, children: _jsx("div", Object.assign({ "data-slot": "form-item", className: cn("grid gap-1.5", className) }, props)) }));
 }
 function FormLabel(_a) {
     var { className, required, requiredClassName, children } = _a, props = __rest(_a, ["className", "required", "requiredClassName", "children"]);
@@ -68,6 +68,8 @@ function FormMessage(_a) {
     var { className } = _a, props = __rest(_a, ["className"]);
     const { error, formMessageId } = useFormField();
     const body = error ? String((_b = error === null || error === void 0 ? void 0 : error.message) !== null && _b !== void 0 ? _b : "") : props.children;
-    return (_jsx("p", Object.assign({ "data-slot": "form-message", id: formMessageId, className: cn("text-sm min-h-5", error ? "text-error-border-2" : "text-muted-foreground", className) }, props, { children: body })));
+    if (!body)
+        return null;
+    return (_jsx("p", Object.assign({ "data-slot": "form-message", id: formMessageId, className: cn("text-sm", error ? "text-error-border-2" : "text-muted-foreground", className) }, props, { children: body })));
 }
 export { useFormField, Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField, };
