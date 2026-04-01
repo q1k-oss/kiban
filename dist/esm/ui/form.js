@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
 import { Controller, FormProvider, useFormContext, useFormState, } from "react-hook-form";
@@ -46,9 +46,9 @@ function FormItem(_a) {
     return (_jsx(FormItemContext.Provider, { value: { id }, children: _jsx("div", Object.assign({ "data-slot": "form-item", className: cn("grid gap-2", className) }, props)) }));
 }
 function FormLabel(_a) {
-    var { className } = _a, props = __rest(_a, ["className"]);
+    var { className, required, requiredClassName, children } = _a, props = __rest(_a, ["className", "required", "requiredClassName", "children"]);
     const { error, formItemId } = useFormField();
-    return (_jsx(Label, Object.assign({ "data-slot": "form-label", "data-error": !!error, className: cn(className), htmlFor: formItemId }, props)));
+    return (_jsxs(Label, Object.assign({ "data-slot": "form-label", "data-error": !!error, className: cn(className), htmlFor: formItemId }, props, { children: [children, required && (_jsx("span", { className: cn("text-error ml-0.5", requiredClassName), children: "*" }))] })));
 }
 function FormControl(_a) {
     var props = __rest(_a, []);

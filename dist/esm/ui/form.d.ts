@@ -22,7 +22,10 @@ declare const useFormField: () => {
     formMessageId: string;
 };
 declare function FormItem({ className, ...props }: React.ComponentProps<"div">): import("react/jsx-runtime").JSX.Element;
-declare function FormLabel({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>): import("react/jsx-runtime").JSX.Element;
+declare function FormLabel({ className, required, requiredClassName, children, ...props }: React.ComponentProps<typeof LabelPrimitive.Root> & {
+    required?: boolean;
+    requiredClassName?: string;
+}): import("react/jsx-runtime").JSX.Element;
 declare function FormControl({ ...props }: React.ComponentProps<typeof Slot>): import("react/jsx-runtime").JSX.Element;
 declare function FormDescription({ className, ...props }: React.ComponentProps<"p">): import("react/jsx-runtime").JSX.Element;
 declare function FormMessage({ className, ...props }: React.ComponentProps<"p">): import("react/jsx-runtime").JSX.Element;

@@ -108,8 +108,14 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
 
 function FormLabel({
   className,
+  required,
+  requiredClassName,
+  children,
   ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: React.ComponentProps<typeof LabelPrimitive.Root> & {
+  required?: boolean;
+  requiredClassName?: string;
+}) {
   const { error, formItemId } = useFormField();
 
   return (
@@ -119,7 +125,12 @@ function FormLabel({
       className={cn(className)}
       htmlFor={formItemId}
       {...props}
-    />
+    >
+      {children}
+      {required && (
+        <span className={cn("text-error ml-0.5", requiredClassName)}>*</span>
+      )}
+    </Label>
   );
 }
 
