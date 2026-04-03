@@ -1,56 +1,51 @@
 "use client";
-import { toast } from "sonner";
 
-import { Button } from "@q1k-oss/kiban";
+import { Button, kibanToast } from "@q1k-oss/kiban";
+
 
 export default function SonnerBasicDemo() {
   return (
-    <div className="flex flex-col gap-2 items-center">
-      <div className="flex gap-2">
-        <Button variant="outline" onClick={() => toast("Default notification")}>
-          Show Toast
-        </Button>
-
-        <Button
-          variant="outline"
-          onClick={() =>
-            toast("Notification with description", {
-              description:
-                "This is additional information to provide more context.",
-            })
-          }
-        >
-          With Description
-        </Button>
-      </div>
-
-      <div className="flex gap-2 mt-2">
-        <Button
-          variant="outline"
-          onClick={() =>
-            toast("Notification with action", {
-              action: {
-                label: "Undo",
-                onClick: () => console.log("Undo action clicked"),
-              },
-            })
-          }
-        >
-          With Action
-        </Button>
-
-        <Button
-          variant="outline"
-          onClick={() =>
-            toast("Custom duration", {
-              duration: 5000,
-              description: "This toast will dismiss after 5 seconds.",
-            })
-          }
-        >
-          Custom Duration
-        </Button>
-      </div>
+    <div className="flex flex-wrap gap-2 items-center justify-center">
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.success("Pizza ordered successfully", {
+            description: "Extra cheese confirmed. You deserve this.",
+          })
+        }
+      >
+        Success
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.error("WiFi disconnected during movie", {
+            description: "Right at the plot twist. The universe hates you.",
+          })
+        }
+      >
+        Error
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.warning("Phone battery at 3%", {
+            description: "Charger is in the other room. Survival mode activated.",
+          })
+        }
+      >
+        Warning
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.info("Your cat is judging you", {
+            description: "It's been staring for 11 minutes. No blinks.",
+          })
+        }
+      >
+        Info
+      </Button>
     </div>
   );
 }

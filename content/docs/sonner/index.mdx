@@ -1,101 +1,155 @@
 ---
 title: Sonner
-description: A toast notification component that provides unobtrusive feedback.
+description: A toast notification component with built-in variants, actionable toasts, and progress indicators.
 tags: ["sonner", "toast", "notification", "feedback"]
 ---
 
-<Links links={[{ title: "Sonner", url: "https://sonner.emilkowal.ski/" }]} />
-
-### When To Use
-
-Use the Sonner component when you need to:
+## When To Use
 
 - Display non-blocking notifications or feedback to users
-- Show success, error, or information messages
-- Notify users of system events or status changes
-- Present time-sensitive information that doesn't require user action
-- Provide feedback after user actions (form submissions, save operations, etc.)
-
-Sonner notifications are temporary and disappear automatically, making them ideal for transient feedback that doesn't interrupt the user's workflow.
+- Show success, error, warning, or info messages
+- Provide feedback after user actions with optional undo/action buttons
+- Show countdown timers with pause/resume on actionable toasts
 
 <Toaster />
 
-### Examples
+## Examples
+
+### Toast Variants
+
+All four variants — success, error, warning, info — with title and description.
 
 <Preview
   lang="jsx"
   file="/sonner/__demo__/basic"
-  title="Basic"
-  description="Learn how to show a simple toast notification using the toast() function."
-
+  title="Toast Variants"
+  description="Simple toast notifications using kibanToast with all four variants."
 />
 
-<Preview
-  lang="jsx"
-  file="/sonner/__demo__/types"
-  title="Types"
-  description="See examples of different toast types like success, error, info and warning."
+### Actionable Toast
 
-/>
-
-
-
-<Preview
-  lang="jsx"
-  file="/sonner/__demo__/custom"
-  title="Custom"
-  description="Create your own toast design with custom styles, icons, and actions."
-
-/>
+Rich toasts with action buttons, progress bar, countdown timer, and click-to-stop.
 
 <Preview
   lang="jsx"
   file="/sonner/__demo__/actionable"
-  title="Actionable"
-  description="Toasts with action buttons, countdown timer, progress bar, and click-to-stop functionality."
-
+  title="Actionable Toast"
+  description="Toasts with undo/action buttons, progress bar, and countdown timer."
 />
+
+### Custom Layout
+
+Build your own toast UI with `kibanToast.custom()`. Full control over the layout — render any JSX.
+
+<Preview
+  lang="jsx"
+  file="/sonner/__demo__/custom"
+  title="Custom Layout"
+  description="Render completely custom toast layouts with kibanToast.custom()."
+/>
+
+### Loading & Promise
+
+Show a loading spinner while an async operation runs, then automatically switch to success or error.
 
 <Preview
   lang="jsx"
   file="/sonner/__demo__/promise"
-  title="Promise"
- description="Handle async operations easily with toast.promise() for loading, success, and error states."
-
+  title="Loading & Promise"
+  description="Loading toast, promise-based toast that resolves to success or error."
 />
 
-### Props
+### Position
 
-#### ExternalToast
+Each toast can be positioned independently using the `position` option.
 
-<AutoTypeTable
-  type={`
-  import { type ExternalToast } from "sonner";
-  export type ExternalToast = ExternalToast
-`}
-  name="ExternalToast"
+<Preview
+  lang="jsx"
+  file="/sonner/__demo__/position"
+  title="Toast Position"
+  description="Select a position and click Show Toast to see it appear at that corner."
 />
-#### ToastClassnames
-<AutoTypeTable
-  type={`
-  import { type ToastClassnames } from "sonner";
-  export type ToastClassnames = ToastClassnames
-`}
-  name="ToastClassnames"
-/>
-#### ToastT
-<AutoTypeTable
-  type={`
-  import { type ToastT } from "sonner";
-  export type ToastT = ToastT
-`}
-  name="ToastT"
-/>
-#### ToastToDismiss
-<AutoTypeTable
-  type={`
-  import { type ToastToDismiss } from "sonner";
-  export type ToastToDismiss = ToastToDismiss
-`}
-  name="ToastToDismiss"
-/>{" "}
+
+## API
+
+### kibanToast
+
+Simple toast notifications with variant styling.
+
+```tsx
+import { kibanToast } from "@q1k-oss/kiban";
+
+kibanToast.success("Saved!");
+kibanToast.error("Something went wrong", { description: "Try again." });
+kibanToast.warning("Storage low", { duration: 8000 });
+kibanToast.info("New update available");
+```
+
+| Method | Description |
+|--------|-------------|
+| `kibanToast.success(title, options?)` | Green success toast |
+| `kibanToast.error(title, options?)` | Red error toast |
+| `kibanToast.warning(title, options?)` | Yellow warning toast |
+| `kibanToast.info(title, options?)` | Blue info toast |
+| `kibanToast.loading(title, options?)` | Spinner toast (duration: Infinity by default) |
+| `kibanToast.promise(promise, options)` | Loading → success/error based on promise result |
+| `kibanToast.custom(render, options?)` | Render fully custom JSX toast |
+| `kibanToast.dismiss(id)` | Dismiss a toast by ID |
+
+**Options:**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `description` | `string` | — | Secondary text below the title |
+| `duration` | `number` | `5000` | Auto-dismiss duration in ms |
+| `position` | `"top-left" \| "top-right" \| "bottom-left" \| "bottom-right" \| "top-center" \| "bottom-center"` | `"top-right"` | Position of this specific toast |
+
+### actionableToast
+
+Rich toast with progress bar, countdown timer, and action button.
+
+```tsx
+import { actionableToast } from "@q1k-oss/kiban";
+
+actionableToast({
+  title: "Item deleted",
+  description: "The item has been removed.",
+  variant: "error",
+  duration: 8000,
+  action: {
+    label: "Undo",
+    onClick: () => console.log("Undone!"),
+  },
+});
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | — | Toast title (required) |
+| `description` | `string` | — | Secondary text |
+| `variant` | `"success" \| "error" \| "warning" \| "info"` | `"success"` | Color variant |
+| `duration` | `number` | `5000` | Countdown duration in ms |
+| `action` | `{ label: string; onClick: () => void }` | — | Action button |
+
+### Toaster
+
+Place `<Toaster />` once in your app layout. All props from sonner's `Toaster` are supported.
+
+```tsx
+import { Toaster } from "@q1k-oss/kiban";
+
+export default function Layout({ children }) {
+  return (
+    <>
+      {children}
+      <Toaster position="top-right" />
+    </>
+  );
+}
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `position` | `"top-left" \| "top-right" \| "bottom-left" \| "bottom-right" \| "top-center" \| "bottom-center"` | `"top-right"` | Where toasts appear on screen |
+| `closeButton` | `boolean` | `true` | Show close button on default sonner toasts |
+| `duration` | `number` | `5000` | Default auto-dismiss duration in ms |

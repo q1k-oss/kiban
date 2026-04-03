@@ -1,66 +1,64 @@
-"use client"
+"use client";
 
-import { toast } from 'sonner';
+import { Button, kibanToast } from "@q1k-oss/kiban";
 
-import { Button } from '@q1k-oss/kiban';
+
+const mockCooking = () =>
+  new Promise<{ dish: string }>((resolve) =>
+    setTimeout(() => resolve({ dish: "Instant Noodles" }), 2500),
+  );
+
+const mockAlarm = () =>
+  new Promise<never>((_, reject) =>
+    setTimeout(() => reject(new Error("Snoozed 7 times")), 2000),
+  );
 
 export default function SonnerPromiseDemo() {
-  // Simulated API calls
-  const mockAPISuccess = (): Promise<{ message: string }> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ message: "Data fetched successfully!" });
-      }, 2000);
-    });
-  };
-
-  const mockAPIError = (): Promise<{ message: string }> => {
-    return new Promise((_, reject) => {
-      setTimeout(() => {
-        reject(new Error("Failed to fetch data"));
-      }, 2000);
-    });
-  };
-
-  // Simple promise toast with strings
-  const handleSimplePromise = () => {
-    toast.promise(mockAPISuccess, {
-      loading: 'Loading data...',
-      success: 'Data loaded successfully',
-      error: 'Error loading data',
-    });
-  };
-
-  // Promise toast with function callbacks
-  const handleCallbackPromise = () => {
-    toast.promise(mockAPIError, {
-      loading: 'Fetching data...',
-      success: () => 'Successfully fetched data',
-      error: (err) => `Error: ${err.message}`,
-    });
-  };
-
   return (
-    <div className="flex flex-col gap-2 items-center">
-      <div className="flex gap-2">
-        <Button
-          variant="outline"
-          onClick={handleSimplePromise}
-        >
-          Simple Promise
-        </Button>
-        
-        <Button
-          variant="outline"
-          onClick={handleCallbackPromise}
-        >
-          Callback Promise
-        </Button>
-      </div>
-      
-      <p className="text-sm text-muted-foreground mt-4">
-        Toast notifications will show loading, success, or error states based on the promise result.
-      </p>
+    <div className="flex flex-wrap gap-2 items-center justify-center">
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.loading("Microwave heating leftovers...", {
+            description: "Spinning plate of mystery food. Pray it heats evenly.",
+          })
+        }
+      >
+        Loading
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.promise(mockCooking(), {
+            loading: "Cooking dinner...",
+            success: (data) => `${data.dish} ready. Chef's kiss.`,
+            error: "Kitchen is on fire. Again.",
+            description: {
+              loading: "Boiling water... this is your peak skill.",
+              success: "Gordon Ramsay would be... disappointed but not surprised.",
+              error: "Maybe just order takeout.",
+            },
+          })
+        }
+      >
+        Promise (Success)
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.promise(mockAlarm(), {
+            loading: "Waking up...",
+            success: "Actually woke up on time",
+            error: (err) => `${(err as Error).message}. You're late. Very late.`,
+            description: {
+              loading: "Alarm is doing its best...",
+              error: "Your boss already noticed. Good luck.",
+            },
+          })
+        }
+      >
+        Promise (Error)
+      </Button>
     </div>
   );
-} 
+}
