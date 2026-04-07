@@ -22,6 +22,7 @@ export interface KibanToastOptions {
   description?: string;
   duration?: number;
   position?: KibanToastPosition;
+  showProgress?: boolean;
 }
 
 const useCountdown = (duration: number) => {
@@ -50,12 +51,14 @@ export const KibanToastContent = ({
   description,
   variant,
   duration = 5000,
+  showProgress = true,
 }: {
   id: string | number;
   title: string;
   description?: string;
   variant: ActionableToastVariant;
   duration?: number;
+  showProgress?: boolean;
 }) => {
   const config = variantConfig[variant];
   const progress = useCountdown(duration);
@@ -98,15 +101,17 @@ export const KibanToastContent = ({
           )}
         </div>
 
-        <div className="h-1 w-full bg-transparent">
-          <div
-            className="h-full transition-all duration-100 ease-linear rounded-full"
-            style={{
-              width: `${progress * 100}%`,
-              background: config.iconColor,
-            }}
-          />
-        </div>
+        {showProgress && (
+          <div className="h-1 w-full bg-transparent">
+            <div
+              className="h-full transition-all duration-100 ease-linear rounded-full"
+              style={{
+                width: `${progress * 100}%`,
+                background: config.iconColor,
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -124,6 +129,7 @@ const createToast = (variant: ActionableToastVariant) => {
           description={options?.description}
           variant={variant}
           duration={duration}
+          showProgress={options?.showProgress ?? true}
         />
       ),
       {

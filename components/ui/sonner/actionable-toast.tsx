@@ -131,6 +131,7 @@ export const ActionableToastContent = ({
   description,
   variant = "success",
   duration = 5000,
+  showProgress = true,
   action,
   actions,
 }: ActionableToastOptions & { id: string | number }) => {
@@ -181,25 +182,8 @@ export const ActionableToastContent = ({
             </span>
           )}
 
-          <div className="flex justify-end gap-2 mt-1">
-            {resolvedActions.map((act, idx) => {
-              if (isProcessing && activeIdx !== idx) return null;
-              return (
-                <ActionButton
-                  key={idx}
-                  action={act}
-                  isLoading={activeIdx === idx}
-                  disabled={isProcessing}
-                  onPress={() => handleAction(act, idx)}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        {!isProcessing && (
-          <>
-            <div className="px-4 pb-2">
+          <div className="flex items-baseline justify-between mt-1">
+            {!isProcessing && showProgress ? (
               <span className="text-xs text-tertiary-text">
                 {paused ? (
                   <>
@@ -207,7 +191,7 @@ export const ActionableToastContent = ({
                     <Button
                       variant={"ghost"}
                       onClick={() => setPaused(false)}
-                      className="font-semibold text-secondary-text bg-transparent border-none cursor-pointer text-xs hover:text-primary-text inline-block p-1 rounded-xs"
+                      className="font-semibold text-secondary-text bg-transparent border-none cursor-pointer p-1 text-xs hover:text-primary-text rounded-xs inline-block"
                     >
                       Click to resume.
                     </Button>
@@ -218,16 +202,36 @@ export const ActionableToastContent = ({
                     <Button
                       variant={"ghost"}
                       onClick={() => setPaused(true)}
-                      className="font-semibold text-primary-text bg-transparent border-none cursor-pointer text-xs inline-block p-1 rounded-xs"
+                      className="font-semibold text-primary-text bg-transparent border-none cursor-pointer p-1 text-xs rounded-xs inline-block"
                     >
                       Click to stop.
                     </Button>
                   </>
                 )}
               </span>
+            ) : (
+              <span />
+            )}
+
+            <div className="flex gap-2">
+              {resolvedActions.map((act, idx) => {
+                if (isProcessing && activeIdx !== idx) return null;
+                return (
+                  <ActionButton
+                    key={idx}
+                    action={act}
+                    isLoading={activeIdx === idx}
+                    disabled={isProcessing}
+                    onPress={() => handleAction(act, idx)}
+                  />
+                );
+              })}
             </div>
-            <ProgressBar progress={progress} color={config.iconColor} />
-          </>
+          </div>
+        </div>
+
+        {!isProcessing && showProgress && (
+          <ProgressBar progress={progress} color={config.iconColor} />
         )}
       </div>
     </div>

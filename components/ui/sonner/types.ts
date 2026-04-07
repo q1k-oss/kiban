@@ -14,6 +14,7 @@ export interface ActionableToastOptions {
   description?: string;
   variant?: ActionableToastVariant;
   duration?: number;
+  showProgress?: boolean;
   action?: ActionableToastAction;
   actions?: ActionableToastAction[];
 }
