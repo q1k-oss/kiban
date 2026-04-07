@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import * as React from "react";
 import { toast } from "sonner";
 import { AppIcon } from "../app-icon";
@@ -47,7 +47,7 @@ const useCountdown = (toastId, duration, paused) => {
     }, [paused, toastId]);
     return remaining / duration;
 };
-const ToastIcon = ({ config }) => (_jsx("span", { className: "shrink-0", style: { color: config.iconColor }, children: _jsx(AppIcon, { iconName: config.iconName, source: config.iconSource, size: 20, strokeWidth: 1.5 }) }));
+const ToastIcon = ({ config, }) => (_jsx("span", { className: "shrink-0", style: { color: config.iconColor }, children: _jsx(AppIcon, { iconName: config.iconName, source: config.iconSource, size: 20, strokeWidth: 1.5 }) }));
 const CloseButton = ({ toastId }) => (_jsx(Button, { variant: "ghost", onClick: () => toast.dismiss(toastId), className: "bg-transparent border-none text-tertiary-text cursor-pointer p-1 shrink-0 rounded-md", children: _jsx(AppIcon, { iconName: "x", size: 14, strokeWidth: 2 }) }));
 const ActionButton = ({ action, isLoading, disabled, onPress, }) => (_jsxs(Button, { variant: "outline", size: "sm", disabled: disabled, onClick: onPress, className: "text-xs font-medium cursor-pointer gap-1.5 p-1.5 min-w-16", children: [isLoading ? (_jsx(AppIcon, { iconName: "loader", size: 12, strokeWidth: 2, className: "animate-spin" })) : (_jsx(AppIcon, { iconName: action.icon, size: 12, strokeWidth: 2 })), action.label] }));
 const ProgressBar = ({ progress, color, }) => (_jsx("div", { className: "h-1 w-full bg-transparent", children: _jsx("div", { className: "h-full transition-all duration-100 ease-linear rounded-full", style: { width: `${progress * 100}%`, background: color } }) }));
@@ -56,8 +56,10 @@ export const ActionableToastContent = ({ id, title, description, variant = "succ
     const rawActions = actions !== null && actions !== void 0 ? actions : (action ? [action] : DEFAULT_ACTIONS);
     const resolvedActions = rawActions.map(resolveAction);
     const [activeIdx, setActiveIdx] = React.useState(null);
+    const [paused, setPaused] = React.useState(false);
     const isProcessing = activeIdx !== null;
-    const progress = useCountdown(id, duration, isProcessing);
+    const progress = useCountdown(id, duration, isProcessing || paused);
+    const secondsLeft = Math.ceil((progress * duration) / 1000);
     const handleAction = (act, idx) => __awaiter(void 0, void 0, void 0, function* () {
         setActiveIdx(idx);
         try {
@@ -72,5 +74,5 @@ export const ActionableToastContent = ({ id, title, description, variant = "succ
                                 if (isProcessing && activeIdx !== idx)
                                     return null;
                                 return (_jsx(ActionButton, { action: act, isLoading: activeIdx === idx, disabled: isProcessing, onPress: () => handleAction(act, idx) }, idx));
-                            }) })] }), !isProcessing && _jsx(ProgressBar, { progress: progress, color: config.iconColor })] }) }));
+                            }) })] }), !isProcessing && (_jsxs(_Fragment, { children: [_jsx("div", { className: "px-4 pb-2", children: _jsx("span", { className: "text-xs text-tertiary-text", children: paused ? (_jsxs(_Fragment, { children: ["Paused.", " ", _jsx(Button, { variant: "ghost", onClick: () => setPaused(false), className: "font-semibold text-secondary-text bg-transparent border-none cursor-pointer text-xs hover:text-primary-text inline-block p-1 rounded-xs", children: "Click to resume." })] })) : (_jsxs(_Fragment, { children: ["Closes in ", secondsLeft, "s.", " ", _jsx(Button, { variant: "ghost", onClick: () => setPaused(true), className: "font-semibold text-primary-text bg-transparent border-none cursor-pointer text-xs inline-block p-1 rounded-xs", children: "Click to stop." })] })) }) }), _jsx(ProgressBar, { progress: progress, color: config.iconColor })] }))] }) }));
 };

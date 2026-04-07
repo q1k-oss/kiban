@@ -5,11 +5,12 @@ export interface KibanToastOptions {
     duration?: number;
     position?: KibanToastPosition;
 }
-export declare const KibanToastContent: ({ id, title, description, variant, }: {
+export declare const KibanToastContent: ({ id, title, description, variant, duration, }: {
     id: string | number;
     title: string;
     description?: string;
     variant: ActionableToastVariant;
+    duration?: number;
 }) => import("react/jsx-runtime").JSX.Element;
 declare const createToast: (variant: ActionableToastVariant) => (title: string, options?: KibanToastOptions) => string | number;
 export { createToast };

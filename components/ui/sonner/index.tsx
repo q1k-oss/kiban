@@ -19,7 +19,7 @@ const kibanActionableToast = (options: ActionableToastOptions) => {
   const duration = options.duration ?? 5000;
   return toast.custom(
     (id) => <ActionableToastContent id={id} {...options} duration={duration} />,
-    { duration: Infinity },
+    { duration: duration + 1000 },
   );
 };
 
