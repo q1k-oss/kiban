@@ -6,8 +6,107 @@ import { toast } from "sonner";
 import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
-import type { ActionableToastOptions } from "./types";
+import type { ActionableToastAction, ActionableToastOptions } from "./types";
 import { variantConfig } from "./variants";
+
+const DEFAULT_ACTIONS: ActionableToastAction[] = [
+  { label: "Yes", icon: "check" },
+  { label: "No", icon: "x" },
+];
+
+const resolveAction = (action: ActionableToastAction) => ({
+  label: action.label ?? "OK",
+  icon: action.icon ?? "check",
+  variant: action.variant,
+  onClick: action.onClick ?? (() => {}),
+});
+
+const useCountdown = (
+  toastId: string | number,
+  duration: number,
+  paused: boolean,
+) => {
+  const [remaining, setRemaining] = React.useState(duration);
+  const startRef = React.useRef(Date.now());
+
+  React.useEffect(() => {
+    if (paused) return;
+
+    startRef.current = Date.now();
+    const startRemaining = remaining;
+
+    const timer = setInterval(() => {
+      const left = Math.max(0, startRemaining - (Date.now() - startRef.current));
+      setRemaining(left);
+      if (left <= 0) {
+        clearInterval(timer);
+        toast.dismiss(toastId);
+      }
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, [paused, toastId]);
+
+  return remaining / duration;
+};
+
+const ToastIcon = ({ config }: { config: (typeof variantConfig)[keyof typeof variantConfig] }) => (
+  <span className="shrink-0" style={{ color: config.iconColor }}>
+    <AppIcon iconName={config.iconName} source={config.iconSource} size={20} strokeWidth={1.5} />
+  </span>
+);
+
+const CloseButton = ({ toastId }: { toastId: string | number }) => (
+  <Button
+    variant="ghost"
+    onClick={() => toast.dismiss(toastId)}
+    className="bg-transparent border-none text-tertiary-text cursor-pointer p-1 shrink-0 rounded-md"
+  >
+    <AppIcon iconName="x" size={14} strokeWidth={2} />
+  </Button>
+);
+
+const ActionButton = ({
+  action,
+  isLoading,
+  disabled,
+  onPress,
+}: {
+  action: ReturnType<typeof resolveAction>;
+  isLoading: boolean;
+  disabled: boolean;
+  onPress: () => void;
+}) => (
+  <Button
+    variant="outline"
+    size="sm"
+    disabled={disabled}
+    onClick={onPress}
+    className="text-xs font-medium cursor-pointer gap-1.5 p-1.5 min-w-16"
+  >
+    {isLoading ? (
+      <AppIcon iconName="loader" size={12} strokeWidth={2} className="animate-spin" />
+    ) : (
+      <AppIcon iconName={action.icon} size={12} strokeWidth={2} />
+    )}
+    {action.label}
+  </Button>
+);
+
+const ProgressBar = ({
+  progress,
+  color,
+}: {
+  progress: number;
+  color: string;
+}) => (
+  <div className="h-1 w-full bg-transparent">
+    <div
+      className="h-full transition-all duration-100 ease-linear rounded-full"
+      style={{ width: `${progress * 100}%`, background: color }}
+    />
+  </div>
+);
 
 export const ActionableToastContent = ({
   id,
@@ -16,117 +115,59 @@ export const ActionableToastContent = ({
   variant = "success",
   duration = 5000,
   action,
+  actions,
 }: ActionableToastOptions & { id: string | number }) => {
   const config = variantConfig[variant];
-  const [paused, setPaused] = React.useState(false);
-  const [remaining, setRemaining] = React.useState(duration);
-  const startTimeRef = React.useRef(Date.now());
-  const remainingAtPauseRef = React.useRef(duration);
+  const rawActions = actions ?? (action ? [action] : DEFAULT_ACTIONS);
+  const resolvedActions = rawActions.map(resolveAction);
 
-  React.useEffect(() => {
-    if (paused) {
-      remainingAtPauseRef.current = remaining;
-      return;
+  const [activeIdx, setActiveIdx] = React.useState<number | null>(null);
+  const isProcessing = activeIdx !== null;
+  const progress = useCountdown(id, duration, isProcessing);
+
+  const handleAction = async (act: ReturnType<typeof resolveAction>, idx: number) => {
+    setActiveIdx(idx);
+    try {
+      await act.onClick();
+      setTimeout(() => toast.dismiss(id), 300);
+    } catch {
+      setActiveIdx(null);
     }
-
-    startTimeRef.current = Date.now();
-    const startRemaining = remainingAtPauseRef.current;
-
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTimeRef.current;
-      const left = Math.max(0, startRemaining - elapsed);
-      setRemaining(left);
-      if (left <= 0) {
-        clearInterval(interval);
-        toast.dismiss(id);
-      }
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, [paused, id]);
-
-  const progress = remaining / duration;
-  const secondsLeft = Math.ceil(remaining / 1000);
+  };
 
   return (
-    <div className="w-[450px] rounded-xl overflow-hidden shadow-lg"  style={{ background: config.bgColor }}>
-      <div className="px-5 py-4">
-        <div className="flex items-start gap-3">
-          <span className="mt-0.5 shrink-0" style={{ color: config.iconColor }}>
-            <AppIcon
-              iconName={config.iconName}
-              source={config.iconSource}
-              size={20}
-              strokeWidth={2}
-            />
-          </span>
-          <div className="flex-1 min-w-0 ">
-            <span className="font-semibold text-primary-text text-sm block">
-              {title}
-            </span>
-            {description && (
-              <span className="mt-1 text-tertiary-text text-xs block">
-                {description}
-              </span>
-            )}
-            {action && (
-              <Button
-                onClick={() => {
-                  action.onClick();
-                  toast.dismiss(id);
-                }}
-                className="mt-4 py-1.5 px-2 text-xs font-medium cursor-pointer"
-              >
-                {action.label}
-              </Button>
-            )}
+    <div className="rounded-lg shadow-lg p-px w-[420px]" style={{ background: config.borderGradient }}>
+      <div className="rounded-lg overflow-hidden" style={{ background: config.bgColor }}>
+        <div className="px-4 py-4 flex flex-col gap-2">
+
+          <div className="flex items-center gap-2.5">
+            <ToastIcon config={config} />
+            <span className="font-semibold text-primary-text text-sm leading-tight flex-1">{title}</span>
+            {!isProcessing && <CloseButton toastId={id} />}
           </div>
-          <Button
-            variant={"ghost"}
-            onClick={() => toast.dismiss(id)}
-            className="bg-transparent border-none text-tertiary-text cursor-pointer p-1 shrink-0 rounded-md"
-          >
-            <AppIcon iconName="x" size={16} strokeWidth={2} />
-          </Button>
-        </div>
-      </div>
 
-      <div className="border-t border-stroke px-5 py-2 flex items-center">
-        <span className="text-xs text-tertiary">
-          {paused ? (
-            <span>
-              Paused.{" "}
-              <Button
-                variant={"ghost"}
-                onClick={() => setPaused(false)}
-                className="font-semibold text-secondary-text bg-transparent border-none cursor-pointer p-0 text-xs hover:bg-transparent inline-block"
-              >
-                Click to resume.
-              </Button>
-            </span>
-          ) : (
-            <span>
-              This message will close in {secondsLeft}s.{" "}
-              <Button
-                variant={"ghost"}
-                onClick={() => setPaused(true)}
-                className="font-semibold text-primary-text bg-transparent border-none cursor-pointer p-0 text-xs hover:bg-transparent inline-block"
-              >
-                Click to stop.
-              </Button>
-            </span>
+          {description && (
+            <span className="text-tertiary-text text-xs block">{description}</span>
           )}
-        </span>
-      </div>
 
-      <div className="h-0.5 w-full bg-tertiary-text">
-        <div
-          className="h-full"
-          style={{
-            width: `${progress * 100}%`,
-            background: config.progressColor,
-          }}
-        />
+          <div className="flex justify-end gap-2 mt-1">
+            {resolvedActions.map((act, idx) => {
+              if (isProcessing && activeIdx !== idx) return null;
+              return (
+                <ActionButton
+                  key={idx}
+                  action={act}
+                  isLoading={activeIdx === idx}
+                  disabled={isProcessing}
+                  onPress={() => handleAction(act, idx)}
+                />
+              );
+            })}
+          </div>
+
+        </div>
+
+        {!isProcessing && <ProgressBar progress={progress} color={config.iconColor} />}
       </div>
     </div>
   );

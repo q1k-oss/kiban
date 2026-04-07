@@ -19,7 +19,7 @@ import { createToast } from "./kiban-toast";
 import { KibanLoadingContent } from "./loading-toast";
 import { kibanPromise } from "./promise-toast";
 import { toastStore } from "./toast-store";
-const actionableToast = (options) => {
+const kibanActionableToast = (options) => {
     var _a;
     const duration = (_a = options.duration) !== null && _a !== void 0 ? _a : 5000;
     return toast.custom((id) => _jsx(ActionableToastContent, Object.assign({ id: id }, options, { duration: duration })), { duration: Infinity });
@@ -63,4 +63,4 @@ const kibanToast = {
         return id;
     },
 };
-export { Toaster, actionableToast, kibanToast };
+export { Toaster, kibanActionableToast, kibanToast };

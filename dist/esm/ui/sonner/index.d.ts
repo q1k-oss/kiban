@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "sonner";
 import type { KibanToastOptions, KibanToastPosition } from "./kiban-toast";
 import type { ActionableToastOptions } from "./types";
 type ToasterProps = React.ComponentProps<typeof Sonner>;
-declare const actionableToast: (options: ActionableToastOptions) => string | number;
+declare const kibanActionableToast: (options: ActionableToastOptions) => string | number;
 declare const Toaster: ({ ...props }: ToasterProps) => import("react/jsx-runtime").JSX.Element;
 declare const kibanToast: {
     success: (title: string, options?: KibanToastOptions) => string | number;
@@ -18,7 +18,7 @@ declare const kibanToast: {
         position?: KibanToastPosition;
     }) => string | number;
 };
-export { Toaster, actionableToast, kibanToast };
+export { Toaster, kibanActionableToast, kibanToast };
 export type { ActionableToastOptions, ActionableToastVariant } from "./types";
 export type { KibanToastOptions, KibanToastPosition } from "./kiban-toast";
 export type { KibanPromiseOptions } from "./promise-toast";

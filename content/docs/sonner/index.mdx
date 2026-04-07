@@ -104,14 +104,14 @@ kibanToast.info("New update available");
 | `duration` | `number` | `5000` | Auto-dismiss duration in ms |
 | `position` | `"top-left" \| "top-right" \| "bottom-left" \| "bottom-right" \| "top-center" \| "bottom-center"` | `"top-right"` | Position of this specific toast |
 
-### actionableToast
+### kibanActionableToast
 
 Rich toast with progress bar, countdown timer, and action button.
 
 ```tsx
-import { actionableToast } from "@q1k-oss/kiban";
+import { kibanActionableToast } from "@q1k-oss/kiban";
 
-actionableToast({
+kibanActionableToast({
   title: "Item deleted",
   description: "The item has been removed.",
   variant: "error",

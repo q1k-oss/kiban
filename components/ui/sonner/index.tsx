@@ -15,7 +15,7 @@ import type { ActionableToastOptions } from "./types";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
-const actionableToast = (options: ActionableToastOptions) => {
+const kibanActionableToast = (options: ActionableToastOptions) => {
   const duration = options.duration ?? 5000;
   return toast.custom(
     (id) => <ActionableToastContent id={id} {...options} duration={duration} />,
@@ -92,7 +92,7 @@ const kibanToast = {
   },
 };
 
-export { Toaster, actionableToast, kibanToast };
+export { Toaster, kibanActionableToast, kibanToast };
 export type { ActionableToastOptions, ActionableToastVariant } from "./types";
 export type { KibanToastOptions, KibanToastPosition } from "./kiban-toast";
 export type { KibanPromiseOptions } from "./promise-toast";
