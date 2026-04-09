@@ -7,7 +7,7 @@ import { cn } from "../../utils";
 import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
-import { ProgressBar } from "./progress-bar";
+import { TimeBar } from "./progress-bar";
 import type { ActionableToastAction, ActionableToastOptions, VariantConfig } from "./types";
 import { useCountdown } from "./use-countdown";
 import { resolveColors } from "./variants";
@@ -33,7 +33,7 @@ const ToastIcon = ({
     <AppIcon
       iconName={config.iconName}
       source={config.iconSource}
-      size={20}
+      size={18}
       strokeWidth={1.5}
     />
   </span>
@@ -45,7 +45,7 @@ const CloseButton = ({ toastId }: { toastId: string | number }) => (
     onClick={() => toast.dismiss(toastId)}
     className="bg-transparent border-none text-tertiary-text cursor-pointer p-1 shrink-0 rounded-md"
   >
-    <AppIcon iconName="x" size={14} strokeWidth={2} />
+    <AppIcon iconName="x" size={18} strokeWidth={1.5} />
   </Button>
 );
 
@@ -119,78 +119,76 @@ export const ActionableToastContent = ({
 
   return (
     <div
-      className={cn("rounded-lg shadow-lg p-px w-[420px]", className)}
+      className={cn("rounded-lg shadow-lg p-px w-[380px] max-w-[380px] overflow-hidden", className)}
       style={{ background: config.borderGradient }}
     >
       <div
         className="rounded-lg overflow-hidden"
         style={{ background: config.bgColor }}
       >
-        <div className="px-4 py-4 flex flex-col gap-2">
-          <div className="flex items-center gap-2.5">
+        <div className="px-2 py-2 pb-1 flex flex-col gap-2">
+          <div className="flex items-start gap-2">
             <ToastIcon config={config} />
-            <span className="font-semibold text-primary-text text-sm leading-tight flex-1">
-              {title}
-            </span>
+            <div className="flex-1 min-w-0 flex flex-col gap-1">
+              <span className="font-medium text-primary-text text-xs leading-tight">
+                {title}
+              </span>
+              {description && (
+                <span className="text-tertiary-text text-xs font-normal">
+                  {description}
+                </span>
+              )}
+            </div>
             {!isProcessing && <CloseButton toastId={id} />}
           </div>
 
-          {description && (
-            <span className="text-tertiary-text text-xs block">
-              {description}
-            </span>
-          )}
+          <div className="flex justify-end gap-2 ">
+            {resolvedActions.map((act, idx) => {
+              if (isProcessing && activeIdx !== idx) return null;
+              return (
+                <ActionButton
+                  key={idx}
+                  action={act}
+                  isLoading={activeIdx === idx}
+                  disabled={isProcessing}
+                  onPress={() => handleAction(act, idx)}
+                />
+              );
+            })}
+          </div>
+        </div>
 
-          <div className="flex items-baseline justify-between mt-2">
-            {!isProcessing && showProgress ? (
-              <span className="text-xs text-tertiary-text">
+        {!isProcessing && showProgress && (
+          <>
+            <div className="px-2 py-.5 border-t">
+              <span className="text-[11px] text-tertiary-text flex items-center gap-1 flex-wrap">
                 {paused ? (
                   <>
-                    Paused.{" "}
+                    Paused. {" "}
                     <Button
-                      variant={"ghost"}
+                      variant="ghost"
                       onClick={() => setPaused(false)}
-                      className="font-semibold text-secondary-text bg-transparent border-none cursor-pointer p-1 text-xs hover:text-primary-text rounded-xs inline-block"
+                      className="font-medium text-secondary-text bg-transparent border-none cursor-pointer p-0 text-[11px] hover:text-primary-text hover:bg-transparent rounded-xs inline-block"
                     >
                       Click to resume.
                     </Button>
                   </>
                 ) : (
                   <>
-                    Closes in {secondsLeft}s.{" "}
+                    This message will close in {secondsLeft}s. {" "}
                     <Button
-                      variant={"ghost"}
+                      variant="ghost"
                       onClick={() => setPaused(true)}
-                      className="font-semibold text-primary-text bg-transparent border-none cursor-pointer p-1 text-xs rounded-xs inline-block"
+                      className="font-medium text-primary-text bg-transparent border-none cursor-pointer p-0 text-[11px] rounded-xs hover:bg-transparent inline-block"
                     >
                       Click to stop.
                     </Button>
                   </>
                 )}
               </span>
-            ) : (
-              <span />
-            )}
-
-            <div className="flex gap-2">
-              {resolvedActions.map((act, idx) => {
-                if (isProcessing && activeIdx !== idx) return null;
-                return (
-                  <ActionButton
-                    key={idx}
-                    action={act}
-                    isLoading={activeIdx === idx}
-                    disabled={isProcessing}
-                    onPress={() => handleAction(act, idx)}
-                  />
-                );
-              })}
             </div>
-          </div>
-        </div>
-
-        {!isProcessing && showProgress && (
-          <ProgressBar progress={progress} color={config.progressColor} />
+            <TimeBar progress={progress} color={config.progressColor} />
+          </>
         )}
       </div>
     </div>

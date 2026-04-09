@@ -7,7 +7,7 @@ import { cn } from "../../utils";
 import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
-import { ProgressBar } from "./progress-bar";
+import { TimeBar } from "./progress-bar";
 import { toastStore } from "./toast-store";
 import type { ActionableToastVariant, ToastColors } from "./types";
 import { useCountdown } from "./use-countdown";
@@ -54,43 +54,44 @@ export const KibanToastContent = ({
 
   return (
     <div
-      className={cn("rounded-lg shadow-lg p-px w-[420px]", className)}
+      className={cn("rounded-lg shadow-lg p-px w-[380px]", className)}
       style={{ background: config.borderGradient }}
     >
       <div
         className="relative rounded-lg overflow-hidden flex flex-col"
         style={{ background: config.bgColor }}
       >
-        <div className="p-4 flex flex-col gap-2">
-          <div className="flex items-center gap-2.5">
+        <div className="p-2 flex flex-col gap-2">
+          <div className="flex items-start gap-2">
             <span className="shrink-0" style={{ color: config.iconColor }}>
               <AppIcon
                 iconName={config.iconName}
                 source={config.iconSource}
-                size={20}
+                size={18}
                 strokeWidth={1.5}
               />
             </span>
-            <span className="font-semibold text-primary-text text-sm leading-tight flex-1">
-              {title}
-            </span>
+            <div className="flex-1 min-w-0 flex flex-col gap-1">
+              <span className="font-medium text-primary-text text-xs leading-tight">
+                {title}
+              </span>
+              {description && (
+                <span className="text-tertiary-text text-xs font-normal">
+                  {description}
+                </span>
+              )}
+            </div>
             <Button
               variant="ghost"
               onClick={() => toast.dismiss(id)}
               className="bg-transparent border-none text-tertiary-text cursor-pointer p-1 shrink-0 rounded-md"
             >
-              <AppIcon iconName="x" size={14} strokeWidth={2} />
+              <AppIcon iconName="x" size={18} strokeWidth={1.5} />
             </Button>
           </div>
-
-          {description && (
-            <span className="text-tertiary-text text-xs block">
-              {description}
-            </span>
-          )}
         </div>
 
-        {showProgress && <ProgressBar progress={progress} color={config.progressColor} />}
+        {showProgress && <TimeBar progress={progress} color={config.progressColor} />}
       </div>
     </div>
   );
