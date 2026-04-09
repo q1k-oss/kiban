@@ -28,5 +28,5 @@ export const ClearAllButtons = () => {
     return (_jsx(_Fragment, { children: positions.map(([position]) => (_jsx("div", { className: `fixed z-[999999999] ${positionClasses[position]}`, children: _jsxs(Button, { size: "sm", onClick: () => {
                     const ids = toastStore.untrackByPosition(position);
                     ids.forEach((id) => toast.dismiss(id));
-                }, className: "text-xs gap-1.5 px-2 py-1 font-light", children: [_jsx(AppIcon, { iconName: "x", size: 12, strokeWidth: 2 }), "Clear all"] }) }, position))) }));
+                }, className: "text-xs gap-1.5 px-2 py-1 rounded-xs", children: [_jsx(AppIcon, { iconName: "x", size: 12, strokeWidth: 2 }), "Clear all"] }) }, position))) }));
 };

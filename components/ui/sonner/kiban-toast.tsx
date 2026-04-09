@@ -3,12 +3,15 @@
 import * as React from "react";
 import { toast } from "sonner";
 
+import { cn } from "../../utils";
 import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
+import { ProgressBar } from "./progress-bar";
 import { toastStore } from "./toast-store";
-import type { ActionableToastVariant } from "./types";
-import { variantConfig } from "./variants";
+import type { ActionableToastVariant, ToastColors } from "./types";
+import { useCountdown } from "./use-countdown";
+import { resolveColors } from "./variants";
 
 export type KibanToastPosition =
   | "top-left"
@@ -23,27 +26,9 @@ export interface KibanToastOptions {
   duration?: number;
   position?: KibanToastPosition;
   showProgress?: boolean;
+  colors?: ToastColors;
+  className?: string;
 }
-
-const useCountdown = (duration: number) => {
-  const [remaining, setRemaining] = React.useState(duration);
-  const startRef = React.useRef(Date.now());
-
-  React.useEffect(() => {
-    startRef.current = Date.now();
-    const startRemaining = remaining;
-
-    const timer = setInterval(() => {
-      const left = Math.max(0, startRemaining - (Date.now() - startRef.current));
-      setRemaining(left);
-      if (left <= 0) clearInterval(timer);
-    }, 50);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  return remaining / duration;
-};
 
 export const KibanToastContent = ({
   id,
@@ -52,6 +37,8 @@ export const KibanToastContent = ({
   variant,
   duration = 5000,
   showProgress = true,
+  colors,
+  className,
 }: {
   id: string | number;
   title: string;
@@ -59,13 +46,15 @@ export const KibanToastContent = ({
   variant: ActionableToastVariant;
   duration?: number;
   showProgress?: boolean;
+  colors?: ToastColors;
+  className?: string;
 }) => {
-  const config = variantConfig[variant];
-  const progress = useCountdown(duration);
+  const config = resolveColors(variant, colors);
+  const progress = useCountdown(id, duration);
 
   return (
     <div
-      className="rounded-lg shadow-lg p-px w-[420px]"
+      className={cn("rounded-lg shadow-lg p-px w-[420px]", className)}
       style={{ background: config.borderGradient }}
     >
       <div
@@ -101,17 +90,7 @@ export const KibanToastContent = ({
           )}
         </div>
 
-        {showProgress && (
-          <div className="h-1 w-full bg-transparent">
-            <div
-              className="h-full transition-all duration-100 ease-linear rounded-full"
-              style={{
-                width: `${progress * 100}%`,
-                background: config.iconColor,
-              }}
-            />
-          </div>
-        )}
+        {showProgress && <ProgressBar progress={progress} color={config.progressColor} />}
       </div>
     </div>
   );
@@ -130,10 +109,12 @@ const createToast = (variant: ActionableToastVariant) => {
           variant={variant}
           duration={duration}
           showProgress={options?.showProgress ?? true}
+          colors={options?.colors}
+          className={options?.className}
         />
       ),
       {
-        duration: duration + 500,
+        duration: duration + 50,
         position,
         onDismiss: () => toastStore.untrack(id),
         onAutoClose: () => toastStore.untrack(id),

@@ -2,48 +2,19 @@
 
 import { Button, kibanToast } from "@q1k-oss/kiban";
 
-
 export default function SonnerBasicDemo() {
   return (
     <div className="flex flex-wrap gap-2 items-center justify-center">
-      <Button
-        variant="outline"
-        onClick={() =>
-          kibanToast.success("Pizza ordered successfully", {
-            description: "Extra cheese confirmed. You deserve this.",
-          })
-        }
-      >
+      <Button variant="outline" onClick={() => kibanToast.success("Pizza ordered", { description: "Extra cheese confirmed. You've earned it, legend." })}>
         Success
       </Button>
-      <Button
-        variant="outline"
-        onClick={() =>
-          kibanToast.error("WiFi disconnected during movie", {
-            description: "Right at the plot twist. The universe hates you.",
-          })
-        }
-      >
+      <Button variant="outline" onClick={() => kibanToast.error("WiFi died", { description: "Right during the final boss fight. Life is unfair." })}>
         Error
       </Button>
-      <Button
-        variant="outline"
-        onClick={() =>
-          kibanToast.warning("Phone battery at 3%", {
-            description: "Charger is in the other room. Survival mode activated.",
-          })
-        }
-      >
+      <Button variant="outline" onClick={() => kibanToast.warning("Fridge is empty", { description: "Just ketchup and regret in there." })}>
         Warning
       </Button>
-      <Button
-        variant="outline"
-        onClick={() =>
-          kibanToast.info("Your cat is judging you", {
-            description: "It's been staring for 11 minutes. No blinks.",
-          })
-        }
-      >
+      <Button variant="outline" onClick={() => kibanToast.info("Cat is staring at you", { description: "It's been 14 minutes. Zero blinks. Send help." })}>
         Info
       </Button>
     </div>

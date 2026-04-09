@@ -12,6 +12,8 @@ export interface ActionableToastOptions {
     variant?: ActionableToastVariant;
     duration?: number;
     showProgress?: boolean;
+    colors?: ToastColors;
+    className?: string;
     action?: ActionableToastAction;
     actions?: ActionableToastAction[];
 }
@@ -23,4 +25,11 @@ export interface VariantConfig {
     progressColor: string;
     iconColor: string;
     bgColor: string;
+}
+export interface ToastColors {
+    borderColor?: string;
+    borderGradient?: string;
+    progressColor?: string;
+    iconColor?: string;
+    bgColor?: string;
 }

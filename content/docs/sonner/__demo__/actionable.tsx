@@ -1,6 +1,6 @@
 "use client";
 
-import { kibanActionableToast, Button, kibanToast } from "@q1k-oss/kiban";
+import { Button, kibanActionableToast, kibanToast } from "@q1k-oss/kiban";
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -11,71 +11,23 @@ export default function SonnerActionableDemo() {
         variant="outline"
         onClick={() =>
           kibanActionableToast({
-            title: "Update available",
-            description: "A new version is ready. Restart to apply changes.",
-            variant: "success",
-          })
-        }
-      >
-        Default
-      </Button>
-      <Button
-        variant="outline"
-        onClick={() =>
-          kibanActionableToast({
-            title: "Accept cookies?",
-            description: "We use cookies to improve your experience. Mostly to track your snack habits.",
-            variant: "info",
-            duration: 10000,
-            actions: [
-              {
-                label: "Accept",
-                icon: "check",
-                onClick: async () => {
-                  await wait(1500);
-                  kibanToast.success("Cookies accepted. Nom nom.");
-                },
-              },
-              {
-                label: "Decline",
-                icon: "x",
-                variant: "ghost",
-                onClick: async () => {
-                  await wait(800);
-                  kibanToast.info("Fine. No cookies for you.");
-                },
-              },
-            ],
-          })
-        }
-      >
-        Accept / Decline
-      </Button>
-      <Button
-        variant="outline"
-        onClick={() =>
-          kibanActionableToast({
-            title: "Delete your search history?",
-            description: "This action cannot be undone. Your secrets will be safe.",
+            title: "Eat the last cookie?",
+            description: "Your roommate counted them. Twice.",
             variant: "error",
             duration: 10000,
             actions: [
               {
-                label: "Delete",
-                icon: "trash-2",
+                label: "Eat it",
+                icon: "cookie",
                 onClick: async () => {
-                  await wait(2000);
-                  kibanToast.success("History deleted. You're a ghost now.");
+                  await wait(1500);
+                  kibanToast.success("Cookie consumed. No witnesses.");
                 },
               },
               {
-                label: "Keep",
-                icon: "shield",
-                variant: "ghost",
-                onClick: async () => {
-                  await wait(500);
-                  kibanToast.warning("Brave choice. Very brave.");
-                },
+                label: "Resist",
+                icon: "x",
+                onClick: () => {},
               },
             ],
           })
@@ -87,22 +39,34 @@ export default function SonnerActionableDemo() {
         variant="outline"
         onClick={() =>
           kibanActionableToast({
-            title: "Your cat wants attention",
-            description: "It's been meowing for 20 minutes. The neighbors are concerned.",
+            title: "Reply to mom's text?",
+            description: "It's been 3 hours. She sent a follow-up dot dot dot.",
             variant: "warning",
             duration: 10000,
             action: {
-              label: "Pet the cat",
-              icon: "heart",
+              label: "Reply 'On my way'",
+              icon: "send",
               onClick: async () => {
-                await wait(1500);
-                kibanToast.success("Cat purring. World peace achieved.");
+                await wait(2000);
+                kibanToast.success("Lie sent successfully.");
               },
             },
           })
         }
       >
         Single Action
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanActionableToast({
+            title: "Gym membership expiring",
+            description: "You went once. In January. For the free towel.",
+            variant: "success",
+          })
+        }
+      >
+        Default (Yes / No)
       </Button>
     </div>
   );

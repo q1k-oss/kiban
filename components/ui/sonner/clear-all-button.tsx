@@ -55,7 +55,7 @@ export const ClearAllButtons = () => {
               );
               ids.forEach((id) => toast.dismiss(id));
             }}
-            className="text-xs gap-1.5 px-2 py-1 font-light"
+            className="text-xs gap-1.5 px-2 py-1 rounded-xs"
           >
             <AppIcon iconName="x" size={12} strokeWidth={2} />
             Clear all

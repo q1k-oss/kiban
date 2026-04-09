@@ -3,11 +3,14 @@
 import * as React from "react";
 import { toast } from "sonner";
 
+import { cn } from "../../utils";
 import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
-import type { ActionableToastAction, ActionableToastOptions } from "./types";
-import { variantConfig } from "./variants";
+import { ProgressBar } from "./progress-bar";
+import type { ActionableToastAction, ActionableToastOptions, VariantConfig } from "./types";
+import { useCountdown } from "./use-countdown";
+import { resolveColors } from "./variants";
 
 const DEFAULT_ACTIONS: ActionableToastAction[] = [
   { label: "Yes", icon: "check" },
@@ -21,42 +24,10 @@ const resolveAction = (action: ActionableToastAction) => ({
   onClick: action.onClick ?? (() => {}),
 });
 
-const useCountdown = (
-  toastId: string | number,
-  duration: number,
-  paused: boolean,
-) => {
-  const [remaining, setRemaining] = React.useState(duration);
-  const startRef = React.useRef(Date.now());
-
-  React.useEffect(() => {
-    if (paused) return;
-
-    startRef.current = Date.now();
-    const startRemaining = remaining;
-
-    const timer = setInterval(() => {
-      const left = Math.max(
-        0,
-        startRemaining - (Date.now() - startRef.current),
-      );
-      setRemaining(left);
-      if (left <= 0) {
-        clearInterval(timer);
-        toast.dismiss(toastId);
-      }
-    }, 50);
-
-    return () => clearInterval(timer);
-  }, [paused, toastId]);
-
-  return remaining / duration;
-};
-
 const ToastIcon = ({
   config,
 }: {
-  config: (typeof variantConfig)[keyof typeof variantConfig];
+  config: VariantConfig;
 }) => (
   <span className="shrink-0" style={{ color: config.iconColor }}>
     <AppIcon
@@ -110,20 +81,6 @@ const ActionButton = ({
   </Button>
 );
 
-const ProgressBar = ({
-  progress,
-  color,
-}: {
-  progress: number;
-  color: string;
-}) => (
-  <div className="h-1 w-full bg-transparent">
-    <div
-      className="h-full transition-all duration-100 ease-linear rounded-full"
-      style={{ width: `${progress * 100}%`, background: color }}
-    />
-  </div>
-);
 
 export const ActionableToastContent = ({
   id,
@@ -132,10 +89,12 @@ export const ActionableToastContent = ({
   variant = "success",
   duration = 5000,
   showProgress = true,
+  colors,
+  className,
   action,
   actions,
 }: ActionableToastOptions & { id: string | number }) => {
-  const config = variantConfig[variant];
+  const config = resolveColors(variant, colors);
   const rawActions = actions ?? (action ? [action] : DEFAULT_ACTIONS);
   const resolvedActions = rawActions.map(resolveAction);
 
@@ -160,7 +119,7 @@ export const ActionableToastContent = ({
 
   return (
     <div
-      className="rounded-lg shadow-lg p-px w-[420px]"
+      className={cn("rounded-lg shadow-lg p-px w-[420px]", className)}
       style={{ background: config.borderGradient }}
     >
       <div
@@ -182,7 +141,7 @@ export const ActionableToastContent = ({
             </span>
           )}
 
-          <div className="flex items-baseline justify-between mt-1">
+          <div className="flex items-baseline justify-between mt-2">
             {!isProcessing && showProgress ? (
               <span className="text-xs text-tertiary-text">
                 {paused ? (
@@ -231,7 +190,7 @@ export const ActionableToastContent = ({
         </div>
 
         {!isProcessing && showProgress && (
-          <ProgressBar progress={progress} color={config.iconColor} />
+          <ProgressBar progress={progress} color={config.progressColor} />
         )}
       </div>
     </div>

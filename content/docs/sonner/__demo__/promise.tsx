@@ -2,15 +2,14 @@
 
 import { Button, kibanToast } from "@q1k-oss/kiban";
 
-
-const mockCooking = () =>
-  new Promise<{ dish: string }>((resolve) =>
-    setTimeout(() => resolve({ dish: "Instant Noodles" }), 2500),
+const orderFood = () =>
+  new Promise<{ item: string }>((resolve) =>
+    setTimeout(() => resolve({ item: "Butter Chicken" }), 2500),
   );
 
-const mockAlarm = () =>
+const findRemote = () =>
   new Promise<never>((_, reject) =>
-    setTimeout(() => reject(new Error("Snoozed 7 times")), 2000),
+    setTimeout(() => reject(new Error("Under the couch cushion")), 2000),
   );
 
 export default function SonnerPromiseDemo() {
@@ -19,7 +18,7 @@ export default function SonnerPromiseDemo() {
       <Button
         variant="outline"
         onClick={() =>
-          kibanToast.loading("Microwave heating leftovers...", {
+          kibanToast.loading("Microwaving leftovers...", {
             description: "Spinning plate of mystery food. Pray it heats evenly.",
           })
         }
@@ -29,14 +28,13 @@ export default function SonnerPromiseDemo() {
       <Button
         variant="outline"
         onClick={() =>
-          kibanToast.promise(mockCooking(), {
-            loading: "Cooking dinner...",
-            success: (data) => `${data.dish} ready. Chef's kiss.`,
-            error: "Kitchen is on fire. Again.",
+          kibanToast.promise(orderFood(), {
+            loading: "Placing your order...",
+            success: (data) => `${data.item} is on its way!`,
+            error: "Kitchen caught fire. Again.",
             description: {
-              loading: "Boiling water... this is your peak skill.",
-              success: "Gordon Ramsay would be... disappointed but not surprised.",
-              error: "Maybe just order takeout.",
+              loading: "Convincing the chef you deserve extra naan...",
+              success: "ETA: 30 mins. Patience level: critical.",
             },
           })
         }
@@ -46,13 +44,13 @@ export default function SonnerPromiseDemo() {
       <Button
         variant="outline"
         onClick={() =>
-          kibanToast.promise(mockAlarm(), {
-            loading: "Waking up...",
-            success: "Actually woke up on time",
-            error: (err) => `${(err as Error).message}. You're late. Very late.`,
+          kibanToast.promise(findRemote(), {
+            loading: "Searching for TV remote...",
+            success: "Remote found!",
+            error: (err) => `Found it: ${(err as Error).message}`,
             description: {
-              loading: "Alarm is doing its best...",
-              error: "Your boss already noticed. Good luck.",
+              loading: "Checking between cushions...",
+              error: "It was there the whole time. Classic.",
             },
           })
         }
