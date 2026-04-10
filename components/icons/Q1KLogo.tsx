@@ -4,11 +4,13 @@ export interface IQ1KLogoProp {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 export const Q1KLogo: React.FC<IQ1KLogoProp> = ({
   size = 20,
   className,
   strokeWidth = 1.5,
+  style,
 }) => {
   return (
     <svg
@@ -18,6 +20,7 @@ export const Q1KLogo: React.FC<IQ1KLogoProp> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M30.6137 21.9171C30.9206 21.8215 31.2542 21.8719 31.52 22.0537C31.8124 22.2545 31.9881 22.5885 31.9881 22.9467V27.6069C31.9881 27.9895 31.7866 28.3426 31.4591 28.533L27.226 31.0009C26.9165 31.1809 26.5375 31.1879 26.222 31.0183C25.8816 30.8357 25.6689 30.4774 25.6689 30.087V25.4634C25.6689 24.9981 25.9133 24.5677 26.3094 24.3329L26.3189 24.3277L30.1901 22.0824C30.2724 22.0345 30.3607 21.9963 30.4516 21.9676L30.6137 21.9171Z"

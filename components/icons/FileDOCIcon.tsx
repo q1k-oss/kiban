@@ -4,11 +4,13 @@ export interface FileDOCIconProps {
   className?: string;
   size?: number;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 export const FileDOCIcon: React.FC<FileDOCIconProps> = ({
   className = "",
   size = 26,
   strokeWidth = 1.2,
+  style,
 }) => {
   return (
     <svg
@@ -18,6 +20,7 @@ export const FileDOCIcon: React.FC<FileDOCIconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M14.8348 2H6.16813C5.5935 2 5.0424 2.22828 4.63607 2.63461C4.22974 3.04093 4.00146 3.59203 4.00146 4.16667V21.5C4.00146 22.0746 4.22974 22.6257 4.63607 23.0321C5.0424 23.4384 5.5935 23.6667 6.16813 23.6667H19.1681C19.7428 23.6667 20.2939 23.4384 20.7002 23.0321C21.1065 22.6257 21.3348 22.0746 21.3348 21.5V8.5M14.8348 2C15.1777 1.99945 15.5174 2.06674 15.8342 2.198C16.151 2.32927 16.4387 2.52191 16.6808 2.76484L20.5678 6.65184C20.8114 6.89397 21.0046 7.18196 21.1362 7.49918C21.2679 7.8164 21.3354 8.15655 21.3348 8.5M14.8348 2V7.41667C14.8348 7.70399 14.9489 7.97954 15.1521 8.1827C15.3553 8.38587 15.6308 8.5 15.9181 8.5L21.3348 8.5"

@@ -1,0 +1,30 @@
+import React from "react";
+
+export interface IDropboxIcon {
+  size?: number;
+  className?: string;
+  strokeWidth?: number;
+  style?: React.CSSProperties;
+}
+export const DropboxIcon: React.FC<IDropboxIcon> = ({
+  className = "",
+  size = 20,
+  style,
+}) => {
+  return (
+    <svg
+      width={size}
+      height={(size * 22) / 24}
+      viewBox="0 0 24 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={style}
+    >
+      <path
+        d="M4.88147 8.36469L0 4.52629L7.06003 9.20502e-05L11.9999 4.04883L4.88147 8.36469L12 12.6807L7.06012 16.7296L0 12.2034L4.88156 8.3646L4.88147 8.36469ZM12 12.6807L16.9402 16.7296L23.9999 12.2034L19.1183 8.36469L12 12.6807ZM24 4.52629L16.9402 0L12.0001 4.04874L19.1185 8.36469L24 4.52611V4.52629ZM12.0144 13.5516L7.06003 17.5884L4.94016 16.2294V17.7532L12.0145 21.9189L19.089 17.7532V16.2294L16.9693 17.5884L12.0144 13.5516Z"
+        fill="#007EE5"
+      />
+    </svg>
+  );
+};

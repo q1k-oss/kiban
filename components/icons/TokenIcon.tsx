@@ -3,12 +3,14 @@ export interface TokenIconProps {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 
 export const TokenIcon: React.FC<TokenIconProps> = ({
   size = 28,
   className,
   strokeWidth = 1.5,
+  style,
 }) => {
   return (
     <svg
@@ -18,6 +20,7 @@ export const TokenIcon: React.FC<TokenIconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         fillRule="evenodd"
