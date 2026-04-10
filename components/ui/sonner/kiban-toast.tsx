@@ -7,11 +7,12 @@ import { cn } from "../../utils";
 import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
-import { TimeBar } from "./progress-bar";
+
 import { toastStore } from "./toast-store";
 import type { ActionableToastVariant, ToastColors } from "./types";
 import { useCountdown } from "./use-countdown";
 import { resolveColors } from "./variants";
+import { TimeBar } from "./time-bar";
 
 export type KibanToastPosition =
   | "top-left"
@@ -54,7 +55,7 @@ export const KibanToastContent = ({
 
   return (
     <div
-      className={cn("rounded-lg shadow-lg p-px w-[380px]", className)}
+      className={cn("rounded-lg shadow-lg p-px w-[380px]", showProgress && "pb-0", className)}
       style={{ background: config.borderGradient }}
     >
       <div

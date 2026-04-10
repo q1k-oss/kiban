@@ -7,10 +7,15 @@ import { cn } from "../../utils";
 import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
-import { TimeBar } from "./progress-bar";
-import type { ActionableToastAction, ActionableToastOptions, VariantConfig } from "./types";
+
+import type {
+  ActionableToastAction,
+  ActionableToastOptions,
+  VariantConfig,
+} from "./types";
 import { useCountdown } from "./use-countdown";
 import { resolveColors } from "./variants";
+import { TimeBar } from "./time-bar";
 
 const DEFAULT_ACTIONS: ActionableToastAction[] = [
   { label: "Yes", icon: "check" },
@@ -24,11 +29,7 @@ const resolveAction = (action: ActionableToastAction) => ({
   onClick: action.onClick ?? (() => {}),
 });
 
-const ToastIcon = ({
-  config,
-}: {
-  config: VariantConfig;
-}) => (
+const ToastIcon = ({ config }: { config: VariantConfig }) => (
   <span className="shrink-0" style={{ color: config.iconColor }}>
     <AppIcon
       iconName={config.iconName}
@@ -81,7 +82,6 @@ const ActionButton = ({
   </Button>
 );
 
-
 export const ActionableToastContent = ({
   id,
   title,
@@ -119,14 +119,18 @@ export const ActionableToastContent = ({
 
   return (
     <div
-      className={cn("rounded-lg shadow-lg p-px w-[380px] max-w-[380px] overflow-hidden", className)}
+      className={cn(
+        "rounded-lg shadow-lg p-px w-[380px] max-w-[380px] overflow-hidden",
+        showProgress && !isProcessing && "pb-0",
+        className,
+      )}
       style={{ background: config.borderGradient }}
     >
-      <div
-        className="rounded-lg overflow-hidden"
-        style={{ background: config.bgColor }}
-      >
-        <div className="px-2 py-2 pb-1 flex flex-col gap-2">
+      <div className="rounded-lg overflow-hidden bg-[#151515]">
+        <div
+          className="px-2 py-2 flex flex-col gap-2"
+          style={{ background: config.bgColor }}
+        >
           <div className="flex items-start gap-2">
             <ToastIcon config={config} />
             <div className="flex-1 min-w-0 flex flex-col gap-1">
@@ -160,11 +164,11 @@ export const ActionableToastContent = ({
 
         {!isProcessing && showProgress && (
           <>
-            <div className="px-2 py-.5 border-t">
+            <div className="px-2 border-t">
               <span className="text-[11px] text-tertiary-text flex items-center gap-1 flex-wrap">
                 {paused ? (
                   <>
-                    Paused. {" "}
+                    Paused.{" "}
                     <Button
                       variant="ghost"
                       onClick={() => setPaused(false)}
@@ -175,7 +179,7 @@ export const ActionableToastContent = ({
                   </>
                 ) : (
                   <>
-                    This message will close in {secondsLeft}s. {" "}
+                    This message will close in {secondsLeft}s.{" "}
                     <Button
                       variant="ghost"
                       onClick={() => setPaused(true)}
