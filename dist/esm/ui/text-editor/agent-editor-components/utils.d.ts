@@ -10,5 +10,12 @@ export declare const buildResponsiveImageAttrs: (urls: IImageUploadResult) => {
     srcset: string;
     sizes: string;
 };
+export declare const retryUpload: (view: EditorView, uploadId: string) => void;
+export declare const removeFailedUpload: (view: EditorView, uploadId: string) => void;
+export declare const getUploadEntry: (uploadId: string) => {
+    file: File;
+    handler: ImageUploadHandler;
+    view: EditorView;
+};
 export declare const uploadAndInsertImage: (view: EditorView, pos: number | null, file: File, uploadHandler: ImageUploadHandler) => void;
 export declare const validateImageUrl: (raw: string) => string | null;

@@ -20,7 +20,7 @@ import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu"
 import { editorStyles as defaultEditorStyles } from "./notion-editor-components/editor-styles";
 import { FloatingCommandMenu } from "./notion-editor-components/floating-command-menu";
 import { FontSize } from "./notion-editor-components/font-size";
-const TextEditor = ({ value = "", onChange, wrapperClassName = "", editorClassName = "", headingLevels = [1, 2, 3], placeholder = "start typing...", linkClassName = "text-blue-500 underline hover:text-blue-600", highlightMulticolor = true, textAlignTypes = ["heading", "paragraph", "image"], variant = "AGENT_EDITOR", topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors = false, anchorLinkClassName = "heading-anchor", editorStyles = "", onImageUpload, topToolbarClassName, }) => {
+const TextEditor = ({ value = "", onChange, wrapperClassName = "", editorClassName = "", headingLevels = [1, 2, 3], placeholder = "start typing...", linkClassName = "text-blue-500 underline hover:text-blue-600", highlightMulticolor = true, textAlignTypes = ["heading", "paragraph", "image"], variant = "AGENT_EDITOR", topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors = false, anchorLinkClassName = "heading-anchor", editorStyles = "", onImageUpload, onImageRemove, topToolbarClassName, }) => {
     const styles = defaultEditorStyles + (editorStyles !== null && editorStyles !== void 0 ? editorStyles : "");
     const onImageUploadRef = useRef(onImageUpload);
     onImageUploadRef.current = onImageUpload;
@@ -154,6 +154,7 @@ const TextEditor = ({ value = "", onChange, wrapperClassName = "", editorClassNa
         colors,
         highlightColors,
         onImageUpload,
+        onImageRemove,
     };
     if (variant === "AGENT_EDITOR") {
         return (_jsx(TextEditorConfigProvider, { config: editorConfig, children: _jsxs("div", { className: `bg-transparent ${wrapperClassName}`, children: [_jsx("style", { children: styles }), topToolbar ? topToolbar(editor) : _jsx(TopToolbar, { editor: editor, className: topToolbarClassName }), _jsx(EditorContent, { editor: editor })] }) }));

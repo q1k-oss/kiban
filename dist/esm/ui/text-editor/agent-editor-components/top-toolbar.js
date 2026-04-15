@@ -33,7 +33,7 @@ export const TopToolbar = ({ editor, className }) => {
             case "link":
                 return (_jsx(LinkDropdown, { editor: editor, isOpen: activeDropdown === "link", onToggle: () => toggleDropdown("link") }, idx));
             case "image":
-                return _jsx(ImageButton, { editor: editor }, idx);
+                return (_jsx(ImageButton, { editor: editor, isOpen: activeDropdown === "image", onToggle: () => toggleDropdown("image") }, idx));
             case "table":
                 return (_jsx(TableDropdown, { editor: editor, isOpen: activeDropdown === "table", onToggle: () => toggleDropdown("table") }, idx));
         }

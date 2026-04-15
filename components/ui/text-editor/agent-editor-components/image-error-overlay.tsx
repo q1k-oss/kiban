@@ -116,7 +116,7 @@ export const ImageErrorOverlay = ({ editor }: ImageErrorOverlayProps) => {
             className="w-full h-full flex flex-col items-center justify-center gap-3"
             style={{ background: "rgba(30, 10, 10, 0.88)" }}
           >
-            <AppIcon iconName="image-off" size={28} style={{ color: "#d32f2f" }} />
+            <span style={{ color: "#d32f2f" }}><AppIcon iconName="image-off" size={28} /></span>
             <span className="text-xs font-medium" style={{ color: "#d32f2f" }}>
               Upload failed
             </span>

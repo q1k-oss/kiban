@@ -166,7 +166,7 @@ const TextEditor = ({
             if (!file) continue;
 
             event.preventDefault();
-            uploadAndInsertImage(view, null, file, uploadHandler, maxImageRetries);
+            uploadAndInsertImage(view, null, file, uploadHandler);
             return true;
           }
         }

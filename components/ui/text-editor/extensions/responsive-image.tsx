@@ -50,7 +50,7 @@ const ImageNodeView = ({ node, editor, deleteNode }: NodeViewProps) => {
             className="absolute inset-0 flex items-center justify-center rounded"
             style={{ background: "rgba(0, 0, 0, 0.5)" }}
           >
-            <AppIcon iconName="loader-circle" size={28} className="animate-spin" style={{ color: "#888" }} />
+            <span style={{ color: "#888" }}><AppIcon iconName="loader-circle" size={28} className="animate-spin" /></span>
           </span>
         )}
 
@@ -59,7 +59,7 @@ const ImageNodeView = ({ node, editor, deleteNode }: NodeViewProps) => {
             className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded"
             style={{ background: "rgba(30, 10, 10, 0.85)" }}
           >
-            <AppIcon iconName="image-off" size={24} style={{ color: "#d32f2f" }} />
+            <span style={{ color: "#d32f2f" }}><AppIcon iconName="image-off" size={24} /></span>
             <span className="text-xs font-medium" style={{ color: "#d32f2f" }}>
               Upload failed
             </span>

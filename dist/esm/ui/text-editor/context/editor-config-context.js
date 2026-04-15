@@ -19,6 +19,7 @@ export const TextEditorConfigProvider = ({ config, children, }) => {
         colors: config.colors || COLORS,
         highlightColors: config.highlightColors || HIGHLIGHT_COLORS,
         onImageUpload: config.onImageUpload,
+        onImageRemove: config.onImageRemove,
     };
     return (_jsx(TextEditorConfigContext.Provider, { value: value, children: children }));
 };
