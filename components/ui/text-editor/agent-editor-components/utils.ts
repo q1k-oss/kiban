@@ -64,6 +64,89 @@ const findPlaceholderNode = (
   return result;
 };
 
+const getLocalPreview = (file: File): string => {
+  try {
+    return URL.createObjectURL(file);
+  } catch {
+    return UPLOAD_PLACEHOLDER_SRC;
+  }
+};
+
+const pendingUploads = new Map<string, {
+  file: File;
+  handler: ImageUploadHandler;
+  view: EditorView;
+}>();
+
+const replaceNode = (
+  view: EditorView,
+  uploadId: string,
+  newNode: ReturnType<typeof view.state.schema.nodes.image.create>,
+) => {
+  const found = findPlaceholderNode(view, uploadId);
+  if (!found) return;
+  view.dispatch(view.state.tr.replaceWith(found.pos, found.pos + found.nodeSize, newNode));
+};
+
+const showErrorState = (view: EditorView, uploadId: string, file: File) => {
+  const previewSrc = getLocalPreview(file);
+  const errorNode = view.state.schema.nodes.image.create({
+    src: previewSrc,
+    alt: uploadId,
+    title: "__upload_error__",
+  });
+  replaceNode(view, uploadId, errorNode);
+};
+
+const attemptUpload = (uploadId: string) => {
+  const entry = pendingUploads.get(uploadId);
+  if (!entry) return;
+
+  const { file, handler, view } = entry;
+
+  const previewSrc = getLocalPreview(file);
+  const found = findPlaceholderNode(view, uploadId);
+  if (found) {
+    const loadingNode = view.state.schema.nodes.image.create({
+      src: previewSrc,
+      alt: uploadId,
+      title: "__uploading__",
+    });
+    replaceNode(view, uploadId, loadingNode);
+  }
+
+  handler(file)
+    .then((urls) => {
+      const attrs = buildResponsiveImageAttrs(urls);
+      const newNode = view.state.schema.nodes.image.create({
+        ...attrs,
+        alt: "",
+      });
+      replaceNode(view, uploadId, newNode);
+      pendingUploads.delete(uploadId);
+    })
+    .catch(() => {
+      showErrorState(view, uploadId, file);
+    });
+};
+
+export const retryUpload = (view: EditorView, uploadId: string) => {
+  const entry = pendingUploads.get(uploadId);
+  if (!entry) return;
+
+  attemptUpload(uploadId);
+};
+
+export const removeFailedUpload = (view: EditorView, uploadId: string) => {
+  const found = findPlaceholderNode(view, uploadId);
+  if (found) {
+    view.dispatch(view.state.tr.delete(found.pos, found.pos + found.nodeSize));
+  }
+  pendingUploads.delete(uploadId);
+};
+
+export const getUploadEntry = (uploadId: string) => pendingUploads.get(uploadId);
+
 export const uploadAndInsertImage = (
   view: EditorView,
   pos: number | null,
@@ -71,9 +154,12 @@ export const uploadAndInsertImage = (
   uploadHandler: ImageUploadHandler,
 ) => {
   const uploadId = `__uploading_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const previewSrc = getLocalPreview(file);
+
   const placeholderNode = view.state.schema.nodes.image.create({
-    src: UPLOAD_PLACEHOLDER_SRC,
+    src: previewSrc,
     alt: uploadId,
+    title: "__uploading__",
   });
 
   if (pos !== null) {
@@ -82,25 +168,13 @@ export const uploadAndInsertImage = (
     view.dispatch(view.state.tr.replaceSelectionWith(placeholderNode));
   }
 
-  uploadHandler(file)
-    .then((urls) => {
-      const attrs = buildResponsiveImageAttrs(urls);
-      const found = findPlaceholderNode(view, uploadId);
-      if (!found) return;
+  pendingUploads.set(uploadId, {
+    file,
+    handler: uploadHandler,
+    view,
+  });
 
-      const newNode = view.state.schema.nodes.image.create({
-        ...attrs,
-        alt: "",
-      });
-      view.dispatch(
-        view.state.tr.replaceWith(found.pos, found.pos + found.nodeSize, newNode),
-      );
-    })
-    .catch(() => {
-      const found = findPlaceholderNode(view, uploadId);
-      if (!found) return;
-      view.dispatch(view.state.tr.delete(found.pos, found.pos + found.nodeSize));
-    });
+  attemptUpload(uploadId);
 };
 
 export const validateImageUrl = (raw: string): string | null => {

@@ -34,6 +34,7 @@ import type {
   IFloatMenu,
   IFontSizeOption,
   IImageUploadResult,
+  ImageRemoveHandler,
   ImageUploadHandler,
   ITextEditorProps,
   ITextEditorVariant,
@@ -64,6 +65,7 @@ const TextEditor = ({
   anchorLinkClassName = "heading-anchor",
   editorStyles = "",
   onImageUpload,
+  onImageRemove,
   topToolbarClassName,
 }: ITextEditorProps) => {
   const styles = defaultEditorStyles + (editorStyles ?? "");
@@ -164,7 +166,7 @@ const TextEditor = ({
             if (!file) continue;
 
             event.preventDefault();
-            uploadAndInsertImage(view, null, file, uploadHandler);
+            uploadAndInsertImage(view, null, file, uploadHandler, maxImageRetries);
             return true;
           }
         }
@@ -202,6 +204,7 @@ const TextEditor = ({
     colors,
     highlightColors,
     onImageUpload,
+    onImageRemove,
   };
 
   if (variant === "AGENT_EDITOR") {
@@ -267,6 +270,7 @@ export type {
   IFontSizeOption,
   IImageUploadResult,
   ImageUploadHandler,
+  ImageRemoveHandler,
   ITextEditorProps,
   ITextEditorVariant,
   IToolbarButton,
