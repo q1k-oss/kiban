@@ -78,7 +78,7 @@ const defaultHtmlRendererConfig = {
         stripStyles: false,
     },
 };
-const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-start justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", shareUrl, }) => {
+const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5", headerClassName, contentClassName = "w-full px-0 md:px-6", sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar", tagsClassName = "flex items-center justify-start gap-4 mt-12", tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text", shareUrl, }) => {
     const [copied, setCopied] = useState(false);
     const url = shareUrl ||
         (typeof window !== "undefined" && (blog === null || blog === void 0 ? void 0 : blog.slug)
@@ -165,7 +165,7 @@ const BlogPreview = ({ loading, blog, htmlRendererConfig, className = "md:pt-5",
             return null;
         return _jsx(TableOfContent, { blogContent: blog.content });
     };
-    return (_jsxs("div", { className: className, children: [_jsx("div", { className: headerClassName, children: renderBlogHeader() }), _jsxs("div", { className: "flex items-start gap-10 relative mt-2 md:mt-6 ", children: [_jsxs("div", { className: contentClassName, children: [_jsx("div", { className: "mb-6", children: _jsx(BorderMovingWrapper, { colors: [
+    return (_jsxs("div", { className: className, children: [_jsx("div", { className: headerClassName, children: renderBlogHeader() }), _jsxs("div", { className: "flex items-start gap-10 relative mt-2 md:mt-6 ", children: [_jsxs("div", { className: contentClassName, children: [_jsx("div", { className: "mb-6", children: _jsx(BorderMovingWrapper, { duration: 6000, colors: [
                                         "#C3946F99",
                                         "#F49D5699",
                                         "#FFF2B7",
