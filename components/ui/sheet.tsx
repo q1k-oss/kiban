@@ -25,13 +25,19 @@ const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = SheetPrimitive.Portal;
 
+interface SheetOverlayProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay> {
+  positioning?: "fixed" | "absolute";
+}
+
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
->(({ className, ...props }, ref) => (
+  SheetOverlayProps
+>(({ className, positioning = "fixed", ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      "absolute inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      positioning === "absolute" ? "absolute" : "fixed",
+      "inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className,
     )}
     {...props}
@@ -133,9 +139,21 @@ const SheetContent = React.forwardRef<
   ) => {
     const isAbsolute = positioning === "absolute";
 
+    // Guard: preventOutsideClose + no overlay = sheet with no visual affordance
+    // and no click-to-dismiss. Warn so consumers opt in deliberately.
+    if (process.env.NODE_ENV !== "production") {
+      if (!showOverlay && preventOutsideClose) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          "[Sheet] showOverlay={false} + preventOutsideClose={true} leaves only Escape to dismiss. " +
+            "Ensure this is intentional and that Escape-to-close is acceptable for your use case.",
+        );
+      }
+    }
+
     const content = (
       <>
-        {showOverlay && <SheetOverlay />}
+        {showOverlay && <SheetOverlay positioning={isAbsolute ? "absolute" : "fixed"} />}
         <SheetPrimitive.Content
           ref={ref}
           className={cn(sheetVariants({ side, positioning }), className)}
@@ -158,25 +176,30 @@ const SheetContent = React.forwardRef<
 );
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
-const SheetHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, children, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "flex items-center gap-2 text-sm border-b border-stroke p-4",
-      className,
-    )}
-    {...props}
-  >
-    {children}
-    <SheetPrimitive.Close className="ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0">
-      <X className="h-4 w-4" />
-      <span className="sr-only">Close</span>
-    </SheetPrimitive.Close>
-  </div>
-));
+interface SheetHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  showCloseButton?: boolean;
+}
+
+const SheetHeader = React.forwardRef<HTMLDivElement, SheetHeaderProps>(
+  ({ className, children, showCloseButton = true, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "flex items-center gap-2 text-sm border-b border-stroke p-4",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      {showCloseButton && (
+        <SheetPrimitive.Close className="ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0">
+          <X className="h-4 w-4" />
+          <span className="sr-only">Close</span>
+        </SheetPrimitive.Close>
+      )}
+    </div>
+  ),
+);
 SheetHeader.displayName = "SheetHeader";
 
 const SheetFooter = ({
@@ -227,22 +250,29 @@ interface SheetAdjacentProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const SheetAdjacent = React.forwardRef<HTMLDivElement, SheetAdjacentProps>(
-  ({ open = false, side = "left", width, gap = 0, onClose, title, className, children, ...props }, ref) => {
-    const gapStyle = side === "left"
-      ? { marginRight: gap }
-      : { marginLeft: gap };
+  ({ open = false, side = "left", width, gap = 0, onClose, title, className, children, onKeyDown, ...props }, ref) => {
+    const gapStyle = open ? (side === "left" ? { marginRight: gap } : { marginLeft: gap }) : undefined;
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === "Escape" && onClose) {
+        // Swallow Esc so it doesn't bubble to the parent Sheet's dialog handler
+        e.stopPropagation();
+        e.preventDefault();
+        onClose();
+      }
+      onKeyDown?.(e);
+    };
 
     return (
       <div
         ref={ref}
         role="complementary"
-        aria-hidden={!open}
+        aria-hidden={open ? undefined : true}
+        onKeyDown={handleKeyDown}
         className={cn(
-          "absolute top-0 bottom-0 bg-background border border-stroke shadow-lg transition-all duration-300 ease-in-out overflow-auto",
-          width || "w-full",
-          side === "left"
-            ? "right-full rounded-md"
-            : "left-full rounded-md",
+          "absolute top-0 bottom-0 bg-background border border-stroke shadow-lg transition-all duration-300 ease-in-out overflow-auto rounded-md",
+          width || "w-80",
+          side === "left" ? "right-full" : "left-full",
           open
             ? "opacity-100 translate-x-0"
             : side === "left"
@@ -260,6 +290,7 @@ const SheetAdjacent = React.forwardRef<HTMLDivElement, SheetAdjacentProps>(
               <button
                 onClick={onClose}
                 className="ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none cursor-pointer shrink-0"
+                aria-label="Close panel"
               >
                 <X className="h-4 w-4" />
                 <span className="sr-only">Close</span>
