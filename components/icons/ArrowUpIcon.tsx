@@ -4,12 +4,14 @@ export interface IArrowUpIconProp {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 
 export const ArrowUpIcon: React.FC<IArrowUpIconProp> = ({
   size = 20,
   className,
   strokeWidth = 1.5,
+  style,
 }) => {
   return (
     <svg
@@ -19,6 +21,7 @@ export const ArrowUpIcon: React.FC<IArrowUpIconProp> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M0.5 7.5L7 0.5M7 0.5L13 7.5M7 0.5V17.5"

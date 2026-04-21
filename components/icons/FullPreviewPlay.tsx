@@ -4,12 +4,14 @@ export interface FullPreviewPlayProps {
   className?: string;
   size?: number;
   strokeWidth?: number;
+  style?: React.CSSProperties;
 }
 
 export const FullPreviewPlay: React.FC<FullPreviewPlayProps> = ({ 
-  className, 
-  size = 26, 
-  strokeWidth = 1.5
+  className,
+  size = 26,
+  strokeWidth = 1.5,
+  style,
 }) => {
   return (
     <svg
@@ -19,6 +21,7 @@ export const FullPreviewPlay: React.FC<FullPreviewPlayProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       <path
         d="M4 8V6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H8M18 4H20C20.5304 4 21.0391 4.21071 21.4142 4.58579C21.7893 4.96086 22 5.46957 22 6V8M22 18V20C22 20.5304 21.7893 21.0391 21.4142 21.4142C21.0391 21.7893 20.5304 22 20 22H18M8 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V18"

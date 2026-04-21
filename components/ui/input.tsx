@@ -24,7 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "flex gap-2 h-9 w-full items-center rounded-md border border-input bg-transparent px-3 py-1 shadow-sm transition-colors focus-within:ring-1 focus-within:ring-ring",
+          "flex gap-2 h-9 w-full items-center rounded-sm border border-input bg-transparent px-3 py-1 shadow-sm transition-colors focus-within:ring-1 focus-within:ring-ring has-[input[aria-invalid=true]]:border-error-border-2 has-[input[aria-invalid=true]]:shadow-[0_0_4px_1px_rgb(var(--error-border-2))]",
           iconPosition === "right" && "flex-row-reverse",
           wrapperClassName,
         )}

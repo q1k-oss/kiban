@@ -1,7 +1,0 @@
-import React from "react";
-export interface FilterIconProps {
-    className?: string;
-    size?: number;
-    strokeWidth?: number;
-}
-export declare const FilterIcon: React.FC<FilterIconProps>;

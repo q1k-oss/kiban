@@ -1,7 +1,0 @@
-import React from "react";
-export interface IArrowUpIconProp {
-    size?: number;
-    className?: string;
-    strokeWidth?: number;
-}
-export declare const ArrowUpIcon: React.FC<IArrowUpIconProp>;
