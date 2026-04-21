@@ -1,7 +1,6 @@
-'use client'
+"use client";
 
-import { useState } from 'react';
-
+import { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -10,72 +9,43 @@ import {
   SheetTitle,
   SheetTrigger,
   Button,
-} from '@q1k-oss/kiban';
+} from "@q1k-oss/kiban";
+
+const sides = ["top", "right", "bottom", "left"] as const;
 
 export default () => {
-  const [side, setSide] = useState<"top" | "right" | "bottom" | "left">("right");
-  
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
-        <p className="text-sm text-muted-foreground">Choose side:</p>
-        <div className="flex gap-1">
-          <Button
-            variant={side === "top" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSide("top")}
-          >
-            Top
-          </Button>
-          <Button
-            variant={side === "right" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSide("right")}
-          >
-            Right
-          </Button>
-          <Button
-            variant={side === "bottom" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSide("bottom")}
-          >
-            Bottom
-          </Button>
-          <Button
-            variant={side === "left" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSide("left")}
-          >
-            Left
-          </Button>
-        </div>
-      </div>
+  const [side, setSide] = useState<(typeof sides)[number]>("right");
 
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <div className="flex gap-1">
+        {sides.map((s) => (
+          <Button
+            key={s}
+            variant={side === s ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSide(s)}
+          >
+            {s.charAt(0).toUpperCase() + s.slice(1)}
+          </Button>
+        ))}
+      </div>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="ml-4">Open Sheet from {side}</Button>
+          <Button>Open from {side}</Button>
         </SheetTrigger>
         <SheetContent side={side}>
           <SheetHeader>
-            <SheetTitle>Sheet from {side}</SheetTitle>
+            <SheetTitle>Sheet — {side}</SheetTitle>
             <SheetDescription>
-              This sheet slides in from the {side} of the screen.
+              This sheet slides in from the {side}.
             </SheetDescription>
           </SheetHeader>
-          <div className="py-4">
-            <p className="text-sm text-muted-foreground">
-              The Sheet component can slide in from any edge of the screen, making it versatile
-              for different use cases and screen sizes.
-            </p>
-            <ul className="mt-4 list-disc pl-5 text-sm text-muted-foreground">
-              <li>Top: Great for notifications or quick actions</li>
-              <li>Right: Perfect for navigation or settings panels</li>
-              <li>Bottom: Ideal for mobile interfaces and action sheets</li>
-              <li>Left: Commonly used for main navigation menus</li>
-            </ul>
+          <div className="p-4 text-sm text-muted-foreground">
+            Use the <code className="text-foreground">side</code> prop to control which edge the sheet appears from.
           </div>
         </SheetContent>
       </Sheet>
     </div>
   );
-} 
+};

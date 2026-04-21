@@ -1,3 +1,4 @@
+"use client";
 export { CodeBlockRenderer } from './CodeBlockRenderer';
 export { ImageRenderer } from './ImageRenderer';
 export { HeadingRenderer } from './HeadingRenderer';
