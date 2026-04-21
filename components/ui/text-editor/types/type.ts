@@ -13,6 +13,7 @@ export interface IImageUploadResult {
 }
 
 export type ImageUploadHandler = (file: File) => Promise<IImageUploadResult>;
+export type ImageRemoveHandler = (src: string) => void | Promise<void>;
 
 export interface ITextEditorProps {
   value?: string;
@@ -37,6 +38,7 @@ export interface ITextEditorProps {
   anchorLinkClassName?: string;
   editorStyles?: string;
   onImageUpload?: ImageUploadHandler;
+  onImageRemove?: ImageRemoveHandler;
   topToolbarClassName?: string;
 }
 

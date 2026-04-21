@@ -68,7 +68,14 @@ export const TopToolbar = ({ editor, className }: { editor: Editor; className?: 
           />
         );
       case "image":
-        return <ImageButton key={idx} editor={editor} />;
+        return (
+          <ImageButton
+            key={idx}
+            editor={editor}
+            isOpen={activeDropdown === "image"}
+            onToggle={() => toggleDropdown("image")}
+          />
+        );
       case "table":
         return (
           <TableDropdown

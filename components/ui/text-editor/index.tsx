@@ -17,7 +17,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { useEffect, useRef } from "react";
 
 import { TopToolbar } from "./agent-editor-components/top-toolbar";
-import { uploadAndInsertImage } from "./agent-editor-components/utils";
+import { clearPendingUploadsForView, uploadAndInsertImage } from "./agent-editor-components/utils";
 import { TextEditorConfigProvider } from "./context/editor-config-context";
 import {
   HeadingWithAnchor,
@@ -34,6 +34,7 @@ import type {
   IFloatMenu,
   IFontSizeOption,
   IImageUploadResult,
+  ImageRemoveHandler,
   ImageUploadHandler,
   ITextEditorProps,
   ITextEditorVariant,
@@ -64,6 +65,7 @@ const TextEditor = ({
   anchorLinkClassName = "heading-anchor",
   editorStyles = "",
   onImageUpload,
+  onImageRemove,
   topToolbarClassName,
 }: ITextEditorProps) => {
   const styles = defaultEditorStyles + (editorStyles ?? "");
@@ -195,6 +197,14 @@ const TextEditor = ({
     }
   }, [value, editor]);
 
+  // Clean up pending uploads and blob URLs on unmount
+  useEffect(() => {
+    if (!editor) return;
+    return () => {
+      clearPendingUploadsForView(editor.view);
+    };
+  }, [editor]);
+
   if (!editor) return null;
 
   const editorConfig = {
@@ -202,6 +212,7 @@ const TextEditor = ({
     colors,
     highlightColors,
     onImageUpload,
+    onImageRemove,
   };
 
   if (variant === "AGENT_EDITOR") {
@@ -267,6 +278,7 @@ export type {
   IFontSizeOption,
   IImageUploadResult,
   ImageUploadHandler,
+  ImageRemoveHandler,
   ITextEditorProps,
   ITextEditorVariant,
   IToolbarButton,
