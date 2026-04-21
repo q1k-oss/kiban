@@ -55,6 +55,9 @@ export const KibanToastContent = ({
 
   return (
     <div
+      role={variant === "error" ? "alert" : "status"}
+      aria-live={variant === "error" ? "assertive" : "polite"}
+      aria-atomic="true"
       className={cn("rounded-lg shadow-lg p-px w-[380px]", showProgress && "pb-0", className)}
       style={{ background: config.borderGradient }}
     >
@@ -63,7 +66,7 @@ export const KibanToastContent = ({
         style={{ background: config.bgColor }}
       >
         <div className="p-2 flex flex-col gap-2">
-          <div className="flex items-start gap-2">
+          <div className={cn("flex gap-2", description ? "items-start" : "items-center")}>
             <span className="shrink-0" style={{ color: config.iconColor }}>
               <AppIcon
                 iconName={config.iconName}

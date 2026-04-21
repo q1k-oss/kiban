@@ -9,13 +9,19 @@ export const useCountdown = (
   paused = false,
 ) => {
   const [remaining, setRemaining] = useState(duration);
+  const remainingRef = useRef(duration);
   const startRef = useRef(Date.now());
+
+  // Keep ref in sync without making the interval effect depend on it
+  useEffect(() => {
+    remainingRef.current = remaining;
+  }, [remaining]);
 
   useEffect(() => {
     if (paused) return;
 
     startRef.current = Date.now();
-    const startRemaining = remaining;
+    const startRemaining = remainingRef.current;
 
     const timer = setInterval(() => {
       const left = Math.max(0, startRemaining - (Date.now() - startRef.current));
@@ -27,7 +33,7 @@ export const useCountdown = (
     }, 50);
 
     return () => clearInterval(timer);
-  }, [paused, toastId]);
+  }, [paused, toastId, duration]);
 
   return remaining / duration;
 };

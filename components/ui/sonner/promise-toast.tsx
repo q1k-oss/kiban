@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { KibanToastContent } from "./kiban-toast";
 import type { KibanToastPosition } from "./kiban-toast";
 import { KibanLoadingContent } from "./loading-toast";
+import { toastStore } from "./toast-store";
 
 export interface KibanPromiseOptions<T> {
   loading: string;
@@ -23,6 +24,7 @@ export const kibanPromise = <T,>(
   promise: Promise<T>,
   options: KibanPromiseOptions<T>,
 ) => {
+  const position = options.position ?? "top-right";
   const id = toast.custom(
     (toastId) => (
       <KibanLoadingContent
@@ -31,8 +33,15 @@ export const kibanPromise = <T,>(
         description={options.description?.loading}
       />
     ),
-    { duration: Infinity, position: options.position },
+    {
+      duration: Infinity,
+      position,
+      onDismiss: () => toastStore.untrack(id),
+      onAutoClose: () => toastStore.untrack(id),
+    },
   );
+
+  toastStore.track(id, position);
 
   promise
     .then((data) => {
@@ -53,7 +62,7 @@ export const kibanPromise = <T,>(
             variant="success"
           />
         ),
-        { id, duration: 5000, position: options.position },
+        { id, duration: 5000, position },
       );
     })
     .catch((err) => {
@@ -74,8 +83,11 @@ export const kibanPromise = <T,>(
             variant="error"
           />
         ),
-        { id, duration: 5000, position: options.position },
+        { id, duration: 5000, position },
       );
+    })
+    .catch((err) => {
+      console.error("[kiban-toast] Promise handler threw:", err);
     });
 
   return id;

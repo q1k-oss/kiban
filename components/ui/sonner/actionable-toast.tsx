@@ -100,6 +100,15 @@ export const ActionableToastContent = ({
 
   const [activeIdx, setActiveIdx] = React.useState<number | null>(null);
   const [paused, setPaused] = React.useState(false);
+  const mountedRef = React.useRef(true);
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
   const isProcessing = activeIdx !== null;
   const progress = useCountdown(id, duration, isProcessing || paused);
   const secondsLeft = Math.ceil((progress * duration) / 1000);
@@ -114,12 +123,16 @@ export const ActionableToastContent = ({
       setTimeout(() => toast.dismiss(id), 300);
     } catch (err) {
       console.error("[kiban-toast] Action failed:", err);
-      setActiveIdx(null);
+      if (mountedRef.current) setActiveIdx(null);
     }
   };
 
   return (
     <div
+      role={variant === "error" ? "alertdialog" : "dialog"}
+      aria-live={variant === "error" ? "assertive" : "polite"}
+      aria-atomic="true"
+      aria-label={title}
       className={cn(
         "rounded-lg shadow-lg p-px w-[380px] max-w-[380px] overflow-hidden",
         showProgress && !isProcessing && "pb-0",
@@ -132,7 +145,7 @@ export const ActionableToastContent = ({
           className="px-2 py-2 flex flex-col gap-2"
           style={{ background: config.bgColor }}
         >
-          <div className="flex items-start gap-2">
+          <div className={cn("flex gap-2", description ? "items-start" : "items-center")}>
             <ToastIcon config={config} />
             <div className="flex-1 min-w-0 flex flex-col gap-1">
               <span className="font-medium text-primary-text text-xs leading-tight">
