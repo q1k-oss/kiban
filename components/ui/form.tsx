@@ -113,7 +113,13 @@ function FormLabel({
   children,
   ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root> & {
+  /**
+   * Visual-only marker that appends a red asterisk (*) to the label.
+   * NOT wired to your RHF/Zod schema — you must keep this in sync
+   * with your validation rules manually.
+   */
   required?: boolean;
+  /** ClassName applied to the asterisk span */
   requiredClassName?: string;
 }) {
   const { error, formItemId } = useFormField();

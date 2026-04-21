@@ -34,7 +34,7 @@ const ToastIcon = ({ config }: { config: VariantConfig }) => (
     <AppIcon
       iconName={config.iconName}
       source={config.iconSource}
-      size={18}
+      size={20}
       strokeWidth={1.5}
     />
   </span>
@@ -46,7 +46,7 @@ const CloseButton = ({ toastId }: { toastId: string | number }) => (
     onClick={() => toast.dismiss(toastId)}
     className="bg-transparent border-none text-tertiary-text cursor-pointer p-1 shrink-0 rounded-md"
   >
-    <AppIcon iconName="x" size={18} strokeWidth={1.5} />
+    <AppIcon iconName="x" size={20} strokeWidth={1.5} />
   </Button>
 );
 
@@ -100,6 +100,15 @@ export const ActionableToastContent = ({
 
   const [activeIdx, setActiveIdx] = React.useState<number | null>(null);
   const [paused, setPaused] = React.useState(false);
+  const mountedRef = React.useRef(true);
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
   const isProcessing = activeIdx !== null;
   const progress = useCountdown(id, duration, isProcessing || paused);
   const secondsLeft = Math.ceil((progress * duration) / 1000);
@@ -112,13 +121,18 @@ export const ActionableToastContent = ({
     try {
       await act.onClick();
       setTimeout(() => toast.dismiss(id), 300);
-    } catch {
-      setActiveIdx(null);
+    } catch (err) {
+      console.error("[kiban-toast] Action failed:", err);
+      if (mountedRef.current) setActiveIdx(null);
     }
   };
 
   return (
     <div
+      role={variant === "error" ? "alertdialog" : "dialog"}
+      aria-live={variant === "error" ? "assertive" : "polite"}
+      aria-atomic="true"
+      aria-label={title}
       className={cn(
         "rounded-lg shadow-lg p-px w-[380px] max-w-[380px] overflow-hidden",
         showProgress && !isProcessing && "pb-0",
@@ -128,13 +142,13 @@ export const ActionableToastContent = ({
     >
       <div className="rounded-lg overflow-hidden bg-[#151515]">
         <div
-          className="px-2 py-2 flex flex-col gap-2"
+          className="p-3 flex flex-col gap-2"
           style={{ background: config.bgColor }}
         >
-          <div className="flex items-start gap-2">
+          <div className={cn("flex gap-2", description ? "items-start" : "items-center")}>
             <ToastIcon config={config} />
-            <div className="flex-1 min-w-0 flex flex-col gap-1">
-              <span className="font-medium text-primary-text text-xs leading-tight">
+            <div className="flex-1 min-w-0 flex flex-col gap-2">
+              <span className="font-medium text-primary-text text-sm leading-tight">
                 {title}
               </span>
               {description && (

@@ -17,6 +17,9 @@ export default function SonnerBasicDemo() {
       <Button variant="outline" onClick={() => kibanToast.info("Cat is staring at you", { description: "It's been 14 minutes. Zero blinks. Send help." })}>
         Info
       </Button>
+      <Button variant="outline" onClick={() => kibanToast.success("Saved")}>
+        Title Only
+      </Button>
     </div>
   );
 }

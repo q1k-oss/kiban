@@ -91,9 +91,9 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   headerClassName,
   contentClassName = "w-full px-0 md:px-6",
   sidebarClassName = "hidden md:block w-full max-h-screen overflow-y-scroll max-w-xs sticky top-4 pb-20 no-scrollbar",
-  tagsClassName = "flex items-start justify-start gap-4 mt-12",
+  tagsClassName = "flex items-center justify-start gap-4 mt-12",
   tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text",
-  
+
   shareUrl,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -267,7 +267,6 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
     return <TableOfContent blogContent={blog.content} />;
   };
 
-
   return (
     <div className={className}>
       <div className={headerClassName}>{renderBlogHeader()}</div>
@@ -275,6 +274,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
         <div className={contentClassName}>
           <div className="mb-6">
             <BorderMovingWrapper
+              duration={6000}
               colors={[
                 "#C3946F99",
                 "#F49D5699",
@@ -311,7 +311,6 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
           <div className="flex items-center justify-center gap-2 my-10">
             {renderSocialMediaIcons()}
           </div>
-          
         </div>
       </div>
       <FloatingBuildAgentButton />

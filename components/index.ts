@@ -36,6 +36,7 @@ export * from './ui/sheet';
 export * from './ui/sidebar';
 export * from './ui/skeleton';
 export * from './ui/slider';
+export * from './ui/sonner/index';
 export * from './ui/switch';
 export * from './ui/table';
 export * from './ui/tabs';
@@ -53,4 +54,3 @@ export * from './ui/workflow-canvas/index'
 export * from './ui/text-editor/index'
 export * from './ui/SocialShareButtons/index'
 export * from './ui/blog-preview/index'
-export * from './ui/sonner/index';
