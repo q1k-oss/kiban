@@ -17,7 +17,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { useEffect, useRef } from "react";
 
 import { TopToolbar } from "./agent-editor-components/top-toolbar";
-import { uploadAndInsertImage } from "./agent-editor-components/utils";
+import { clearPendingUploadsForView, uploadAndInsertImage } from "./agent-editor-components/utils";
 import { TextEditorConfigProvider } from "./context/editor-config-context";
 import {
   HeadingWithAnchor,
@@ -196,6 +196,14 @@ const TextEditor = ({
       editor.commands.setContent(value, false);
     }
   }, [value, editor]);
+
+  // Clean up pending uploads and blob URLs on unmount
+  useEffect(() => {
+    if (!editor) return;
+    return () => {
+      clearPendingUploadsForView(editor.view);
+    };
+  }, [editor]);
 
   if (!editor) return null;
 
