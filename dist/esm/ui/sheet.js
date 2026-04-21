@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
@@ -18,49 +18,99 @@ import * as React from "react";
 import { cn } from "../utils";
 const Sheet = (_a) => {
     var { behavior = "modal" } = _a, props = __rest(_a, ["behavior"]);
-    return (_jsx(SheetPrimitive.Root, Object.assign({ modal: behavior === "modal" }, props)));
+    return _jsx(SheetPrimitive.Root, Object.assign({ modal: behavior === "modal" }, props));
 };
 const SheetTrigger = SheetPrimitive.Trigger;
 const SheetClose = SheetPrimitive.Close;
 const SheetPortal = SheetPrimitive.Portal;
 const SheetOverlay = React.forwardRef((_a, ref) => {
-    var { className } = _a, props = __rest(_a, ["className"]);
-    return (_jsx(SheetPrimitive.Overlay, Object.assign({ className: cn("fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className) }, props, { ref: ref })));
+    var { className, positioning = "fixed" } = _a, props = __rest(_a, ["className", "positioning"]);
+    return (_jsx(SheetPrimitive.Overlay, Object.assign({ className: cn(positioning === "absolute" ? "absolute" : "fixed", "inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className) }, props, { ref: ref })));
 });
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
-const sheetVariants = cva("gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out ", {
+const sheetVariants = cva("z-[51] gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out border border-stroke ", {
     variants: {
         side: {
-            top: "inset-x-0 top-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
-            bottom: "inset-x-0 bottom-0  data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-            left: "left-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
-            right: "right-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+            top: "inset-x-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+            bottom: "inset-x-0 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+            left: "w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+            right: "w-3/4 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
         },
         positioning: {
             fixed: "fixed z-50",
             absolute: "absolute",
         },
     },
+    compoundVariants: [
+        {
+            side: "right",
+            positioning: "fixed",
+            className: "right-0 top-0 bottom-0 h-full border-r-0 border-y-0 ",
+        },
+        {
+            side: "left",
+            positioning: "fixed",
+            className: "left-0 top-0 bottom-0 h-full border-l-0 border-y-0 ",
+        },
+        {
+            side: "right",
+            positioning: "absolute",
+            className: "right-4 top-4 bottom-4 rounded-md h-[calc(100%-2rem)]",
+        },
+        {
+            side: "left",
+            positioning: "absolute",
+            className: "left-4 top-4 bottom-4 rounded-md h-[calc(100%-2rem)]",
+        },
+        {
+            side: "top",
+            positioning: "fixed",
+            className: "top-0 border-t-0 border-x-0",
+        },
+        {
+            side: "bottom",
+            positioning: "fixed",
+            className: "bottom-0 border-b-0 border-x-0",
+        },
+        {
+            side: "top",
+            positioning: "absolute",
+            className: "top-4 left-1/2 -translate-x-1/2 rounded-md w-[calc(100%-2rem)]",
+        },
+        {
+            side: "bottom",
+            positioning: "absolute",
+            className: "bottom-4 left-1/2 -translate-x-1/2 rounded-md w-[calc(100%-2rem)]",
+        },
+    ],
     defaultVariants: {
         side: "right",
         positioning: "fixed",
     },
 });
 const SheetContent = React.forwardRef((_a, ref) => {
-    var { side = "right", positioning, className, children } = _a, props = __rest(_a, ["side", "positioning", "className", "children"]);
-    const showOverlay = positioning !== "absolute";
-    const preventOutsideClose = positioning === "absolute";
-    const content = (_jsxs(_Fragment, { children: [showOverlay && _jsx(SheetOverlay, {}), _jsxs(SheetPrimitive.Content, Object.assign({ ref: ref, className: cn(sheetVariants({ side, positioning }), className), onInteractOutside: preventOutsideClose ? (e) => e.preventDefault() : undefined }, props, { children: [_jsxs(SheetPrimitive.Close, { className: "absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] }), children] }))] }));
-    if (!showOverlay) {
+    var { side = "right", positioning, showOverlay = true, preventOutsideClose = true, className, children } = _a, props = __rest(_a, ["side", "positioning", "showOverlay", "preventOutsideClose", "className", "children"]);
+    const isAbsolute = positioning === "absolute";
+    // Guard: preventOutsideClose + no overlay = sheet with no visual affordance
+    // and no click-to-dismiss. Warn so consumers opt in deliberately.
+    if (process.env.NODE_ENV !== "production") {
+        if (!showOverlay && preventOutsideClose) {
+            // eslint-disable-next-line no-console
+            console.warn("[Sheet] showOverlay={false} + preventOutsideClose={true} leaves only Escape to dismiss. " +
+                "Ensure this is intentional and that Escape-to-close is acceptable for your use case.");
+        }
+    }
+    const content = (_jsxs(_Fragment, { children: [showOverlay && _jsx(SheetOverlay, { positioning: isAbsolute ? "absolute" : "fixed" }), _jsx(SheetPrimitive.Content, Object.assign({ ref: ref, className: cn(sheetVariants({ side, positioning }), className), onInteractOutside: preventOutsideClose ? (e) => e.preventDefault() : undefined }, props, { children: children }))] }));
+    if (isAbsolute) {
         return content;
     }
     return _jsx(SheetPortal, { children: content });
 });
 SheetContent.displayName = SheetPrimitive.Content.displayName;
-const SheetHeader = (_a) => {
-    var { className } = _a, props = __rest(_a, ["className"]);
-    return (_jsx("div", Object.assign({ className: cn("flex flex-col space-y-2 text-center text-sm sm:text-left  border-b border-stroke p-4", className) }, props)));
-};
+const SheetHeader = React.forwardRef((_a, ref) => {
+    var { className, children, showCloseButton = true } = _a, props = __rest(_a, ["className", "children", "showCloseButton"]);
+    return (_jsxs("div", Object.assign({ ref: ref, className: cn("flex items-center gap-2 text-sm border-b border-stroke p-4", className) }, props, { children: [children, showCloseButton && (_jsxs(SheetPrimitive.Close, { className: "ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] }))] })));
+});
 SheetHeader.displayName = "SheetHeader";
 const SheetFooter = (_a) => {
     var { className } = _a, props = __rest(_a, ["className"]);
@@ -69,7 +119,7 @@ const SheetFooter = (_a) => {
 SheetFooter.displayName = "SheetFooter";
 const SheetTitle = React.forwardRef((_a, ref) => {
     var { className } = _a, props = __rest(_a, ["className"]);
-    return (_jsx(SheetPrimitive.Title, Object.assign({ ref: ref, className: cn("text-lg font-semibold text-foreground", className) }, props)));
+    return (_jsx(SheetPrimitive.Title, Object.assign({ ref: ref, className: cn("flex-1 text-lg font-semibold text-foreground", className) }, props)));
 });
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 const SheetDescription = React.forwardRef((_a, ref) => {
@@ -77,4 +127,23 @@ const SheetDescription = React.forwardRef((_a, ref) => {
     return (_jsx(SheetPrimitive.Description, Object.assign({ ref: ref, className: cn("text-sm text-muted-foreground", className) }, props)));
 });
 SheetDescription.displayName = SheetPrimitive.Description.displayName;
-export { Sheet, SheetPortal, SheetOverlay, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, };
+const SheetAdjacent = React.forwardRef((_a, ref) => {
+    var { open = false, side = "left", width, gap = 0, onClose, title, className, children, onKeyDown } = _a, props = __rest(_a, ["open", "side", "width", "gap", "onClose", "title", "className", "children", "onKeyDown"]);
+    const gapStyle = open ? (side === "left" ? { marginRight: gap } : { marginLeft: gap }) : undefined;
+    const handleKeyDown = (e) => {
+        if (e.key === "Escape" && onClose) {
+            // Swallow Esc so it doesn't bubble to the parent Sheet's dialog handler
+            e.stopPropagation();
+            e.preventDefault();
+            onClose();
+        }
+        onKeyDown === null || onKeyDown === void 0 ? void 0 : onKeyDown(e);
+    };
+    return (_jsxs("div", Object.assign({ ref: ref, role: "complementary", "aria-hidden": open ? undefined : true, onKeyDown: handleKeyDown, className: cn("absolute top-0 bottom-0 bg-background border border-stroke shadow-lg transition-all duration-300 ease-in-out overflow-auto rounded-md", width || "w-80", side === "left" ? "right-full" : "left-full", open
+            ? "opacity-100 translate-x-0"
+            : side === "left"
+                ? "opacity-0 translate-x-4 pointer-events-none"
+                : "opacity-0 -translate-x-4 pointer-events-none", className), style: gapStyle }, props, { children: [(title || onClose) && (_jsxs("div", { className: "flex items-center justify-between border-b border-stroke p-4", children: [title && _jsx("h3", { className: "text-sm font-semibold", children: title }), onClose && (_jsxs("button", { onClick: onClose, className: "ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none cursor-pointer shrink-0", "aria-label": "Close panel", children: [_jsx(X, { className: "h-4 w-4" }), _jsx("span", { className: "sr-only", children: "Close" })] }))] })), children] })));
+});
+SheetAdjacent.displayName = "SheetAdjacent";
+export { Sheet, SheetPortal, SheetOverlay, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetAdjacent, };

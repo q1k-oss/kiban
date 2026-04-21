@@ -1,3 +1,4 @@
+"use client";
 export * from './ui/accordion.js';
 export * from './ui/alert-dialog.js';
 export * from './ui/alert.js';
