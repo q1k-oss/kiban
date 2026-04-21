@@ -2,14 +2,19 @@ import { AiStars } from "./AiStars";
 import { ArrowUpIcon } from "./ArrowUpIcon";
 import { CheckIcon } from "./CheckIcon";
 import { CreateAgentIcon } from "./CreateAgentIcon";
+import { DropboxIcon } from "./DropboxIcon";
+import { EmptyDocument } from "./EmptyDocument";
 import { FaceBookFillLogo } from "./FaceBookFillLogo";
 import { FileCSVIcon } from "./FileCSVIcon";
 import { FileDOCIcon } from "./FileDOCIcon";
 import { FilePDFIcon } from "./FilePDFIcon";
+import { FileTXTIcon } from "./FileTXTIcon";
 import { FilterIcon } from "./FilterIcon";
 import { FolderQ1kIcon } from "./FolderQ1kIcon";
 import { FullPreviewPlay } from "./FullPreviewPlay";
+import { GmailIcon } from "./GmailIcon";
 import { GoogleDriveIcon } from "./GoogleDriveIcon";
+import { JiraIcon } from "./JiraIcon";
 import { LinkedinFillLogo } from "./LinkedinFillLogo";
 import { PaperClipIcon } from "./PaperClipIcon";
 import { Q1KLogo } from "./Q1KLogo";
@@ -37,5 +42,10 @@ const CustomIcons = {
     "custom-facebook-fill": FaceBookFillLogo,
     "custom-q1k-logo": Q1KLogo,
     "custom-ai-stars": AiStars,
+    "custom-file-txt-icon": FileTXTIcon,
+    "custom-empty-doc-icon": EmptyDocument,
+    "custom-jira-icon": JiraIcon,
+    "custom-dropbox-icon": DropboxIcon,
+    "custom-gmail-icon": GmailIcon,
 };
 export { CustomIcons };

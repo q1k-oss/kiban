@@ -27,6 +27,8 @@ interface AppIconProps {
   className?: string;
   /** Source of the icon - use "custom" for CustomIcons @default "lucide" */
   source?: IconSource;
+  /** Opacity of the icon (0 to 1) @default 1 */
+  opacity?: number;
 }
 
 /**
@@ -47,7 +49,10 @@ const AppIcon: React.FC<AppIconProps> = ({
   strokeWidth = 1.5,
   className,
   source = "lucide",
+  opacity = 1,
 }) => {
+  const style = opacity < 1 ? { opacity } : undefined;
+
   // Fast path: Lucide icons (most common case)
   if (source === "lucide") {
     return (
@@ -56,6 +61,7 @@ const AppIcon: React.FC<AppIconProps> = ({
         size={size}
         strokeWidth={strokeWidth}
         className={className}
+        style={style}
       />
     );
   }
@@ -65,7 +71,7 @@ const AppIcon: React.FC<AppIconProps> = ({
 
   // Gracefully handle missing custom icons
   return CustomIcon ? (
-    <CustomIcon size={size} strokeWidth={strokeWidth} className={className} />
+    <CustomIcon size={size} strokeWidth={strokeWidth} className={className} style={style} />
   ) : null;
 };
 

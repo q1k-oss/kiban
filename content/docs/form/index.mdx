@@ -1,6 +1,6 @@
 ---
 title: Form
-description: A set of components for building forms with validation.
+description: A set of components for building forms with validation, error animations, and accessible controls.
 tags: ["form", "input", "validation", "label"]
 ---
 
@@ -8,40 +8,108 @@ tags: ["form", "input", "validation", "label"]
   { title: "React Hook Form", url: "https://react-hook-form.com/" },
 ]} />
 
-### When To Use
+## When To Use
 
-Use the Form components when you need to:
+- Create structured and validated forms with consistent styling
+- Client-side validation with user-friendly error messages
+- Accessible form controls with proper ARIA attributes
+- Manage form state efficiently with React Hook Form
 
-- Create structured and validated forms
-- Build forms with consistent styling and behavior
-- Implement client-side validation
-- Provide user-friendly error messages
-- Create accessible form controls
-- Manage form state efficiently
+## Examples
 
-The Form components provide a comprehensive solution for building forms with validation while maintaining a consistent design.
+### Basic
 
-### Examples
+A multi-field form with Zod validation, labels, descriptions, and error messages.
+
 <Preview
   lang="jsx"
   file="/form/__demo__/basic"
   title="Basic"
+  description="A simple form with username and email fields."
 />
+
+### Error Shake Animation
+
+Fields shake on validation error by default using the `kiban-form-field-shake-error` class.
 
 <Preview
   lang="jsx"
-  file="/form/__demo__/login"
-  title="Login Form"
+  file="/form/__demo__/shaky-effect"
+  title="Error Shake"
+  description="Submit empty to see the shake animation on error."
 />
+
+### Custom Error Animation
+
+Pass `errorAnimationClass` to `Form` to use your own animation class instead of the default shake.
 
 <Preview
   lang="jsx"
-  file="/form/__demo__/profile"
-  title="Profile Form"
+  file="/form/__demo__/custom-error-animation"
+  title="Custom Error Animation"
+  description="Uses animate-bounce instead of the default shake on error."
 />
 
-<Preview
-  lang="jsx"
-  file="/form/__demo__/validation"
-  title="Form Validation"
-/>
+## Props
+
+### Form
+
+Wraps React Hook Form's `FormProvider` with additional config.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `errorAnimationClass` | `string` | `"kiban-form-field-shake-error"` | CSS class applied to fields on error. Pass `""` to disable. |
+| _...rest_ | — | — | All `FormProvider` props from React Hook Form |
+
+### FormField
+
+Wraps React Hook Form's `Controller`. Connects a form field to the form context.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `control` | `Control` | Form control from `useForm()` |
+| `name` | `string` | Field name matching your schema |
+| `render` | `({ field }) => ReactNode` | Render function for the field |
+
+### FormItem
+
+Container for a single form field. Provides layout and context for label/control/message linking.
+
+### FormLabel
+
+Styled label that auto-links to its `FormControl` via `htmlFor`. Sets `data-error` when validation fails.
+
+### FormControl
+
+Wraps the input element via Radix `Slot`. Passes down:
+
+- `id` — links to `FormLabel`
+- `aria-describedby` — links to `FormDescription` and `FormMessage`
+- `aria-invalid` — set to `true` when field has an error
+- Error animation class — applied when validation fails
+
+### FormDescription
+
+Helper text rendered below the input. Linked via `aria-describedby`.
+
+### FormMessage
+
+Displays the validation error message.
+
+## Error Styling
+
+Error border and shadow styles are applied via CSS `has()` selector on the `Input` wrapper:
+
+```
+has-[input[aria-invalid=true]]:border-error-border-2
+has-[input[aria-invalid=true]]:shadow-[0_0_4px_1px_rgb(var(--error-border-2))]
+```
+
+This ensures the outer border of the `Input` component reacts to `aria-invalid` on the inner `<input>` element.
+
+## Accessibility
+
+- All form controls are linked to their labels via `id`/`htmlFor`
+- Error messages are announced via `aria-describedby`
+- Invalid fields are marked with `aria-invalid`
+- Visual error feedback via configurable animation class

@@ -17,7 +17,25 @@ import { cn } from "../utils";
 
 import { Label } from "./label";
 
-const Form = FormProvider;
+type FormConfigContextValue = {
+  errorAnimationClass?: string;
+};
+
+const FormConfigContext = React.createContext<FormConfigContextValue>({});
+
+function Form({
+  errorAnimationClass,
+  ...props
+}: React.ComponentProps<typeof FormProvider> & {
+  errorAnimationClass?: string;
+}) {
+  return (
+    <FormConfigContext.Provider value={{ errorAnimationClass }}>
+      <FormProvider {...props} />
+    </FormConfigContext.Provider>
+  );
+}
+Form.displayName = "Form";
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -81,7 +99,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("grid gap-2", className)}
+        className={cn("grid gap-1.5", className)}
         {...props}
       />
     </FormItemContext.Provider>
@@ -90,8 +108,20 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
 
 function FormLabel({
   className,
+  required,
+  requiredClassName,
+  children,
   ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: React.ComponentProps<typeof LabelPrimitive.Root> & {
+  /**
+   * Visual-only marker that appends a red asterisk (*) to the label.
+   * NOT wired to your RHF/Zod schema — you must keep this in sync
+   * with your validation rules manually.
+   */
+  required?: boolean;
+  /** ClassName applied to the asterisk span */
+  requiredClassName?: string;
+}) {
   const { error, formItemId } = useFormField();
 
   return (
@@ -101,17 +131,19 @@ function FormLabel({
       className={cn(className)}
       htmlFor={formItemId}
       {...props}
-    />
+    >
+      {children}
+      {required && (
+        <span className={cn("text-error ml-0.5", requiredClassName)}>*</span>
+      )}
+    </Label>
   );
 }
 
 function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
-
-  const { getValues } = useFormContext();
-
-  const totalFields = Object.keys(getValues()).length;
+  const { errorAnimationClass } = React.useContext(FormConfigContext);
 
   return (
     <Slot
@@ -124,9 +156,7 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
       }
       aria-invalid={!!error}
       className={cn(
-        totalFields === 1 && error && "shaky-effect",
-        error?.message &&
-          "shadow-[0_0_4px_1px_rgb(var(--error-border-2))] border border-error-border-2 bg-error-fill rounded-md outline-none"
+        error && (errorAnimationClass ?? "kiban-form-field-shake-error")
       )}
       {...props}
     />
@@ -148,16 +178,22 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 
 function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField();
-  const errorMessage = error ? String(error?.message ?? "") : props.children;
+  const body = error ? String(error?.message ?? "") : props.children;
+
+  if (!body) return null;
 
   return (
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-error-border-2 text-sm min-h-5", className)}
+      className={cn(
+        "text-sm",
+        error ? "text-error-border-2" : "text-muted-foreground",
+        className
+      )}
       {...props}
     >
-      {errorMessage}
+      {body}
     </p>
   );
 }

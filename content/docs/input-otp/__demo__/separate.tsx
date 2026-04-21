@@ -53,7 +53,7 @@ export default function OTPWithRHF() {
                 <InputOTPSlot
                   key={i}
                   index={i}
-                  className={hasError ? "shaky-effect border border-error-border-2" : ""}
+                  className={hasError ? "kiban-form-field-shake-error border border-error-border-2" : ""}
                 />
               ))}
             </InputOTPGroup>

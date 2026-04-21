@@ -86,7 +86,8 @@
   --color-border-3: var(--border-3);
   --color-button-fill-3: var(--button-fill-3);
   --font-dm-mono: 'DM Mono', monospace;
-  --color-ai-icon-3: var(--ai-icon-3)
+  --color-ai-icon-3: var(--ai-icon-3);
+  --color-icon-color-hover: var(--icon-color-hover)
 }
 
 :root {
@@ -170,6 +171,7 @@
   --border-3: oklch(from #434343 l c h);
   --button-fill-3: oklch(from #272727 l c h);
   --ai-icon-3: linear-gradient(to bottom, oklch(from #C3946F l c h / 0.6), oklch(from #F49D56 l c h / 0.6), oklch(from #FFF2B7 l c h), oklch(from #FEEEB2 l c h / 0.98), oklch(from #F4C656 l c h));
+  --icon-color-hover:oklch(from #BABABA l c h);
 }
 
 .dark {
@@ -251,6 +253,7 @@
   --border-3: oklch(from #434343 l c h);
   --button-fill-3: oklch(from #272727 l c h);
   --ai-icon-3: linear-gradient(to bottom, oklch(from #C3946F l c h / 0.6), oklch(from #F49D56 l c h / 0.6), oklch(from #FFF2B7 l c h), oklch(from #FEEEB2 l c h / 0.98), oklch(from #F4C656 l c h));
+  --icon-color-hover:oklch(from #BABABA l c h);
 }
 
 @utility no-scrollbar {
@@ -281,6 +284,30 @@
   .mask-fade-bottom {
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .kiban-form-field-shake-error {
+    animation: shake 0.5s;
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
 

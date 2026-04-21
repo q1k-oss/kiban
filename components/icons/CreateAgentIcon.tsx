@@ -2,11 +2,13 @@ import React from "react";
 export interface CreateAgentIconProps {
   className?: string;
   size?: number;
+  style?: React.CSSProperties;
 }
 
 export const CreateAgentIcon: React.FC<CreateAgentIconProps> = ({
   className,
   size = 135,
+  style,
 }) => {
   return (
     <svg
@@ -17,6 +19,7 @@ export const CreateAgentIcon: React.FC<CreateAgentIconProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       className={className}
+      style={style}
     >
       <rect width="135" height="109" fill="url(#pattern0_873_5585)" />
       <defs>

@@ -1,8 +1,9 @@
 import React from "react";
 export interface IAiStarsProp {
   size: number;
+  style?: React.CSSProperties;
 }
-export const AiStars: React.FC<IAiStarsProp> = ({ size }) => {
+export const AiStars: React.FC<IAiStarsProp> = ({ size, style }) => {
   return (
     <svg
       width={size}
@@ -10,6 +11,7 @@ export const AiStars: React.FC<IAiStarsProp> = ({ size }) => {
       viewBox="0 0 22 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={style}
     >
       <path
         d="M13.3639 3.55572C13.3822 3.4357 13.6178 3.43571 13.6361 3.55572C13.8493 4.95675 14.3403 7.39871 15.2971 8.64993C16.3165 9.98302 18.3696 10.6247 19.3923 10.8721C19.5027 10.8989 19.5027 11.1011 19.3923 11.1279C18.3696 11.3753 16.3165 12.017 15.2971 13.3501C14.3403 14.6013 13.8493 17.0432 13.6361 18.4443C13.6178 18.5643 13.3822 18.5643 13.3639 18.4443C13.1507 17.0432 12.6597 14.6013 11.7029 13.3501C10.6835 12.017 8.63043 11.3753 7.60772 11.1279C7.49728 11.1011 7.49728 10.8989 7.60772 10.8721C8.63043 10.6247 10.6835 9.98302 11.7029 8.64993C12.6597 7.39871 13.1507 4.95675 13.3639 3.55572Z"
