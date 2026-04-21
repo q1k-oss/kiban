@@ -19,6 +19,8 @@ export const EmptyDocument: React.FC<IEmptyDocument> = ({
       viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
       className={className}
       style={style}
     >
