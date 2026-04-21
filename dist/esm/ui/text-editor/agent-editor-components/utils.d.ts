@@ -10,12 +10,16 @@ export declare const buildResponsiveImageAttrs: (urls: IImageUploadResult) => {
     srcset: string;
     sizes: string;
 };
-export declare const retryUpload: (view: EditorView, uploadId: string) => void;
-export declare const removeFailedUpload: (view: EditorView, uploadId: string) => void;
-export declare const getUploadEntry: (uploadId: string) => {
+interface PendingUpload {
     file: File;
     handler: ImageUploadHandler;
     view: EditorView;
-};
+    blobUrl: string | null;
+}
+export declare const retryUpload: (view: EditorView, uploadId: string) => void;
+export declare const removeFailedUpload: (view: EditorView, uploadId: string) => void;
+export declare const clearPendingUploadsForView: (view: EditorView) => void;
+export declare const getUploadEntry: (uploadId: string) => PendingUpload;
 export declare const uploadAndInsertImage: (view: EditorView, pos: number | null, file: File, uploadHandler: ImageUploadHandler) => void;
 export declare const validateImageUrl: (raw: string) => string | null;
+export {};
