@@ -47,7 +47,7 @@ export * from './ui/tooltip';
 export * from './ui/phone-input';
 export * from './utils/index';
 export * from './icons/index';
-export * from './ui/stepper'
+export * from './ui/stepper/index'
 export * from './ui/app-icon'
 export * from './ui/border-moving-wrapper/index'
 export * from './ui/workflow-canvas/index'

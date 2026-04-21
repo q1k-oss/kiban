@@ -48,7 +48,7 @@ export * from './ui/tooltip.js';
 export * from './ui/phone-input.js';
 export * from './utils/index.js';
 export * from './icons/index.js';
-export * from './ui/stepper.js';
+export * from './ui/stepper/index.js';
 export * from './ui/app-icon.js';
 export * from './ui/border-moving-wrapper/index.js';
 export * from './ui/workflow-canvas/index.js';
