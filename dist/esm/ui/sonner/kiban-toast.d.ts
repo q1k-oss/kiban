@@ -1,0 +1,22 @@
+import type { ActionableToastVariant, ToastColors } from "./types";
+export type KibanToastPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center";
+export interface KibanToastOptions {
+    description?: string;
+    duration?: number;
+    position?: KibanToastPosition;
+    showProgress?: boolean;
+    colors?: ToastColors;
+    className?: string;
+}
+export declare const KibanToastContent: ({ id, title, description, variant, duration, showProgress, colors, className, }: {
+    id: string | number;
+    title: string;
+    description?: string;
+    variant: ActionableToastVariant;
+    duration?: number;
+    showProgress?: boolean;
+    colors?: ToastColors;
+    className?: string;
+}) => import("react/jsx-runtime").JSX.Element;
+declare const createToast: (variant: ActionableToastVariant) => (title: string, options?: KibanToastOptions) => string | number;
+export { createToast };
