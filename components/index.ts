@@ -36,7 +36,7 @@ export * from './ui/sheet';
 export * from './ui/sidebar';
 export * from './ui/skeleton';
 export * from './ui/slider';
-export * from './ui/sonner';
+export * from './ui/sonner/index';
 export * from './ui/switch';
 export * from './ui/table';
 export * from './ui/tabs';
