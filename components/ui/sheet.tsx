@@ -9,21 +9,14 @@ import { cn } from "../utils";
 
 type SheetBehavior = "modal" | "panel";
 
-interface SheetProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Root> {
+interface SheetProps extends React.ComponentPropsWithoutRef<
+  typeof SheetPrimitive.Root
+> {
   behavior?: SheetBehavior;
 }
 
-const Sheet = ({
-  behavior = "modal",
-  ...props
-}: SheetProps) => {
-  return (
-    <SheetPrimitive.Root
-      modal={behavior === "modal"}
-      {...props}
-    />
-  );
+const Sheet = ({ behavior = "modal", ...props }: SheetProps) => {
+  return <SheetPrimitive.Root modal={behavior === "modal"} {...props} />;
 };
 
 const SheetTrigger = SheetPrimitive.Trigger;
@@ -32,14 +25,20 @@ const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = SheetPrimitive.Portal;
 
+interface SheetOverlayProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay> {
+  positioning?: "fixed" | "absolute";
+}
+
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
->(({ className, ...props }, ref) => (
+  SheetOverlayProps
+>(({ className, positioning = "fixed", ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
+      positioning === "absolute" ? "absolute" : "fixed",
+      "inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className,
     )}
     {...props}
     ref={ref}
@@ -48,33 +47,77 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  "gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out ",
+  "z-[51] gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out border border-stroke ",
   {
     variants: {
       side: {
-        top: "inset-x-0 top-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        top: "inset-x-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         bottom:
-          "inset-x-0 bottom-0  data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "left-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+          "inset-x-0 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
         right:
-          "right-0 top-4 bottom-4 h-[calc(100vh-2rem)] w-3/4  data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+          "w-3/4 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
       },
       positioning: {
         fixed: "fixed z-50",
         absolute: "absolute",
       },
     },
+    compoundVariants: [
+      {
+        side: "right",
+        positioning: "fixed",
+        className: "right-0 top-0 bottom-0 h-full border-r-0 border-y-0 ",
+      },
+      {
+        side: "left",
+        positioning: "fixed",
+        className: "left-0 top-0 bottom-0 h-full border-l-0 border-y-0 ",
+      },
+      {
+        side: "right",
+        positioning: "absolute",
+        className: "right-4 top-4 bottom-4 rounded-md h-[calc(100%-2rem)]",
+      },
+      {
+        side: "left",
+        positioning: "absolute",
+        className: "left-4 top-4 bottom-4 rounded-md h-[calc(100%-2rem)]",
+      },
+      {
+        side: "top",
+        positioning: "fixed",
+        className: "top-0 border-t-0 border-x-0",
+      },
+      {
+        side: "bottom",
+        positioning: "fixed",
+        className: "bottom-0 border-b-0 border-x-0",
+      },
+      {
+        side: "top",
+        positioning: "absolute",
+        className: "top-4 left-1/2 -translate-x-1/2 rounded-md w-[calc(100%-2rem)]",
+      },
+      {
+        side: "bottom",
+        positioning: "absolute",
+        className: "bottom-4 left-1/2 -translate-x-1/2 rounded-md w-[calc(100%-2rem)]",
+      },
+    ],
     defaultVariants: {
       side: "right",
       positioning: "fixed",
     },
-  }
+  },
 );
 
 interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
+  extends
+    React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {
-  
+  showOverlay?: boolean;
+  preventOutsideClose?: boolean;
 }
 
 const SheetContent = React.forwardRef<
@@ -85,19 +128,32 @@ const SheetContent = React.forwardRef<
     {
       side = "right",
       positioning,
+      showOverlay = true,
+      preventOutsideClose = true,
       className,
       children,
-      
+
       ...props
     },
-    ref
+    ref,
   ) => {
-    const showOverlay = positioning !== "absolute";
-    const preventOutsideClose = positioning === "absolute";
+    const isAbsolute = positioning === "absolute";
+
+    // Guard: preventOutsideClose + no overlay = sheet with no visual affordance
+    // and no click-to-dismiss. Warn so consumers opt in deliberately.
+    if (process.env.NODE_ENV !== "production") {
+      if (!showOverlay && preventOutsideClose) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          "[Sheet] showOverlay={false} + preventOutsideClose={true} leaves only Escape to dismiss. " +
+            "Ensure this is intentional and that Escape-to-close is acceptable for your use case.",
+        );
+      }
+    }
 
     const content = (
       <>
-        {showOverlay && <SheetOverlay />}
+        {showOverlay && <SheetOverlay positioning={isAbsolute ? "absolute" : "fixed"} />}
         <SheetPrimitive.Content
           ref={ref}
           className={cn(sheetVariants({ side, positioning }), className)}
@@ -106,34 +162,43 @@ const SheetContent = React.forwardRef<
           }
           {...props}
         >
-          <SheetPrimitive.Close className="absolute right-4 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none   disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </SheetPrimitive.Close>
           {children}
         </SheetPrimitive.Content>
       </>
     );
-    if (!showOverlay) {
+
+    if (isAbsolute) {
       return content;
     }
 
     return <SheetPortal>{content}</SheetPortal>;
-  }
+  },
 );
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
-const SheetHeader = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      "flex flex-col space-y-2 text-center text-sm sm:text-left  border-b border-stroke p-4",
-      className
-    )}
-    {...props}
-  />
+interface SheetHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  showCloseButton?: boolean;
+}
+
+const SheetHeader = React.forwardRef<HTMLDivElement, SheetHeaderProps>(
+  ({ className, children, showCloseButton = true, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "flex items-center gap-2 text-sm border-b border-stroke p-4",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      {showCloseButton && (
+        <SheetPrimitive.Close className="ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer shrink-0">
+          <X className="h-4 w-4" />
+          <span className="sr-only">Close</span>
+        </SheetPrimitive.Close>
+      )}
+    </div>
+  ),
 );
 SheetHeader.displayName = "SheetHeader";
 
@@ -144,7 +209,7 @@ const SheetFooter = ({
   <div
     className={cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -157,7 +222,7 @@ const SheetTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-semibold text-foreground", className)}
+    className={cn("flex-1 text-lg font-semibold text-foreground", className)}
     {...props}
   />
 ));
@@ -175,6 +240,71 @@ const SheetDescription = React.forwardRef<
 ));
 SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
+interface SheetAdjacentProps extends React.HTMLAttributes<HTMLDivElement> {
+  open?: boolean;
+  side?: "left" | "right";
+  width?: string;
+  gap?: number;
+  onClose?: () => void;
+  title?: string;
+}
+
+const SheetAdjacent = React.forwardRef<HTMLDivElement, SheetAdjacentProps>(
+  ({ open = false, side = "left", width, gap = 0, onClose, title, className, children, onKeyDown, ...props }, ref) => {
+    const gapStyle = open ? (side === "left" ? { marginRight: gap } : { marginLeft: gap }) : undefined;
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === "Escape" && onClose) {
+        // Swallow Esc so it doesn't bubble to the parent Sheet's dialog handler
+        e.stopPropagation();
+        e.preventDefault();
+        onClose();
+      }
+      onKeyDown?.(e);
+    };
+
+    return (
+      <div
+        ref={ref}
+        role="complementary"
+        aria-hidden={open ? undefined : true}
+        onKeyDown={handleKeyDown}
+        className={cn(
+          "absolute top-0 bottom-0 bg-background border border-stroke shadow-lg transition-all duration-300 ease-in-out overflow-auto rounded-md",
+          width || "w-80",
+          side === "left" ? "right-full" : "left-full",
+          open
+            ? "opacity-100 translate-x-0"
+            : side === "left"
+              ? "opacity-0 translate-x-4 pointer-events-none"
+              : "opacity-0 -translate-x-4 pointer-events-none",
+          className,
+        )}
+        style={gapStyle}
+        {...props}
+      >
+        {(title || onClose) && (
+          <div className="flex items-center justify-between border-b border-stroke p-4">
+            {title && <h3 className="text-sm font-semibold">{title}</h3>}
+            {onClose && (
+              <button
+                onClick={onClose}
+                className="ml-auto rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none cursor-pointer shrink-0"
+                aria-label="Close panel"
+              >
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </button>
+            )}
+          </div>
+        )}
+        {children}
+      </div>
+    );
+  },
+);
+SheetAdjacent.displayName = "SheetAdjacent";
+
 export {
   Sheet,
   SheetPortal,
@@ -186,4 +316,5 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+  SheetAdjacent,
 };

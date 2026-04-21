@@ -1,125 +1,132 @@
-"use client"
+"use client";
 
-import { ThumbsUp, Bell, ShoppingCart, ArrowRight, X } from 'lucide-react';
-import { toast } from 'sonner';
-
-import { Button, Avatar, AvatarImage, AvatarFallback } from '@q1k-oss/kiban';
+import { AppIcon, Avatar, AvatarFallback, Button, Progress, kibanToast } from "@q1k-oss/kiban";
 
 export default function SonnerCustomDemo() {
-  const showCustomToast = () => {
-    toast.custom(() => (
-      <div className="max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex">
-        <div className="flex-1 p-4">
-          <div className="flex items-start">
-            <div className="flex-shrink-0 pt-0.5">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>JD</AvatarFallback>
-              </Avatar>
-            </div>
-            <div className="ml-3 flex-1">
-              <p className="text-sm font-medium text-gray-900">John Doe</p>
-              <p className="mt-1 text-sm text-gray-500">
-                Liked your recent post: "Building a toast component with Sonner"
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex border-l border-gray-200">
-          <button
-            onClick={() => toast.dismiss()}
-            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none"
-          >
-            <ThumbsUp className="h-5 w-5" />
-          </button>
-        </div>
-      </div>
-    ));
-  };  
-
-  const showNotificationToast = () => {
-    toast.custom(() => (
-      <div className="max-w-md w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg rounded-lg pointer-events-auto flex">
-        <div className="flex-1 p-4 flex items-center">
-          <Bell className="h-6 w-6 mr-3" />
-          <div>
-            <p className="font-medium">New Notification</p>
-            <p className="text-sm opacity-80">
-              You have 3 unread messages in your inbox
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center pr-2">
-          <button
-            onClick={() => toast.dismiss()}
-            className="p-1.5 rounded-full bg-white/20 text-white hover:bg-white/30 focus:outline-none"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-    ));
-  };
-
-  const showCartToast = () => {
-    toast.custom(() => (
-      <div className="max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex overflow-hidden">
-        <div className="flex-1 p-4">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <ShoppingCart className="h-6 w-6 text-green-500" />
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900">
-                Item added to cart
-              </p>
-              <p className="mt-1 text-sm text-gray-500">
-                Your item has been added to the cart successfully.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="border-l border-gray-200 flex flex-col justify-center px-4">
-          <button
-            onClick={() => {
-              toast.dismiss();
-              // Simulate navigation to cart
-              toast('Navigating to cart...');
-            }}
-            className="text-indigo-600 hover:text-indigo-500 flex items-center text-sm font-medium"
-          >
-            View Cart
-            <ArrowRight className="ml-1 h-4 w-4" />
-          </button>
-        </div>
-      </div>
-    ));
-  };
-
   return (
-    <div className="flex flex-col gap-2 items-center">
-      <div className="flex gap-2">
-        <Button
-          variant="outline"
-          onClick={showCustomToast}
-        >
-          Social Notification
-        </Button>
-        
-        <Button
-          variant="outline"
-          onClick={showNotificationToast}
-        >
-          Styled Notification
-        </Button>
-        
-        <Button
-          variant="outline"
-          onClick={showCartToast}
-        >
-          Cart Notification
-        </Button>
-      </div>
+    <div className="flex flex-wrap gap-2 items-center justify-center">
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.success("Nap completed", {
+            description: "3 hours well spent. You're basically reborn.",
+            colors: {
+              iconColor: "#a855f7",
+              borderGradient: "linear-gradient(to right, #1a0a2e, #2d1150)",
+              progressColor: "linear-gradient(to right, transparent, #a855f7)",
+              bgColor: "linear-gradient(to right, #0f0520, #151515 30%)",
+            },
+          })
+        }
+      >
+        Custom Colors
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.custom(
+            (id) => (
+              <div className="w-[400px] bg-background rounded-xl border border-stroke overflow-hidden">
+                <div className="p-4 flex items-center gap-3">
+                  <AppIcon iconName="custom-google-drive-icon" source="custom" size={28} />
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm font-medium text-primary-text block">Memes backed up</span>
+                    <span className="text-xs text-tertiary-text block">847 files synced to /important-stuff</span>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => kibanToast.dismiss(id)} className="p-1">
+                    <AppIcon iconName="x" size={14} />
+                  </Button>
+                </div>
+              </div>
+            ),
+          )
+        }
+      >
+        Drive Sync
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.custom(
+            (id) => (
+              <div className="w-[400px] bg-background rounded-xl border border-stroke overflow-hidden">
+                <div className="p-4 flex items-start gap-3">
+                  <AppIcon iconName="custom-file-pdf-icon" source="custom" size={32} />
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm font-medium text-primary-text block">Shopping list ready</span>
+                    <span className="text-xs text-tertiary-text block mt-0.5">snacks_only.pdf — 2.4MB</span>
+                  </div>
+                </div>
+                <div className="border-t border-stroke flex">
+                  <button
+                    onClick={() => kibanToast.dismiss(id)}
+                    className="flex-1 py-2.5 text-xs text-tertiary-text hover:bg-muted/50 cursor-pointer bg-transparent border-none"
+                  >
+                    Dismiss
+                  </button>
+                  <button
+                    onClick={() => { kibanToast.dismiss(id); kibanToast.success("Downloading..."); }}
+                    className="flex-1 py-2.5 text-xs text-primary-text font-medium hover:bg-muted/50 cursor-pointer bg-transparent border-none border-l border-stroke"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+            ),
+            { duration: 8000 },
+          )
+        }
+      >
+        PDF Download
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.custom(
+            (id) => (
+              <div className="w-[380px] bg-background rounded-xl border border-stroke p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <AppIcon iconName="custom-full-preview-play" source="custom" size={24} className="text-primary shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm font-medium text-primary-text block truncate">Procrastination Playlist</span>
+                    <span className="text-xs text-tertiary-text block truncate">Same 5 songs on repeat since 2019</span>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => kibanToast.dismiss(id)} className="p-1">
+                    <AppIcon iconName="x" size={14} />
+                  </Button>
+                </div>
+                <Progress value={65} className="h-1" />
+              </div>
+            ),
+            { duration: 10000 },
+          )
+        }
+      >
+        Music Player
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.success("Snack haul complete", {
+            description: "chips.bag, chocolate.bar, ice-cream.tub — All essentials secured.",
+            className: "w-[520px]",
+            duration: 6000,
+          })
+        }
+      >
+        Wide Toast
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          kibanToast.warning("Nap overdue", {
+            className: "w-[260px]",
+            duration: 4000,
+          })
+        }
+      >
+        Compact Toast
+      </Button>
     </div>
   );
-} 
+}

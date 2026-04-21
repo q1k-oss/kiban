@@ -1,3 +1,4 @@
+"use client";
 export * from './ui/accordion.js';
 export * from './ui/alert-dialog.js';
 export * from './ui/alert.js';
@@ -36,7 +37,7 @@ export * from './ui/sheet.js';
 export * from './ui/sidebar.js';
 export * from './ui/skeleton.js';
 export * from './ui/slider.js';
-export * from './ui/sonner.js';
+export * from './ui/sonner/index.js';
 export * from './ui/switch.js';
 export * from './ui/table.js';
 export * from './ui/tabs.js';
