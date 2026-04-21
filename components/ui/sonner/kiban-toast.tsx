@@ -65,18 +65,18 @@ export const KibanToastContent = ({
         className="relative rounded-lg overflow-hidden flex flex-col"
         style={{ background: config.bgColor }}
       >
-        <div className="p-2 flex flex-col gap-2">
+        <div className="p-3 flex flex-col gap-2">
           <div className={cn("flex gap-2", description ? "items-start" : "items-center")}>
             <span className="shrink-0" style={{ color: config.iconColor }}>
               <AppIcon
                 iconName={config.iconName}
                 source={config.iconSource}
-                size={18}
+                size={20}
                 strokeWidth={1.5}
               />
             </span>
-            <div className="flex-1 min-w-0 flex flex-col gap-1">
-              <span className="font-medium text-primary-text text-xs leading-tight">
+            <div className="flex-1 min-w-0 flex flex-col gap-2">
+              <span className="font-medium text-primary-text text-sm leading-tight">
                 {title}
               </span>
               {description && (
@@ -90,7 +90,7 @@ export const KibanToastContent = ({
               onClick={() => toast.dismiss(id)}
               className="bg-transparent border-none text-tertiary-text cursor-pointer p-1 shrink-0 rounded-md"
             >
-              <AppIcon iconName="x" size={18} strokeWidth={1.5} />
+              <AppIcon iconName="x" size={20} strokeWidth={1.5} />
             </Button>
           </div>
         </div>
