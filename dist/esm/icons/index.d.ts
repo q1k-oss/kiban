@@ -1,10 +1,10 @@
 declare const CustomIcons: {
     "custom-arrow-up-icon": import("react").FC<import("./ArrowUpIcon").IArrowUpIconProp>;
-    "custom-check-icon": () => import("react/jsx-runtime").JSX.Element;
+    "custom-check-icon": import("react").FC<import("./CheckIcon").ICheckIconProp>;
     "custom-create-agent-icon": import("react").FC<import("./CreateAgentIcon").CreateAgentIconProps>;
     "custom-filter-icon": import("react").FC<import("./FilterIcon").FilterIconProps>;
     "custom-folder-q1k-icon": import("react").FC<import("./FolderQ1kIcon").FolderQ1kIconProps>;
-    "custom-paper-clip-icon": () => import("react/jsx-runtime").JSX.Element;
+    "custom-paper-clip-icon": import("react").FC<import("./PaperClipIcon").IPaperClipIconProp>;
     "custom-square-icon-fill": import("react").FC<import("./SquareIconFill").ISquareIconFillProp>;
     "custom-token-icon": import("react").FC<import("./TokenIcon").TokenIconProps>;
     "custom-google-drive-icon": import("react").FC<import("./GoogleDriveIcon").GoogleDriveIconProps>;
@@ -18,6 +18,11 @@ declare const CustomIcons: {
     "custom-facebook-fill": import("react").FC<import("./FaceBookFillLogo").IFaceBookFillLogo>;
     "custom-q1k-logo": import("react").FC<import("./Q1KLogo").IQ1KLogoProp>;
     "custom-ai-stars": import("react").FC<import("./AiStars").IAiStarsProp>;
+    "custom-file-txt-icon": import("react").FC<import("./FileTXTIcon").IFileTXTIcon>;
+    "custom-empty-doc-icon": import("react").FC<import("./EmptyDocument").IEmptyDocument>;
+    "custom-jira-icon": import("react").FC<import("./JiraIcon").IJiraIcon>;
+    "custom-dropbox-icon": import("react").FC<import("./DropboxIcon").IDropboxIcon>;
+    "custom-gmail-icon": import("react").FC<import("./GmailIcon").IGmailIcon>;
 };
 export type CustomIconName = keyof typeof CustomIcons;
 export { CustomIcons };

@@ -1,1 +1,5 @@
-export declare const CheckIcon: () => import("react/jsx-runtime").JSX.Element;
+import React from "react";
+export interface ICheckIconProp {
+    style?: React.CSSProperties;
+}
+export declare const CheckIcon: React.FC<ICheckIconProp>;
