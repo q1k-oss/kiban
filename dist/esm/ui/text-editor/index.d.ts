@@ -1,4 +1,0 @@
-import type { IBubbleMenu, IDropdownButton, IFloatMenu, IFontSizeOption, IImageUploadResult, ImageUploadHandler, ITextEditorProps, ITextEditorVariant, IToolbarButton, ITopToolbarItem } from "./types/type";
-declare const TextEditor: ({ value, onChange, wrapperClassName, editorClassName, headingLevels, placeholder, linkClassName, highlightMulticolor, textAlignTypes, variant, topToolbar, bubbleMenu, floatingMenu, bubbleMenuOptions, floatingMenuOptions, fontSizes, colors, highlightColors, enableHeadingAnchors, anchorLinkClassName, editorStyles, onImageUpload, topToolbarClassName, }: ITextEditorProps) => import("react/jsx-runtime").JSX.Element;
-export { TextEditor };
-export type { IBubbleMenu, IDropdownButton, IFloatMenu, IFontSizeOption, IImageUploadResult, ImageUploadHandler, ITextEditorProps, ITextEditorVariant, IToolbarButton, ITopToolbarItem, };
