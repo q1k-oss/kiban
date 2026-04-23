@@ -36,6 +36,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         toastOptions={{
           duration: 5000,
         }}
+        offset={30}
         position="top-right"
         {...props}
       />

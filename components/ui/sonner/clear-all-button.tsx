@@ -10,12 +10,12 @@ import type { KibanToastPosition } from "./kiban-toast";
 import { toastStore } from "./toast-store";
 
 const positionClasses: Record<KibanToastPosition, string> = {
-  "top-left": "top-1 left-4",
-  "top-center": "top-1 left-1/2 -translate-x-1/2",
-  "top-right": "top-1 right-4",
-  "bottom-left": "bottom-1 left-4",
-  "bottom-center": "bottom-1 left-1/2 -translate-x-1/2",
-  "bottom-right": "bottom-1 right-4",
+  "top-left": "top-2 left-4",
+  "top-center": "top-2 left-1/2 -translate-x-1/2",
+  "top-right": "top-2 right-4",
+  "bottom-left": "bottom-2 left-4",
+  "bottom-center": "bottom-2 left-1/2 -translate-x-1/2",
+  "bottom-right": "bottom-2 right-4",
 };
 
 const emptyArray: never[] = [];
