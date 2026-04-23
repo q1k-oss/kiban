@@ -29,7 +29,7 @@ const Toaster = (_a) => {
     const { theme = "system" } = useTheme();
     return (_jsxs(_Fragment, { children: [_jsx(ClearAllButtons, {}), _jsx(Sonner, Object.assign({ theme: theme, className: "toaster group", closeButton: true, toastOptions: {
                     duration: 5000,
-                }, offset: 30, position: "top-right" }, props))] }));
+                }, offset: 40, position: "top-right" }, props))] }));
 };
 const kibanToast = {
     success: createToast("success"),
