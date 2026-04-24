@@ -51,13 +51,16 @@ export const KibanToastContent = ({
   className?: string;
 }) => {
   const config = resolveColors(variant, colors);
-  const progress = useCountdown(id, duration);
+  const [hovered, setHovered] = React.useState(false);
+  const progress = useCountdown(id, duration, hovered);
 
   return (
     <div
       role={variant === "error" ? "alert" : "status"}
       aria-live={variant === "error" ? "assertive" : "polite"}
       aria-atomic="true"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       className={cn("rounded-lg shadow-lg p-px w-[380px]", showProgress && "pb-0", className)}
       style={{ background: config.borderGradient }}
     >

@@ -54,9 +54,9 @@ export const ClearAllButtons = () => {
               );
               ids.forEach((id) => toast.dismiss(id));
             }}
-            className="text-xs px-3 py-1 rounded-md bg-button-fill-3 text-secondary-text"
+            className="text-xs px-3 py-1 rounded-md bg-[#151515] text-secondary-text"
           >
-            Clear all
+            Clear
           </Button>
         </div>
       ))}
