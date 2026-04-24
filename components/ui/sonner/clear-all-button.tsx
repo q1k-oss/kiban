@@ -3,7 +3,6 @@
 import * as React from "react";
 import { toast } from "sonner";
 
-import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
 import type { KibanToastPosition } from "./kiban-toast";
@@ -55,9 +54,8 @@ export const ClearAllButtons = () => {
               );
               ids.forEach((id) => toast.dismiss(id));
             }}
-            className="text-xs gap-1.5 px-2 py-1 rounded-xs"
+            className="text-xs px-3 py-1 rounded-md bg-button-fill-3 text-secondary-text"
           >
-            <AppIcon iconName="x" size={12} strokeWidth={2} />
             Clear all
           </Button>
         </div>
