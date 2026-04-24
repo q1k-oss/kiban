@@ -178,7 +178,7 @@ export const ActionableToastContent = ({
 
         {!isProcessing && showProgress && (
           <>
-            <div className="px-2 border-t">
+            <div className="px-2 py-1.5 border-t">
               <span className="text-[11px] text-tertiary-text flex items-center gap-1 flex-wrap">
                 {paused ? (
                   <>

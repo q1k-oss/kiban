@@ -3,19 +3,18 @@
 import * as React from "react";
 import { toast } from "sonner";
 
-import { AppIcon } from "../app-icon";
 import { Button } from "../button";
 
 import type { KibanToastPosition } from "./kiban-toast";
 import { toastStore } from "./toast-store";
 
 const positionClasses: Record<KibanToastPosition, string> = {
-  "top-left": "top-1 left-4",
-  "top-center": "top-1 left-1/2 -translate-x-1/2",
-  "top-right": "top-1 right-4",
-  "bottom-left": "bottom-1 left-4",
-  "bottom-center": "bottom-1 left-1/2 -translate-x-1/2",
-  "bottom-right": "bottom-1 right-4",
+  "top-left": "top-2 left-4",
+  "top-center": "top-2 left-1/2 -translate-x-1/2",
+  "top-right": "top-2 right-4",
+  "bottom-left": "bottom-2 left-4",
+  "bottom-center": "bottom-2 left-1/2 -translate-x-1/2",
+  "bottom-right": "bottom-2 right-4",
 };
 
 const emptyArray: never[] = [];
@@ -55,10 +54,9 @@ export const ClearAllButtons = () => {
               );
               ids.forEach((id) => toast.dismiss(id));
             }}
-            className="text-xs gap-1.5 px-2 py-1 rounded-xs"
+            className="text-xs px-3 py-1 rounded-md bg-[#151515] text-secondary-text"
           >
-            <AppIcon iconName="x" size={12} strokeWidth={2} />
-            Clear all
+            Clear
           </Button>
         </div>
       ))}
