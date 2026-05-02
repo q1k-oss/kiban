@@ -16,6 +16,7 @@ import {
 import FloatingBuildAgentButton from "./components/FloatingBuildAgentButton";
 import HtmlRenderer from "./components/HTMLRenderer";
 import SingleBlogAuthor from "./components/SingleBlogAuthor";
+import SingleBlogFaq from "./components/SingleBlogFaq";
 import SingleBlogHeader from "./components/SingleBlogHeader";
 import { SingleBlogSummary } from "./components/SingleBlogSummary";
 import SingleBlogAuthorSkeleton from "./components/skeletons/SingleBlogAuthorSkeleton";
@@ -185,6 +186,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
         blogFlagName={blog?.flag?.name}
         updatedAt={blog?.updatedAt ?? ""}
         readTime={blog?.readTime}
+        category={blog?.category}
         className="px-0 md:px-6 pt-4 md:pt-14 pb-6"
       />
     );
@@ -252,13 +254,22 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
 
   const renderAuthorDetails = () => {
     if (loading) return <SingleBlogAuthorSkeleton />;
-    if (!blog?.authorEmail || !blog?.authorName) return null;
+    if (!blog?.authorName) return null;
     return (
       <SingleBlogAuthor
-        blogAuthorEmail={blog.authorEmail}
+        blogAuthorEmail={blog.authorEmail ?? ""}
         blogAuthorName={blog.authorName}
+        blogAuthorRole={blog.authorRole}
+        blogAuthorBio={blog.authorBio}
+        blogAuthorAvatar={blog.authorAvatar}
       />
     );
+  };
+
+  const renderFaq = () => {
+    if (loading) return null;
+    if (!blog?.faqItems || blog.faqItems.length === 0) return null;
+    return <SingleBlogFaq faqItems={blog.faqItems} />;
   };
 
   const renderBlogTOC = () => {
@@ -301,7 +312,8 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
                 </div>
               </div>
             )}
-            {(loading || (blog?.authorEmail && blog?.authorName)) && (
+            {renderFaq()}
+            {(loading || blog?.authorName) && (
               <div className=" mt-12">{renderAuthorDetails()}</div>
             )}
           </div>
@@ -320,5 +332,12 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
 
 export default BlogPreview;
 export { BlogPreview };
-export type { IBlogPreviewProp, Blog, BlogStatus, Flag } from "./types/type";
+export type {
+  IBlogPreviewProp,
+  Blog,
+  BlogStatus,
+  BlogSchemaType,
+  BlogFaqItem,
+  Flag,
+} from "./types/type";
 export type { HtmlRendererConfig } from "./components/HTMLRenderer/type";

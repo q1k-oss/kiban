@@ -10,6 +10,20 @@ export interface Flag {
   updatedAt?: string;
 }
 
+export type BlogSchemaType =
+  | 'Article'
+  | 'BlogPosting'
+  | 'NewsArticle'
+  | 'FAQPage'
+  | 'BreadcrumbList'
+  | 'HowTo'
+  | 'Review';
+
+export interface BlogFaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface Blog {
   id?: number;
   title?: string;
@@ -20,9 +34,22 @@ export interface Blog {
   authorId?: string;
   authorName?: string;
   authorEmail?: string;
+  authorRole?: string;
+  authorBio?: string;
+  authorAvatar?: string;
   coverImage?: string;
+  coverImageAlt?: string;
   metaTitle?: string;
   metaDescription?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string;
+  category?: string;
+  canonicalUrl?: string;
+  schemaTypes?: BlogSchemaType[];
+  faqItems?: BlogFaqItem[];
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
   flagId?: number;
   flag?: Flag;
   promoted?: boolean;
@@ -57,6 +84,7 @@ export interface ISingleBlogHeaderProp {
   excerpt: string | undefined;
   updatedAt: string;
   readTime?: string;
+  category?: string;
   className?: string;
 }
 
@@ -64,6 +92,14 @@ export interface ISingleBlogAuthorProp {
   className?: string;
   blogAuthorName: string;
   blogAuthorEmail: string;
+  blogAuthorRole?: string;
+  blogAuthorBio?: string;
+  blogAuthorAvatar?: string;
+}
+
+export interface ISingleBlogFaqProp {
+  faqItems: BlogFaqItem[];
+  className?: string;
 }
 
 export interface ISingleBlogSummaryProp {
