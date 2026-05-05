@@ -98,6 +98,7 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
   return (
     <>
       <Button
+        type="button"
         onClick={() => setOpen(true)}
         className={`${baseButtonClass} ${open ? activeButtonClass : hoverButtonClass}`}
         title="Insert Image"
@@ -111,8 +112,8 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
           <DialogHeader>
             <DialogTitle>Insert image</DialogTitle>
             <DialogDescription>
-              Choose an image and write descriptive alt text. Alt text is required for accessibility
-              and SEO.
+              Choose an image and write descriptive alt text. Alt text is important for
+              accessibility and SEO — please fill it in for every content image.
             </DialogDescription>
           </DialogHeader>
 
@@ -230,7 +231,7 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
 
             <div className="space-y-1">
               <Label htmlFor="image-alt">
-                Alt text <span className="text-tertiary-text">(recommended)</span>
+                Alt text <span className="text-error-border-2">(important)</span>
               </Label>
               <Input
                 id="image-alt"
@@ -253,10 +254,11 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
           </div>
 
           <DialogFooter>
-            <Button variant="outline" onClick={() => setOpen(false)}>
+            <Button type="button" variant="outline" onClick={() => setOpen(false)}>
               Cancel
             </Button>
             <Button
+              type="button"
               onClick={tab === "upload" ? handleInsertUpload : handleInsertUrl}
               disabled={!canSubmit}
             >

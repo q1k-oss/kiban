@@ -62,13 +62,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const renderIcon = loading ? <Loader2 className="animate-spin h-6 w-6" /> : icon
 
+    // Default to type="button" so a Button inside a <form> doesn't accidentally
+    // submit it (HTML's default is "submit"). Callers that want submit pass
+    // type="submit" explicitly.
+    const defaultButtonProps = !asChild ? { type: "button" as const } : {};
+
     return (
       <Comp
         className={buttonCx}
         ref={ref}
         disabled={loading}
+        {...defaultButtonProps}
         {...props}
-        
       >
         
         {isIconLeft && icon && renderIcon}
