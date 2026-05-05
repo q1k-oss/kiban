@@ -115,6 +115,17 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
     }
   };
 
+  // Production rendering rule: while loading, show skeletons; once loaded,
+  // omit any section whose data is missing rather than render empty wrappers.
+  const hasSummary = !!blog?.summary;
+  const hasContent = !!blog?.content;
+  const hasTags = !!blog?.tags?.trim();
+  const hasFaq = !!(blog?.faqItems && blog.faqItems.length > 0);
+  const hasAuthor = !!blog?.authorName;
+  const hasShareUrl = !!url;
+  const hasHeader = !!blog?.title;
+  const hasPrompt = !!blog?.prompt?.trim();
+
   const renderSocialMediaIcons = () => {
     const baseStyle =
       "border border-border-3 rounded-sm p-2.5 cursor-pointer h-fit bg-transparent hover:bg-transparent";
@@ -179,6 +190,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
 
   const renderBlogHeader = () => {
     if (loading) return <SingleBlogHeaderSkeleton />;
+    if (!hasHeader) return null;
     return (
       <SingleBlogHeader
         title={blog?.title ?? ""}
@@ -273,35 +285,44 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
 
   const renderBlogTOC = () => {
     if (loading) return <SingleBlogTOCSkeleton />;
-    if (!blog?.content) return null;
-    return <TableOfContent blogContent={blog.content} />;
+    if (!hasContent) return null;
+    return <TableOfContent blogContent={blog!.content!} />;
   };
+
+  const headerSection = renderBlogHeader();
+  const sidebarHasContent = loading || hasContent || hasShareUrl;
 
   return (
     <div className={className}>
-      <div className={headerClassName}>{renderBlogHeader()}</div>
+      {headerSection && (
+        <div className={headerClassName}>{headerSection}</div>
+      )}
       <div className="flex items-start gap-10 relative mt-2 md:mt-6 ">
         <div className={contentClassName}>
-          <div className="mb-6">
-            <BorderMovingWrapper
-              duration={6000}
-              colors={[
-                "#C3946F99",
-                "#F49D5699",
-                "#FFF2B7",
-                "#FEEEB2FA",
-                "#F4C656",
-              ]}
-              animationMode="loop"
-              strokeWidth={1}
-              className="w-full"
-            >
-              {renderBlogSummary()}
-            </BorderMovingWrapper>
-          </div>
+          {(loading || hasSummary) && (
+            <div className="mb-6">
+              <BorderMovingWrapper
+                duration={6000}
+                colors={[
+                  "#C3946F99",
+                  "#F49D5699",
+                  "#FFF2B7",
+                  "#FEEEB2FA",
+                  "#F4C656",
+                ]}
+                animationMode="loop"
+                strokeWidth={1}
+                className="w-full"
+              >
+                {renderBlogSummary()}
+              </BorderMovingWrapper>
+            </div>
+          )}
           <div className="md:px-8">
-            <div>{renderBlogContent()}</div>
-            {(loading || blog?.tags) && (
+            {(loading || hasContent) && (
+              <div>{renderBlogContent()}</div>
+            )}
+            {(loading || hasTags) && (
               <div className={tagsClassName}>
                 <span className="text-lg  text-icon-color-default mr-4">
                   Tags:
@@ -311,7 +332,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
                 </div>
               </div>
             )}
-            {blog?.faqItems && blog.faqItems.length > 0 && (
+            {hasFaq && (
               <div className="mt-12">
                 <BorderMovingWrapper
                   duration={6000}
@@ -330,19 +351,23 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
                 </BorderMovingWrapper>
               </div>
             )}
-            {(loading || blog?.authorName) && (
+            {(loading || hasAuthor) && (
               <div className=" mt-12">{renderAuthorDetails()}</div>
             )}
           </div>
         </div>
-        <div className={sidebarClassName}>
-          {renderBlogTOC()}
-          <div className="flex items-center justify-center gap-2 my-10">
-            {renderSocialMediaIcons()}
+        {sidebarHasContent && (
+          <div className={sidebarClassName}>
+            {renderBlogTOC()}
+            {(loading || hasShareUrl) && (
+              <div className="flex items-center justify-center gap-2 my-10">
+                {renderSocialMediaIcons()}
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </div>
-      <FloatingBuildAgentButton />
+      {hasPrompt && <FloatingBuildAgentButton />}
     </div>
   );
 };

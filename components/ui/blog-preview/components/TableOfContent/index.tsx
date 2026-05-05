@@ -68,6 +68,8 @@ export default function TableOfContent({
   const progress =
     activeIndex >= 0 ? ((activeIndex + 1) / headingIds.length) * 100 : 0;
 
+  // No headings → no TOC. Avoids rendering an empty progress rail.
+  if (result.length === 0) return null;
 
   return (
     <div className="relative hidden md:flex">
