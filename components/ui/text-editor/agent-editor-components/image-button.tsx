@@ -92,8 +92,8 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
     setOpen(false);
   };
 
-  const canSubmit =
-    tab === "upload" ? !!file : !!url.trim();
+  const hasSource = tab === "upload" ? !!file : !!url.trim();
+  const canSubmit = hasSource && alt.trim().length > 0;
 
   return (
     <>
@@ -231,7 +231,7 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
 
             <div className="space-y-1">
               <Label htmlFor="image-alt">
-                Alt text <span className="text-error-border-2">(important)</span>
+                Alt text <span className="text-error-border-2">*</span>
               </Label>
               <Input
                 id="image-alt"
@@ -246,9 +246,12 @@ export const ImageButton = ({ editor }: ImageButtonProps) => {
                   }
                 }}
                 maxLength={250}
+                aria-required="true"
+                aria-invalid={hasSource && alt.trim().length === 0}
               />
               <p className="text-xs text-tertiary-text">
-                Empty alt is treated as decorative. Set descriptive text for content images.
+                Required. Describe what's in the image so screen readers and search engines
+                can understand it.
               </p>
             </div>
           </div>
