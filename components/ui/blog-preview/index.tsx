@@ -311,7 +311,25 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
                 </div>
               </div>
             )}
-            {renderFaq()}
+            {blog?.faqItems && blog.faqItems.length > 0 && (
+              <div className="mt-12">
+                <BorderMovingWrapper
+                  duration={6000}
+                  colors={[
+                    "#C3946F99",
+                    "#F49D5699",
+                    "#FFF2B7",
+                    "#FEEEB2FA",
+                    "#F4C656",
+                  ]}
+                  animationMode="loop"
+                  strokeWidth={1}
+                  className="w-full"
+                >
+                  {renderFaq()}
+                </BorderMovingWrapper>
+              </div>
+            )}
             {(loading || blog?.authorName) && (
               <div className=" mt-12">{renderAuthorDetails()}</div>
             )}
