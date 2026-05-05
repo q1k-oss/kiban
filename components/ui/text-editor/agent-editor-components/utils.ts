@@ -69,6 +69,7 @@ interface PendingUpload {
   handler: ImageUploadHandler;
   view: EditorView;
   blobUrl: string | null;
+  alt?: string;
 }
 
 const pendingUploads = new Map<string, PendingUpload>();
@@ -155,7 +156,7 @@ const attemptUpload = (uploadId: string) => {
       const attrs = buildResponsiveImageAttrs(urls);
       const newNode = view.state.schema.nodes.image.create({
         ...attrs,
-        alt: "",
+        alt: entry.alt ?? "",
       });
       replaceNode(view, uploadId, newNode);
       clearUpload(uploadId);
@@ -201,6 +202,7 @@ export const uploadAndInsertImage = (
   pos: number | null,
   file: File,
   uploadHandler: ImageUploadHandler,
+  alt?: string,
 ) => {
   const uploadId = `__uploading_${Date.now()}_${Math.random().toString(36).slice(2)}`;
 
@@ -209,6 +211,7 @@ export const uploadAndInsertImage = (
     handler: uploadHandler,
     view,
     blobUrl: null,
+    alt,
   });
 
   const previewSrc = getOrCreatePreview(uploadId, file);
