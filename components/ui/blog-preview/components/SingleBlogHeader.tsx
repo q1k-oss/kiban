@@ -17,13 +17,9 @@ export default function SingleBlogHeader({
   updatedAt,
   title,
   readTime,
-  category,
   className,
 }: ISingleBlogHeaderProp) {
   const formattedDate = updatedAt ? formatDate(updatedAt) : null;
-  const categories = category
-    ? category.split('·').map((c) => c.trim()).filter(Boolean)
-    : [];
   return (
     <div
       className={cn(
@@ -34,21 +30,13 @@ export default function SingleBlogHeader({
       <SingleBlogHeaderBackground className="absolute inset-0 z-0 hidden md:block" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-0 bg-linear-to-b from-transparent to-black" />
 
-      {(blogFlagName || readTime || categories.length > 0) && (
+      {(blogFlagName || readTime) && (
         <div className="flex flex-wrap items-center gap-2 z-10">
           {blogFlagName && (
             <span className="px-2 py-1.5 text-primary-text bg-button-fill-3 rounded-sm font-medium text-xs">
               {blogFlagName}
             </span>
           )}
-          {categories.map((c) => (
-            <span
-              key={c}
-              className="px-2 py-1.5 text-secondary-text bg-button-fill-3/60 rounded-sm font-medium text-xs"
-            >
-              {c}
-            </span>
-          ))}
           {readTime && <span className="text-sm ml-2">{readTime}</span>}
         </div>
       )}

@@ -41,9 +41,6 @@ export interface Blog {
   coverImageAlt?: string;
   metaTitle?: string;
   metaDescription?: string;
-  primaryKeyword?: string;
-  secondaryKeywords?: string;
-  category?: string;
   canonicalUrl?: string;
   schemaTypes?: BlogSchemaType[];
   faqItems?: BlogFaqItem[];
@@ -84,7 +81,6 @@ export interface ISingleBlogHeaderProp {
   excerpt: string | undefined;
   updatedAt: string;
   readTime?: string;
-  category?: string;
   className?: string;
 }
 
