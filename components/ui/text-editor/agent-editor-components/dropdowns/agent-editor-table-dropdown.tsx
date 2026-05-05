@@ -1,5 +1,6 @@
 "use client";
 import { Editor } from "@tiptap/core";
+import { useRef } from "react";
 
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
@@ -8,6 +9,7 @@ import {
   baseButtonClass,
   hoverButtonClass,
 } from "../utils";
+import { useDropdownClose } from "../use-dropdown-close";
 
 interface TableDropdownProps {
   editor: Editor;
@@ -44,9 +46,11 @@ export const TableDropdown = ({
   onToggle,
 }: TableDropdownProps) => {
   const isInsideTable = editor.isActive("table");
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  useDropdownClose(wrapperRef, isOpen, onToggle);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={wrapperRef}>
       <Button
         onClick={onToggle}
         className={`${baseButtonClass} ${isOpen || isInsideTable ? activeButtonClass : hoverButtonClass}`}

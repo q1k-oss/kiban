@@ -1,10 +1,12 @@
 "use client";
 import { Editor } from "@tiptap/core";
+import { useRef } from "react";
 
 import { AppIcon } from "../../../app-icon";
 import { Button } from "../../../button";
 import { useTextEditorConfig } from "../../context/editor-config-context";
 import { activeButtonClass, baseButtonClass, hoverButtonClass } from "../utils";
+import { useDropdownClose } from "../use-dropdown-close";
 
 interface ColorPickerDropdownProps {
   editor: Editor;
@@ -18,9 +20,11 @@ export const ColorPickerDropdown = ({
   onToggle,
 }: ColorPickerDropdownProps) => {
   const { colors } = useTextEditorConfig();
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  useDropdownClose(wrapperRef, isOpen, onToggle);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={wrapperRef}>
       <Button
         onClick={onToggle}
         className={`${baseButtonClass} ${isOpen ? activeButtonClass : hoverButtonClass}`}
