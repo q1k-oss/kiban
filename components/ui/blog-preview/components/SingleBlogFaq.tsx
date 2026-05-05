@@ -10,7 +10,7 @@ import type { ISingleBlogFaqProp } from '../types/type';
 const SingleBlogFaq = ({ faqItems, className }: ISingleBlogFaqProp) => {
   if (!faqItems || faqItems.length === 0) return null;
   return (
-    <div className={cn('p-6', className)}>
+    <div className={cn('p-6 italic', className)}>
       <h4 className="font-bold mb-4 text-lg">Frequently Asked Questions</h4>
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, idx) => (
@@ -22,7 +22,7 @@ const SingleBlogFaq = ({ faqItems, className }: ISingleBlogFaqProp) => {
             <AccordionTrigger className="text-left text-primary-text font-semibold py-4 hover:no-underline">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="text-secondary-text italic leading-relaxed pb-4">
+            <AccordionContent className="text-secondary-text leading-relaxed pb-4">
               {item.answer}
             </AccordionContent>
           </AccordionItem>
