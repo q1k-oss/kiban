@@ -11,6 +11,7 @@ import { Button } from "../button";
 import { toastStore } from "./toast-store";
 import type { ActionableToastVariant, ToastColors } from "./types";
 import { useCountdown } from "./use-countdown";
+import { useToastExpanded } from "./use-toast-expanded";
 import { resolveColors } from "./variants";
 import { TimeBar } from "./time-bar";
 
@@ -51,10 +52,13 @@ export const KibanToastContent = ({
   className?: string;
 }) => {
   const config = resolveColors(variant, colors);
-  const progress = useCountdown(id, duration);
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  const expanded = useToastExpanded(rootRef);
+  const progress = useCountdown(id, duration, expanded);
 
   return (
     <div
+      ref={rootRef}
       role={variant === "error" ? "alert" : "status"}
       aria-live={variant === "error" ? "assertive" : "polite"}
       aria-atomic="true"

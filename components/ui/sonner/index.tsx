@@ -6,6 +6,7 @@ import { Toaster as Sonner, toast } from "sonner";
 
 import { ActionableToastContent } from "./actionable-toast";
 import { ClearAllButtons } from "./clear-all-button";
+import type { ClearAllOptions } from "./clear-all-button";
 import { createToast } from "./kiban-toast";
 import type { KibanToastOptions, KibanToastPosition } from "./kiban-toast";
 import { KibanLoadingContent } from "./loading-toast";
@@ -13,7 +14,10 @@ import { kibanPromise } from "./promise-toast";
 import { toastStore } from "./toast-store";
 import type { ActionableToastOptions } from "./types";
 
-type ToasterProps = React.ComponentProps<typeof Sonner>;
+type ToasterProps = React.ComponentProps<typeof Sonner> & {
+  /** Customize / disable the auto Clear-all button shown when ≥2 toasts stack. */
+  clearAll?: ClearAllOptions;
+};
 
 const kibanActionableToast = (options: ActionableToastOptions) => {
   const duration = options.duration ?? 5000;
@@ -23,12 +27,25 @@ const kibanActionableToast = (options: ActionableToastOptions) => {
   );
 };
 
-const Toaster = ({ ...props }: ToasterProps) => {
+const DEFAULT_OFFSET_PX = 36;
+
+const parseOffsetPx = (offset: ToasterProps["offset"]): number => {
+  if (typeof offset === "number") return offset;
+  if (typeof offset === "string") {
+    const m = offset.match(/^(\d+(?:\.\d+)?)/);
+    return m ? Number(m[1]) : DEFAULT_OFFSET_PX;
+  }
+  return DEFAULT_OFFSET_PX;
+};
+
+const Toaster = ({ clearAll, offset, ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme();
+  const resolvedOffset = offset ?? `${DEFAULT_OFFSET_PX}px`;
+  const numericOffset = parseOffsetPx(resolvedOffset);
 
   return (
     <>
-      <ClearAllButtons />
+      <ClearAllButtons options={clearAll} offset={numericOffset} />
       <Sonner
         theme={theme as ToasterProps["theme"]}
         className="toaster group"
@@ -37,6 +54,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           duration: 5000,
         }}
         position="top-right"
+        offset={resolvedOffset}
         {...props}
       />
     </>
@@ -96,3 +114,4 @@ export { Toaster, kibanActionableToast, kibanToast };
 export type { ActionableToastOptions, ActionableToastVariant } from "./types";
 export type { KibanToastOptions, KibanToastPosition } from "./kiban-toast";
 export type { KibanPromiseOptions } from "./promise-toast";
+export type { ClearAllOptions } from "./clear-all-button";

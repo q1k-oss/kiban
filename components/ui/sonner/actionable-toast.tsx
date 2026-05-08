@@ -14,6 +14,7 @@ import type {
   VariantConfig,
 } from "./types";
 import { useCountdown } from "./use-countdown";
+import { useToastExpanded } from "./use-toast-expanded";
 import { resolveColors } from "./variants";
 import { TimeBar } from "./time-bar";
 
@@ -110,7 +111,9 @@ export const ActionableToastContent = ({
   }, []);
 
   const isProcessing = activeIdx !== null;
-  const progress = useCountdown(id, duration, isProcessing || paused);
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  const expanded = useToastExpanded(rootRef);
+  const progress = useCountdown(id, duration, isProcessing || paused || expanded);
   const secondsLeft = Math.ceil((progress * duration) / 1000);
 
   const handleAction = async (
@@ -129,6 +132,7 @@ export const ActionableToastContent = ({
 
   return (
     <div
+      ref={rootRef}
       role={variant === "error" ? "alertdialog" : "dialog"}
       aria-live={variant === "error" ? "assertive" : "polite"}
       aria-atomic="true"
