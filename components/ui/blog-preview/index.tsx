@@ -325,7 +325,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
             )}
             {(loading || hasTags) && (
               <div className={tagsClassName}>
-                <span className="text-lg  text-icon-color-default mr-4">
+                <span className="text-xs font-medium text-secondary-text mr-3 self-center">
                   Tags:
                 </span>
                 <div className="flex flex-wrap justify-start gap-4">

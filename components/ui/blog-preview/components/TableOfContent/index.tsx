@@ -80,7 +80,17 @@ export default function TableOfContent({
   return (
     <div className="relative hidden md:flex">
 
-     <div className="relative w-1 rounded-full overflow-hidden self-stretch">
+     {/* Progress rail. The wrapper carries a faded copy of the brand gradient
+         so the full rail height is visible even at 0% progress; the inner
+         absolute div paints the bright `var(--ai-icon-3)` fill on top up to
+         the active heading. */}
+     <div
+        className="relative w-1 rounded-full overflow-hidden self-stretch"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(195,148,111,0.35), rgba(244,157,86,0.35), rgba(255,242,183,0.35), rgba(254,238,178,0.4), rgba(244,198,86,0.35))',
+        }}
+     >
         <div
           className="absolute top-0 left-0 w-full transition-all duration-300 ease-out"
           style={{
@@ -112,9 +122,13 @@ export default function TableOfContent({
           >
             <h2 className="font-semibold text-lg mb-4">Table of Contents</h2>
 
-            <ul className="list-none pl-0">
+            <ul className="list-none pl-0" style={{ listStyle: 'none' }}>
               {result.map((head, idx) => (
-                <li key={idx} className={indentMap[head.level]}>
+                <li
+                  key={idx}
+                  className={indentMap[head.level]}
+                  style={{ listStyle: 'none' }}
+                >
                   <a
                     href={`#${head.id}`}
                     className="block my-1 text-sm font-light hover:text-primary-text transition"
