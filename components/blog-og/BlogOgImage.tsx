@@ -1,3 +1,5 @@
+import { DEFAULT_OG_BG_DATA_URL } from './defaultBg';
+
 // Pure-presentational layout for the dynamic OG card. Designed for
 // `next/og`'s ImageResponse / Satori — accepts simple JSX with inline
 // styles and avoids any client-only APIs (no useState, no event handlers,
@@ -10,9 +12,11 @@ export interface BlogOgImageProps {
   /** Optional secondary line under the title. Auto-dropped when the title
    *  alone is long enough that adding it would crowd the card. */
   excerpt?: string;
-  /** Absolute URL to the dark cube-pattern background placeholder PNG.
-   *  Consumer-supplied so kiban doesn't need to bundle the asset. */
-  bgImageUrl: string;
+  /** Optional override for the dark cube-pattern background. When omitted,
+   *  the bundled brand placeholder (DEFAULT_OG_BG_DATA_URL) is used —
+   *  embedded as a data URL so the Edge runtime doesn't need to make a
+   *  self-referential public-HTTPS fetch (which times out on Cloud Run). */
+  bgImageUrl?: string;
 }
 
 // Tuned for the 1200×630 canvas + sans-serif default font in next/og.
@@ -26,6 +30,7 @@ const EXCERPT_MAX_CHARS = 130;
 export function BlogOgImage({ title, excerpt = '', bgImageUrl }: BlogOgImageProps) {
   const trimmedTitle = title.trim() || 'Untitled Blog Post';
   const trimmedSrc = excerpt.trim();
+  const bgSrc = bgImageUrl || DEFAULT_OG_BG_DATA_URL;
 
   const titleLines = Math.ceil(trimmedTitle.length / APPROX_CHARS_PER_TITLE_LINE);
   const showExcerpt =
@@ -48,7 +53,7 @@ export function BlogOgImage({ title, excerpt = '', bgImageUrl }: BlogOgImageProp
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={bgImageUrl}
+        src={bgSrc}
         width={1200}
         height={630}
         style={{ position: 'absolute', inset: 0 }}

@@ -72,7 +72,7 @@ export default function InlineShareWidget({
 
       {open && (
         <div
-          className="absolute right-0 top-full mt-2 z-50 flex flex-col items-center gap-1.5 p-1.5 rounded-md bg-background-black border border-border-3 shadow-lg"
+          className="absolute right-0 top-full mt-2 z-50 flex flex-col items-center gap-1.5 p-1.5 rounded-md bg-zinc-900 border border-white/15 shadow-xl"
           role="menu"
         >
           <Button
