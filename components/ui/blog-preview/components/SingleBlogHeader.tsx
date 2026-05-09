@@ -3,6 +3,7 @@ import { format, isValid } from 'date-fns';
 import { cn } from '../../../utils/cn';
 import { ISingleBlogHeaderProp } from '../types/type';
 
+import InlineShareWidget from './InlineShareWidget';
 import SingleBlogHeaderBackground from './SingleBlogHeaderBackground';
 
 function formatDate(value: string): string | null {
@@ -17,6 +18,8 @@ export default function SingleBlogHeader({
   updatedAt,
   title,
   readTime,
+  shareUrl,
+  shareTitle,
   className,
 }: ISingleBlogHeaderProp) {
   const formattedDate = updatedAt ? formatDate(updatedAt) : null;
@@ -37,7 +40,12 @@ export default function SingleBlogHeader({
               {blogFlagName}
             </span>
           )}
-          {readTime && <span className="text-sm ml-2">{readTime}</span>}
+          {blogFlagName && readTime && (
+            <span aria-hidden className="text-secondary-text text-xs">
+              •
+            </span>
+          )}
+          {readTime && <span className="text-sm">{readTime}</span>}
         </div>
       )}
       {title && (
@@ -48,10 +56,21 @@ export default function SingleBlogHeader({
       {excerpt && (
         <p className="text-secondary-text font-light text-lg z-10">{excerpt}</p>
       )}
-      {formattedDate && (
-        <p className="text-secondary-text font-light z-10">
-          Updated, {formattedDate}
-        </p>
+      {(formattedDate || shareUrl) && (
+        <div className="flex items-center justify-between gap-4 z-10">
+          {formattedDate ? (
+            <p className="text-secondary-text font-light">
+              Updated, {formattedDate}
+            </p>
+          ) : (
+            <span />
+          )}
+          {shareUrl && (
+            <div className="md:hidden">
+              <InlineShareWidget url={shareUrl} title={shareTitle} />
+            </div>
+          )}
+        </div>
       )}
       <hr className="border-border-3 z-10" />
     </div>

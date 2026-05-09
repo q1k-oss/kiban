@@ -4,7 +4,6 @@ import { ISingleBlogAuthorProp } from '../types/type';
 const SingleBlogAuthor = ({
   className,
   blogAuthorName,
-  blogAuthorEmail,
   blogAuthorRole,
   blogAuthorBio,
   blogAuthorAvatar,
@@ -28,9 +27,6 @@ const SingleBlogAuthor = ({
             <p className="text-secondary-text text-sm leading-tight">
               {blogAuthorRole}
             </p>
-          )}
-          {blogAuthorEmail && (
-            <p className="text-primary-text text-sm mt-1">{blogAuthorEmail}</p>
           )}
         </div>
       </div>

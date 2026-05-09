@@ -81,13 +81,16 @@ export interface ISingleBlogHeaderProp {
   excerpt: string | undefined;
   updatedAt: string;
   readTime?: string;
+  /** When provided, renders an inline share widget on the date row (mobile). */
+  shareUrl?: string;
+  /** Title forwarded to share intents (X, Reddit). */
+  shareTitle?: string;
   className?: string;
 }
 
 export interface ISingleBlogAuthorProp {
   className?: string;
   blogAuthorName: string;
-  blogAuthorEmail: string;
   blogAuthorRole?: string;
   blogAuthorBio?: string;
   blogAuthorAvatar?: string;

@@ -198,6 +198,8 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
         blogFlagName={blog?.flag?.name}
         updatedAt={blog?.updatedAt ?? ""}
         readTime={blog?.readTime}
+        shareUrl={url || undefined}
+        shareTitle={blog?.title}
         className="px-0 md:px-6 pt-4 md:pt-14 pb-6"
       />
     );
@@ -268,7 +270,6 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
     if (!blog?.authorName) return null;
     return (
       <SingleBlogAuthor
-        blogAuthorEmail={blog.authorEmail ?? ""}
         blogAuthorName={blog.authorName}
         blogAuthorRole={blog.authorRole}
         blogAuthorBio={blog.authorBio}
@@ -332,25 +333,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
                 </div>
               </div>
             )}
-            {hasFaq && (
-              <div className="mt-12">
-                <BorderMovingWrapper
-                  duration={6000}
-                  colors={[
-                    "#C3946F99",
-                    "#F49D5699",
-                    "#FFF2B7",
-                    "#FEEEB2FA",
-                    "#F4C656",
-                  ]}
-                  animationMode="loop"
-                  strokeWidth={1}
-                  className="w-full"
-                >
-                  {renderFaq()}
-                </BorderMovingWrapper>
-              </div>
-            )}
+            {hasFaq && <div className="mt-12">{renderFaq()}</div>}
             {(loading || hasAuthor) && (
               <div className=" mt-12">{renderAuthorDetails()}</div>
             )}

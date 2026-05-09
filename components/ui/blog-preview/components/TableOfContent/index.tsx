@@ -50,7 +50,13 @@ export default function TableOfContent({
   const [result, setResult] = useState<HeadingTag[]>([]);
 
   useEffect(() => {
-    setResult(getAllHeadings(blogContent));
+    // Skip TL;DR sections from the TOC even when authors include the heading
+    // in the body — design treats it as part of the prose, not a navigable
+    // anchor.
+    const headings = getAllHeadings(blogContent).filter(
+      (h) => h.text.replace(/[:\s]/g, '').toLowerCase() !== 'tldr',
+    );
+    setResult(headings);
   }, [blogContent]);
   const headingIds = useMemo(() => result.map((h) => h.id), [result]);
   const activeId = useActiveHeading(headingIds);
@@ -106,7 +112,7 @@ export default function TableOfContent({
           >
             <h2 className="font-semibold text-lg mb-4">Table of Contents</h2>
 
-            <ul className="list-disc pl-4 marker:text-xs marker:text-secondary-text">
+            <ul className="list-none pl-0">
               {result.map((head, idx) => (
                 <li key={idx} className={indentMap[head.level]}>
                   <a
