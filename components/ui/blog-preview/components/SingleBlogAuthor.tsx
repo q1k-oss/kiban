@@ -33,45 +33,18 @@ const SingleBlogAuthor = ({
   blogAuthorName,
   blogAuthorRole,
   blogAuthorBio,
-  blogAuthorAvatar,
 }: ISingleBlogAuthorProp) => {
-  // Initials fallback for the avatar circle when no image URL is provided —
-  // keeps the "circle on the left" visual rhythm of the card.
-  const initials = (blogAuthorName ?? '')
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase() ?? '')
-    .join('');
-
   return (
     <div className={cn('border border-border-3 p-6 rounded-lg', className)}>
-      <div className="flex items-center gap-4">
-        {blogAuthorAvatar ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={blogAuthorAvatar}
-            alt={`${blogAuthorName} avatar`}
-            className="h-12 w-12 rounded-full object-cover border border-border-3 shrink-0"
-          />
-        ) : initials ? (
-          <span
-            aria-hidden
-            className="h-12 w-12 rounded-full flex items-center justify-center text-sm font-semibold text-primary-text bg-button-fill-3 border border-border-3 shrink-0"
-          >
-            {initials}
-          </span>
-        ) : null}
-        <div className="min-w-0">
-          <h1 className="text-base text-primary-text font-semibold leading-tight">
-            {blogAuthorName}
-          </h1>
-          {blogAuthorRole && (
-            <p className="text-secondary-text text-sm leading-tight mt-0.5">
-              {renderWithBrand(blogAuthorRole)}
-            </p>
-          )}
-        </div>
+      <div className="min-w-0">
+        <h1 className="text-base text-primary-text font-semibold leading-tight">
+          {blogAuthorName}
+        </h1>
+        {blogAuthorRole && (
+          <p className="text-secondary-text text-sm leading-tight mt-0.5">
+            {renderWithBrand(blogAuthorRole)}
+          </p>
+        )}
       </div>
       {blogAuthorBio && (
         <>

@@ -434,3 +434,23 @@
 [data-sonner-toaster] [data-sonner-toast][data-styled='true'] [data-button]:hover {
   background: rgba(255, 255, 255, 0.12) !important;
 }
+
+/* Slow conic gold border for premium card chrome — matches the q1k-console
+   sign-in panel. The angle is animated via @property so the whole conic
+   gradient rotates in place; outer wrapper paints the gradient and the
+   inner card masks all but a 1px ring. */
+@property --kiban-gold-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes kiban-gold-spin {
+  to {
+    --kiban-gold-angle: 360deg;
+  }
+}
+
+@utility kiban-animate-gold-spin {
+  animation: kiban-gold-spin 6s linear infinite;
+}
