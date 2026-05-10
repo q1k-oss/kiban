@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 
 import { AppIcon } from "../../../app-icon";
+import { cn } from "../../../../utils/cn";
 
 import { useActiveHeading } from './useActiveHeading';
 
@@ -10,6 +11,18 @@ type HeadingTag = {
   text: string;
   id: string;
 };
+
+// Mirror of HtmlRenderer's `generateId` so the TOC produces the same id the
+// HeadingRenderer puts on the rendered heading element. If they diverge,
+// document.getElementById(...) returns null in useActiveHeading and the
+// progress rail never advances past 0%.
+function generateIdFromText(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .trim();
+}
 
 function getAllHeadings(html: string): HeadingTag[] {
   const parser = new DOMParser();
@@ -25,7 +38,9 @@ function getAllHeadings(html: string): HeadingTag[] {
 
       const remainingText = clone.textContent?.trim() || '';
       const text = remainingText || anchorText;
-      // Use the heading's id, or extract from heading-anchor href
+      // Use the heading's id, or extract from heading-anchor href, or
+      // fall back to a generated slug — same algorithm HeadingRenderer
+      // uses so the TOC link targets the actual rendered heading id.
       let id = el.id;
       if (!id) {
         const anchor = el.querySelector('.heading-anchor');
@@ -33,6 +48,9 @@ function getAllHeadings(html: string): HeadingTag[] {
         if (href?.startsWith('#')) {
           id = href.slice(1);
         }
+      }
+      if (!id && text) {
+        id = generateIdFromText(text);
       }
 
       return { level: Number(el.tagName.replace('H', '')), text, id };
@@ -52,9 +70,10 @@ export default function TableOfContent({
   useEffect(() => {
     // Skip TL;DR sections from the TOC even when authors include the heading
     // in the body — design treats it as part of the prose, not a navigable
-    // anchor.
+    // anchor. Strip ALL non-letter chars so we catch "TL;DR", "TL:DR",
+    // "TL DR", "TLDR", etc. — whatever punctuation the author used.
     const headings = getAllHeadings(blogContent).filter(
-      (h) => h.text.replace(/[:\s]/g, '').toLowerCase() !== 'tldr',
+      (h) => h.text.replace(/[^a-zA-Z]/g, '').toLowerCase() !== 'tldr',
     );
     setResult(headings);
   }, [blogContent]);
@@ -80,22 +99,16 @@ export default function TableOfContent({
   return (
     <div className="relative hidden md:flex">
 
-     {/* Progress rail. The wrapper carries a faded copy of the brand gradient
-         so the full rail height is visible even at 0% progress; the inner
-         absolute div paints the bright `var(--ai-icon-3)` fill on top up to
-         the active heading. */}
-     <div
-        className="relative w-1 rounded-full overflow-hidden self-stretch"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(195,148,111,0.35), rgba(244,157,86,0.35), rgba(255,242,183,0.35), rgba(254,238,178,0.4), rgba(244,198,86,0.35))',
-        }}
-     >
+     {/* Progress rail. Faint white track + warm gold fill — matches the
+         calm palette of the q1k-console sign-in card. The fill is fully
+         opaque at the warm hue so the active reading position reads
+         clearly against the dim track. */}
+     <div className="relative w-1 rounded-full overflow-hidden self-stretch bg-white/10">
         <div
           className="absolute top-0 left-0 w-full transition-all duration-300 ease-out"
           style={{
             height: `${progress}%`,
-            background: 'var(--ai-icon-3)',
+            background: '#e7c9a8',
           }}
         />
       </div>
@@ -131,7 +144,12 @@ export default function TableOfContent({
                 >
                   <a
                     href={`#${head.id}`}
-                    className="block my-1 text-sm font-light hover:text-primary-text transition"
+                    className={cn(
+                      'block my-1 text-sm transition-colors',
+                      head.id === activeId
+                        ? 'text-[#e7c9a8] font-medium'
+                        : 'text-zinc-400 font-light hover:text-zinc-200',
+                    )}
                     onClick={(e) => {
                       // Smooth scroll behavior
                       e.preventDefault();

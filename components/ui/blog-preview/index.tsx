@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 
 import { AppIcon } from "../app-icon";
-import { BorderMovingWrapper } from "../border-moving-wrapper";
 import { Button } from "../button";
 import { Skeleton } from "../skeleton";
 import {
@@ -47,7 +46,7 @@ const defaultHtmlRendererConfig = {
     openInNewTab: false,
   },
   images: {
-    className: "rounded-sm shadow-md",
+    className: "block w-full h-auto",
     addCaption: true,
   },
   paragraphs: {
@@ -302,21 +301,23 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
         <div className={contentClassName}>
           {(loading || hasSummary) && (
             <div className="mb-6">
-              <BorderMovingWrapper
-                duration={6000}
-                colors={[
-                  "#C3946F99",
-                  "#F49D5699",
-                  "#FFF2B7",
-                  "#FEEEB2FA",
-                  "#F4C656",
-                ]}
-                animationMode="loop"
-                strokeWidth={1}
-                className="w-full"
+              {/* Slow conic-gold border + dark inner gradient — same chrome
+                  as the q1k-console sign-in card. Outer wrapper paints the
+                  gradient; 1px padding lets the inner card mask all but a
+                  thin ring, animated by the @property gold-angle so the
+                  highlight drifts slowly without feeling flashy. */}
+              <div
+                className="relative w-full rounded-2xl overflow-hidden kiban-animate-gold-spin"
+                style={{
+                  padding: 1,
+                  background:
+                    "conic-gradient(from var(--kiban-gold-angle), #c9956b30 0%, #8b691420 40%, #d4a57440 50%, #f5d6a825 60%, #8b691415 80%, #c9956b30 100%)",
+                }}
               >
-                {renderBlogSummary()}
-              </BorderMovingWrapper>
+                <div className="rounded-[15px] overflow-hidden bg-gradient-to-br from-[#1a1714] via-[#121212] to-[#0e0f11]">
+                  {renderBlogSummary()}
+                </div>
+              </div>
             </div>
           )}
           <div className="md:px-8">
