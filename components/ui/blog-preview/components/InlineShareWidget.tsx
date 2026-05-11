@@ -17,11 +17,8 @@ interface InlineShareWidgetProps {
   className?: string;
 }
 
-const triggerStyle =
-  "flex items-center justify-center w-9 h-9 rounded-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 active:scale-95 transition-all cursor-pointer";
-
-const iconButtonStyle =
-  "flex items-center justify-center w-9 h-9 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/20 active:scale-95 transition-all cursor-pointer";
+const buttonStyle =
+  "border border-border-3 rounded-sm p-2 cursor-pointer h-fit bg-zinc-900 hover:bg-white/10";
 
 export default function InlineShareWidget({
   url,
@@ -62,64 +59,63 @@ export default function InlineShareWidget({
       <Button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={triggerStyle}
+        className={buttonStyle}
         aria-label={open ? "Close share menu" : "Share this post"}
         aria-expanded={open}
       >
         <AppIcon
           iconName={open ? "x" : "share-2"}
-          size={15}
-          className="text-zinc-200"
+          size={14}
+          className="text-primary-text"
         />
       </Button>
 
       {open && (
         <div
-          className="absolute right-0 top-full mt-2 z-50 flex flex-col items-center gap-2 p-2 rounded-2xl border border-white/10 bg-zinc-950/90 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.4)] animate-in fade-in slide-in-from-top-1 duration-150"
-          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.4)" }}
+          className="absolute right-0 top-full mt-2 z-50 flex flex-col items-center gap-1.5 p-1.5 rounded-md bg-zinc-900 border border-white/15 shadow-xl"
           role="menu"
         >
           <Button
             type="button"
             onClick={handleCopyLink}
-            className={iconButtonStyle}
+            className={buttonStyle}
             aria-label="Copy link"
           >
             <AppIcon
               iconName={copied ? "check" : "link"}
-              size={15}
-              className="text-zinc-200"
+              size={14}
+              className="text-primary-text"
             />
           </Button>
-          <TwitterShareButton className={iconButtonStyle} url={url} title={title}>
+          <TwitterShareButton className={buttonStyle} url={url} title={title}>
             <AppIcon
               iconName="custom-xtwitter"
               size={14}
-              className="text-zinc-200"
+              className="text-primary-text"
               source="custom"
             />
           </TwitterShareButton>
-          <FacebookShareButton className={iconButtonStyle} url={url}>
+          <FacebookShareButton className={buttonStyle} url={url}>
             <AppIcon
               iconName="custom-facebook-fill"
-              size={15}
-              className="text-zinc-200"
+              size={14}
+              className="text-primary-text"
               source="custom"
             />
           </FacebookShareButton>
-          <LinkedinShareButton className={iconButtonStyle} url={url}>
+          <LinkedinShareButton className={buttonStyle} url={url}>
             <AppIcon
               iconName="custom-linkedin-fill"
               size={14}
-              className="text-zinc-200"
+              className="text-primary-text"
               source="custom"
             />
           </LinkedinShareButton>
-          <RedditShareButton className={iconButtonStyle} url={url} title={title}>
+          <RedditShareButton className={buttonStyle} url={url} title={title}>
             <AppIcon
               iconName="custom-reddit-fill"
-              size={15}
-              className="text-zinc-200"
+              size={14}
+              className="text-primary-text"
               source="custom"
             />
           </RedditShareButton>
@@ -127,8 +123,8 @@ export default function InlineShareWidget({
       )}
 
       {copied && (
-        <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-white/10 text-zinc-200 whitespace-nowrap animate-in fade-in slide-in-from-right-1 duration-200">
-          Link copied
+        <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 text-xs rounded bg-secondary-text text-black! whitespace-nowrap animate-in fade-in slide-in-from-right-1 duration-200">
+          Link Copied!
         </div>
       )}
     </div>
