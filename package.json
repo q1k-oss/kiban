@@ -1,7 +1,7 @@
 {
   "name": "@q1k-oss/kiban",
   "description": "Kiban (基盤) - A React UI Component Library",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "files": [
     "dist",
     "styles/kiban.css"
