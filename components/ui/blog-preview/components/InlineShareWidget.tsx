@@ -17,8 +17,11 @@ interface InlineShareWidgetProps {
   className?: string;
 }
 
+// Arbitrary hex bg instead of `bg-zinc-900` so the rule lands as
+// `background-color: #18181b !important` style precedence without any
+// chance of leaking through the Tailwind opacity variable.
 const buttonStyle =
-  "border border-border-3 rounded-sm p-2 cursor-pointer h-fit bg-zinc-900 hover:bg-white/10";
+  "border border-border-3 rounded-sm p-2 cursor-pointer h-fit bg-[#18181b] hover:bg-white/10";
 
 export default function InlineShareWidget({
   url,
@@ -71,8 +74,10 @@ export default function InlineShareWidget({
       </Button>
 
       {open && (
+        // Solid hex bg (not bg-zinc-900) so the page <hr> can never leak
+        // through, regardless of stacking-context opacity quirks.
         <div
-          className="absolute right-0 top-full mt-2 z-50 flex flex-col items-center gap-1.5 p-1.5 rounded-md bg-zinc-900 border border-white/15 shadow-xl"
+          className="absolute right-0 top-full mt-2 z-50 flex flex-col items-center gap-1.5 p-1.5 rounded-md bg-[#18181b] border border-white/15 shadow-xl"
           role="menu"
         >
           <Button
