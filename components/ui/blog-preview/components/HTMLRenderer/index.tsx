@@ -224,6 +224,7 @@ const renderElement = (
         key={key}
         type={lowerTag as 'ul' | 'ol' | 'li'}
         innerHtml={innerHtml}
+        attrs={attrs}
         config={config.lists}
         renderContent={renderListContent}
       />

@@ -6,6 +6,7 @@ import { HtmlRendererConfig } from '../type';
 interface ListRendererProps {
   type: 'ul' | 'ol' | 'li';
   innerHtml: string;
+  attrs?: Record<string, string>;
   config?: HtmlRendererConfig['lists'];
   renderContent: (html: string) => React.ReactNode;
 }
@@ -13,6 +14,7 @@ interface ListRendererProps {
 const ListRenderer: React.FC<ListRendererProps> = ({
   type,
   innerHtml,
+  attrs,
   config,
   renderContent,
 }) => {
@@ -28,8 +30,10 @@ const ListRenderer: React.FC<ListRendererProps> = ({
     );
   }
 
+  // Preserve `id` so inline `<a href="#…">` markers (the wiki-style
+  // citation flow) can scroll to the right reference row.
   return (
-    <li className={cn('text-inherit', config?.liClassName)}>{renderContent(innerHtml)}</li>
+    <li id={attrs?.id} className={cn('text-inherit', config?.liClassName)}>{renderContent(innerHtml)}</li>
   );
 };
 

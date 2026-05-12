@@ -37,6 +37,37 @@ export const FONT_SIZES = [
   { value: "48px", label: "XX-Large" },
 ];
 
+// Walk up the cursor's ancestor chain to find the nearest node carrying
+// an `id` attribute (heading or list item, per the wiki-style citation
+// flow) and copy `#<id>` to the clipboard. Authors paste that into the
+// link dialog when wrapping their inline `[1]` marker in a Superscript +
+// anchor link.
+import type { Editor } from "@tiptap/core";
+const copyAnchorAction = (editor: Editor) => {
+  const { $from } = editor.state.selection;
+  for (let depth = $from.depth; depth >= 0; depth--) {
+    const node = $from.node(depth);
+    const id =
+      (node.attrs as Record<string, unknown>)?.id ||
+      // Headings derive their id from text content at render time, not as
+      // an attr — recompute the same slug here so the copy works for them.
+      (node.type.name === "heading" ? slugifyForAnchor(node.textContent) : null);
+    if (id) {
+      const value = `#${id}`;
+      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        void navigator.clipboard.writeText(value);
+      }
+      return;
+    }
+  }
+};
+
+const slugifyForAnchor = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
 export const AGENT_TOOLBAR_CONFIG: ITopToolbarItem[][] = [
   // Undo/Redo
   [
@@ -106,6 +137,25 @@ export const AGENT_TOOLBAR_CONFIG: ITopToolbarItem[][] = [
       title: "Code",
       action: (e) => e.chain().focus().toggleCode().run(),
       isActive: (e) => e.isActive("code"),
+    },
+    {
+      icon: "superscript",
+      title: "Superscript",
+      action: (e) => e.chain().focus().toggleSuperscript().run(),
+      isActive: (e) => e.isActive("superscript"),
+    },
+    {
+      icon: "subscript",
+      title: "Subscript",
+      action: (e) => e.chain().focus().toggleSubscript().run(),
+      isActive: (e) => e.isActive("subscript"),
+    },
+    {
+      icon: "link-2",
+      title: "Copy anchor (for the heading or list item the cursor is in)",
+      action: copyAnchorAction,
+      disabled: (e) =>
+        !e.isActive("heading") && !e.isActive("listItem"),
     },
   ],
   // Color & Highlight

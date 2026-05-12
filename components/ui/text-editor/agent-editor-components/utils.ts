@@ -15,6 +15,15 @@ export const hoverButtonClass =
 
 export const normalizeUrl = (raw: string): string | null => {
   const trimmed = raw.trim();
+  if (!trimmed) return null;
+  // Bare `#some-id` in-page anchor — used by the wiki-style citation
+  // flow where the author copies a list-item / heading anchor and pastes
+  // it into the link dialog. URL parsing doesn't accept these standalone,
+  // so handle them explicitly. Strip everything after a stray space and
+  // disallow further `#` to keep the value safe to drop into `href`.
+  if (trimmed.startsWith("#")) {
+    return /^#[A-Za-z0-9_\-./]+$/.test(trimmed) ? trimmed : null;
+  }
   const urlString = /^[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,}(\/.*)?$/i.test(
     trimmed,
   )
