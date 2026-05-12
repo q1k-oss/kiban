@@ -4,6 +4,8 @@ import Heading from "@tiptap/extension-heading";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
+import Subscript from "@tiptap/extension-subscript";
+import Superscript from "@tiptap/extension-superscript";
 import { Table, TableCell, TableHeader, TableRow } from "@tiptap/extension-table";
 import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
@@ -23,6 +25,7 @@ import {
   HeadingWithAnchor,
   deduplicateHeadingIds,
 } from "./extensions/heading-with-anchor";
+import { ListItemWithAnchor } from "./extensions/list-item-with-anchor";
 import { ResponsiveImage } from "./extensions/responsive-image";
 import { BubbleFormatMenu } from "./notion-editor-components/bubble-format-menu";
 import { editorStyles as defaultEditorStyles } from "./notion-editor-components/editor-styles";
@@ -85,6 +88,12 @@ const TextEditor = ({
         : Heading.configure({
             levels: headingLevels,
           }),
+      // Auto-id each list item from its text content so authors can copy
+      // an anchor on a reference list row and link a superscript marker
+      // (e.g. `[1]`) to it from anywhere else in the body.
+      ListItemWithAnchor,
+      Superscript,
+      Subscript,
       Placeholder.configure({
         placeholder: placeholder,
       }),

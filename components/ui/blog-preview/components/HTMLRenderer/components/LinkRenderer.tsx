@@ -31,7 +31,12 @@ const LinkRenderer: React.FC<LinkRendererProps> = ({
     className: config?.className || '',
   };
 
-  if (config?.openInNewTab && safe) {
+  // Open external links in a new tab when configured. In-page anchors
+  // (`#some-id`) stay in-tab — those are the wiki-style citation links
+  // that should scroll to the matching reference row without losing the
+  // reader's place.
+  const isInPageAnchor = (href || '').startsWith('#');
+  if (config?.openInNewTab && safe && !isInPageAnchor) {
     linkProps.target = '_blank';
     linkProps.rel = 'noopener noreferrer';
   }

@@ -1,7 +1,7 @@
 {
   "name": "@q1k-oss/kiban",
   "description": "Kiban (基盤) - A React UI Component Library",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "files": [
     "dist",
     "styles/kiban.css"
@@ -93,6 +93,8 @@
     "@tiptap/extension-image": "^2.27.2",
     "@tiptap/extension-link": "^2.27.2",
     "@tiptap/extension-placeholder": "^2.27.2",
+    "@tiptap/extension-subscript": "^2.27.2",
+    "@tiptap/extension-superscript": "^2.27.2",
     "@tiptap/extension-table": "^3.20.0",
     "@tiptap/extension-text-align": "^2.27.2",
     "@tiptap/extension-text-style": "^2.27.2",

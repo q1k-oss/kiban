@@ -43,7 +43,10 @@ const defaultHtmlRendererConfig = {
     h3ClassName: "text-lg font-semibold mt-4 mb-3",
   },
   links: {
-    openInNewTab: false,
+    // Outbound links open in a new tab so readers don't lose the post.
+    // In-page anchors (`#…` citation markers) stay in-tab — see
+    // LinkRenderer for the carve-out.
+    openInNewTab: true,
   },
   images: {
     className: "block w-full h-auto",
