@@ -1,5 +1,5 @@
 // hooks/useActiveHeading.ts
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 function getScrollParent(node: HTMLElement | null): HTMLElement | Window {
   if (!node) return window;
@@ -16,7 +16,6 @@ function getScrollParent(node: HTMLElement | null): HTMLElement | Window {
 
 export function useActiveHeading(headingIds: string[]) {
   const [activeId, setActiveId] = useState<string>('');
-  const scrollParentRef = useRef<HTMLElement | Window>(window);
 
   const getActiveHeading = useCallback(() => {
     if (headingIds.length === 0) return '';
@@ -64,7 +63,6 @@ export function useActiveHeading(headingIds: string[]) {
     // Find the nearest scrollable ancestor of the first heading
     const firstEl = document.getElementById(headingIds[0]);
     const scrollParent = getScrollParent(firstEl);
-    scrollParentRef.current = scrollParent;
 
     const handleScroll = () => {
       const newActiveId = getActiveHeading();
