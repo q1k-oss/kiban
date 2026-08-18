@@ -20,9 +20,6 @@
   <a href="https://github.com/q1k-oss/kiban/graphs/contributors">
     <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/q1k-oss/kiban?style=for-the-badge"/>
   </a>
-  <a href="https://github.com/q1k-oss/kiban/actions">
-    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/q1k-oss/kiban/publish.yml?style=for-the-badge&label=NPM%20BUILD"/>
-  </a>
 </div>
 
 ---
