@@ -29,6 +29,8 @@ interface AppIconProps {
   source?: IconSource;
   /** Opacity of the icon (0 to 1) @default 1 */
   opacity?: number;
+  /** Inline styles, merged after the opacity shorthand */
+  style?: React.CSSProperties;
 }
 
 /**
@@ -50,8 +52,12 @@ const AppIcon: React.FC<AppIconProps> = ({
   className,
   source = "lucide",
   opacity = 1,
+  style: styleProp,
 }) => {
-  const style = opacity < 1 ? { opacity } : undefined;
+  const style =
+    opacity < 1 || styleProp
+      ? { ...(opacity < 1 ? { opacity } : null), ...styleProp }
+      : undefined;
 
   // Fast path: Lucide icons (most common case)
   if (source === "lucide") {

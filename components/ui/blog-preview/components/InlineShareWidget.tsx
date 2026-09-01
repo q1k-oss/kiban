@@ -1,5 +1,6 @@
 "use client";
 
+import { Check, Link as LinkIcon, Share2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { AppIcon } from "../../app-icon";
@@ -22,6 +23,14 @@ interface InlineShareWidgetProps {
 // chance of leaking through the Tailwind opacity variable.
 const buttonStyle =
   "border border-border-3 rounded-sm p-2 cursor-pointer h-fit bg-[#18181b] hover:bg-white/10";
+
+// Inline styles as the source of truth for colour: consumers don't compile
+// this package's Tailwind classes (bg-[#18181b], text-primary-text), so on
+// their builds the menu painted transparent and the glyphs took whatever
+// colour cascaded in - invisible on a dark page. Inline styles can't be
+// dropped by a consumer's build.
+const solidStyle = { backgroundColor: "#18181b" } as const;
+const glyphStyle = { color: "#e7e5e4" } as const;
 
 export default function InlineShareWidget({
   url,
@@ -63,14 +72,18 @@ export default function InlineShareWidget({
         type="button"
         onClick={() => setOpen((v) => !v)}
         className={buttonStyle}
+        style={solidStyle}
         aria-label={open ? "Close share menu" : "Share this post"}
         aria-expanded={open}
       >
-        <AppIcon
-          iconName={open ? "x" : "share-2"}
-          size={14}
-          className="text-primary-text"
-        />
+        {/* Static lucide imports: the DynamicIcon path lazy-loads a chunk per
+            glyph, and a failed fetch on a deployed device leaves an empty
+            button. These four are tiny - bundle them. */}
+        {open ? (
+          <X size={14} style={glyphStyle} />
+        ) : (
+          <Share2 size={14} style={glyphStyle} />
+        )}
       </Button>
 
       {open && (
@@ -78,25 +91,28 @@ export default function InlineShareWidget({
         // through, regardless of stacking-context opacity quirks.
         <div
           className="absolute right-0 top-full mt-2 z-50 flex flex-col items-center gap-1.5 p-1.5 rounded-md bg-[#18181b] border border-white/15 shadow-xl"
+          style={{ ...solidStyle, ...glyphStyle, zIndex: 60 }}
           role="menu"
         >
           <Button
             type="button"
             onClick={handleCopyLink}
             className={buttonStyle}
+            style={solidStyle}
             aria-label="Copy link"
           >
-            <AppIcon
-              iconName={copied ? "check" : "link"}
-              size={14}
-              className="text-primary-text"
-            />
+            {copied ? (
+              <Check size={14} style={glyphStyle} />
+            ) : (
+              <LinkIcon size={14} style={glyphStyle} />
+            )}
           </Button>
           <TwitterShareButton className={buttonStyle} url={url} title={title}>
             <AppIcon
               iconName="custom-xtwitter"
               size={14}
               className="text-primary-text"
+              style={glyphStyle}
               source="custom"
             />
           </TwitterShareButton>
@@ -105,6 +121,7 @@ export default function InlineShareWidget({
               iconName="custom-facebook-fill"
               size={14}
               className="text-primary-text"
+              style={glyphStyle}
               source="custom"
             />
           </FacebookShareButton>
@@ -113,6 +130,7 @@ export default function InlineShareWidget({
               iconName="custom-linkedin-fill"
               size={14}
               className="text-primary-text"
+              style={glyphStyle}
               source="custom"
             />
           </LinkedinShareButton>
@@ -121,6 +139,7 @@ export default function InlineShareWidget({
               iconName="custom-reddit-fill"
               size={14}
               className="text-primary-text"
+              style={glyphStyle}
               source="custom"
             />
           </RedditShareButton>
