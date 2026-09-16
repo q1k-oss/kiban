@@ -25,7 +25,12 @@ const TITLE_FONT = 64;
 const EXCERPT_FONT = 28;
 const APPROX_CHARS_PER_TITLE_LINE = 28;
 const MAX_TITLE_LINES_WITH_EXCERPT = 2;
-const EXCERPT_MAX_CHARS = 130;
+/* The card has room for four excerpt lines at 28px/1.35 inside the 900px text
+   column (~65 chars a line) before it reaches the logo, so 130 was cutting
+   text off with an ellipsis while the space below sat empty. 200 clears the
+   160-char cap admin enforces on ogDescription, so an admin-written
+   description is never truncated. */
+const EXCERPT_MAX_CHARS = 200;
 
 export function BlogOgImage({ title, excerpt = '', bgImageUrl }: BlogOgImageProps) {
   const trimmedTitle = title.trim() || 'Untitled Blog Post';
