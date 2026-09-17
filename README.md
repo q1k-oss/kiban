@@ -234,7 +234,7 @@ Kiban is part of the q1k-oss family — see [q1k.ai/oss](https://q1k.ai/oss).
 
 | Package | What it does |
 | --- | --- |
-| [`@q1k-oss/mint-format`](https://github.com/q1k-oss/mint) | Token-efficient data format for LLM prompts |
+| [`@q1k-oss/mint-format`](https://github.com/q1k-oss/mint-format) | Token-efficient data format for LLM prompts |
 | [`@q1k-oss/context-engine`](https://github.com/q1k-oss/context-engine) | Turns conversations and files into a versioned knowledge graph |
 | [`@q1k-oss/behaviour-tree-workflows`](https://github.com/q1k-oss/behaviour-tree-workflows) | Declarative behaviour trees in YAML, durable via Temporal |
 | [`@q1k-oss/kiban`](https://github.com/q1k-oss/kiban) | React components on Radix primitives and Tailwind |
