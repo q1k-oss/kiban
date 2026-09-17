@@ -60,11 +60,18 @@ function getAllHeadings(html: string): HeadingTag[] {
 
 interface ITableOfContentProp {
   blogContent: string;
+  /** Start expanded instead of capped at max-h-80 behind a fade. Long
+      reference documents - legal pages, policies - are navigated rather than
+      read start to finish, so hiding two thirds of their contents behind a
+      hover chevron costs more than the vertical space it saves. Defaults to
+      false, which is the behaviour blog posts have always had. */
+  defaultExpanded?: boolean;
 }
 export default function TableOfContent({
   blogContent,
+  defaultExpanded = false,
 }: ITableOfContentProp) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(defaultExpanded);
   const [result, setResult] = useState<HeadingTag[]>([]);
 
   useEffect(() => {

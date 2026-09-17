@@ -98,6 +98,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   tagClassName = "py-2 px-4 text-sm bg-minimap border border-border-3 font-light rounded-sm text-secondary-text",
 
   shareUrl,
+  tocDefaultExpanded,
 }) => {
   const [copied, setCopied] = useState(false);
   const url =
@@ -289,7 +290,12 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
   const renderBlogTOC = () => {
     if (loading) return <SingleBlogTOCSkeleton />;
     if (!hasContent) return null;
-    return <TableOfContent blogContent={blog!.content!} />;
+    return (
+      <TableOfContent
+        blogContent={blog!.content!}
+        defaultExpanded={tocDefaultExpanded}
+      />
+    );
   };
 
   const headerSection = renderBlogHeader();

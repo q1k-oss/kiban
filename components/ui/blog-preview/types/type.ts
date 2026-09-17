@@ -72,6 +72,10 @@ export interface IBlogPreviewProp {
   tagClassName?: string;
   onBuild?: () => void;
   shareUrl?: string;
+  /** Render the table of contents fully expanded rather than capped behind a
+      fade. For reference documents that are navigated rather than read
+      straight through. Defaults to false. */
+  tocDefaultExpanded?: boolean;
 }
 
 
