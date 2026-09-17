@@ -304,8 +304,7 @@ const BlogPreview: React.FC<IBlogPreviewProp> = ({
         <div className={contentClassName}>
           {(loading || hasSummary) && (
             <div className="mb-6">
-              {/* Slow conic-gold border + dark inner gradient — same chrome
-                  as the q1k-console sign-in card. Outer wrapper paints the
+              {/* Slow conic-gold border + dark inner gradient. Outer wrapper paints the
                   gradient; 1px padding lets the inner card mask all but a
                   thin ring, animated by the @property gold-angle so the
                   highlight drifts slowly without feeling flashy. */}

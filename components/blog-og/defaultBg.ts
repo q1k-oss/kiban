@@ -1,7 +1,7 @@
-// Auto-generated from q1k-landing/public/q1k_og.png. Embedded as a data URL
-// so Edge functions don't need to make a self-referential network round-trip
-// during OG rendering — the upstream q1k.ai → Cloud Run hop times out before
-// Satori can finish, leaving the bg image (and therefore the brand mark) blank.
+// Default OG card background, embedded as a data URL so Edge functions don't
+// need a self-referential network round-trip during OG rendering — that hop
+// tends to time out before Satori finishes, leaving the background (and
+// therefore the brand mark) blank.
 
 export const DEFAULT_OG_BG_DATA_URL =
   'data:image/png;base64,' +

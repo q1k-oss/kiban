@@ -3,8 +3,8 @@ import { DEFAULT_OG_BG_DATA_URL } from './defaultBg';
 // Pure-presentational layout for the dynamic OG card. Designed for
 // `next/og`'s ImageResponse / Satori — accepts simple JSX with inline
 // styles and avoids any client-only APIs (no useState, no event handlers,
-// no document/window access). Both q1k-admin and q1k-landing call this
-// from their /api/og route so the rendered card stays consistent.
+// no document/window access). Call it from an /api/og route so every
+// rendered card stays consistent across your apps.
 
 export interface BlogOgImageProps {
   /** Headline shown in the upper-left. */

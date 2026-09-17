@@ -99,8 +99,8 @@ export default function TableOfContent({
   return (
     <div className="relative hidden md:flex">
 
-     {/* Progress rail. Faint white track + warm gold fill — matches the
-         calm palette of the q1k-console sign-in card. The fill is fully
+     {/* Progress rail. Faint white track + warm gold fill, on the same calm
+         palette as the rest of the blog chrome. The fill is fully
          opaque at the warm hue so the active reading position reads
          clearly against the dim track. */}
      <div className="relative w-1 rounded-full overflow-hidden self-stretch bg-white/10">
