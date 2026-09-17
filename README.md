@@ -24,7 +24,7 @@
   <a href="https://github.com/q1k-oss/kiban/tree/main/content/docs"><strong>Docs</strong></a> ·
   <a href="https://www.npmjs.com/package/@q1k-oss/kiban"><strong>npm</strong></a> ·
   <a href="https://github.com/q1k-oss/kiban"><strong>GitHub</strong></a> ·
-  <a href="https://q1k.ai/open-source"><strong>q1k-oss</strong></a>
+  <a href="https://q1k.ai/oss"><strong>q1k-oss</strong></a>
 </p>
 
 ---
@@ -230,7 +230,7 @@ Contributions are welcome.
 
 ## Related projects
 
-Kiban is part of the q1k-oss family — see [q1k.ai/open-source](https://q1k.ai/open-source).
+Kiban is part of the q1k-oss family — see [q1k.ai/oss](https://q1k.ai/oss).
 
 | Package | What it does |
 | --- | --- |
